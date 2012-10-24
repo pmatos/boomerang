@@ -16,7 +16,9 @@
 #define __MACHOBINARYFILE_H_
 
 #include "BinaryFile.h"
+
 #include <string>
+#include <stdlib>
 #include <vector>
 
 /* $Revision$

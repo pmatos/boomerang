@@ -6,6 +6,9 @@
 
 #define PACKED __attribute__((packed))
 
+typedef unsigned short ushort;
+typedef unsigned long  ulong;
+
 struct coff_header
 {
         ushort  coff_magic;
