@@ -10,22 +10,16 @@ dnl the Makefiles and sets up various things.
 dnl
 dnl $Revision$
 dnl
-dnl 12 Apr 02 - Mike: Created
-dnl 15 Oct 02 - Sebastian Apel: checks for libelf, libcppunit and AC_PREREQ(2.61) inserted
-dnl 06 Mar 03 - Mike: Removed need for libelf
-dnl 27 Jun 04 - Mike: Added XMLWF for eXpat XML parser
-dnl 22 Aug 05 - Mike: Some improvements for OS X, and finding things like libexpat.a
-dnl 12 Dec 05 - Mike: Apply Emmanuel Fleury's changes for auto "make remote"
-dnl 16 Mar 08 - Markus Gothe: configure.ac for use with autotools.
 
 AC_PREREQ(2.61)
-AC_INIT([boomerang],[1.0],[nietzsche@lysator.liu.se])
+AC_INIT([boomerang],[0.1],[paulo@matos-sorge.com])
 AC_CONFIG_SRCDIR([LICENSE.TERMS])
 AC_CONFIG_HEADER(include/config.h)
 
 AC_CANONICAL_TARGET
 
 AM_INIT_AUTOMAKE
+AC_CONFIG_MACRO_DIR([m4])
 
 dnl check if the OPT variable is set
 isset_OPT=${OPT+set}
@@ -49,20 +43,12 @@ dnl	fi
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
 
-AC_PATH_PROG( MAKEDEPEND, makedepend )
-if test -z "$MAKEDEPEND"; then
-	AC_MSG_NOTICE()
-	AC_MSG_NOTICE([You need the X11 makedepend utility to use automatic dependency generation (make depend)])
-	AC_MSG_NOTICE()
-fi
-
-AC_SUBST( MAKEDEPEND )
-AC_PATH_PROG( BISONPP, bison++ )
-AC_SUBST( BISONPP )
-AC_PATH_PROG( FLEXPP, flex++ )
-AC_SUBST( FLEXPP )
-AC_PATH_PROG( M4, m4 )
-AC_SUBST( M4 )
+AC_PATH_PROG([BISONPP], [bison++])
+AC_SUBST([BISONPP])
+AC_PATH_PROG([FLEXPP], [flex++])
+AC_SUBST([FLEXPP])
+AC_PATH_PROG([M4], [m4])
+AC_SUBST([M4])
 
 dnl -------------------
 AC_MSG_CHECKING( [if using GNU ld] )
@@ -78,6 +64,7 @@ if ${HOST_LD} -v 2>&1 </dev/null | egrep '(GNU|with BFD)' 1>&5; then
    AC_DEFINE( HOST_GNU_LD, 1, [Host uses GNU ld] )
 fi
 AC_MSG_RESULT( $HOST_GNU_LD )
+AM_CONDITIONAL(HOST_IS_GNU_LD, [test x"$HOST_GNU_LD" = xyes])
 
 dnl -------------------
 AC_MSG_CHECKING( [if host is Windows] )
@@ -90,6 +77,7 @@ case $host in
    ;;
 esac
 AC_MSG_RESULT( $HOST_WINDOWS )
+AM_CONDITIONAL(HOST_IS_WINDOWS, [test x"$HOST_WINDOWS" = xyes])
 
 AC_MSG_CHECKING( [if host is Cygwin] )
 case $host in
@@ -101,6 +89,7 @@ case $host in
    ;;
 esac
 AC_MSG_RESULT( $HOST_CYGWIN )
+AM_CONDITIONAL(HOST_IS_CYGWIN, [test x"$HOST_CYGWIN" = xyes])
 
 AC_MSG_CHECKING( [if host is OS X] )
 case $host in
@@ -114,6 +103,7 @@ case $host in
    ;;
 esac
 AC_MSG_RESULT( $HOST_OSX )
+AM_CONDITIONAL(HOST_IS_OSX, [test x"$HOST_OSX" = xyes])
 
 AC_MSG_CHECKING( [if host is OS X 10.2] )
 case $host in
@@ -127,9 +117,7 @@ case $host in
    ;;
 esac
 AC_MSG_RESULT( $HOST_OSX_10_2 )
-
-
-
+AM_CONDITIONAL(HOST_IS_OSX_10_2, [test x"$HOST_OSX" = xyes])
 
 dnl Checks for elf library (no longer needed)
 dnl AC_CHECK_LIB(elf, elf_begin, , [AC_MSG_ERROR("library 'elf' not found")])
@@ -340,12 +328,6 @@ LIBDIR=$srcdir/lib
 
 AC_SUBST(PREFIX)
 AC_SUBST(LIBDIR)
-AC_SUBST(HOST_GNU_LD)
-AC_SUBST(HOST_WINDOWS)
-AC_SUBST(HOST_OSX)
-AC_SUBST(HOST_OSX_10_2)
-AC_SUBST(HOST_CYGWIN)
-
 
 dnl only the makefile in the loader dir is currently used
 AC_CONFIG_FILES(          Makefile)
