@@ -16,8 +16,6 @@
 # You should be able to add a simple loader without any changes to this Makefile, as long as you follow the naming
 # convention <type>BinaryFile.*
 
-AUTOMAKE_OPTIONS = foreign
-
 ####################
 # Compiler settings
 #

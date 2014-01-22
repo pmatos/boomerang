@@ -13,7 +13,7 @@ AC_CONFIG_HEADER(include/config.h)
 
 AC_CANONICAL_TARGET
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 
 dnl check if the OPT variable is set
 isset_OPT=${OPT+set}
