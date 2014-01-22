@@ -24,6 +24,8 @@
 #include <iostream>
 #include <sstream>
 #include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "nlist.h"
 #include "macho-apple.h"
