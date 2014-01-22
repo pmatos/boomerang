@@ -11,133 +11,67 @@
 #
 ######################################################
 
-# Note: gnu make is probably required (for patsubst etc)
-# This whole makefile is dependent on finding the pattern *BinaryFile.cpp; a lib%.so file is made for each of these
-# You should be able to add a simple loader without any changes to this Makefile, as long as you follow the naming
-# convention <type>BinaryFile.*
+AM_CPPFLAGS = -I$(top_srcdir)/include
 
-####################
-# Compiler settings
-#
+noinst_LTLIBRARIES = \
+	libmicroX86dis.la \
+	libBinaryFile.la \
+	libBinaryFileFactory.la
 
-FPIC = -fPIC
+libmicroX86dis_la_SOURCES = microX86dis.c
 
-####################################
-# Detection of OS specific settings
-#
+libBinaryFile_la_SOURCES = BinaryFile.cpp SymTab.cpp
 
-# LDL is -ldl if needed (Windows does not)
-# EXEEXT is .exe for Windows
-# DLLEXT is .dll for Windows and .so otherwise 
-#ifeq ($(HOST_WINDOWS), yes)
-# LDL=
-# EXEEXT=.exe
-# DLLEXT=.dll
-# WININCLUDE=-Iwin32make/include
-# # RUNPATH is not needed on Windows 
-# RUNPATH=
-# COPYDLL=$(top_srcdir)/libBinaryFile$(DLLEXT)
-#else # Non-Windows
- LDL=-ldl
- EXEEXT=
- DLLEXT=.so
- WININCLUDE=
-# ifeq ($(HOST_GNU_LD), yes)
-  RUNPATH=-Wl,-rpath -Wl,"lib"
-# else
-#  ifeq ($(HOST_OSX), yes)
-#   RUNPATH=
-#  else		# Assume Solaris
-#   RUNPATH=-R"lib"
-#  endif
-# endif
- COPYDLL=
-#endif
+libBinaryFileFactory_la_SOURCES = BinaryFileFactory.cpp
+libBinaryFileFactory_la_LIBADD = libBinaryFile.la -ldl
 
-#ifeq ($(HOST_OSX), yes)
-# ifeq ($HOST_OSX_10_2), yes)
-#  SHARED=-dynamiclib		# Note: doesn't seem to work at present; fiddle manually
-# else
-#  SHARED=-dynamic -dylib
-# endif
-# #-flat_namespace
-# DLLEXT=.dylib
-# RUNPATH=
-#else # Non-OS X
- SHARED=-shared
-#endif
+pkglib_LTLIBRARIES = \
+	DOS4GWBinaryFile.la \
+	ElfBinaryFile.la \
+	ExeBinaryFile.la \
+	HpSomBinaryFile.la \
+	IntelCoffFile.la \
+	MachOBinaryFile.la \
+	PalmBinaryFile.la \
+	Win32BinaryFile.la
 
-######################
-# Rules for compiling
-#
+DOS4GWBinaryFile_la_SOURCES = DOS4GWBinaryFile.cpp
+ElfBinaryFile_la_SOURCES    = ElfBinaryFile.cpp
+ExeBinaryFile_la_SOURCES    = ExeBinaryFile.cpp
+HpSomBinaryFile_la_SOURCES  = HpSomBinaryFile.cpp
+IntelCoffFile_la_SOURCES    = IntelCoffFile.cpp
+MachOBinaryFile_la_SOURCES  = MachOBinaryFile.cpp
+PalmBinaryFile_la_SOURCES   = PalmBinaryFile.cpp
+Win32BinaryFile_la_SOURCES  = Win32BinaryFile.cpp
 
-LOADERS = \
-	ElfBinaryFile.cpp \
-	Win32BinaryFile.cpp \
-	ExeBinaryFile.cpp \
-	HpSomBinaryFile.cpp \
-	PalmBinaryFile \
-	DOS4GWBinaryFile.cpp \
-	IntelCoffFile.cpp \
-	$(NULL)
+DOS4GWBinaryFile_la_LIBADD = libBinaryFile.la libmicroX86dis.la
+ElfBinaryFile_la_LIBADD    = libBinaryFile.la
+ExeBinaryFile_la_LIBADD    = libBinaryFile.la
+HpSomBinaryFile_la_LIBADD  = libBinaryFile.la
+IntelCoffFile_la_LIBADD    = libBinaryFile.la
+MachOBinaryFile_la_LIBADD  = libBinaryFile.la
+PalmBinaryFile_la_LIBADD   = libBinaryFile.la
+Win32BinaryFile_la_LIBADD  = libBinaryFile.la libmicroX86dis.la
 
-pkglib_LTLIBRARIES = 
+DOS4GWBinaryFile_la_LDFLAGS = -no-undefined -avoid-version -module -shared
+ElfBinaryFile_la_LDFLAGS    = -no-undefined -avoid-version -module -shared
+ExeBinaryFile_la_LDFLAGS    = -no-undefined -avoid-version -module -shared
+HpSomBinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
+IntelCoffFile_la_LDFLAGS    = -no-undefined -avoid-version -module -shared
+MachOBinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
+PalmBinaryFile_la_LDFLAGS   = -no-undefined -avoid-version -module -shared
+Win32BinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
 
-#ifeq ($(HOST_CYGWIN), no)
- # Until we can resolve the issue of compiling loader/MachOBinaryFile.cpp, don't attempt to make it so at least
- # the Cygwin hosted Boomerang can compile and use non-MachO loaders
- LOADERS+=MachOBinaryFile.cpp
-#endif
-#LOADERDLLS=$(patsubst %,$(top_srcdir)/lib/lib%$(DLLEXT),$(LOADERS))
-#BASEDLL=$(top_srcdir)/lib/libBinaryFile$(DLLEXT)
-#ALLDLLS=$(LOADERDLLS) $(BASEDLL)
-ALLLIBS=$(patsubst %,-l%,$(LOADERS)) -lBinaryFile
-ALLOBJS = $(patsubst %, %.o, $(LOADERS))
-ALLOBJS += BinaryFile.o SymTab.o
+check_PROGRAMS = \
+	testLoader \
+	bffDump
 
-all:    $(ALLDLLS) $(COPYDLL) BinaryFileFactory.o BinaryFileStub.o
+testLoader_SOURCES = testLoader.cpp LoaderTest.cpp
+testLoader_LDADD = libBinaryFileFactory.la libmicroX86dis.la -lcppunit
 
-microX86dis.o: microX86dis.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $(FPIC) $<
+bffDump_SOURCES = bffDump.cpp
+bffDump_LDADD = libBinaryFileFactory.la
 
-# Extra object files, etc
-# These are target specific variables.
-$(top_srcdir)/lib/libWin32BinaryFile$(DLLEXT): EXTRAS = microX86dis.o
-$(top_srcdir)/lib/libWin32BinaryFile$(DLLEXT): microX86dis.o
-$(top_srcdir)/lib/libDOS4GWBinaryFile$(DLLEXT): EXTRAS = microX86dis.o
-$(top_srcdir)/lib/libDOS4GWBinaryFile$(DLLEXT): microX86dis.o
-
-$(top_srcdir)/libBinaryFile$(DLLEXT): $(top_srcdir)/lib/libBinaryFile$(DLLEXT)
-	cp $< $@
-
-MachOBinaryFile.o:	CCEXTRAS = -I.
-
-$(BASEDLL) : BinaryFile.o SymTab.o
-	$(CXX) $(CXXFLAGS) -o $@ $(SHARED) BinaryFile.o SymTab.o $(OUTIMPLIB) $(LDFLAGS)
-
-# This pattern generates all the main dependencies
-$(LOADERDLLS): $(top_srcdir)/lib/lib%$(DLLEXT) : %.o $(BASEDLL)
-	$(CXX) $(CXXFLAGS) -o $@ $(SHARED) $< SymTab.o $(EXTRAS) -lBinaryFile $(RUNPATH) -L$(top_srcdir)/lib $(LDFLAGS)
-
-# Compile all objects with -fPIC
-$(ALLOBJS): %.o : %.cpp
-	$(CXX) $(CXXFLAGS) -c $(FPIC) $(CCEXTRAS) -I$(top_srcdir)/include -o $@ $<
-
-###############
-# Unit testing
-#
-
-testLoader$(EXEEXT): testLoader.o LoaderTest.o microX86dis.o BinaryFileFactory.o SymTab.o
-	$(CXX) $(CXXFLAGS) -o $@ $^  -lcppunit $(ALLLIBS) $(RUNPATH) $(LDL) -L$(top_srcdir)/lib $(LDFLAGS)
-
-testLoader.o: testLoader.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ -I$(top_srcdir)/include $<
-
-LoaderTest.o: LoaderTest.cpp LoaderTest.h $(top_srcdir)/include/BinaryFile.h SymTab.o
-	$(CXX) $(CXXFLAGS) -c -o $@ -I$(top_srcdir)/include $<
-
-# Because of the relative paths, testLoader will only work from the parent
-# directory...
-test: all testLoader$(EXEEXT)
-	cd $(top_srcdir) && loader/testLoader$(EXEEXT)
-
+# FIXME: Find a cleaner way to point dlopen() to the not-yet-installed library files.
+check-local: $(check_PROGRAMS) $(pkglib_LTLIBRARIES)
+	LD_LIBRARY_PATH=".libs:$$LD_LIBRARY_PATH" ./testLoader

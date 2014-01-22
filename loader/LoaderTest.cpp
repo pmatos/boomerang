@@ -4,18 +4,21 @@
  *              tests the BinaryFile and derived classes
  *============================================================================*/
 
-#define HELLO_SPARC     "test/sparc/hello"
-#define HELLO_PENTIUM   "test/pentium/hello"
-#define HELLO_HPPA      "test/hppa/hello"
-#define STARTER_PALM    "test/mc68328/Starter.prc"
+#define TESTDIR         "../test/"
+
+#define HELLO_SPARC     TESTDIR "sparc/hello"
+#define HELLO_PENTIUM   TESTDIR "pentium/hello"
+#define HELLO_HPPA      TESTDIR "hppa/hello"
+#define STARTER_PALM    TESTDIR "mc68328/Starter.prc"
 #if 0 /* FIXME: these programs are proprietary */
-#define CALC_WINDOWS    "test/windows/calc.exe"
-#define CALC_WINXP      "test/windows/calcXP.exe"
-#define CALC_WIN2000    "test/windows/calc2000.exe"
-#define LPQ_WINDOWS     "test/windows/lpq.exe"
+#define CALC_WINDOWS    TESTDIR "windows/calc.exe"
+#define CALC_WINXP      TESTDIR "windows/calcXP.exe"
+#define CALC_WIN2000    TESTDIR "windows/calc2000.exe"
+#define LPQ_WINDOWS     TESTDIR "windows/lpq.exe"
 #endif
-#define SWITCH_BORLAND	"test/windows/switch_borland.exe"
-#define ELFBINFILE		"lib/libElfBinaryFile.so"
+#define SWITCH_BORLAND  TESTDIR "windows/switch_borland.exe"
+
+#define ELFBINFILE      "ElfBinaryFile.so"
 
 #include "string"
 #include "LoaderTest.h"
