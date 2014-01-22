@@ -43,8 +43,6 @@ HOST_OSX_10_2 = @HOST_OSX_10_2@
 # HOST_GNU_LD is true if the linker on this host machine is GNU
 HOST_GNU_LD = @HOST_GNU_LD@
 
-MAKEDEPEND=@MAKEDEPEND@
-
 ####################################
 # Detection of OS specific settings
 #
@@ -145,28 +143,6 @@ $(LOADERDLLS): $(top_srcdir)/lib/lib%$(DLLEXT) : %.o $(BASEDLL)
 # Compile all objects with -fPIC
 $(ALLOBJS): %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c $(FPIC) $(CCEXTRAS) -I$(top_srcdir)/include -o $@ $<
-
-####################
-# Conditional rules
-#
-
-# Automatic generation of dependencies
-ifdef MAKEDEPEND
- # automatic is better!
- depend: $(MAKEDEPEND)
-	$(MAKEDEPEND) -w120 -Y -I$(top_srcdir)/include -I. -I$(top_srcdir)/c -I$(top_srcdir)/codegen \
-		-I$(top_srcdir)/frontend *.cpp *.c > /dev/null 2>&1
-
- depend.in: $(MAKEDEPEND)
-	$(MAKEDEPEND) -fMakefile.in -w120 -Y -I$(top_srcdir)/include -I. -I$(top_srcdir)/c -I$(top_srcdir)/codegen \
-		-I$(top_srcdir)/frontend *.cpp *.c > /dev/null 2>&1
-	
-else
- depend:
-	# You need the (X11) makedepend tool to generate dependencies
- depend.in:
-	# You need the (X11) makedepend tool to generate dependencies
-endif # ifdef MAKEDEPEND
 
 ###############
 # Unit testing

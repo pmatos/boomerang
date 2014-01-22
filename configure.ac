@@ -37,14 +37,6 @@ dnl	fi
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
 
-AC_PATH_PROG( MAKEDEPEND, makedepend )
-if test -z "$MAKEDEPEND"; then
-	AC_MSG_NOTICE()
-	AC_MSG_NOTICE([You need the X11 makedepend utility to use automatic dependency generation (make depend)])
-	AC_MSG_NOTICE()
-fi
-
-AC_SUBST( MAKEDEPEND )
 AC_PATH_PROG( BISONPP, bison++ )
 AC_SUBST( BISONPP )
 AC_PATH_PROG( FLEXPP, flex++ )
