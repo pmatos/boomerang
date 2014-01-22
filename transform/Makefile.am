@@ -4,9 +4,6 @@
 #
 ######################################################
 
-# HOST_GNU_LD is true if the linker on this host machine is GNU
-HOST_GNU_LD = @HOST_GNU_LD@
-
 pkglib_LTLIBRARIES = libtransform.la
 
 libtransform_la_SOURCES = \

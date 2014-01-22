@@ -23,68 +23,49 @@
 FPIC = -fPIC
 
 ####################################
-# Other variables detected by ./configure
-#
-
-# HOST_WINDOWS is "yes" if the host OS is Cygwin or MinGW
-HOST_WINDOWS = @HOST_WINDOWS@
-
-# HOST_CYGWIN is "yes" if the host environment is Cygwin
-HOST_CYGWIN = @HOST_CYGWIN@
-
-# HOST_OSX is true if the hostOS is OS X (*-apple-darwin*)
-HOST_OSX = @HOST_OSX@
-
-# HOST_OSX_10_2 is true if the hostOS is OS X version 10.2.x (*-apple-darwin6*)
-HOST_OSX_10_2 = @HOST_OSX_10_2@
-
-# HOST_GNU_LD is true if the linker on this host machine is GNU
-HOST_GNU_LD = @HOST_GNU_LD@
-
-####################################
 # Detection of OS specific settings
 #
 
 # LDL is -ldl if needed (Windows does not)
 # EXEEXT is .exe for Windows
 # DLLEXT is .dll for Windows and .so otherwise 
-ifeq ($(HOST_WINDOWS), yes)
- LDL=
- EXEEXT=.exe
- DLLEXT=.dll
- WININCLUDE=-Iwin32make/include
- # RUNPATH is not needed on Windows 
- RUNPATH=
- COPYDLL=$(top_srcdir)/libBinaryFile$(DLLEXT)
-else # Non-Windows
+#ifeq ($(HOST_WINDOWS), yes)
+# LDL=
+# EXEEXT=.exe
+# DLLEXT=.dll
+# WININCLUDE=-Iwin32make/include
+# # RUNPATH is not needed on Windows 
+# RUNPATH=
+# COPYDLL=$(top_srcdir)/libBinaryFile$(DLLEXT)
+#else # Non-Windows
  LDL=-ldl
  EXEEXT=
  DLLEXT=.so
  WININCLUDE=
- ifeq ($(HOST_GNU_LD), yes)
+# ifeq ($(HOST_GNU_LD), yes)
   RUNPATH=-Wl,-rpath -Wl,"lib"
- else
-  ifeq ($(HOST_OSX), yes)
-   RUNPATH=
-  else		# Assume Solaris
-   RUNPATH=-R"lib"
-  endif
- endif
+# else
+#  ifeq ($(HOST_OSX), yes)
+#   RUNPATH=
+#  else		# Assume Solaris
+#   RUNPATH=-R"lib"
+#  endif
+# endif
  COPYDLL=
-endif
+#endif
 
-ifeq ($(HOST_OSX), yes)
- ifeq ($HOST_OSX_10_2), yes)
-  SHARED=-dynamiclib		# Note: doesn't seem to work at present; fiddle manually
- else
-  SHARED=-dynamic -dylib
- endif
- #-flat_namespace
- DLLEXT=.dylib
- RUNPATH=
-else # Non-OS X
+#ifeq ($(HOST_OSX), yes)
+# ifeq ($HOST_OSX_10_2), yes)
+#  SHARED=-dynamiclib		# Note: doesn't seem to work at present; fiddle manually
+# else
+#  SHARED=-dynamic -dylib
+# endif
+# #-flat_namespace
+# DLLEXT=.dylib
+# RUNPATH=
+#else # Non-OS X
  SHARED=-shared
-endif
+#endif
 
 ######################
 # Rules for compiling
@@ -102,11 +83,11 @@ LOADERS = \
 
 pkglib_LTLIBRARIES = 
 
-ifeq ($(HOST_CYGWIN), no)
+#ifeq ($(HOST_CYGWIN), no)
  # Until we can resolve the issue of compiling loader/MachOBinaryFile.cpp, don't attempt to make it so at least
  # the Cygwin hosted Boomerang can compile and use non-MachO loaders
  LOADERS+=MachOBinaryFile.cpp
-endif
+#endif
 #LOADERDLLS=$(patsubst %,$(top_srcdir)/lib/lib%$(DLLEXT),$(LOADERS))
 #BASEDLL=$(top_srcdir)/lib/libBinaryFile$(DLLEXT)
 #ALLDLLS=$(LOADERDLLS) $(BASEDLL)

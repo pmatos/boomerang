@@ -10,9 +10,6 @@ AC_PREREQ(2.61)
 AC_INIT([boomerang],[1.0],[nietzsche@lysator.liu.se])
 AC_CONFIG_SRCDIR([LICENSE.TERMS])
 AC_CONFIG_HEADER(include/config.h)
-
-AC_CANONICAL_TARGET
-
 AM_INIT_AUTOMAKE([foreign])
 
 dnl check if the OPT variable is set
@@ -43,73 +40,6 @@ AC_PATH_PROG([FLEXPP],[flex++])
 AC_SUBST([FLEXPP])
 AC_PATH_PROG([M4],[m4])
 AC_SUBST([M4])
-
-dnl -------------------
-AC_MSG_CHECKING( [if using GNU ld] )
-HOST_GNU_LD=no
-if ${CC} -v 2>&1 </dev/null | egrep "gcc" 1>&5; then
-   HOST_GCC=yes
-   HOST_LD=`${CC} -print-prog-name=ld`
-else
-   HOST_LD=ld
-fi
-if ${HOST_LD} -v 2>&1 </dev/null | egrep '(GNU|with BFD)' 1>&5; then
-   HOST_GNU_LD=yes
-   AC_DEFINE( HOST_GNU_LD, 1, [Host uses GNU ld] )
-fi
-AC_MSG_RESULT( $HOST_GNU_LD )
-
-dnl -------------------
-AC_MSG_CHECKING( [if host is Windows] )
-case $host in
- *-*-mingw32* | *-*-cygwin*)
-   HOST_WINDOWS=yes
-   ;;
- *)
-   HOST_WINDOWS=no
-   ;;
-esac
-AC_MSG_RESULT( $HOST_WINDOWS )
-
-AC_MSG_CHECKING( [if host is Cygwin] )
-case $host in
- *-*-cygwin*)
-   HOST_CYGWIN=yes
-   ;;
- *)
-   HOST_CYGWIN=no
-   ;;
-esac
-AC_MSG_RESULT( $HOST_CYGWIN )
-
-AC_MSG_CHECKING( [if host is OS X] )
-case $host in
- *-apple-darwin*)
-   HOST_OSX=yes
-   AC_DEFINE(HOST_OSX, 1, [Non zero if host machine is Mac OS X])
-   ;;
- *)
-   HOST_OSX=no
-   AC_DEFINE(HOST_OSX, 0, [Non zero if host machine is Mac OS X])
-   ;;
-esac
-AC_MSG_RESULT( $HOST_OSX )
-
-AC_MSG_CHECKING( [if host is OS X 10.2] )
-case $host in
- *-apple-darwin6*)
-   HOST_OSX_10_2=yes
-   AC_DEFINE(HOST_OSX_10_2, 1, [Non zero if host machine is Mac OS X 10.2])
-   ;;
- *)
-   HOST_OSX_10_2=no
-   AC_DEFINE(HOST_OSX_10_2, 0, [Non zero if host machine is Mac OS X 10.2])
-   ;;
-esac
-AC_MSG_RESULT( $HOST_OSX_10_2 )
-
-
-
 
 dnl Checks for elf library (no longer needed)
 dnl AC_CHECK_LIB(elf, elf_begin, , [AC_MSG_ERROR("library 'elf' not found")])
@@ -320,11 +250,6 @@ LIBDIR=$srcdir/lib
 
 AC_SUBST(PREFIX)
 AC_SUBST(LIBDIR)
-AC_SUBST(HOST_GNU_LD)
-AC_SUBST(HOST_WINDOWS)
-AC_SUBST(HOST_OSX)
-AC_SUBST(HOST_OSX_10_2)
-AC_SUBST(HOST_CYGWIN)
 
 
 dnl only the makefile in the loader dir is currently used
