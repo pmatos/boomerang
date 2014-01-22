@@ -37,12 +37,12 @@ dnl	fi
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
 
-AC_PATH_PROG( BISONPP, bison++ )
-AC_SUBST( BISONPP )
-AC_PATH_PROG( FLEXPP, flex++ )
-AC_SUBST( FLEXPP )
-AC_PATH_PROG( M4, m4 )
-AC_SUBST( M4 )
+AC_PATH_PROG([BISONPP],[bison++])
+AC_SUBST([BISONPP])
+AC_PATH_PROG([FLEXPP],[flex++])
+AC_SUBST([FLEXPP])
+AC_PATH_PROG([M4],[m4])
+AC_SUBST([M4])
 
 dnl -------------------
 AC_MSG_CHECKING( [if using GNU ld] )
