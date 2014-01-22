@@ -14,8 +14,6 @@
 /* EXE binary file format.
 	This file implements the class ExeBinaryFile, derived from class BinaryFile.
 	See ExeBinaryFile.h and BinaryFile.h for details
-	MVE 08/10/97
- * 21 May 02 - Mike: Slight mod for gcc 3.1
 */
 
 #if defined(_MSC_VER) && _MSC_VER <= 1200

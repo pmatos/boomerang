@@ -12,11 +12,6 @@
  * OVERVIEW:   Implementation of the DataFlow class
  *============================================================================*/
 
-/*
- * $Revision$	// 1.43.2.24
- * 15 Mar 05 - Mike: Separated from cfg.cpp
- */
-
 #include <sstream>
 #include <cstring>
 

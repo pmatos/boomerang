@@ -10,19 +10,12 @@
  */
 
 /* File: Win32BinaryFile.cc
- * $Revision$
  * Desc: This file contains the implementation of the class Win32BinaryFile.
  */
 
 /* Win32 binary file format.
  *	This file implements the class Win32BinaryFile, derived from class
  *	BinaryFile. See Win32BinaryFile.h and BinaryFile.h for details.
- * 25 Jun 02 - Mike: Added code to find WinMain by finding a call within 5
- *				instructions of a call to GetModuleHandleA
- * 07 Jul 02 - Mike: Added a LMMH() so code works on big-endian host
- * 08 Jul 02 - Mike: Changed algorithm to find main; now looks for ordinary
- *				 call up to 10 instructions before an indirect call to exit
- * 24 Jul 05 - Mike: State machine to recognise main in Borland Builder files
  */
 
 #if defined(_MSC_VER) && _MSC_VER <= 1200

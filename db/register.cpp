@@ -15,12 +15,6 @@
  *		 a single register.
  *============================================================================*/
 
-/* $Revision$
- *
- * 28 Apr 02 - Mike: Mods for boomerang
- */
-
-
 #if defined(_MSC_VER) && _MSC_VER <= 1200
 // For MSVC 5 or 6: warning about debug into truncated to 255 chars
 #pragma warning(disable:4786)

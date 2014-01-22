@@ -3,11 +3,6 @@
  * OVERVIEW:   Parser for ANSI C.
  *
  *============================================================================*/
-/*
- * $Revision$
- * 10 Apr 02 - Trent: Created
- * 03 Dec 02 - Trent: reduced to just parse types and signatures
- */
 %name AnsiCParser
 
 %define DEBUG 1

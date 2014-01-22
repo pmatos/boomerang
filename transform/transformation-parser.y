@@ -3,10 +3,6 @@
  * OVERVIEW:   Parser for transformation language.
  *
  *============================================================================*/
-/*
- * $Revision$
- * 17 Apr 02 - Trent: Created
- */
 %name TransformationParser
 
 %define DEBUG 1

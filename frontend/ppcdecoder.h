@@ -13,12 +13,6 @@
  * OVERVIEW:   The implementation of the instruction decoder for PPC.
  *============================================================================*/
 
-/* 
- * $Revision$	// 1.3.2.1
- *
- * 23 Nov 04 - Jay Sweeney and Alejandro Dubrovsky: Created.
- */
-
 #ifndef PPCDECODER
 #define PPCDECODER
 

@@ -19,12 +19,11 @@
 #include <string>
 #include <vector>
 
-/* $Revision$
+/*
  * This file contains the definition of the MachOBinaryFile class, and some
  * other definitions specific to the Mac OS-X version of the BinaryFile object
 */
 /* This is my bare bones implementation of a Mac OS-X binary loader.
- * 13 Jan 05 - Trent: Created
  */
 
 // Given a little endian value x, load its value assuming big endian order

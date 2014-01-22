@@ -6,18 +6,6 @@
 # (C) 2000-01 The University of Queensland, BT group
 #===============================================================================
 
-# $Revision$
-#  April 01 - Simon: Initial revision
-# 01 May 01 - Simon: Fixed a problem with arith_imm's (bit numbers wrong?)
-# 04 May 01 - Mike: Merged two .spec files
-# 07 May 01 - Mike: Split [LD|ST]Wlm into lma and lmb depending on sign of im14
-# 08 May 01 - Mike: New constructor for [LD|ST]Wlm (ldispa16m[ab]_addr
-# 08 May 01 - Cristina: Cross-referenced table letters from Appendix C, 
-#				PA-RISC 2.0 Architecture book
-# 18 Jun 01 - Mike: Added Floating Point instuctions
-# 26 Jun 01 - Mike: Changed some mnemonics from 2.0 to 1.1 form
-
-
 # The convention for bit fields is aann_mm, where aa briefly describes the
 # field, nn is the field length in bits, and mm is the starting bit number
 # (in HP numbering, i.e. 0 at the left)

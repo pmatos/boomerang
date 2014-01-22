@@ -18,7 +18,7 @@
 #include "BinaryFile.h"
 #include <string>
 
-/* $Revision$
+/*
  * This file contains the definition of the Win32BinaryFile class, and some
  * other definitions specific to the exe version of the BinaryFile object
 */
@@ -27,9 +27,6 @@
 		have debug symbols (in Microsoft Codeview or Borland formats),
 		and these may be implemented in the future. The debug info may
 		even be exposed as another pseudo section
- * 02 Jun 00 - Mike: Added LMMH for 32 bit endianness conversions
- * 16 Apr 01 - Brian: Removed redefinition of the LH macro. LH is now
- *			   defined in BinaryFile.h.
  */
 
 // Given a little endian value x, load its value assuming little endian order

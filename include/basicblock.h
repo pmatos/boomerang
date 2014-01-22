@@ -14,12 +14,6 @@
  * OVERVIEW:   Interface for the basic block class, which form nodes of the control flow graph
  *============================================================================*/
 
-/*
- * $Revision$	// 1.1.2.2
- *
- * 28 Jun 05 - Mike: Split off from cfg.h
- */
-
 #ifndef __BASIC_BLOCK_H__
 #define __BASIC_BLOCK_H__
 

@@ -5,12 +5,6 @@
  * FILE:	   visitor.cpp
  * OVERVIEW:   Provides the implementation for the various visitor and modifier classes.
  *============================================================================*/
-/*
- * $Revision$
- *
- * 18 Aug 06 - Mike: Moved DfaLocalMapper here from type/dfa.cpp
- * 14 Jun 04 - Mike: Created, from work started by Trent in 2003
- */
 
 #include "visitor.h"
 #include "exp.h"

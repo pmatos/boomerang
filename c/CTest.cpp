@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the CTest class, which
  *              tests the c parser
  *============================================================================*/
-/*
- * $Revision$
- *
- * 03 Dec 02 - Trent: Created
- */
 
 #include <sstream>
 #include "CTest.h"

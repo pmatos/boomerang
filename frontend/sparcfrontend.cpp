@@ -16,14 +16,6 @@
  *				frontend.cpp for decoding sparc instructions.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.35.2.5
- *
- * 17 May 02 - Mike: Mods for boomerang
- * 22 Nov 02 - Mike: Added check for invalid instructions; prints opcode
- * 12 Dec 02 - Mike: Fixed various bugs in move/call/move (etc) pattern handling
- */
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

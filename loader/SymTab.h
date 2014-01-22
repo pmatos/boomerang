@@ -17,12 +17,6 @@
  *				if the strings are ever changed, then the map's internal rb-tree becomes invalid.
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * 12 Jul 05 - Mike: New implementation with two maps
-*/
-
 #ifndef __SYMTAB_H__
 #define __SYMTAB_H__
 

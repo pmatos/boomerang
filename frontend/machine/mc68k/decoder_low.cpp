@@ -8,42 +8,6 @@
  *             NJMCDecoder class.
  *============================================================================*/
 
-/* $Revision$
- * $Id$
- * Created by Cristina 04 Feb 2000
- *
- * Based on: 
- *  m68k__assembly.m
- *  written by Owen Braun
- *  ocbraun@princeton.edu
- *  created 4/8/96 3:57 am
- *
- *  M68kInstr method decodeInstr which uses Toolkit matching statement
- *  to decode instruction and generate _assembly-language representation
- *
- * 04 Feb 00 - Integration with UQBT's .prc loader (PalmBinaryFile)
- * 07 Feb 00 - Mike: Made numInstrWords a reference, and initialised to 1
- * 09 Feb 00 - Cristina: changed register display syntax to conform to 
- *      Motorola's assembly syntax.
- *      unlk is now a non factored constructor
- *      Added system trap function name support 
- * 11 Feb 00 - Mike: started making RTL version from disassembler
- * 13 Feb 00 - Cristina: continued 
- * 15 Feb 00 - Mike: inserted addressing mode code
- * 21 Feb 00 - Mike: support for -(an) and (an)+ (bump and bumpr)
- * 22 Feb 00 - Cristina: for ADDQ and SUBQ we need 5 chars to match SSL name
- * 25 Feb 00 - Mike: Fixed move (a7)+,d3 (was faulting)
- * 24 Mar 00 - Mike: Converted sizes to bits
- * 27 Mar 00 - Mike: Fixed instructions like addaw.ex that were not having
- *                the .ex removed before 2nd last char (using chopBoth())
- * 07 Apr 00 - Mike: Fixed semantics of movew d3, a0 (sign extends)
- * 13 Apr 00 - Mike: Fixed side effects of the above; was putting the BUMP
- *                at the wrong place
- * 22 Mar 01 - Mike: Fixed a fault when decoding mem to mem move; initialisation
- *                of RTs to an empty list was in the wrong place
- * 01 Aug 01 - Mike: Added some #includes; would not compile without these
- */
-
 #include <assert.h>
 #include <stdio.h>
 #include "global.h" 

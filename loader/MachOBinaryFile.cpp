@@ -10,14 +10,12 @@
  */
 
 /* File: MachOBinaryFile.cc
- * $Revision$
  * Desc: This file contains the implementation of the class MachOBinaryFile.
  */
 
 /* MachO binary file format.
  *	This file implements the class MachOBinaryFile, derived from class
  *	BinaryFile. See MachOBinaryFile.h and BinaryFile.h for details.
- * 13 Jan 05 - Trent: Created.
  */
 
 #if defined(_MSC_VER) && _MSC_VER <= 1200

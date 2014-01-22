@@ -12,11 +12,6 @@
  * OVERVIEW:   The definition of the instruction decoder for ST20.
  *============================================================================*/
 
-/* 
- * $Revision$
- * 10/Mar/05 MVE and Dr Aus: Created.
- */
-
 #ifndef ST20DECODER
 #define ST20DECODER
 

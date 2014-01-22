@@ -14,14 +14,6 @@
  * OVERVIEW:   Implementation of the CFG class.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.95.2.5
- * 18 Apr 02 - Mike: Mods for boomerang
- * 19 Jul 04 - Mike: Changed initialisation of BBs to not rely on out edges
- * 20 Mar 11 - Mike: Added missing braces in Cfg::findLoopFollow()
- */
-
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

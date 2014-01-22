@@ -14,12 +14,6 @@
  *			   ExprTable
  *============================================================================*/
 
-/*
- * 25 Feb 01 - Simon: sorted out dependancies
- * 01 May 02 - Mike: mods for boomerang
- */
-
-
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200
 #pragma warning(disable:4786)

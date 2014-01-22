@@ -14,7 +14,6 @@
 #   compact parameter information.
 ################################################################################
 
-# $Revision$
 # Format: <function name> <return type> <parameter type> ...
 # where the function mame is just the name in ascii. All types are one of these:
 #  v	void (return type only)
@@ -24,14 +23,6 @@
 #  fd	floating point double (no single precision floats are usually passed)
 #  pf	pointer to a function
 #  ...	var args
-#
-# 22 Feb 00 - Cristina: added common PalmOS system function signatures
-# 14-21 Mar 00 - Mike: Changed short parameters to "s"
-# 31 Mar 00 - Mike: Removed "sysTrap" from Palm function names
-# 13 Apr 00 - Mike: Strict return types now (including "b" for byte)
-# 05 Sep 00 - Mike: Added entries for RayTracer benchmark
-# 10 Jan 01 - Brian: Added atan2, fileno for perl benchmark
-# 22 Apr 01 - Brian: Added X and Xt entries for Xlogo program
 
 # <string.h>
 atof fd pd

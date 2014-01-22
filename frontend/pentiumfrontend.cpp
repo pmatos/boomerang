@@ -14,18 +14,6 @@
  *			   These functions replace frontend.cpp for decoding pentium instructions.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.51.2.3
- *
- * 21 Oct 98 - Mike: converted from frontsparc.cc
- * 21 May 02 - Mike: Mods for boomerang
- * 27 Nov 02 - Mike: Fixed a bug in the floating point fixup code, which was screwing up registers in flag calls
- * 30 Sep 03 - Mike: processFloatCode ORs mask with 0x04 for compilers that ignore the C1 status bit (e.g. MSVC).
- *				Also more JE cases
- * 04 Aug 04 - Mike: Quick and dirty hack for overlapped registers (X86 only)
- * 31 Jul 06 - Tamlin: Fixed overlapped register processing for esi/edi/ebp plus a bug in ah/bh/ch/dh processing
-*/
-
 #include <assert.h>
 #include <cstring>
 #if defined(_MSC_VER) && _MSC_VER <= 1200

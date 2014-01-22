@@ -1,6 +1,3 @@
-/*
- *	$Revision$ // 1.12.6.1
- */
 #ifndef PENTFRONTEND_H
 #define PENTFRONTEND_H
 

@@ -16,16 +16,6 @@
  *				frontsparc.cpp
  *============================================================================*/
 
-/*
- * $Revision$	// 1.89.2.7
- * 08 Apr 02 - Mike: Mods to adapt UQBT code to boomerang
- * 16 May 02 - Mike: Moved getMainEntry point here from prog
- * 09 Jul 02 - Mike: Fixed machine check for elf files (was checking endianness rather than machine type)
- * 22 Nov 02 - Mike: Quelched warnings
- * 16 Apr 03 - Mike: trace (-t) to cerr not cout now
- * 02 Feb 05 - Gerard: Check for thunks to library functions and don't create procs for these
- */
-
 #include <assert.h>
 #include <cstring>
 #include <stdlib.h>

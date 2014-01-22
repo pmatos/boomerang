@@ -12,21 +12,6 @@
  * Desc: This file contains the implementation of the class ElfBinaryFile.
  ******************************************************************************/
 
-/*
- * $Revision$
- *
- * ELF binary file format.
- *	This file implements the class ElfBinaryFile, derived from class BinaryFile.
- * See ElfBinaryFile.h and BinaryFile.h for details
- *	MVE 30/9/97
- * 10 Mar 02 - Mike: Mods for stand alone operation; constuct function
- * 21 May 02 - Mike: Slight mod for gcc 3.1
- * 01 Oct 02 - Mike: Removed elf library (and include file) dependencies
- * 02 Oct 02 - Mike: Fixed some more endianness issues
- * 24 Mar 03 - Mike: GetAddressByName returns NO_ADDRESS on failure now
- * 12 Jul 05 - Mike: fixed an endless loop in findRelPltOffset for pre-3.3.3 gcc compiled input files
-*/
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

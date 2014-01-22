@@ -15,16 +15,6 @@
  *				interest to the whole program.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.126.2.14
- *
- * 18 Apr 02 - Mike: Mods for boomerang
- * 26 Apr 02 - Mike: common.hs read relative to BOOMDIR
- * 20 Jul 04 - Mike: Got rid of BOOMDIR
- * 03 Mar 06 - tamlin: prevent arrays from crossing section boundaries
- * 20 Mar 11 - Mike: Added missing braces in Prog::getFloatConstant()
- */
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

@@ -5,13 +5,6 @@
  * FILE:	   xmlprogparser.cpp
  * OVERVIEW:   Implementation of the XMLProgParser and related classes.
  *============================================================================*/
-/*
- * $Revision$	// 1.17.2.8
- *
- * June 2004 - Trent: created
- * NOTE: As of early 2006, this file has likely fallen behind changes to class members, and so probably needs some major
- *	work - MVE
- */
 
 #include <stdio.h>
 #include <cstring>

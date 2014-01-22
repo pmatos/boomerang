@@ -4,9 +4,6 @@
 #
 ######################################################
 
-# $Revision$
-# 18 Apr 04 - Trent: Created.
-
 AUTOMAKE_OPTIONS = foreign
 
 # HOST_GNU_LD is true if the linker on this host machine is GNU

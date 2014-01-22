@@ -16,9 +16,6 @@
  *			   Concrete implementations of this class provide specific language
  *			   bindings for a single procedure in the program.
  *============================================================================*/
-/*
- *	$Revision$	// 1.23.2.8
- */
 
 #ifndef _HLLCODE_H_
 #define _HLLCODE_H_

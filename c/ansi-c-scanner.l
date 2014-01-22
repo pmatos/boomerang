@@ -2,10 +2,6 @@
  * FILE:       ansi-c.l
  * OVERVIEW:   Scanner for ANSI C.
  *============================================================================*/
-/*
- * $Revision$
- * 10 Apr 02 - Trent: Created
- */
 %name AnsiCScanner
 
 

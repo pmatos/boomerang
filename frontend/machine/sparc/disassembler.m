@@ -13,14 +13,6 @@
  * OVERVIEW:   Skeleton file for a disassembler of SPARC instructions. 
  *============================================================================*/
 
-/*
- * $Revision$
- *
- *    Apr 01 - Cristina: Created
- * 18 May 01 - Mike: Slight mods to accomodate other disassemblers; moved
- *              default NJMCDecoder constructor to disasm.cc
- */
-
 #include "global.h"
 #include "decoder.h"
 #include "sparc-names.h"

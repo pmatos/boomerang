@@ -11,17 +11,10 @@
 #
 ######################################################
 
-# $Revision$
 # Note: gnu make is probably required (for patsubst etc)
 # This whole makefile is dependent on finding the pattern *BinaryFile.cpp; a lib%.so file is made for each of these
 # You should be able to add a simple loader without any changes to this Makefile, as long as you follow the naming
 # convention <type>BinaryFile.*
-
-# 22 Aug 06 - Mike Frysinger: respect values set up by ./configure script
-# 12 Jul 05 - Mike: All use SymTab.o now
-# 20 Jul 04 - Mike: Removed BOOMDIR (paths relative now)
-# 12 Apr 05 - Gerard: Structured
-# 11 Apr 02 - Mike: Use lib%.so names and -l now; no "make install" any more
 
 AUTOMAKE_OPTIONS = foreign
 

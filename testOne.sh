@@ -1,5 +1,5 @@
 #!/bin/bash
-# testOne.sh functional test script $Revision$ # 1.10.2.1
+# testOne.sh functional test script
 # Call with test platform, test-program test-set [,options [,arguments]]
 # test-set is a char usually 1-9 for the various .out files, usually use 1 for .out1
 # e.g. "./testOne.sh pentium hello"
@@ -7,11 +7,6 @@
 # or   "./testOne.sh sparc switch_cc 6 '-Td -nG' '2 3 4 5 6'"
 # Note: options and arguments are quoted strings
 # $1 = platform $2 = test $3 = test-set $4 = options $5 = parameters to the recompiled executable
-#
-# 06 Feb 05 - Mike: Pass the test-set parameter to testOne.sh
-# 24 Dec 05 - Gerard: Support for more than one switch added
-# 29 Dec 05 - Gerard: Nicer output
-#
 
 echo $* > functest.res
 rm -f functest/$2/*

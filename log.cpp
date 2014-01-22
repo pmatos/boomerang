@@ -1,6 +1,3 @@
-/*
- *$Revision$	// 1.6.6.1
- */
 #include "log.h"
 #include <sstream>
 #include "statement.h"

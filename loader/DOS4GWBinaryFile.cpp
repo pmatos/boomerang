@@ -10,14 +10,12 @@
  */
 
 /* File: DOS4GWBinaryFile.cc
- * $Revision$
  * Desc: This file contains the implementation of the class DOS4GWBinaryFile.
  */
 
 /* DOS4GW binary file format.
  *	This file implements the class DOS4GWBinaryFile, derived from class
  *	BinaryFile. See DOS4GWBinaryFile.h and BinaryFile.h for details.
- * 24 Jan 05 - Trent: created.
  */
 
 #if defined(_MSC_VER) && _MSC_VER <= 1200

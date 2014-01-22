@@ -1,13 +1,10 @@
 # FILE:     core.spec
 # OVERVIEW: This is the New Jersey Machine Code Toolkit core specification file
 #           for the Power PC processor
-#
-# $Revision$
 
 #### Copyright (c) 1995 Flavors Technology, Inc.
 #### This file may be distributed freely as long as this notice remains.
 #### Please send comments, corrections, or questions to: <e@flavors.com>
-#### 14Jul95 e
 
 # this file is to be processed by NJ Machine-Code Toolkit, version 0.1a
 # in MPW: njmcte -byteorder X -foldemit -encoder "/ppc.out" "/ppc.spec"

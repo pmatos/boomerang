@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the CfgTest class, which
  *				tests the Exp and derived classes
  *============================================================================*/
-/*
- * $Revision$	// 1.14.2.1
- *
- * 17 Jul 03 - Mike: Created
- */
 
 #define FRONTIER_PENTIUM		"test/pentium/frontier"
 #define SEMI_PENTIUM			"test/pentium/semi"

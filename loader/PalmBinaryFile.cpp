@@ -12,14 +12,6 @@
  * Desc: This class loads a Palm Pilot .prc file. Derived from class BinaryFile
  */
 
-/*
- * 02 Feb 00 - Mike: Initial version
- * 24 Feb 00 - Mike: Support for system trapcalls
- * 17 Apr 00 - Mike: GetAppID(); find PilotMain with patterns
- * 16 Feb 01 - Nathan: removed util references
- * 01 Aug 01 - Mike: Changed GetGlobalPointerInfo to the new definition
- */
-
 #include <assert.h>
 #include <cstring>
 #include <stdlib.h>

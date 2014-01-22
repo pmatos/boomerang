@@ -13,11 +13,6 @@
  *			   the SSL parser
  *============================================================================*/
 
-/*
- * 25 Feb 01 - Simon: updated post creation
- * 10 May 02 - Mike: Mods for boomerang
- */
-
 #ifndef TABLE_H
 #define TABLE_H
 

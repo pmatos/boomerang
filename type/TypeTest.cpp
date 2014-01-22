@@ -2,13 +2,6 @@
  * FILE:	   TypeTest.cc
  * OVERVIEW:   Provides the implementation for the TypeTest class, which tests the Type class and some utility functions
  *============================================================================*/
-/*
- * $Revision$
- *
- * 09 Apr 02 - Mike: Created
- * 22 Aug 03 - Mike: Extended for Constraint tests
- * 25 Juk 05 - Mike: DataIntervalMap tests
- */
 
 #define HELLO_WINDOWS		"test/windows/hello.exe"
 

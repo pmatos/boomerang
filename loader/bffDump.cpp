@@ -17,16 +17,6 @@
  * notation. 
  */
 
-/*
- * $Revision$
- *
- *    Apr 01 - Cristina: Created
- * 11 May 01 - Nathan: Print text section name (suppresses warning)
- * 11 May 01 - Mike: use bCode (prints text section of hppa binaries)
- * 11 May 01 - Cristina: minor cleanup for generality
- * 02 Aug 01 - Brian: Fixed arg mismatch in printf.
- */
-
 // Include all binary file headers for different binary-file formats 
 // so that we can support them all. 
 #include "BinaryFile.h"

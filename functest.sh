@@ -1,11 +1,5 @@
 #!/bin/bash
-# functest.sh functional test script $Revision$	# 1.23.2.1
-#
-# 02 Feb 05 - Mike: Conditional tests for no type analysis. So all tests should pass whether -Td is passed or not
-# 06 Feb 05 - Mike: Pass the test-set parameter to testOne.sh
-# 24 Dec 05 - Gerard: Support for more than one switch added
-# 01 Sep 06 - Mike: remove -Td
-#
+# functest.sh functional test script
 
 # On MSYS we need to invoke sh ourselves
 KERNEL=`uname -s`

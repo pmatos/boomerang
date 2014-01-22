@@ -13,15 +13,6 @@
  *			   I guess this will be the most popular output language unless we do C++.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.90.2.16
- * 20 Jun 02 - Trent: Quick and dirty implementation for debugging
- * 28 Jun 02 - Trent: Starting to look better
- * 22 May 03 - Mike: delete -> free() to keep valgrind happy
- * 16 Apr 04 - Mike: char[] replaced by ostringstreams
- * 18 Jan 06 - Gerard: several changes for prettier output, better logging of warnings and errors
- */
-
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200
 #pragma warning(disable:4786)

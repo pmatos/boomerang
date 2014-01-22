@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the DfaTest class, which
  *				tests the data flow based type analysis code
  *============================================================================*/
-/*
- * $Revision$
- *
- * 19 Oct 04 - Mike: Created
- */
 
 #include "DfaTest.h"
 #include <iostream>		// For std::cerr

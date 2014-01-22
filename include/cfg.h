@@ -14,12 +14,6 @@
  * OVERVIEW:   Interface for a control flow graph, based on basic block nodes.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.69.2.7
- * 18 Apr 02 - Mike: Mods for boomerang
- * 04 Dec 02 - Mike: Added isJmpZ
- */
- 
 #ifndef _CFG_H_
 #define _CFG_H_
 

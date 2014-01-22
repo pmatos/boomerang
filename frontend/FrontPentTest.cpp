@@ -3,12 +3,6 @@
  * OVERVIEW:   Provides the implementation for the FrontPentTest class, which
  *				tests the sparc front end
  *============================================================================*/
-/*
- * $Revision$
- *
- * 05 Apr 02 - Mike: Created
- * 21 May 02 - Mike: Mods for gcc 3.1
- */
 
 #define HELLO_PENT		"test/pentium/hello"
 #define BRANCH_PENT		"test/pentium/branch"

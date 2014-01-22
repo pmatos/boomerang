@@ -13,10 +13,6 @@
  * FILE:		prog.h
  * OVERVIEW:	interface for the program object.
  *============================================================================*/
-/*
- * $Revision$	// 1.73.2.5
- * 16 Apr 01 - Mike: Mods for boomerang
- */
 
 #ifndef _PROG_H_
 #define _PROG_H_

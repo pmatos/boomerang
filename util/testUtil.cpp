@@ -2,11 +2,6 @@
  * FILE:       testUtil.cc
  * OVERVIEW:   Command line test of the utility functions (including class Type)
  *============================================================================*/
-/*
- * $Revision$
- * 09 Apr 02 - Mike: Created
- */
-
 
 #include "cppunit/TextTestResult.h"
 #include "cppunit/TestSuite.h"

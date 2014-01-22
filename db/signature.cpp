@@ -12,16 +12,6 @@
  * OVERVIEW:   Implementation of the classes that describe a procedure signature
  *============================================================================*/
 
-/*
- * $Revision$	// 1.98.2.12
- * 
- * 15 Jul 02 - Trent: Created.
- * 18 Jul 02 - Mike: Changed addParameter's last param to deflt to "", not NULL
- * 02 Jan 03 - Mike: Fixed SPARC getParamExp and getArgExp
- * 09 Nov 04 - Mike: Fixed clone() functions
- * 01 Feb 05 - Mike: Parameters default to void type unless ad-hoc TA
- */
-
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200
 #pragma warning(disable:4786)

@@ -12,21 +12,6 @@
 # Owen C. Braun \\ ocbraun@princeton.edu }
 # Specification of the Motorola MC68000 Instruction Set
 # for the New Jersey Machine Code Toolkit, Version 0.4.
-# Created Mar/25/96 5:47 am. 
-#
-# 2-3 Feb 00 - Cristina
-#   Added the "keep" list to make this spec specific to the MC68328.
-#   Added ORItoCCR pattern
-# 09 Feb 00 - Cristina
-#   removed unlk from _reg2only as it takes an address register instead 
-#   of a data register.
-# 15 Feb 00 - Mike: Added moveFromCCR to clr set
-# 16 Feb 00 - Mike: Renamed _b (branch pattern and constructor) to _br; was
-#                       a name clash with some of the pattern matching code
-# 25 Feb 00 - Mike: BTA (Branch Target Address) signed
-# 01 Aug 01 - Mike: Branches use cond field instead of reg1 and sb; avoids
-#               toolkit error
-
 
 fields of iword (16)
 

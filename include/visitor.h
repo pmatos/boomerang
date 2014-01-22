@@ -17,21 +17,6 @@
  *				StmtModifier	(modify expressions in statements; not abstract)
  *				StmtPartModifier (as above with special case for whole of LHS)
  *============================================================================*/
-/*
- * $Revision$	// 1.13.2.11
- *
- * 14 Jun 04 - Mike: Created, from work started by Trent in 2003
- *
- * There are separate Visitor and Modifier classes. Visitors are more suited for searching: they have the capability of
- * stopping the recursion, but can't change the class of a top level expression. Visitors can also override (prevent)
- * the usual recursing to child objects. Modifiers always recurse to the end, and the ExpModifiers' visit function
- * returns an Exp* so that the top level expression can change class (e.g. RefExp to Binary).
- * The accept() functions (in the target classes) are always the same for all visitors; they encapsulate where the
- *	visitable parts of a Statement or expression are.
- * The visit() functions contain the logic of the search/modify/whatever.  Often only a few visitor functions have to do
- *	anything. Unfortunately, the visit functions are members of the Visitor (or Modifier) classes, and so have to use
- *	public functions of the target classes.
- */
 
 #ifndef __VISITOR_H__
 #define __VISITOR_H__

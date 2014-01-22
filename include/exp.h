@@ -5,19 +5,6 @@
  * FILE:	   exp.h
  * OVERVIEW:   Provides the definition for the Exp class and its subclasses.
  *============================================================================*/
-/*
- * $Revision$	// 1.119.2.11
- *
- * 05 Apr 02 - Mike: Created
- * 05 Apr 02 - Mike: Added clone(), copy constructors
- * 08 Apr 02 - Mike: Added isFlagCall(), Terminal subclass
- * 10 Apr 02 - Mike: Search and replace
- * 29 Apr 02 - Mike: TypedExp takes Type& and Exp* in opposite order; consistent
- * 10 May 02 - Mike: Added refSubExp1 etc
- * 21 May 02 - Mike: Mods for gcc 3.1
- * 02 Aug 04 - Mike: Removed PhiExp (PhiAssign replaces it) 
- * 05 Aug 04 - Mike: Removed the withUses/withDF parameter from print() funcs
- */
 
 #ifndef __EXP_H_
 #define __EXP_H_

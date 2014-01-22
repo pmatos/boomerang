@@ -12,12 +12,6 @@
 #       processors. 
 #
 
-# $Revision$		// 1.28.2.1
-# 16 Oct 98 - Mike: lower case register names to be consistent with sparc
-# 20 Nov 02 - Mike: Fixed MOV.ED.IVOD and MOV.EW.IVOW
-# 20 Jul 04 - Mike: Fixed FISUB, FISUBR
-# 01 Jul 05 - Mike: FIMUL, FIADD.i64 -> .i16
-
 # Constants defined in hexadecimal (modelling manual) 
 MAX8BITS  := 0xFF;
 MAX16BITS := 0xFFFF;

@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the interface for the StatementTest class, which
  *				tests the dataflow subsystems
  *============================================================================*/
-/*
- * $Revision$
- *
- * 14 Jan 03 - Trent: Created
- */
 
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>

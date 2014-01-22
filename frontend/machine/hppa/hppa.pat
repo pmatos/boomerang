@@ -11,22 +11,6 @@
 # OVERVIEW:   A pattern specification for logues on the HP PA/RISC architecture.
 #============================================================================*/
 
-# $Revision$
-#
-# 27 Apr 01 - Mike: Created
-# 02 May 01 - Mike: Added gcc_frame
-# 09 May 01 - Mike: Various fiddly changes; matches the 3 logues in hello world
-# 14 May 01 - Mike: gcc_frame prologue does not include register saves now (need
-#               to see and translate these saves)
-# 17 May 01 - Mike: Added gcc frameless logues
-# 28 Jun 01 - Mike: Modified for 1.1 style opcodes
-# 17 Jul 01 - Simon: Mods to match changes to hppa.spec
-# 30 Jul 01 - Mike: Mod to gcc_unframeless to make a register restore optional
-# 01 Aug 01 - Mike: Fixed missing dollar in std_call pattern
-# 07 Aug 01 - Mike: Added patterns bare_ret and bare_ret_anulled
-# 07 Aug 01 - Simon: Loads and stores take more parameters now
-# 20 Aug 01 - Mike: Added param_reloc1 pattern for common printf of floats
-
 NAMES
 
     R0 = 0

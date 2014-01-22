@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the ParserTest class, which
  *				tests the sslparser.y etc
  *============================================================================*/
-/*
- * $Revision$
- *
- * 13 May 02 - Mike: Created
- */
 
 #define SPARC_SSL		"frontend/machine/sparc/sparc.ssl"
 

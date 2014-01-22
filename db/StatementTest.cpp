@@ -3,13 +3,6 @@
  * OVERVIEW:   Provides the implementation for the StatementTest class, which
  *				tests the dataflow subsystems
  *============================================================================*/
-/*
- * $Revision$
- *
- * 14 Jan 03 - Trent: Created
- * 17 Apr 03 - Mike: Added testRecursion to track down a nasty bug
- * 06 Jul 05 - Mike: Split testAddUsedLocs into six separate tests for Assign ... Bool
- */
 
 #define HELLO_PENTIUM	   "test/pentium/hello"
 #define GLOBAL1_PENTIUM	   "test/pentium/global1"

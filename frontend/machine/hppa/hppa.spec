@@ -12,28 +12,6 @@
 #              HP Pa/risc architecture (basically version 1.1)
 #===============================================================================
 
-# $Revision$
-#  April 01 - Simon: Initial revision
-# 01 May 01 - Simon: Fixed a problem with arith_imm's (bit numbers wrong?)
-# 04 May 01 - Mike: Merged two .spec files
-# 07 May 01 - Mike: Split [LD|ST]Wlm into lma and lmb depending on sign of im14
-# 08 May 01 - Mike: New constructor for [LD|ST]Wlm (ldispa16m[ab]_addr
-# 08 May 01 - Cristina: Cross-referenced table letters from Appendix C, 
-#				PA-RISC 2.0 Architecture book
-# 18 Jun 01 - Mike: Added Floating Point instuctions
-# 26 Jun 01 - Mike: Changed some mnemonics from 2.0 to 1.1 form
-# 27 Jun 01 - Mike: Major rewrite of integer loads and stores, in preparation
-#               for "lambdas" in SSL file
-# 19 Jul 01 - Simon: Reorganised loads and stores (again) and grouped addresses
-#               for both.
-# 23 Jul 01 - Simon: COMPICLR, addr_ldisp_17_old
-# 25 Jul 01 - Simon: Added shift, extract, deposit
-# 27 Jul 01 - Mike: Added XMPYU pattern and constructor; x_23 for flt_c3.E
-# 07 Aug 01 - Simon: Changed iloads and istores to take more parameters, so
-#               that the addressing mode details are explicit in the SSL now
-# 10 Aug 01 - Simon: fixed glitch in the bb_all constructor
-
-
 # The convention for bit fields is aann_mm, where aa briefly describes the
 # field, nn is the field length in bits, and mm is the starting bit number
 # (in HP numbering, i.e. 0 at the left)

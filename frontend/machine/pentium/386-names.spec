@@ -7,16 +7,6 @@
 # WARRANTIES.
 #
 
-# Jan 98 - Cristina
-#	original file by Norman pentium-names.spec
-#	removed all constructors dealing with floating point as per 386-core.spec.
-# 2 Feb 98 - Cristina
-# 	changed argument of MOVZX and MOVSX from Eaddr to Mem as per 386-core.spec.
-#	toolkit emits warning for LDS, LES, LFS, LGS and LSS (10 combinations) 
-#		as these names are not in this spec.  It doesn't matter as the
-#		generated name for these is the right one (i.e. LDS, LES, etc).
-
-
 assembly component 
     {iAL,AL}                is b
     {iAX,AX}                is w

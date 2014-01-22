@@ -5,10 +5,6 @@
  * FILE:       generic.cpp
  * OVERVIEW:   Implementation of the RDIExpTransformer and related classes.
  *============================================================================*/
-/*
- * $Revision$
- * 17 Apr 04 - Trent: Created
- */
 
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200

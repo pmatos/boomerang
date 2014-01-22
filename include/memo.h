@@ -11,11 +11,6 @@
  * FILE:		memo.h
  * OVERVIEW:	declaration of the memo class.
  *============================================================================*/
-/*
- * $Revision$
- * 24 Aug 04 - Trent: Created
- */
-
 
 #ifndef MEMO_H
 #define MEMO_H

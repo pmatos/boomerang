@@ -3,13 +3,6 @@
  * OVERVIEW:   Provides the implementation for the FrontSparcTest class, which
  *				tests the sparc front end
  *============================================================================*/
-/*
- * $Revision$
- *
- * 05 Apr 02 - Mike: Created
- * 21 May 02 - Mike: Mods for gcc 3.1
- * 04 Dec 02 - Mike: Changed all r[0] to 0
- */
 
 #define HELLO_SPARC		"test/sparc/hello"
 #define BRANCH_SPARC	"test/sparc/branch"

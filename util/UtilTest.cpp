@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the UtilTest class, which
  *              tests the Type class and some utility functions
  *============================================================================*/
-/*
- * $Revision$
- *
- * 09 Apr 02 - Mike: Created
- */
 
 #include "UtilTest.h"
 

@@ -12,12 +12,6 @@
  * OVERVIEW:   Interface for SSA based data flow analysis
  *============================================================================*/
 
-/*
- * $Revision$	// 1.39.2.19
- *
- * 15 Mar 05 - Mike: Separated from cfg.h
- */
-
 #ifndef _DATAFLOW_H_
 #define _DATAFLOW_H_
 

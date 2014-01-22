@@ -18,7 +18,7 @@
 #include "BinaryFile.h"
 #include <string>
 
-/* $Revision$
+/*
  * This file contains the definition of the DOS4GWBinaryFile class, and some
  * other definitions specific to the exe version of the BinaryFile object
 */
@@ -27,7 +27,6 @@
  * inspect old DOS4GW apps.  This loader could also be used for decompiling
  * Win9x VxD files or, of course, OS2 binaries, but you're probably better off
  * making a specific loader for each of these.
- * 24 Jan 05 - Trent: created.
  */
 
 // Given a little endian value x, load its value assuming little endian order

@@ -5,10 +5,6 @@
  * FILE:	   exp.cpp
  * OVERVIEW:   Implementation of the Exp and related classes.
  *============================================================================*/
-/*
- * $Revision$	// 1.172.2.20
- * 05 Apr 02 - Mike: Created
- */
 
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200

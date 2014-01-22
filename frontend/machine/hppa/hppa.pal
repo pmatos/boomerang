@@ -11,19 +11,6 @@
 # OVERVIEW:   A PAL specification for the HP PA/Risc architecture.
 #===================================================================*/
 
-# $Revision$
-
-# 01 May 01 - Mike: Created
-# 09 May 01 - Mike: Added logue names where needed
-# 17 May 01 - Mike: Added gcc frameless logues where needed
-# 17 Jul 01 - Simon: Fixed initial value of %r3 in FRAME ABSTRACTION; added
-#               PARENTSTACK entry
-# 18 Jul 01 - Mike: Fixed initial value of %sp in FRAME ABSTRACTION
-# 23 Jul 01 - Mike: %afp is at the top of the frame, and STACK IS INVERTED
-# 01 Aug 01 - Mike: GLOBAL ABSTRACTION has just one equation now
-# 17 Aug 01 - Mike: Added specs for pa-risc floating point register parameters
-# 31 Aug 01 - Mike: Oops, forgot to put param_reloc1 in the LOCALS section
-
 STACK IS INVERTED
 
 FRAME ABSTRACTION

@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the interface for the ProcTest class, which
  *				tests the Proc class
  *============================================================================*/
-/*
- * $Revision$
- *
- * 23 Apr 02 - Mike: Created
- */
 
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>

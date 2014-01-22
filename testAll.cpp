@@ -2,10 +2,6 @@
  * FILE:	   testAll.cc
  * OVERVIEW:   Command line test of all of Boomerang
  *============================================================================*/
-/*
- * $Revision$
- * 15 Jul 02 - Mike: Created from testDbase
-*/
 
 #include "string"
 #include "cppunit/TextTestResult.h"

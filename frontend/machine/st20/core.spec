@@ -6,8 +6,6 @@
 # WARRANTIES.
 #
 
-# 10 Mar 05 - Mike: Created
-
 fields of opcodet (8) fc 4:7 bot 0:3
 	op1 0:3
 	op2 0:3

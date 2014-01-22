@@ -16,16 +16,6 @@
  * OVERVIEW:   This file defines the classes used to represent the semantic
  *			   definitions of instructions and given in a .ssl file.
  *============================================================================*/
- 
-/*
- * $Revision$	// 1.27.2.2
- *
- * 27 Apr 02 - Mike: Mods for boomerang
- * 17 Jul 02 - Mike: readSSLFile resets internal state as well
- * 04 Feb 03 - Mike: Fixed a bug with instantiating NOP (could cause bus error?)
- * 22 May 03 - Mike: Fixed a small memory leak (char* opcode)
- * 16 Jul 04 - Mike: Simplify decoded semantics
- */
 
 /*==============================================================================
  * Dependencies.

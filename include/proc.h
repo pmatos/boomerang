@@ -15,10 +15,6 @@
  *				procedure such as parameters and locals.
  *============================================================================*/
 
-/*
- *	$Revision$	// 1.115.2.27
- */
-
 #ifndef _PROC_H_
 #define _PROC_H_
 

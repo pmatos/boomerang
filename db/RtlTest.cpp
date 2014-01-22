@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the RtlTest class, which
  *				tests the RTL and derived classes
  *============================================================================*/
-/*
- * $Revision$
- *
- * 13 May 02 - Mike: Created
- */
 
 #include "RtlTest.h"
 #include "statement.h"

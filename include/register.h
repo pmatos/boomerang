@@ -12,12 +12,6 @@
  * OVERVIEW:	Header information for the Register class.
  *============================================================================*/
 
-/* 
- * $Revision$
- *
- * 28 Apr 02 - Mike: Mods for boomerang
- */
-
 #ifndef __REG_H__
 #define __REG_H__
 

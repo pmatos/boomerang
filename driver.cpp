@@ -14,12 +14,6 @@
  *				Also contains main(), so it can be the only file different between boomerang and bigtest
  *======================================================================================================*/
 
-/*
- * $Revision$
- *
- * 30 Aug 05 - Mike: Added init_dfa() etc for garbage collection safety
- */
-
 #include "boomerang.h"
 //#define GC_DEBUG 1		// Uncomment to debug the garbage collector
 #include "gc.h"

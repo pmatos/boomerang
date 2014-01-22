@@ -14,15 +14,6 @@
  * OVERVIEW:	  Defines a scanner to parse the tokens of a Semantic
  *				  Specification Language specification.
  *============================================================================*/
- 
-/* 
- * Shane Sendall (original C version) Dec 1997
- * Doug Simon (C++ version) Jan 1998
- * 29 Apr 02 - Mike: Mods for boomerang; removed &~, |~, and ^~ operators
- * 09 May 02 - Mike: ASSIGNSIZE is an num now
- * 05 May 04 - Mike: ASSIGNSIZE replaced by ASSIGNTYPE (text)
- * 20 Mar 11 - Mike: Note: YY_FATAL_ERROR needs (char*) cast inserted into output
- */
 
 %name SSLScanner
  

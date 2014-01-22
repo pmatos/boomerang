@@ -2,12 +2,6 @@
  * FILE:	   testFront.cc
  * OVERVIEW:   Command line test of the Frontend and related classes.
  *============================================================================*/
-/*
- * $Revision$
- * 08 Apr 02 - Mike: Created
- * 23 May 02 - Mike: Added pentium tests
- */
-
 
 #include "cppunit/TextTestResult.h"
 #include "cppunit/TestSuite.h"

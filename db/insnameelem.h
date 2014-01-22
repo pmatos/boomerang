@@ -12,9 +12,6 @@
  *
  * header for insnameelem.cc
  * class declarations for class InsNameElem
- *
- * Last Modified
- * 19 Feb 01 - Simon: created
  */
 
 #ifndef INSNAMEELEM_H

@@ -7,7 +7,6 @@
  * (C) 2001 The University of Queensland, BT group
  *============================================================================*/
 /*
-    $Revision$
     Compile with:
     % cc -xO4 -xinline= -o test/sparc/minmax2 test/source/minmax2.c
 
@@ -35,9 +34,6 @@
 
     For pentum, the Sun compiler doesn't (at present) generate terribly
     interesting code, but the test is retained for completeness.
-
-05 Apr 01 - Mike: Created
-15 Jan 04 - Mike: Mods for better functional testing
 */
 
 #include <stdio.h>

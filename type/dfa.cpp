@@ -12,14 +12,6 @@
  *				manner
  *============================================================================*/
 
-/*
- * $Revision$	// 1.30.2.11
- *
- * 24 Sep 04 - Mike: Created
- * 25 Aug 05 - Mike: Switch from Mycroft style "pointer to alpha plus integer equals pointer to another alpha" to
- *						Van Emmerik style "result is void*" for sigma and delta functions
- */
-
 #include "gc.h"
 #include "type.h"
 #include "boomerang.h"

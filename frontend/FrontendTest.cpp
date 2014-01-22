@@ -3,11 +3,6 @@
  * OVERVIEW:   Provides the implementation for the FrontendTest class, which
  *				tests the FrontEnd and related classes
  *============================================================================*/
-/*
- * $Revision$
- *
- * 05 Apr 02 - Mike: Created
- */
 
 #define HELLO_SPARC		"test/sparc/hello"
 #define HELLO_PENTIUM	"test/pentium/hello"

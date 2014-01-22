@@ -18,17 +18,6 @@
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
  *============================================================================*/
 
-/*
- * $Revision$	// 1.238.2.44
- *
- * 14 Mar 02 - Mike: Fixed a problem caused with 16-bit pushes in richards2
- * 20 Apr 02 - Mike: Mods for boomerang
- * 31 Jan 03 - Mike: Tabs and indenting
- * 03 Feb 03 - Mike: removeStatement no longer linear searches for the BB
- * 13 Jul 05 - Mike: Fixed a segfault in processDecodedICTs with zero lentgth (!) BBs. Also one in the ad-hoc TA
- * 08 Mar 06 - Mike: fixed use of invalidated iterator in set/map::erase() (thanks, tamlin!)
- */
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

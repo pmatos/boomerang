@@ -7,12 +7,6 @@
  *
  */
 
-/*
- * $Revision$	// 1.24.2.8
- *
- * 22 Nov 02 - Mike: Re-ordered initialisations to keep gcc quiet
- */
-
 /*==============================================================================
  * FILE:	   chllcode.h
  * OVERVIEW:   Concrete class for the "C" high level language

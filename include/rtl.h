@@ -20,14 +20,6 @@
  *			   switch statements). 
  *============================================================================*/
 
-/*
- * $Revision$	// 1.51.2.1
- *
- * 08 Apr 02 - Mike: Mods for boomerang
- * 13 May 02 - Mike: expList is no longer a pointer
- * 25 Jul 03 - Mike: RTL now a list of Statements
- */
-
 #ifndef __RTL_H__
 #define __RTL_H__
 

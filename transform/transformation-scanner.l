@@ -2,10 +2,6 @@
  * FILE:       transformation.l
  * OVERVIEW:   Scanner for transformation language.
  *============================================================================*/
-/*
- * $Revision$
- * 17 Apr 04 - Trent: Created
- */
 %name TransformationScanner
 
 

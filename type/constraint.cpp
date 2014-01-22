@@ -12,12 +12,6 @@
  * OVERVIEW:   Implementation of objects related to type constraints
  *============================================================================*/
 
-/*
- * $Revision$	// 1.16.6.1
- *
- * 22 Aug 03 - Mike: Created
- */
-
 #include "constraint.h"
 #include "managed.h"
 #include "exp.h"

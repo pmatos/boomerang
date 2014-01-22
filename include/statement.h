@@ -12,24 +12,6 @@
  * OVERVIEW:   The Statement and related classes (was dataflow.h)
  *============================================================================*/
 
-/*
- * $Revision$	// 1.76.2.30
- * 25 Nov 02 - Trent: appropriated for use by new dataflow.
- * 3 July 02 - Trent: created.
- * 03 Feb 03 - Mike: cached dataflow (uses and usedBy)
- * 03 Apr 03 - Mike: Added StatementSet
- * 25 Jul 03 - Mike: Changed dataflow.h to statement.h
- * 15 Jul 04 - Mike: New Assignment hierarchy
- * 11 Aug 04 - Mike: BoolStatement -> BoolAssign
- * 17 Sep 04 - Mike: PhiExp in ordinary assignment replaced by PhiAssign statement
- * 27 Oct 04 - Mike: PhiAssign has vector of PhiInfo now; needed because a statement pointer alone does not uniquely
- *						define what is defined. It is now possible for all parameters of a phi to have different exps
- * 15 Mar 05 - Mike: Removed implicit arguments; replaced with DefCollector
- * 11 Apr 05 - Mike: Added RetStatement, DefineAll
- * 26 Apr 05 - Mike: Moved class Return here from signature.h
- * 12 Aug 05 - Mike: Added ImpRefStatement
- */
-
 #ifndef _STATEMENT_H_
 #define _STATEMENT_H_
 

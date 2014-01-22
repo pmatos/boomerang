@@ -5,11 +5,6 @@
  * FILE:       generic.h
  * OVERVIEW:   Provides the definition for the generic exp tranformer.
  *============================================================================*/
-/*
- * $Revision$
- *
- * 17 Apr 04 - Trent: Created
- */
 
 #ifndef GENERIC_EXP_TRANSFORMER_H
 #define GENERIC_EXP_TRANSFORMER_H

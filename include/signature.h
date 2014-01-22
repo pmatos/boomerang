@@ -5,17 +5,6 @@
  * FILE:	   signature.h
  * OVERVIEW:   Provides the definition for the signature classes.
  *============================================================================*/
-/*
- * $Revision$	// 1.53.2.11
- *
- * 12 Jul 02 - Trent: Created
- *
- * Trent had the idea of "promoting" to signatures with known behaviour (e.g. conforms to ABI). However, it seems more
- *	general to only assume ABI behaviour for library functions, and derive the signature information from child
- *	procedures in all user procedures. At present, this promotion is basically disabled (promotion always succeeds,
- *	but not much is assumed by the process of promotion). The role of the Signature classes is still being considered.
- *	- MVE Jun 2005.
- */
 
 #ifndef __SIGNATURE_H_
 #define __SIGNATURE_H_

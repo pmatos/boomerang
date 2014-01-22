@@ -12,8 +12,4 @@
  *
  *   \author Markus Gothe, nietzsche@lysator.liu.se
  *
- * REVISION 
- *
- *   $Id$
- *
  *****************************************************************/

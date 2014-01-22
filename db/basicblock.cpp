@@ -14,18 +14,6 @@
  * OVERVIEW: Implementation of the BasicBlock class.
  *============================================================================*/
 
-/*
- * $Revision$	// 1.93.2.8
- * Dec 97 - created by Mike
- * 18 Apr 02 - Mike: Changes for boomerang
- * 04 Dec 02 - Mike: Added isJmpZ
- * 09 Jan 02 - Mike: Untabbed, reformatted
- * 17 Jun 03 - Mike: Fixed an apparent error in generateCode (getCond)
- * 14 Jun 05 - Mike: Don't add redundant out edges to an N-way BB if some jump table entries repeat
- * 20 Mar 11 - Mike: Fixed braces near isLatchNode() in generateCode()
-*/
-
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

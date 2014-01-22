@@ -15,16 +15,6 @@
  *			   register transfer list)
  *============================================================================*/
 
-/*
- * $Revision$	// 1.33.2.3
- * 
- * 08 Apr 02 - Mike: Changes for boomerang
- * 13 May 02 - Mike: expList is no longer a pointer
- * 15 May 02 - Mike: Fixed a nasty bug in updateExp (when update with same
- *				expression as existing)
- * 25 Jul 02 - Mike: RTL is now list of Statements
- */
-
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200
 #pragma warning(disable:4786)

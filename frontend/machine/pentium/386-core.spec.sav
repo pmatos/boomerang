@@ -1,21 +1,4 @@
 # 386-core.spec (based on pentium-core.spec, NJMC v0.5)
-# 19 Jan 98 - Cristina
-#	removed all escape opcodes with bytes D8..DF as the first byte; those
-#		742, 923, 951, 1011, 1050, and associated constructors.
-# 22 Jan 98 - Cristina
-#	added LEA and lfp constructors as they're missing (missing from original 
-#		pentium spec also).
-#	changed Mem for Eaddr in the constructors CALL.Ev^ov and CALL.Ep^ov 
-#		as register indirections are allowed (i.e. mod = 3).
-#	added LEAVE constructor 
-# 29 Jan 98 - Mike
-#	changed order of CS and IP in the call and jmp constructors
-# 2 Feb 98 - Cristina
-#	MOViw took a r32 instead of a r16.  Changed as per 386-names.spec
-# 21 Oct 98 - Mike: lower case register names
-# 03 Nov 98 - Mike: fixed LEA; Abs32 is now Mem (was Eaddr)
-# 04 Nov 98 - Mike: changed SETb to Eaddr (was Mem)
-# 28 Jan 99 - Mike: changed CMPS to not use address size prefix (av)
 
 fields of opcodet (8) row 4:7 col 0:2 page 3:3
                      

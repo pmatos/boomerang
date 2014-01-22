@@ -12,13 +12,6 @@
  * OVERVIEW:   Implementation of "managed" classes such as StatementSet, which feature makeUnion etc
  *============================================================================*/
 
-/*
- * $Revision$	// 1.15.2.13
- *
- * 26 Aug 03 - Mike: Split off from statement.cpp
- * 21 Jun 05 - Mike: Added AssignSet
- */
-
 #include <sstream>
 #include <cstring>
 

@@ -2,12 +2,6 @@
  * FILE:	   testRtl.cpp
  * OVERVIEW:   Command line test of the Rtl class
  *============================================================================*/
-/*
- * $Revision$
- * 15 Jul 02 - Mike: Created from testDbase
- * 29 Jul 03 - Mike: Created from testAll
-*/
-
 
 #include "cppunit/TextTestResult.h"
 #include "cppunit/TestSuite.h"

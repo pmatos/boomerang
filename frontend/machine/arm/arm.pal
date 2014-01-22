@@ -14,10 +14,6 @@
 #             include support for the THUMB architecture. It also assumes
 #             the calling conventions used by gcc.
 #===================================================================*/
-# 08 Aug 01 - Brian: Created file.
-# 20 Aug 01 - Cristina: Merged std_entry and split_arg_entry frame abstraction.
-#             Commented SSL register name assumptions.
-
 
 FRAME ABSTRACTION
     INIT = %sp

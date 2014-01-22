@@ -12,12 +12,6 @@
  * OVERVIEW:   Definition of objects related to type constraints
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * 22 Aug 03 - Mike: Created
- */
-
 #include "statement.h"
 #include "exp.h"
 #include <sstream>

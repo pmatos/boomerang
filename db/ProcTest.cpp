@@ -3,12 +3,6 @@
  * OVERVIEW:   Provides the implementation for the ProcTest class, which
  *				tests the Proc class
  *============================================================================*/
-/*
- * $Revision$
- *
- * 23 Apr 02 - Mike: Created
- * 10 Mar 03 - Mike: Mods to not use Prog::pBF (no longer public)
- */
 
 #define HELLO_PENTIUM		"test/pentium/hello"
 

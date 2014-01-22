@@ -5,11 +5,6 @@
  * FILE:	   transformer.h
  * OVERVIEW:   Provides the definition for the tranformer and related classes.
  *============================================================================*/
-/*
- * $Revision$
- *
- * 17 Apr 04 - Trent: Created
- */
 
 #ifndef TRANSFORMER_H
 #define TRANSFORMER_H

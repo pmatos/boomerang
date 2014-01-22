@@ -16,25 +16,6 @@
  *			   returns the list of SSL instruction and table definitions.
  *============================================================================*/
 
-/* $Revision$
- * Updates:
- * Shane Sendall (original C version) Dec 1997
- * Doug Simon (C++ version) Jan 1998
- * 29 Apr 02 - Mike: Mods for boomerang
- * 03 May 02 - Mike: Commented
- * 08 May 02 - Mike: ParamMap -> ParamSet
- * 15 May 02 - Mike: Fixed strToOper: *f was coming out as /f, << as =
- * 16 Jul 02 - Mike: Fixed code in expandTables processing opOpTables: was
- *				doing replacements on results of searchAll
- * 09 Dec 02 - Mike: Added succ() syntax (for SPARC LDD and STD)
- * 29 Sep 03 - Mike: Parse %DF correctly
- * 22 Jun 04 - Mike: TEMP can be a location now (location was var_op)
- * 31 Oct 04 - Mike: srchExpr and srchOp are statics now; saves creating and deleting these expressions for every
- *				opcode. Seems to prevent a lot of memory churn, and may prevent (for now) the mystery
- *				test/sparc/switch_gcc problem (which goes away when you try to gdb it)
- * 30 Aug 04 - Mike: added init_sslparser() for garbage collection safety
- */
-
 %name SSLParser		// the parser class name will be SSLParser
 
 // stuff to go in sslparser.h

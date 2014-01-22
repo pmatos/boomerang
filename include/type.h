@@ -14,16 +14,6 @@
  *				recording high level types
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * 20 Mar 01 - Mike: Added operator*= (compare, ignore sign, and consider all floats > 64 bits to be the same
- * 26 Apr 01 - Mike: Added class typeLessSI
- * 08 Apr 02 - Mike: Changes for boomerang
- * 25 Sep 04 - Mike: Added UnionType; beginnings of data-flow based type analysis
- * 26 Oct 04 - Mike: Added UpperType and LowerType; isCompatible()
- */
-
 #ifndef __TYPE_H__
 #define __TYPE_H__
 

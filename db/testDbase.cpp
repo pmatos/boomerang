@@ -2,15 +2,6 @@
  * FILE:	   testDbase.cc
  * OVERVIEW:   Command line test of the Exp and related classes.
  *============================================================================*/
-/*
- * $Revision$
- *	  Apr 02 - Mike: Created
- * 03 Apr 02 - Mike: Modified to use CppUnit 1.6.2.
- * 18 Apr 02 - Mike: Test prog as well
- * 13 May 02 - Mike: Added RtlTest and ParserTest
- * 04 Jul 02 - Mike: Move UtilTest here as TypeTest
-*/
-
 
 #include "cppunit/TextTestResult.h"
 #include "cppunit/TestSuite.h"

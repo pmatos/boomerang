@@ -17,13 +17,6 @@
  *function.
 */
 
-/*
- *	MVE 30/9/97 Created
- * 21 Apr 02 - Mike: mods for boomerang
- * 03 Jun 02 - Trent: if WIN32, no dynamic linking
- * 14 Jun 02 - Mike: Fixed a bug where Windows programs chose the Exe loader
-*/
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

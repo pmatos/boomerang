@@ -13,11 +13,6 @@
  *             needed to load elf binary files.
  *============================================================================*/
 
-/*
- * $Revision$
- * 11 May 01 - Nathan: Initial version
- */
-
 #ifndef __SYSELF_H_
 #define __SYSELF_H_
 

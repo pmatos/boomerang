@@ -15,13 +15,6 @@
  *             any particular subsystem of UQBT.
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * 05 Sep 00 - Mike: moved getCodeInfo here from translate2c.cc
- * 10 Apr 02 - Mike: Mods for boomerang; put expSimplify here
- */
-
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200 
 #pragma warning(disable:4786)
