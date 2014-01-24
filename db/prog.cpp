@@ -32,10 +32,6 @@
 #include <stdlib.h>
 #include <vector>
 #include <math.h>
-#ifdef _WIN32
-#include <direct.h>					// For Windows mkdir()
-#endif
-
 #include "type.h"
 #include "cluster.h"
 #include "types.h"
@@ -306,11 +302,7 @@ const char *Cluster::makeDirs()
 		path = Boomerang::get()->getOutputPath();		 
 	if (getNumChildren() > 0 || parent == NULL) {
 		path = path + "/" + name;
-#ifdef _WIN32
-		mkdir(path.c_str());
-#else
 		mkdir(path.c_str(), 0777);
-#endif
 	}
 	return strdup(path.c_str());
 }

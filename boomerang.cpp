@@ -20,13 +20,9 @@
 #include <stdlib.h>
 #include <fstream>
 #include <time.h>
-#ifdef _WIN32
-#include <direct.h>			// mkdir under Windows
-#else
 #include <sys/stat.h>		// For mkdir
 #include <unistd.h>			// For unlink
 #include <signal.h>
-#endif
 #if defined(_MSC_VER) || defined(__MINGW32__)
 #include <windows.h>
 #endif
@@ -217,19 +213,11 @@ bool createDirectory(std::string dir) {
 	while ((i = remainder.find('/')) != std::string::npos) {
 		path += remainder.substr(0, i+1);
 		remainder = remainder.substr(i+1);
-#ifdef _WIN32
-		mkdir(path.c_str());
-#else
 		mkdir(path.c_str(), 0777);				// Doesn't matter if already exists
-#endif
 			}
 	// Now try to create a test file
 	path += remainder;
-#ifdef _WIN32
-	mkdir(path.c_str());					// Make the last dir if needed
-#else
 	mkdir(path.c_str(), 0777);				// Make the last dir if needed
-#endif
 	path += "test.file";
 	std::ofstream test;
 	test.open(path.c_str(), std::ios::out);
