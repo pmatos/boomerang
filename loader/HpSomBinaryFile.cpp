@@ -611,9 +611,6 @@ ADDRESS HpSomBinaryFile::GetMainEntryPoint()
 // call mechanism will call the rest of the code in this library
 // It needs to be C linkage so that it its name is not mangled
 extern "C" {
-#ifdef _WIN32
-     __declspec(dllexport)
-#endif
     BinaryFile* construct()
     {
         return new HpSomBinaryFile;

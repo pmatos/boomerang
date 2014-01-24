@@ -34,22 +34,11 @@
 // starting at p.
 #define LH(p)  ((int)((Byte *)(p))[0] + ((int)((Byte *)(p))[1] << 8))
 
-// Some Windows voodoo; Windows doesn't seem to export everything unless you tell it to
-#ifdef _WIN32
-#if defined _MSC_VER || defined BUILDING_LIBBINARYFILE			// If don't use dllexport, get Vtable undefined!
-#define IMPORT_BINARYFILE __declspec(dllexport)
-#else
-#define IMPORT_BINARYFILE __declspec(dllimport)
-#endif
-#else
-#define IMPORT_BINARYFILE
-#endif
-
 // SectionInfo structure. GetSectionInfo returns a pointer to an array of
 // these structs. All information about the sections is contained in these
 // structures.
 
-struct IMPORT_BINARYFILE SectionInfo
+struct SectionInfo
 {
 				SectionInfo();		// Constructor
 	virtual		~SectionInfo();		// Quell a warning in gcc
@@ -134,7 +123,7 @@ private:
 };
 
 
-class IMPORT_BINARYFILE BinaryFile {
+class BinaryFile {
 
   friend class ArchiveFile;			// So can use the protected Load()
   friend class BinaryFileFactory;	// So can use getTextLimits

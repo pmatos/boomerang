@@ -133,7 +133,6 @@ $(top_srcdir)/lib/libDOS4GWBinaryFile$(DLLEXT): microX86dis.o
 $(top_srcdir)/libBinaryFile$(DLLEXT): $(top_srcdir)/lib/libBinaryFile$(DLLEXT)
 	cp $< $@
 
-BinaryFile.o:		CCEXTRAS = -DBUILDING_LIBBINARYFILE
 MachOBinaryFile.o:	CCEXTRAS = -I.
 
 $(BASEDLL) : BinaryFile.o SymTab.o
