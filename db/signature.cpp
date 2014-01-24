@@ -13,10 +13,6 @@
  *============================================================================*/
 
 #include <assert.h>
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif 
-
 #include <cstring>
 #include <sstream>
 #include "type.h"

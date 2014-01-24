@@ -7,13 +7,6 @@
  *============================================================================*/
 
 #include <assert.h>
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif
-#if defined(_MSC_VER) && _MSC_VER >= 1400
-#pragma warning(disable:4996)		// Warnings about e.g. _strdup deprecated in VS 2005
-#endif
-
 #include <numeric>		// For accumulate
 #include <algorithm>	// For std::max()
 #include <map>			// In decideType()

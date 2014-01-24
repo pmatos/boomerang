@@ -15,19 +15,11 @@
  *		 a single register.
  *============================================================================*/
 
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-// For MSVC 5 or 6: warning about debug into truncated to 255 chars
-#pragma warning(disable:4786)
-#endif
 #include <assert.h>
 #include <cstring>
 #include "register.h"
 #include "type.h"
 
-
-#if defined(_MSC_VER) && _MSC_VER >= 1400
-#pragma warning(disable:4996)		// Warnings about e.g. _strdup deprecated in VS 2005
-#endif
 #ifndef NULL						// Don't always include stdio.h
 #define NULL 0
 #endif

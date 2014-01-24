@@ -20,10 +20,6 @@
 
 #include <assert.h>
 #include <cstring>
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif 
-
 #include "gc.h"
 #include "types.h"
 #include "statement.h"

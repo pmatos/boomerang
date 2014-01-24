@@ -18,10 +18,6 @@
  *	BinaryFile. See MachOBinaryFile.h and BinaryFile.h for details.
  */
 
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif
-
 #include "BinaryFile.h"
 #include "MachOBinaryFile.h"
 #include "config.h"

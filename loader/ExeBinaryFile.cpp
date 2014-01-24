@@ -16,10 +16,6 @@
 	See ExeBinaryFile.h and BinaryFile.h for details
 */
 
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif
-
 #include "ExeBinaryFile.h"
 
 ExeBinaryFile::ExeBinaryFile()

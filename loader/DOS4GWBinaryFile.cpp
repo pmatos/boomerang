@@ -18,10 +18,6 @@
  *	BinaryFile. See DOS4GWBinaryFile.h and BinaryFile.h for details.
  */
 
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#pragma warning(disable:4786)
-#endif
-
 #include "BinaryFile.h"
 #include "DOS4GWBinaryFile.h"
 #include "config.h"

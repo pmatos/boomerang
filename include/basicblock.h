@@ -17,10 +17,6 @@
 #ifndef __BASIC_BLOCK_H__
 #define __BASIC_BLOCK_H__
 
-#if defined(_MSC_VER)
-#pragma warning(disable:4290)
-#endif
-
 #include "managed.h"			// For LocationSet etc
 
 class Location;

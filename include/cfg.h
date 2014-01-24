@@ -24,11 +24,6 @@
 #include <map>
 #include <iostream>
 #include <string>
-
-#if defined(_MSC_VER)
-#pragma warning(disable:4290)
-#endif
-
 #include "types.h"
 #include "exphelp.h"	// For lessExpStar
 #include "basicblock.h"	// For the BB nodes

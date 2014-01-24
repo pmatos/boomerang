@@ -9,10 +9,6 @@
 #ifndef __SIGNATURE_H_
 #define __SIGNATURE_H_
 
-#if defined(_MSC_VER)
-#pragma warning(disable:4290)
-#endif
-
 #include <string>
 #include "exp.h"
 #include "type.h"
