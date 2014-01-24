@@ -145,17 +145,10 @@ void CHLLCode::appendExp(std::ostringstream& str, Exp *exp, PREC curPrec, bool u
 		}
 		case opLongConst:
 			//str << std::dec << c->getLong() << "LL"; break;
-#if defined(_MSC_VER) && _MSC_VER <= 1200	// tamlin:
-			if ((__int64)c->getLong() < -1000i64 || (__int64)c->getLong() > 1000i64)
-				str << "0x" << std::hex << c->getLong() << std::dec << "i64";
-			else
-				str << std::dec << c->getLong() << "i64";
-#else
 			if ((long long)c->getLong() < -1000LL || (long long)c->getLong() > 1000LL)
 				str << "0x" << std::hex << c->getLong() << std::dec << "LL";
 			else
 				str << std::dec << c->getLong() << "LL";
-#endif
 			break;
 		case opFltConst: {
 			//str.precision(4); 	// What to do with precision here? Would be nice to avoid 1.00000 or 0.99999
