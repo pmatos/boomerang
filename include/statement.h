@@ -12,8 +12,8 @@
  * OVERVIEW:   The Statement and related classes (was dataflow.h)
  *============================================================================*/
 
-#ifndef _STATEMENT_H_
-#define _STATEMENT_H_
+#ifndef STATEMENT_H
+#define STATEMENT_H
 
 /* Class hierarchy:   Statement@			(@ = abstract)
                     __/   |   \________________________
@@ -1316,4 +1316,4 @@ virtual void		dfaTypeAnalysis(bool& ch);
 };	// class ReturnStatement
 
 
-#endif // __STATEMENT_H__
+#endif

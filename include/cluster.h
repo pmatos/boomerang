@@ -15,8 +15,8 @@
  *		   Clusters can contain other Clusters to form a tree.
  *============================================================================*/
 
-#ifndef __CLUSTER_H__
-#define __CLUSTER_H__
+#ifndef CLUSTER_H
+#define CLUSTER_H
 
 #include <list>
 #include <vector>
@@ -84,5 +84,5 @@ public:
     virtual bool isAggregate() { return true; }
 };
 
-#endif /*__CLUSTER_H__*/
+#endif
 

@@ -13,8 +13,8 @@
  *             needed to load elf binary files.
  *============================================================================*/
 
-#ifndef __SYSELF_H_
-#define __SYSELF_H_
+#ifndef SYSELF_H
+#define SYSELF_H
 
 #include "config.h"
 
@@ -71,4 +71,4 @@ typedef Elf32_Half Elf32_Versym;
 #define AT_SUN_RGID   2003
 #endif
 
-#endif /* !__SYSELF_H_ */
+#endif

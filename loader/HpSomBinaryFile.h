@@ -10,8 +10,8 @@
  * Desc: This file contains the definition of the class HpSomBinaryFile.
 */
 
-#ifndef __HPSOMBINARYFILE_H__
-#define __HPSOMBINARYFILE_H__
+#ifndef HPSOMBINARYFILE_H
+#define HPSOMBINARYFILE_H
 
 /*==============================================================================
  * Dependencies.
@@ -139,4 +139,4 @@ private:
 		const char *m_pFileName;
 };
 
-#endif      // #ifndef __HPSOMBINARYFILE_H__
+#endif

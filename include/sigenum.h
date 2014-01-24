@@ -1,6 +1,6 @@
 // Needed by both signature.h and frontend.h
-#ifndef __SIGENUM__
-#define __SIGENUM__
+#ifndef SIGENUM
+#define SIGENUM
 
 enum platform {
 	PLAT_PENTIUM,
@@ -20,4 +20,4 @@ enum callconv {
 	CONV_NONE
 };
 
-#endif	// __SIGENUM__
+#endif

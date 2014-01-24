@@ -14,8 +14,8 @@
  * OVERVIEW:   Interface for the basic block class, which form nodes of the control flow graph
  *============================================================================*/
 
-#ifndef __BASIC_BLOCK_H__
-#define __BASIC_BLOCK_H__
+#ifndef BASICBLOCK_H
+#define BASICBLOCK_H
 
 #include "managed.h"			// For LocationSet etc
 
@@ -541,4 +541,4 @@ protected:
 
 };		// class BasicBlock
 
-#endif		// #define __BASIC_BLOCK_H__
+#endif

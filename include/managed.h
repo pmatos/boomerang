@@ -19,8 +19,8 @@
  *				ConnectionGraph
  *==============================================================================================*/
 
-#ifndef __MANAGED_H__
-#define __MANAGED_H__
+#ifndef MANAGED_H
+#define MANAGED_H
 
 #include <list>
 #include <set>
@@ -277,4 +277,4 @@ typedef std::multimap<Exp*, Exp*, lessExpStar>::iterator iterator;
 		void		dump();							// Dump for debugging
 };
 
-#endif	// #ifdef __MANAGED_H__
+#endif

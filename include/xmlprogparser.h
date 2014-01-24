@@ -12,8 +12,8 @@
  * OVERVIEW:	parses persisted XML output and creates a new prog.
  *============================================================================*/
 
-#ifndef _XMLPROGPARSER_H_
-#define _XMLPROGPARSER_H_
+#ifndef XMLPROGPARSER_H
+#define XMLPROGPARSER_H
 
 class Global;
 class Cluster;

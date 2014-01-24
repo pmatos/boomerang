@@ -14,8 +14,8 @@
  * OVERVIEW:   The interface to the instruction decoder.
  *============================================================================*/
 
-#ifndef _DECODER_H_
-#define _DECODER_H_
+#ifndef DECODER_H
+#define DECODER_H
 
 #include <list>
 #include "types.h"

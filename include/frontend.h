@@ -17,8 +17,8 @@
  *			    RTLs.
  *============================================================================*/
 
-#ifndef __FRONTEND_H__
-#define __FRONTEND_H__
+#ifndef FRONTEND_H
+#define FRONTEND_H
 
 #include <list>
 #include <map>
@@ -297,4 +297,4 @@ static	void		closeInstance(void* dlHandle);
 		bool		decodeProc(ADDRESS uAddr, FrontEnd& fe, bool keep = true, bool spec = false);
 
 
-#endif		// #ifndef __FRONTEND_H__
+#endif

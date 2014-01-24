@@ -17,8 +17,8 @@
  *				if the strings are ever changed, then the map's internal rb-tree becomes invalid.
  *============================================================================*/
 
-#ifndef __SYMTAB_H__
-#define __SYMTAB_H__
+#ifndef SYMTAB_H
+#define SYMTAB_H
 
 #include "types.h"
 #include <map>
@@ -48,4 +48,4 @@ public:
 #define NULL 0          // Normally in stdio.h, it seems!
 #endif
 
-#endif  // __SYMTAB_H__
+#endif

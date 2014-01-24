@@ -12,8 +12,8 @@
  * OVERVIEW:   Element comparison functions for expressions and statements
  *============================================================================*/
 
-#ifndef __EXPHELP_H__
-#define __EXPHELP_H__
+#ifndef EXPHELP_H
+#define EXPHELP_H
 
 #include	<map>
 
@@ -53,4 +53,4 @@ public:
 	bool operator()(const Assign* x, const Assign* y) const;
 };
 
-#endif		// __EXPHELP_H__
+#endif

@@ -11,8 +11,8 @@
  * Desc: This file contains the definition of the class PalmBinaryFile.
 */
 
-#ifndef __PALMBINARYFILE_H__
-#define __PALMBINARYFILE_H__
+#ifndef PALMBINARYFILE_H
+#define PALMBINARYFILE_H
 
 /*==============================================================================
  * Dependencies.
@@ -83,4 +83,4 @@ virtual std::pair<unsigned,unsigned> GetGlobalPointerInfo();
     const char *   m_pFileName;
 };
 
-#endif      // #ifndef __PALMBINARYFILE_H__
+#endif

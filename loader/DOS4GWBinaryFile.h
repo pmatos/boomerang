@@ -12,8 +12,8 @@
  * Desc: This file contains the definition of the class DOS4GWBinaryFile.
 */
 
-#ifndef __DOS4GWBINARYFILE_H__
-#define __DOS4GWBINARYFILE_H_
+#ifndef DOS4GWBINARYFILE_H
+#define DOS4GWBINARYFILE_H
 
 #include "BinaryFile.h"
 #include <string>
@@ -205,4 +205,4 @@ virtual const char *GetDynamicProcName(ADDRESS uNative);
 //#ifdef WIN32
 #pragma pack()
 //#endif
-#endif			// ifndef __DOS4GWBINARYFILE_H__
+#endif

@@ -20,8 +20,8 @@
  *			   switch statements). 
  *============================================================================*/
 
-#ifndef __RTL_H__
-#define __RTL_H__
+#ifndef RTL_H
+#define RTL_H
 
 #include <list>
 #include <vector>
@@ -322,5 +322,5 @@ public:
 	void fixupParamsSub(std::string s, std::list<std::string>& funcParams, bool& haveCount, int mark);
 };
 
-#endif /*__RTL_H__*/
+#endif
 

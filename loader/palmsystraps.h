@@ -14,8 +14,8 @@
  *             Based on code from the Metrowerks Compiler, PalmOS 2.0 support
  *============================================================================*/
 
-#ifndef _SYSTRAPS_H_
-#define _SYSTRAPS_H_
+#ifndef SYSTRAPS_H
+#define SYSTRAPS_H
 
 
 #define	sysTrapBase			0xA000
@@ -929,5 +929,5 @@ const char *trapNames[] = {
 };
 
 	
-#endif	
+#endif
 

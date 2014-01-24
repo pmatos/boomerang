@@ -12,8 +12,8 @@
  * OVERVIEW:   Interface for SSA based data flow analysis
  *============================================================================*/
 
-#ifndef _DATAFLOW_H_
-#define _DATAFLOW_H_
+#ifndef DATAFLOW_H
+#define DATAFLOW_H
 
 #include <vector>
 #include <map>
@@ -283,5 +283,5 @@ public:
 };		// class UseCollector
 
 
-#endif	// _DATAFLOW_H_
+#endif
 

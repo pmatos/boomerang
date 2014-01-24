@@ -15,8 +15,8 @@
  *				procedure such as parameters and locals.
  *============================================================================*/
 
-#ifndef _PROC_H_
-#define _PROC_H_
+#ifndef PROC_H
+#define PROC_H
 
 #include <list>
 #include <vector>

@@ -13,8 +13,8 @@
  * Desc: This file contains the definition of the abstract class BinaryFile
 */
 
-#ifndef __BINARYFILE_H__
-#define __BINARYFILE_H__
+#ifndef BINARYFILE_H
+#define BINARYFILE_H
 
 /*==============================================================================
  * Dependencies.
@@ -290,4 +290,4 @@ virtual bool		PostLoad(void* handle) = 0;		// Called after loading archive membe
 
 };
 
-#endif		// #ifndef __BINARYFILE_H__
+#endif

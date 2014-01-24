@@ -4,8 +4,8 @@
  *				 implemented in the util.so library
  *============================================================================*/
 
-#ifndef __UTIL_H__
-#define __UTIL_H__
+#ifndef UTIL_H
+#define UTIL_H
 
 #include <sstream>
 #include <string>

@@ -17,8 +17,8 @@
  *			   bindings for a single procedure in the program.
  *============================================================================*/
 
-#ifndef _HLLCODE_H_
-#define _HLLCODE_H_
+#ifndef HLLCODE_H
+#define HLLCODE_H
 
 #include <iostream>
 #include <vector>

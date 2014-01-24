@@ -22,8 +22,8 @@
     even be exposed as another pseudo section 
 */
 
-#ifndef __EXEBINARYFILE_H__
-#define __EXEBINARYFILE_H_
+#ifndef EXEBINARYFILE_H
+#define EXEBINARYFILE_H
 
 #include "BinaryFile.h"
 
@@ -108,4 +108,4 @@ private:
     const char *m_pFileName;
 };
 
-#endif      // ifndef __EXEBINARYFILE_H__
+#endif

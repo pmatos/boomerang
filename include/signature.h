@@ -6,8 +6,8 @@
  * OVERVIEW:   Provides the definition for the signature classes.
  *============================================================================*/
 
-#ifndef __SIGNATURE_H_
-#define __SIGNATURE_H_
+#ifndef SIGNATURE_H
+#define SIGNATURE_H
 
 #include <string>
 #include "exp.h"

@@ -12,8 +12,8 @@
  * OVERVIEW:	Header information for the Register class.
  *============================================================================*/
 
-#ifndef __REG_H__
-#define __REG_H__
+#ifndef REG_H
+#define REG_H
 
 class Type;
 

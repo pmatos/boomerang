@@ -14,8 +14,8 @@
  * OVERVIEW:   Interface for a control flow graph, based on basic block nodes.
  *============================================================================*/
 
-#ifndef _CFG_H_
-#define _CFG_H_
+#ifndef CFG_H
+#define CFG_H
 
 #include <stdio.h>		// For FILE
 #include <list>

@@ -12,8 +12,8 @@
  * Desc: This file contains the definition of the class MachOBinaryFile.
 */
 
-#ifndef __MACHOBINARYFILE_H__
-#define __MACHOBINARYFILE_H_
+#ifndef MACHOBINARYFILE_H
+#define MACHOBINARYFILE_H
 
 #include "BinaryFile.h"
 #include <string>
@@ -139,4 +139,4 @@ private:
 //#ifdef WIN32
 #pragma pack()
 //#endif
-#endif			// ifndef __WIN32BINARYFILE_H__
+#endif

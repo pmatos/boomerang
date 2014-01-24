@@ -12,8 +12,8 @@
  * Desc: This file contains the definition of the class Win32BinaryFile.
 */
 
-#ifndef __WIN32BINARYFILE_H__
-#define __WIN32BINARYFILE_H_
+#ifndef WIN32BINARYFILE_H
+#define WIN32BINARYFILE_H
 
 #include "BinaryFile.h"
 #include <string>
@@ -241,4 +241,4 @@ private:
 //#ifdef WIN32
 #pragma pack()
 //#endif
-#endif			// ifndef __WIN32BINARYFILE_H__
+#endif

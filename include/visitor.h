@@ -18,8 +18,8 @@
  *				StmtPartModifier (as above with special case for whole of LHS)
  *============================================================================*/
 
-#ifndef __VISITOR_H__
-#define __VISITOR_H__
+#ifndef VISITOR_H
+#define VISITOR_H
 
 #ifndef NULL
 #define NULL 0				// Often defined in stdio.h
@@ -683,4 +683,4 @@ virtual void		visit(    BoolAssign *s, bool& recur);
 virtual void		visit( CallStatement *s, bool& recur);
 };
 
-#endif	// #ifndef __VISITOR_H__
+#endif

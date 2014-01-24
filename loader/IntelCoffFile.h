@@ -1,5 +1,5 @@
-#ifndef __INTELCOFFFILE_H__
-#define __INTELCOFFFILE_H__
+#ifndef INTELCOFFFILE_H
+#define INTELCOFFFILE_H
 
 #include "BinaryFile.h"
 #include "SymTab.h"
@@ -73,4 +73,4 @@ private:
 	SymTab m_Symbols;
 };
 
-#endif	// !defined(__INTELCOFFFILE_H__)
+#endif

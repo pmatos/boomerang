@@ -14,8 +14,8 @@
  * OVERVIEW:	interface for the program object.
  *============================================================================*/
 
-#ifndef _PROG_H_
-#define _PROG_H_
+#ifndef PROG_H
+#define PROG_H
 
 #include <map>
 #include "BinaryFile.h"

@@ -6,8 +6,8 @@
  * OVERVIEW:   Provides the definition for the Exp class and its subclasses.
  *============================================================================*/
 
-#ifndef __EXP_H_
-#define __EXP_H_
+#ifndef EXP_H
+#define EXP_H
 
 /* Main class hierarchy:	Exp (abstract)
 					  _____/ | \
@@ -865,4 +865,4 @@ protected:
 					Location(OPER op) : Unary(op), proc(NULL) { }
 };	// class Location
 	
-#endif // __EXP_H__
+#endif

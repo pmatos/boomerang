@@ -11,8 +11,8 @@
  * Desc: This file contains the definition of the class ElfBinaryFile.
 */
 
-#ifndef __ELFBINARYFILE_H__
-#define __ELFBINARYFILE_H__
+#ifndef ELFBINARYFILE_H
+#define ELFBINARYFILE_H
 
 /*==============================================================================
  * Dependencies.
@@ -286,4 +286,4 @@ private:
 		int*		m_sh_info;						// pointer to array of sh_info values
 };
 
-#endif		// #ifndef __ELFBINARYFILE_H__
+#endif

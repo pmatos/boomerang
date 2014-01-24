@@ -1,8 +1,8 @@
 /*
  * types.h: some often used basic type definitions
  */
-#ifndef __TYPES_H__
-#define __TYPES_H__
+#ifndef TYPES_H
+#define TYPES_H
 
 // Machine types
 typedef unsigned char		Byte;		/* 8 bits */
@@ -22,4 +22,4 @@ typedef unsigned int		ADDRESS;	/* 32-bit unsigned */
 
 typedef long unsigned long QWord;		// 64 bits
 
-#endif	// #ifndef __TYPES_H__
+#endif

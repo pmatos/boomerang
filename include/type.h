@@ -14,8 +14,8 @@
  *				recording high level types
  *============================================================================*/
 
-#ifndef __TYPE_H__
-#define __TYPE_H__
+#ifndef TYPE_H
+#define TYPE_H
 
 #include <string>
 #include <map>
@@ -698,4 +698,4 @@ private:
 std::ostream& operator<<(std::ostream& os, Type* t);  // Print the Type pointed to by t
 
 
-#endif	// __TYPE_H__
+#endif
