@@ -25,11 +25,6 @@ AC_SUBST([FLEXPP])
 AC_PATH_PROG([M4],[m4])
 AC_SUBST([M4])
 
-dnl Checks for elf library (no longer needed)
-dnl AC_CHECK_LIB(elf, elf_begin, , [AC_MSG_ERROR("library 'elf' not found")])
-
-AC_CHECK_LIB(stdc++, main,, [AC_MSG_ERROR([library stdc++ is not found...])])
-
 dnl Check for eXpat includes
 dnl Want to check default-includes PLUS the Boomerang include/ directory, and some of the usual places it might already
 dnl be installed
