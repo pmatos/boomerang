@@ -67,11 +67,6 @@ AC_PROG_GCC_TRADITIONAL
 dnl Now the options...
 dnl AC_CHECK_FUNCS(mkdir rmdir)
 
-dnl Actually we have "make remote" again now, so this is unused at present:
-AC_ARG_ENABLE(remote, [  --enable-remote         don't try to regenerate source files],
-              [ REMOTE=1 ], [ REMOTE=0 ] )
-AC_SUBST(REMOTE)
-
 dnl Three paths for frontend/mltk.sh. No longer give a "value-if-not-found", so can avoid errors when not installed
 AC_PATH_PROG(TKML, .run-sml, , [$PATH /usr/share/sml-nj/bin $HOME/install/smlnj/bin])
 dnl many more processors and platforms needed in this list
