@@ -67,7 +67,8 @@ check_PROGRAMS = \
 	bffDump
 
 testLoader_SOURCES = testLoader.cpp LoaderTest.cpp
-testLoader_LDADD = libBinaryFileFactory.la libmicroX86dis.la -lcppunit
+testLoader_CPPFLAGS = $(AM_CPPFLAGS) $(CPPUNIT_CFLAGS)
+testLoader_LDADD = libBinaryFileFactory.la libmicroX86dis.la $(CPPUNIT_LIBS)
 
 bffDump_SOURCES = bffDump.cpp
 bffDump_LDADD = libBinaryFileFactory.la
