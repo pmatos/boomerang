@@ -18,7 +18,10 @@
 #endif
 #define SWITCH_BORLAND  TESTDIR "windows/switch_borland.exe"
 
-#define ELFBINFILE      "ElfBinaryFile.so"
+#define LIBPREFIX       ""
+#define LIBSUFFIX       ".so"
+
+#define ELFBINFILE      LIBPREFIX "ElfBinaryFile" LIBSUFFIX
 
 #include "string"
 #include "LoaderTest.h"

@@ -28,8 +28,6 @@
 #include <vector>
 #include <stdio.h>		// For FILE
 
-// Note: #including windows.h causes problems later in the objective C code.
-
 // Given a pointer p, returns the 16 bits (halfword) in the two bytes
 // starting at p.
 #define LH(p)  ((int)((Byte *)(p))[0] + ((int)((Byte *)(p))[1] << 8))
@@ -104,22 +102,15 @@ enum LOAD_FMT {LOADFMT_ELF, LOADFMT_PE, LOADFMT_PALM, LOADFMT_PAR, LOADFMT_EXE, 
 enum MACHINE {MACHINE_PENTIUM, MACHINE_SPARC, MACHINE_HPRISC, MACHINE_PALM, MACHINE_PPC, MACHINE_ST20, MACHINE_MIPS};
 
 class BinaryFileFactory {
-#ifdef _WIN32
-// The below should be of type HINSTANCE, but #including windows.h here causes problems later compiling the objective C
-// code. So just cast as needed.
-		void*		hModule;
-#else
-		void*		dlHandle;		// Needed for UnLoading the library
-#endif
+	void *handle;         // Needed for UnLoading the library
 public:
-		BinaryFile	*Load( const char *sName );
-		void		UnLoad();
+	BinaryFile *Load(const char *name);
+	void UnLoad();
 private:
 	/*
-	 * Perform simple magic on the file by the given name in order to determine the appropriate type, and then return an
-	 * instance of the appropriate subclass.
+	 * Return an instance of the appropriate subclass.
 	 */
-		BinaryFile	*getInstanceFor(const char *sName);
+	BinaryFile *getInstanceFor(const char *libname);
 };
 
 
