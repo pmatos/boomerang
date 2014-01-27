@@ -62,16 +62,18 @@ MachOBinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
 PalmBinaryFile_la_LDFLAGS   = -no-undefined -avoid-version -module -shared
 Win32BinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
 
-check_PROGRAMS = \
-	testLoader \
+bin_PROGRAMS = \
 	bffDump
+
+bffDump_SOURCES = bffDump.cpp
+bffDump_LDADD = libBinaryFileFactory.la
+
+check_PROGRAMS = \
+	testLoader
 
 testLoader_SOURCES = testLoader.cpp LoaderTest.cpp
 testLoader_CPPFLAGS = $(AM_CPPFLAGS) $(CPPUNIT_CFLAGS)
 testLoader_LDADD = libBinaryFileFactory.la libmicroX86dis.la $(CPPUNIT_LIBS)
-
-bffDump_SOURCES = bffDump.cpp
-bffDump_LDADD = libBinaryFileFactory.la
 
 # FIXME: Find a cleaner way to point dlopen() to the not-yet-installed library files.
 check-local: $(check_PROGRAMS) $(pkglib_LTLIBRARIES)
