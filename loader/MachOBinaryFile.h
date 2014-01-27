@@ -26,17 +26,6 @@
 /* This is my bare bones implementation of a Mac OS-X binary loader.
  */
 
-// Given a little endian value x, load its value assuming big endian order
-// Note: must be able to take address of x
-// Note: Unlike the LH macro in BinaryFile.h, the paraeter is not a pointer
-#define _BMMH(x) ((unsigned)((Byte *)(&x))[3] + ((unsigned)((Byte *)(&x))[2] << 8) + \
-	((unsigned)((Byte *)(&x))[1] << 16) + ((unsigned)((Byte *)(&x))[0] << 24))
-// With this one, x IS a pounsigneder
-#define _BMMH2(x) ((unsigned)((Byte *)(x))[3] + ((unsigned)((Byte *)(x))[2] << 8) + \
-	((unsigned)((Byte *)(x))[1] << 16) + ((unsigned)((Byte *)(x))[0] << 24))
-
-#define _BMMHW(x) (((unsigned)((Byte *)(&x))[1]) + ((unsigned)((Byte *)(&x))[0] << 8))
-
 //#ifdef WIN32
 #pragma pack(1)
 //#endif

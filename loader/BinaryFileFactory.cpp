@@ -11,7 +11,6 @@
 #endif
 
 #include "BinaryFile.h"
-#include "Win32BinaryFile.h"
 
 #include <dlfcn.h>
 #include <stdio.h>

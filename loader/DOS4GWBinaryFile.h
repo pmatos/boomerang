@@ -29,17 +29,6 @@
  * making a specific loader for each of these.
  */
 
-// Given a little endian value x, load its value assuming little endian order
-// Note: must be able to take address of x
-// Note: Unlike the LH macro in BinaryFile.h, the paraeter is not a pointer
-#define LMMH(x) ((unsigned)((Byte *)(&x))[0] + ((unsigned)((Byte *)(&x))[1] << 8) + \
-	((unsigned)((Byte *)(&x))[2] << 16) + ((unsigned)((Byte *)(&x))[3] << 24))
-// With this one, x IS a pounsigneder
-#define LMMH2(x) ((unsigned)((Byte *)(x))[0] + ((unsigned)((Byte *)(x))[1] << 8) + \
-	((unsigned)((Byte *)(x))[2] << 16) + ((unsigned)((Byte *)(x))[3] << 24))
-#define LMMHw(x) ((unsigned)((Byte *)(&x))[0] + ((unsigned)((Byte *)(&x))[1] << 8))
-
-
 typedef struct {				/* exe file header, just the signature really */
 		 Byte	sigLo;			/* .EXE signature: 0x4D 0x5A	 */
 		 Byte	sigHi;

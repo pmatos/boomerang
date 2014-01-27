@@ -30,7 +30,49 @@
 
 // Given a pointer p, returns the 16 bits (halfword) in the two bytes
 // starting at p.
-#define LH(p)  ((int)((Byte *)(p))[0] + ((int)((Byte *)(p))[1] << 8))
+#define LH(p) \
+  ( ((int)((Byte *)(p))[0]     ) \
+  + ((int)((Byte *)(p))[1] << 8) )
+
+// Given a little endian value x, load its value assuming little endian order
+// Note: must be able to take address of x
+// Note: Unlike the LH macro, the parameter is not a pointer
+#define LMMH(x) \
+  ( ((unsigned)((Byte *)(&x))[0]      ) \
+  + ((unsigned)((Byte *)(&x))[1] <<  8) \
+  + ((unsigned)((Byte *)(&x))[2] << 16) \
+  + ((unsigned)((Byte *)(&x))[3] << 24) )
+
+// With this one, x is a pointer to unsigned
+#define LMMH2(x) \
+  ( ((unsigned)((Byte *)(x))[0]      ) \
+  + ((unsigned)((Byte *)(x))[1] <<  8) \
+  + ((unsigned)((Byte *)(x))[2] << 16) \
+  + ((unsigned)((Byte *)(x))[3] << 24) )
+
+#define LMMHw(x) \
+  ( ((unsigned)((Byte *)(&x))[0]     ) \
+  + ((unsigned)((Byte *)(&x))[1] << 8) )
+
+// Given a little endian value x, load its value assuming big endian order
+// Note: must be able to take address of x
+// Note: Unlike the LH macro, the parameter is not a pointer
+#define _BMMH(x) \
+  ( ((unsigned)((Byte *)(&x))[3]      ) \
+  + ((unsigned)((Byte *)(&x))[2] <<  8) \
+  + ((unsigned)((Byte *)(&x))[1] << 16) \
+  + ((unsigned)((Byte *)(&x))[0] << 24) )
+
+// With this one, x is a pointer to unsigned
+#define _BMMH2(x) \
+  ( ((unsigned)((Byte *)(x))[3]      ) \
+  + ((unsigned)((Byte *)(x))[2] <<  8) \
+  + ((unsigned)((Byte *)(x))[1] << 16) \
+  + ((unsigned)((Byte *)(x))[0] << 24) )
+
+#define _BMMHW(x) \
+  ( ((unsigned)((Byte *)(&x))[1]     ) \
+  + ((unsigned)((Byte *)(&x))[0] << 8) )
 
 // SectionInfo structure. GetSectionInfo returns a pointer to an array of
 // these structs. All information about the sections is contained in these
