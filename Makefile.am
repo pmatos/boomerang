@@ -47,9 +47,8 @@ DIST_SUBDIRS = $(STD_DIRS)
 
 nobase_include_HEADERS = include/*.h
 
-bin_PROGRAMS = boomerang bffDump
+bin_PROGRAMS = boomerang
 noinst_LIBRARIES = libdriver.a
-bffDump_sources = loader/bffDump.cpp
 boomerang_SOURCES = boomerang.cpp $(STATIC_OBJS) $(GENSSL)
 boomerang_LDADD = libdriver.a
 libdriver_a_SOURCES= driver.cpp include/boomerang.h
