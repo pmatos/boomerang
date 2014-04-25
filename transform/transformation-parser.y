@@ -205,7 +205,7 @@ int TransformationParser::yylex()
     return token;
 }
 
-void TransformationParser::yyerror(char *s)
+void TransformationParser::yyerror(const char *s)
 {
 	fflush(stdout);
         printf("\n%s", theScanner->lineBuf);

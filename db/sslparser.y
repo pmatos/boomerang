@@ -1203,7 +1203,7 @@ SSLParser::~SSLParser()
  * PARAMETERS:		msg - an error message
  * RETURNS:			<nothing>
  *============================================================================*/
-void SSLParser::yyerror(char* msg)
+void SSLParser::yyerror(const char* msg)
 {
 	std::cerr << sslFile << ":" << theScanner->theLine << ": " << msg << std::endl;
 }

@@ -549,7 +549,7 @@ int AnsiCParser::yylex()
 	return token;
 }
 
-void AnsiCParser::yyerror(char *s)
+void AnsiCParser::yyerror(const char *s)
 {
 	fflush(stdout);
 		printf("\n%s", theScanner->lineBuf);
