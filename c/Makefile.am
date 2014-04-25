@@ -5,9 +5,28 @@ AM_CPPFLAGS = \
 noinst_LTLIBRARIES = \
 	libansi-c.la
 
+check_PROGRAMS = \
+	testC
+
 libansi_c_la_SOURCES = \
 	ansi-c-parser.y \
 	ansi-c-scanner.l
+
+# FIXME:  Doesn't actually work (needs to link to more libs),
+# but convinces make to compile the ansi-c files in C++ mode.
+testC_SOURCES = \
+	testC.cc \
+	CTest.cpp \
+	CTest.h
+testC_LDADD = \
+	libansi-c.la \
+	$(CPPUNIT_LIBS)
+testC_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+check-local: $(check_PROGRAMS)
+	./testC
 
 # Various, fragile hacks to use flex++/bison++
 # Tested with GNU automake 1.11.5, GNU make 3.82
