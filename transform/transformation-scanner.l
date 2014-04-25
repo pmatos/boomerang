@@ -24,6 +24,10 @@ IS			(u|U|l|L)*
 #define MAX_LINE 1024      // the longest line
 %}
 
+%{
+#include <string.h>
+%}
+
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace
 %define CONSTRUCTOR_INIT : theLine(1), traceLines(trace), in(ins), column(0)
 %define CONSTRUCTOR_CODE { *lineBuf = 0; }

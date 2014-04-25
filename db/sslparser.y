@@ -63,6 +63,7 @@ class SSLScanner;
 // Other stuff to go in sslparser.cc
 %{
 #include "sslscanner.h"
+#include <stdlib.h>
 OPER strToTerm(char* s);		// Convert string to a Terminal (if possible)
 Exp* listExpToExp(std::list<Exp*>* le);	 // Convert a STL list of Exp* to opList
 Exp* listStrToExp(std::list<std::string>* ls);// Convert a STL list of strings to opList
