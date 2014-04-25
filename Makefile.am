@@ -1,55 +1,38 @@
-######################################################
-# File: Makefile.in
-# Desc: Makefile for boomerang
-#       Makes and tests all object files all directories
-#
-######################################################
-
-###############
-# Introduction
-#
-# This Makefile controls the whole build process of the Boomerang decompiler, except for the loaders.
-# The loaders have their own makefile (loaders/Makefile).
-# The gui's also have to take care of themselves.
-#
-# Index of this makefile: 
-#
-# - Variables detected by ./configure
-# - Detection of OS specific settings
-# - Compiler settings
-# - Main rules
-# - Loaders
-# - Detection of machine types and loaders
-# - Lots of object files
-# - Conditional rules
-# - Rules for compiling
-# - Unit testing (broken?)
-# - Cleaning up
-# - Dependencies
-#
-
-ACLOCAL_AMFLAGS = -I .
-
-DISTCHECK_CONFIGURE_FLAGS = \
-	$(NULL)
-
-STD_DIRS = \
+SUBDIRS = \
 	loader \
-	db \
-	transform \
 	util \
+	type \
+	transform \
+	codegen \
+	c \
+	db \
 	frontend \
-	. \
-	$(NULL)
+	.
 
-SUBDIRS = $(STD_DIRS)
-DIST_SUBDIRS = $(STD_DIRS)
+noinst_LTLIBRARIES = \
+	libdriver.la
 
-nobase_include_HEADERS = include/*.h
+bin_PROGRAMS = \
+	boomerang
 
-bin_PROGRAMS = boomerang
-noinst_LIBRARIES = libdriver.a
-boomerang_SOURCES = boomerang.cpp $(STATIC_OBJS) $(GENSSL)
-boomerang_LDADD = libdriver.a
-libdriver_a_SOURCES= driver.cpp include/boomerang.h
+libdriver_la_SOURCES = \
+	driver.cpp
+libdriver_la_LIBADD = \
+	$(GC_LIBS)
+libdriver_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(GC_CFLAGS)
 
+boomerang_SOURCES = \
+	boomerang.cpp \
+	log.cpp
+boomerang_LDADD = \
+	libdriver.la \
+	$(top_builddir)/db/libdb.la \
+	$(top_builddir)/c/libansi-c.la \
+	$(top_builddir)/codegen/libcodegen.la \
+	$(top_builddir)/util/libutil.la \
+	$(top_builddir)/frontend/libfrontend.la \
+	$(top_builddir)/type/libtype.la \
+	$(top_builddir)/loader/libBinaryFileFactory.la \
+	$(top_builddir)/transform/libtransform.la
