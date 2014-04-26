@@ -24,13 +24,7 @@
 #include <cstring>
 #include "util.h"
 
-#ifndef _WIN32
 #include <unistd.h>
-#define _FLOCK_
-#else
-#include <io.h>
-#endif
-
 #include <fcntl.h>
 #include <iomanip>          // For setw
 
@@ -147,7 +141,6 @@ void upperStr(const char* s, char* d)
 int lockFileRead(const char *fname)
 {
     int fd = open("filename", O_RDONLY);  /* get the file descriptor */
-#ifdef _FLOCK_
     struct flock fl;
     fl.l_type   = F_RDLCK;  /* F_RDLCK, F_WRLCK, F_UNLCK    */
     fl.l_whence = SEEK_SET; /* SEEK_SET, SEEK_CUR, SEEK_END */
@@ -155,14 +148,12 @@ int lockFileRead(const char *fname)
     fl.l_len    = 0;        /* length, 0 = to EOF           */
     fl.l_pid    = getpid(); /* our PID                      */
     fcntl(fd, F_SETLKW, &fl);  /* set the lock, waiting if necessary */
-#endif
     return fd;
 }
 
 int lockFileWrite(const char *fname)
 {
     int fd = open("filename", O_WRONLY);  /* get the file descriptor */
-#ifdef _FLOCK_
     struct flock fl;
     fl.l_type   = F_WRLCK;  /* F_RDLCK, F_WRLCK, F_UNLCK    */
     fl.l_whence = SEEK_SET; /* SEEK_SET, SEEK_CUR, SEEK_END */
@@ -170,17 +161,14 @@ int lockFileWrite(const char *fname)
     fl.l_len    = 0;        /* length, 0 = to EOF           */
     fl.l_pid    = getpid(); /* our PID                      */
     fcntl(fd, F_SETLKW, &fl);  /* set the lock, waiting if necessary */
-#endif
     return fd;
 }
 
 void unlockFile(int fd)
 {
-#ifdef _FLOCK_
     struct flock fl;
     fl.l_type   = F_UNLCK;  /* tell it to unlock the region */
     fcntl(fd, F_SETLK, &fl); /* set the region to unlocked */
-#endif
     close(fd);
 }
 
