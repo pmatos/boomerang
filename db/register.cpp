@@ -20,10 +20,6 @@
 #include "register.h"
 #include "type.h"
 
-#ifndef NULL						// Don't always include stdio.h
-#define NULL 0
-#endif
-
 /*==============================================================================
  * FUNCTION:	  Register::Register
  * OVERVIEW:	  Constructor.

@@ -21,9 +21,7 @@
 #ifndef VISITOR_H
 #define VISITOR_H
 
-#ifndef NULL
-#define NULL 0				// Often defined in stdio.h
-#endif
+#include <cstddef>
 
 #include "exp.h"			// Needs to know class hierarchy, e.g. so that can convert Unary* to Exp* in return of
 							// ExpModifier::preVisit()

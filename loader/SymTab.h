@@ -44,8 +44,4 @@ public:
 		std::map<ADDRESS, std::string>& getAll() { return amap; }
 };
 
-#ifndef NULL
-#define NULL 0          // Normally in stdio.h, it seems!
-#endif
-
 #endif
