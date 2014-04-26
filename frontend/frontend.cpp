@@ -23,9 +23,6 @@
 #include <queue>
 #include <stdarg.h>			// For varargs
 #include <sstream>
-#ifndef _WIN32
-#include <dlfcn.h>			// dlopen, dlsym
-#endif
 
 #include "types.h"
 #include "exp.h"
