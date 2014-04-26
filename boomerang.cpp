@@ -649,29 +649,12 @@ int Boomerang::commandLine(int argc, const char **argv)
 	if (argc < 2) usage();
 	progPath = argv[0];
 	size_t j = progPath.rfind('/');			// Chop off after the last slash
-	if (j == (size_t)-1) 
-		j = progPath.rfind('\\');			// .. or reverse slash
-	if (j != (size_t)-1) {
+	if (j != std::string::npos) {
 		// Do the chop; keep the trailing slash or reverse slash
 		progPath = progPath.substr(0, j+1);
-	}
-	else {
+	} else {
 		progPath = "./";			// Just assume the current directory
 	}
-#ifdef _MSC_VER						// For the console mode version; Windows GUI will override in windows.cpp
-	// As a special case for MSVC testing, make the program path the parent of the dir with the .exe
-	j = progPath.find("ebug\\", progPath.length() - (4+1));
-	if (j != std::string::npos)
-		j--;			// Point to the 'd' or 'D'
-	if (j == std::string::npos) {
-			j = progPath.rfind("elease\\", progPath.length() - (6+1));
-			if (j != std::string::npos)
-				j--;			// Point to the 'r' or 'R'
-	}
-	if (j != std::string::npos)
-		progPath = progPath.substr(0, j);			// Chop off "Release\" or "Debug\"
-	SetCurrentDirectoryA(progPath.c_str());			// Note: setcwd() doesn't seem to work
-#endif
 	outputPath = progPath + "output/";				// Default output path (can be overridden with -o below)
 
 	// Parse switches on command line
@@ -720,8 +703,7 @@ int Boomerang::commandLine(int argc, const char **argv)
 				break;
 			case 'o': {
 				outputPath = argv[++i];
-				char lastCh = outputPath[outputPath.size()-1];
-				if (lastCh != '/' && lastCh != '\\')
+				if (outputPath[outputPath.length()-1] != '/')
 					outputPath += '/';		// Maintain the convention of a trailing slash
 				break;
 			}
@@ -905,8 +887,8 @@ int Boomerang::commandLine(int argc, const char **argv)
 				break;
 			case 'P':
 				progPath = argv[++i];
-				if (progPath[progPath.length()-1] != '\\')
-					progPath += "\\";
+				if (progPath[progPath.length()-1] != '/')
+					progPath += "/";
 				break;
 			case 'a':
 				assumeABI = true;
