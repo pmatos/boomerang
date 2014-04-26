@@ -24,12 +24,6 @@
 #endif
 
 #include <assert.h>
-#if defined(_MSC_VER) && _MSC_VER <= 1200 
-// ? How does the following do any good?
-#define for if(0){}else for
-#endif 
-
-#include <assert.h>
 #include <fstream>
 #include <sstream>
 #include <cstring>
