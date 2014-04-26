@@ -3,7 +3,6 @@
 #include <QString>
 #include <QTableWidget>
 
-#undef NO_ADDRESS
 #include "../include/boomerang.h"
 
 class MainWindow;

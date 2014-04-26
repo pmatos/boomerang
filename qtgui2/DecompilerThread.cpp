@@ -19,9 +19,6 @@
 #include "cluster.h"
 #include <sstream>
 
-#undef NO_ADDRESS
-#define NO_ADDRESS ((ADDRESS)-1)
-
 Qt::HANDLE threadToCollect = 0;
 
 void* operator new(size_t n) {

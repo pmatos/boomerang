@@ -14,10 +14,6 @@ typedef unsigned int		ADDRESS;	/* 32-bit unsigned */
 
 
 #define STD_SIZE	32					// Standard size
-// Note: there is a known name collision with NO_ADDRESS in WinSock.h
-#ifdef NO_ADDRESS
-#undef NO_ADDRESS
-#endif
 #define NO_ADDRESS ((ADDRESS)-1)		// For invalid ADDRESSes
 
 typedef long unsigned long QWord;		// 64 bits
