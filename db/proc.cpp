@@ -44,18 +44,6 @@
 #include <sstream>
 #include <cstring>
 
-#ifdef _WIN32
-#undef NO_ADDRESS
-#include <windows.h>
-#ifndef __MINGW32__
-namespace dbghelp {
-#include <dbghelp.h>
-};
-#endif
-#undef NO_ADDRESS
-#define NO_ADDRESS ((ADDRESS)-1)
-#endif
-
 typedef std::map<Statement*, int> RefCounter;
 
 extern char debug_buffer[];		// Defined in basicblock.cpp, size DEBUG_BUFSIZE

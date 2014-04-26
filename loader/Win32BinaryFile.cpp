@@ -22,15 +22,6 @@
 #include "config.h"
 #endif
 
-#ifdef _WIN32
-#include <windows.h>
-#ifndef __MINGW32__
-namespace dbghelp {
-#include <dbghelp.h>
-};
-#endif
-#endif
-
 #include "BinaryFile.h"
 #include "Win32BinaryFile.h"
 #include <iostream>
@@ -387,17 +378,6 @@ ADDRESS Win32BinaryFile::GetMainEntryPoint() {
 	return NO_ADDRESS;
 }
 
-#if defined(_WIN32) && !defined(__MINGW32__)
-BOOL CALLBACK lookforsource(
-  dbghelp::PSOURCEFILE pSourceFile,
-  PVOID UserContext
-)
-{
-	*(bool*)UserContext = true;
-	return FALSE;
-}
-#endif
-
 bool Win32BinaryFile::RealLoad(const char* sName)
 {
 	m_pFileName = sName;
@@ -526,48 +506,6 @@ bool Win32BinaryFile::RealLoad(const char* sName)
 	findJumps(start);
 
 	fclose(fp);
-
-#if defined(_WIN32) && !defined(__MINGW32__)
-	// attempt to load symbols for the exe or dll
-
-	DWORD  error;
-	HANDLE hProcess;
-
-	hProcess = GetCurrentProcess();
-	// hProcess = (HANDLE)processId;
-
-	dbghelp::SymSetOptions(SYMOPT_LOAD_LINES);
-
-	if (dbghelp::SymInitialize(hProcess, NULL, FALSE))
-	{
-		// SymInitialize returned success
-	}
-	else
-	{
-		// SymInitialize failed
-		error = GetLastError();
-		printf("SymInitialize returned error : %d\n", error);
-		return true;
-	}
-
-	DWORD64 dwBaseAddr = 0;
-
-	if (dwBaseAddr = dbghelp::SymLoadModule64(hProcess, NULL, (PSTR)sName, NULL, dwBaseAddr, 0))
-	{
-		assert(dwBaseAddr == m_pPEHeader->Imagebase);
-		bool found = false;
-		dbghelp::SymEnumSourceFiles(hProcess, dwBaseAddr,  0, lookforsource, &found);
-		haveDebugInfo = found;
-	}
-	else
-	{
-		// SymLoadModule64 failed
-		error = GetLastError();
-		printf("SymLoadModule64 returned error : %d\n", error);
-		return true;
-	}
-#endif
-
 	return true;
 }
 
@@ -612,175 +550,6 @@ bool Win32BinaryFile::PostLoad(void* handle)
 	return false;
 }
 
-#if defined(_WIN32) && !defined(__MINGW32__)
-
-char *SymTagEnums[] = { "SymTagNull",
-   "SymTagExe",
-   "SymTagCompiland",
-   "SymTagCompilandDetails",
-   "SymTagCompilandEnv",
-   "SymTagFunction",
-   "SymTagBlock",
-   "SymTagData",
-   "SymTagAnnotation",
-   "SymTagLabel",
-   "SymTagPublicSymbol",
-   "SymTagUDT",
-   "SymTagEnum",
-   "SymTagFunctionType",
-   "SymTagPointerType",
-   "SymTagArrayType", 
-   "SymTagBaseType", 
-   "SymTagTypedef", 
-   "SymTagBaseClass",
-   "SymTagFriend",
-   "SymTagFunctionArgType", 
-   "SymTagFuncDebugStart", 
-   "SymTagFuncDebugEnd",
-   "SymTagUsingNamespace", 
-   "SymTagVTableShape",
-   "SymTagVTable",
-   "SymTagCustom",
-   "SymTagThunk",
-   "SymTagCustomType",
-   "SymTagManagedType",
-   "SymTagDimension"
-};
-
-enum SymTagEnum
-{
-   SymTagNull,
-   SymTagExe,
-   SymTagCompiland,
-   SymTagCompilandDetails,
-   SymTagCompilandEnv,
-   SymTagFunction,
-   SymTagBlock,
-   SymTagData,
-   SymTagAnnotation,
-   SymTagLabel,
-   SymTagPublicSymbol,
-   SymTagUDT,
-   SymTagEnum,
-   SymTagFunctionType,
-   SymTagPointerType,
-   SymTagArrayType, 
-   SymTagBaseType, 
-   SymTagTypedef, 
-   SymTagBaseClass,
-   SymTagFriend,
-   SymTagFunctionArgType, 
-   SymTagFuncDebugStart, 
-   SymTagFuncDebugEnd,
-   SymTagUsingNamespace, 
-   SymTagVTableShape,
-   SymTagVTable,
-   SymTagCustom,
-   SymTagThunk,
-   SymTagCustomType,
-   SymTagManagedType,
-   SymTagDimension
-};
-
-char *basicTypes[] = 
-  {
-	"notype",
-    "void",
-	"char",
-	"WCHAR",
-	"??",
-	"??",
-	"int",
-	"unsigned int",
-	"float",
-	"bcd",
-	"bool",
-	"??",
-	"??",
-	"long"
-	"unsigned long",
-  };
-
-void printType(DWORD index, DWORD64 ImageBase)
-{
-	HANDLE hProcess = GetCurrentProcess();
-
-	int got;
-	WCHAR *name;
-	got = dbghelp::SymGetTypeInfo(hProcess, ImageBase, index, dbghelp::TI_GET_SYMNAME, &name);
-	if (got) {
-		char nameA[1024];
-		WideCharToMultiByte(CP_ACP,0,name,-1,nameA,sizeof(nameA),0,NULL);
-		std::cout << nameA;
-		return;
-	}
-
-	DWORD d;
-	got = dbghelp::SymGetTypeInfo(hProcess, ImageBase, index, dbghelp::TI_GET_SYMTAG, &d);
-	assert(got);
-
-	switch(d) {
-		case SymTagPointerType:
-			{
-				got = dbghelp::SymGetTypeInfo(hProcess, ImageBase, index, dbghelp::TI_GET_TYPE, &d);
-				assert(got);
-				printType(d, ImageBase);
-				std::cout << "*";
-			}
-			break;
-		case SymTagBaseType:
-			got = dbghelp::SymGetTypeInfo(hProcess, ImageBase, index, dbghelp::TI_GET_BASETYPE, &d);
-			assert(got);
-			std::cout << basicTypes[d];
-			break;
-		default:
-			std::cerr << "unhandled symtag " << SymTagEnums[d] << "\n";
-			assert(false);
-	}
-
-}
-
-BOOL CALLBACK printem(
-  dbghelp::PSYMBOL_INFO pSymInfo,
-  ULONG SymbolSize,
-  PVOID UserContext
-)
-{
-	HANDLE hProcess = GetCurrentProcess();
-	printType(pSymInfo->TypeIndex, pSymInfo->ModBase);
-	std::cout << " " << pSymInfo->Name << " flags: ";
-	if (pSymInfo->Flags & SYMFLAG_VALUEPRESENT)
-		std::cout << "value present, ";
-	if (pSymInfo->Flags & SYMFLAG_REGISTER)
-		std::cout << "register, ";
-	if (pSymInfo->Flags & SYMFLAG_REGREL)
-		std::cout << "regrel, ";
-	if (pSymInfo->Flags & SYMFLAG_FRAMEREL)
-		std::cout << "framerel, ";
-	if (pSymInfo->Flags & SYMFLAG_PARAMETER)
-		std::cout << "parameter, ";
-	if (pSymInfo->Flags & SYMFLAG_LOCAL)
-		std::cout << "local, ";
-	if (pSymInfo->Flags & SYMFLAG_CONSTANT)
-		std::cout << "constant, ";
-	if (pSymInfo->Flags & SYMFLAG_EXPORT)
-		std::cout << "export, ";
-	if (pSymInfo->Flags & SYMFLAG_FORWARDER)
-		std::cout << "forwarder, ";
-	if (pSymInfo->Flags & SYMFLAG_FUNCTION)
-		std::cout << "function, ";
-	if (pSymInfo->Flags & SYMFLAG_VIRTUAL)
-		std::cout << "virtual, ";
-	if (pSymInfo->Flags & SYMFLAG_THUNK)
-		std::cout << "thunk, ";
-	if (pSymInfo->Flags & SYMFLAG_TLSREL)
-		std::cout << "tlsrel, ";
-	std::cout << "\n";
-	std::cout << "register: " << pSymInfo->Register << " address: " << (int)pSymInfo->Address << "\n";
-	return TRUE;
-}
-#endif
-
 const char* Win32BinaryFile::SymbolByAddress(ADDRESS dwAddr)
 {
 	if (m_pPEHeader->Subsystem == 1 &&				// native
@@ -797,62 +566,6 @@ const char* Win32BinaryFile::SymbolByAddress(ADDRESS dwAddr)
 		return "__mingw_cleanup_setup";
 	if (IsMinGWsMalloc(dwAddr))
 		return "malloc";
-
-#if defined(_WIN32) && !defined(__MINGW32__)
-	HANDLE hProcess = GetCurrentProcess();
-	dbghelp::SYMBOL_INFO *sym = (dbghelp::SYMBOL_INFO *)malloc(sizeof(dbghelp::SYMBOL_INFO) + 1000);
-	sym->SizeOfStruct = sizeof(*sym);
-	sym->MaxNameLen = 1000;
-	sym->Name[0] = 0;
-	BOOL got = dbghelp::SymFromAddr(hProcess, dwAddr, 0, sym);
-	if (*sym->Name) {
-		char *n = strdup(sym->Name);
-#if 0
-		std::cout << "found symbol " << n << " for address " << dwAddr << "\n";
-		std::cout << "typeindex: " << sym->TypeIndex << "\n";
-		DWORD d = 0;
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, sym->TypeIndex, dbghelp::TI_GET_SYMTAG, &d);
-		std::cout << "symtag: " << d << "\n";
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, sym->TypeIndex, dbghelp::TI_GET_CALLING_CONVENTION, &d);
-		std::cout << "calling convention: " << d << "\n";
-		DWORD my_typeid;
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, sym->TypeIndex, dbghelp::TI_GET_TYPEID, &my_typeid);
-		std::cout << "typeid: " << my_typeid << "\n";
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, my_typeid, dbghelp::TI_GET_SYMTAG, &d);
-		std::cout << "symtag: " << d << " ";
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, my_typeid, dbghelp::TI_GET_BASETYPE, &d);
-		std::cout << "basetype: " << d << " ";		
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, my_typeid, dbghelp::TI_GET_TYPE, &d);
-		std::cout << "type: " << d << "\n";		
-		DWORD count = 0;
-		got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, sym->TypeIndex, dbghelp::TI_GET_CHILDRENCOUNT, &count);
-		std::cout << "num children: " << count << "\n";
-		int FindChildrenSize = sizeof(dbghelp::TI_FINDCHILDREN_PARAMS) + count*sizeof(ULONG);
-		dbghelp::TI_FINDCHILDREN_PARAMS* pFC = (dbghelp::TI_FINDCHILDREN_PARAMS*)malloc( FindChildrenSize );
-		memset( pFC, 0, FindChildrenSize );
-		pFC->Count = count;
-		got = SymGetTypeInfo( hProcess, m_pPEHeader->Imagebase, sym->TypeIndex, dbghelp::TI_FINDCHILDREN, pFC );
-		for (int i = 0; i < count; i++) {
-			got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, pFC->ChildId[i], dbghelp::TI_GET_TYPEID, &my_typeid);
-			std::cout << "  child: " << pFC->ChildId[i] << " typeid: " << my_typeid << " ";
-			got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, my_typeid, dbghelp::TI_GET_SYMTAG, &d);
-			std::cout << "symtag: " << d << " ";
-			got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, my_typeid, dbghelp::TI_GET_BASETYPE, &d);
-			std::cout << "basetype: " << d << " ";
-			got = dbghelp::SymGetTypeInfo(hProcess, m_pPEHeader->Imagebase, my_typeid, dbghelp::TI_GET_TYPE, &d);
-			std::cout << "type: " << d << "\n";		
-		}
-		// locals and params
-		dbghelp::IMAGEHLP_STACK_FRAME stack;
-		stack.InstructionOffset = dwAddr;
-		dbghelp::SymSetContext(hProcess, &stack, 0);
-		dbghelp::SymEnumSymbols(hProcess, 0, NULL, printem, 0);
-#endif
-		free(sym);
-		return n;
-	} else if (IsJumpToAnotherAddr(dwAddr) != NO_ADDRESS)
-		return SymbolByAddress(IsJumpToAnotherAddr(dwAddr));
-#endif
 
 	std::map<ADDRESS, std::string>::iterator it = dlprocptrs.find(dwAddr);
 	if (it == dlprocptrs.end())
@@ -974,16 +687,6 @@ bool Win32BinaryFile::IsDynamicLinkedProcPointer(ADDRESS uNative)
 
 bool Win32BinaryFile::IsStaticLinkedLibProc(ADDRESS uNative)
 {
-#if defined(_WIN32) && !defined(__MINGW32__)
-	HANDLE hProcess = GetCurrentProcess();
-	dbghelp::IMAGEHLP_LINE64 line;
-	line.SizeOfStruct = sizeof(line);	
-	line.FileName = NULL;
-	dbghelp::SymGetLineFromAddr64(hProcess, uNative, 0, &line);
-    if (haveDebugInfo && line.FileName == NULL || line.FileName && *line.FileName == 'f')
-        return true;
-#endif
-
     if (IsMinGWsAllocStack(uNative) || IsMinGWsFrameInit(uNative) || IsMinGWsFrameEnd(uNative) ||
 			IsMinGWsCleanupSetup(uNative) || IsMinGWsMalloc(uNative)) {
 		return true;
