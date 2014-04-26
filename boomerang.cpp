@@ -6,7 +6,9 @@
  * OVERVIEW:   Command line processing for the Boomerang decompiler
  *============================================================================*/
 
-#define VERSION "alpha 0.3.1 09/Sep/2006"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #if __CYGWIN__
 #define USE_XML 0			// Cygwin has a weird problem that causes libBinaryFile.dll not to load if the expat library
@@ -643,7 +645,7 @@ int Boomerang::cmdLine()
  */
 int Boomerang::commandLine(int argc, const char **argv) 
 {
-	printf("Boomerang %s\n", VERSION);		// Display a version and date (mainly for release versions)
+	printf("%s\n", PACKAGE_STRING);
 	if (argc < 2) usage();
 	progPath = argv[0];
 	size_t j = progPath.rfind('/');			// Chop off after the last slash

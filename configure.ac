@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([boomerang],[0.3.1])
+AC_INIT([Boomerang],[0.3.1])
 AC_CONFIG_SRCDIR([boomerang.cpp])
 AC_CONFIG_HEADERS([include/config.h])
 AM_INIT_AUTOMAKE([foreign])
