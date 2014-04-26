@@ -20,9 +20,6 @@
 #include <sys/stat.h>		// For mkdir
 #include <unistd.h>			// For unlink
 #include <signal.h>
-#if defined(_MSC_VER) || defined(__MINGW32__)
-#include <windows.h>
-#endif
 #include "prog.h"
 #include "proc.h"
 #include "BinaryFile.h"
@@ -1042,29 +1039,11 @@ Prog *Boomerang::loadAndDecode(const char *fname, const char *pname)
 	return prog;
 }
 
-#if defined(_WIN32) && !defined(__MINGW32__)
-DWORD WINAPI stopProcess(
-    time_t start
-)
-{
-	int mins = Boomerang::get()->minsToStopAfter;
-	while(1) {
-		time_t now;
-		time(&now);
-		if ((now - start) > mins * 60) {
-			std::cerr << "\n\n Stopping process, timeout.\n";
-			ExitProcess(1);
-		}
-		Sleep(1000);
-	}
-}
-#else
 void stopProcess(int n)
 {
 	std::cerr << "\n\n Stopping process, timeout.\n";
 	exit(1);
 }
-#endif
 
 /**
  * The program will be subsequently be loaded, decoded, decompiled and written to a source file.
@@ -1083,13 +1062,8 @@ int Boomerang::decompile(const char *fname, const char *pname)
 
 	if (minsToStopAfter) {
 		std::cout << "stopping decompile after " << minsToStopAfter << " minutes.\n";
-#if defined(_WIN32) 			// Includes MinGW
-		DWORD id;
-		CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)stopProcess, (LPVOID)start, 0, &id);
-#else
 		signal(SIGALRM, stopProcess);
 		alarm(minsToStopAfter * 60);
-#endif
 	}
 
 //	std::cout << "setting up transformers...\n";
