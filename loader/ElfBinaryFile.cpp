@@ -16,6 +16,10 @@
  * Dependencies.
  *============================================================================*/
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "ElfBinaryFile.h"
 #include <sys/types.h>		// Next three for open()
 #include <sys/stat.h>
@@ -23,7 +27,6 @@
 #include <iostream>
 #include <cstring>
 #include <assert.h>
-#include "config.h"
 
 typedef std::map<std::string, int, std::less<std::string> >		StrIntMap;
 

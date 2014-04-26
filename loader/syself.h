@@ -16,7 +16,9 @@
 #ifndef SYSELF_H
 #define SYSELF_H
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 // ELF Support
 #ifdef HAVE_ELF_H

@@ -18,9 +18,12 @@
  *	BinaryFile. See DOS4GWBinaryFile.h and BinaryFile.h for details.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "BinaryFile.h"
 #include "DOS4GWBinaryFile.h"
-#include "config.h"
 #include <iostream>
 #include <sstream>
 #include <assert.h>

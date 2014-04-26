@@ -18,6 +18,10 @@
  *	BinaryFile. See Win32BinaryFile.h and BinaryFile.h for details.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #ifdef _WIN32
 #include <windows.h>
 #ifndef __MINGW32__
@@ -29,7 +33,6 @@ namespace dbghelp {
 
 #include "BinaryFile.h"
 #include "Win32BinaryFile.h"
-#include "config.h"
 #include <iostream>
 #include <sstream>
 #include <cstring>

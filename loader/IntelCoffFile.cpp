@@ -1,3 +1,7 @@
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "IntelCoffFile.h"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -6,7 +10,6 @@
 #include <stdlib.h>
 #include <cstring>
 #include <assert.h>
-#include "config.h"
 
 struct struc_coff_sect          // segment information
 {

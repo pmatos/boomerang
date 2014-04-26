@@ -19,6 +19,10 @@
  * Dependencies.
  *============================================================================*/
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <assert.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1200 
 // ? How does the following do any good?
@@ -48,7 +52,6 @@
 #include "signature.h"
 #include "boomerang.h"
 #include "ansi-c-parser.h"
-#include "config.h"
 #include "managed.h"
 #include "log.h"
 

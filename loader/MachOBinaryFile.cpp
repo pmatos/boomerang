@@ -18,9 +18,12 @@
  *	BinaryFile. See MachOBinaryFile.h and BinaryFile.h for details.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "BinaryFile.h"
 #include "MachOBinaryFile.h"
-#include "config.h"
 #include <iostream>
 #include <sstream>
 #include <assert.h>
