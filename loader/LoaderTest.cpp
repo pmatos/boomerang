@@ -27,9 +27,7 @@
 #include "LoaderTest.h"
 //#include "util.h"           // For str()
 #include <iostream>         // For cout
-#ifndef _WIN32
 #include <dlfcn.h>          // dlopen, dlsym
-#endif
 
 /*==============================================================================
  * FUNCTION:        LoaderTest::registerTests
@@ -597,7 +595,6 @@ void LoaderTest::testMicroDis2 () {
 
 typedef unsigned (*elfHashFcn)(const char*);
 void LoaderTest::testElfHash () {
-#ifndef _WIN32
 	void* dlHandle = dlopen(ELFBINFILE, RTLD_LAZY);
 	CPPUNIT_ASSERT(dlHandle);
 	// Use the handle to find the "elf_hash" function
@@ -607,5 +604,4 @@ void LoaderTest::testElfHash () {
 	unsigned act = (*pFcn)("main");
 	unsigned exp = 0x737fe;
 	CPPUNIT_ASSERT_EQUAL(exp, act);
-#endif
 }
