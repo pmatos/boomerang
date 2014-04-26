@@ -30,10 +30,6 @@
 #include "util.h"			// E.g. str()
 #include "statement.h"
 
-#ifdef _WIN32
-#include <malloc.h>
-#endif
-
 class SSLScanner;
 %}
 
