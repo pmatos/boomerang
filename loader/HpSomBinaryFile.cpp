@@ -15,10 +15,6 @@
  *============================================================================*/
 
 #include <assert.h>
-#if defined(_MSC_VER) && _MSC_VER <= 1200
-#include "exp.h"		// For MSVC 5.00
-#endif
-
 #include "HpSomBinaryFile.h"
 #include <cstring>
 

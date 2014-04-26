@@ -19,9 +19,6 @@
 
 #include <assert.h>
 #include <cstring>
-#if defined(_MSC_VER) && _MSC_VER <= 1100
-#include "signature.h"
-#endif
 
 #include "decoder.h"
 #include "exp.h"
