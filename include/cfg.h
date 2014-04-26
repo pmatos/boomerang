@@ -253,11 +253,6 @@ public:
 		void		sortByLastDFT();
 
 		/*
-		 * Updates m_vectorBB to m_listBB
-		 */
-		void		updateVectorBB();
-
-		/*
 		 * Transforms the input machine-dependent cfg, which has ADDRESS labels for each out-edge, into a machine-
 		 * independent cfg graph (i.e. a well-formed graph) which has references to basic blocks for each out-edge.
 		 * Returns false if not successful.
@@ -382,8 +377,6 @@ public:
 		 * Virtual Function Call analysis
 		 */
 		void		virtualFunctionCalls(Prog* prog);
-
-		std::vector<PBB> m_vectorBB; // faster access
 
 		/* return a bb given an address */
 		PBB			bbForAddr(ADDRESS addr) { return m_mapBB[addr]; }

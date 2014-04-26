@@ -630,20 +630,6 @@ void Cfg::sortByLastDFT()
 }
 
 /*==============================================================================
- * FUNCTION:		Cfg::updateVectorBB
- * OVERVIEW:		Updates m_vectorBB to m_listBB
- * PARAMETERS:		<none>
- * RETURNS:			<nothing>
- *============================================================================*/
-void Cfg::updateVectorBB()
-{
-	m_vectorBB.clear();
-	for (std::list<PBB>::iterator it = m_listBB.begin(); it != m_listBB.end(); it++)
-		m_vectorBB.push_back(*it);
-}
-
-
-/*==============================================================================
  * FUNCTION:		Cfg::wellFormCfg
  * OVERVIEW:		Checks that all BBs are complete, and all out edges are valid. However, ADDRESSes that are
  *					interprocedural out edges are not checked or changed.
