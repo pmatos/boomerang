@@ -3,7 +3,16 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/c
 
 noinst_LTLIBRARIES = \
+	libxmlprogparser.la \
 	libdb.la
+
+libxmlprogparser_la_SOURCES = \
+	xmlprogparser.cpp
+libxmlprogparser_la_LIBADD = \
+	$(EXPAT_LIBS)
+libxmlprogparser_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(EXPAT_CFLAGS)
 
 libdb_la_SOURCES = \
 	basicblock.cpp \
@@ -25,8 +34,7 @@ libdb_la_SOURCES = \
 	statement.cpp \
 	table.cpp \
 	table.h \
-	visitor.cpp \
-	xmlprogparser.cpp
+	visitor.cpp
 
 # Various, fragile hacks to use flex++/bison++
 # Tested with GNU automake 1.11.5, GNU make 3.82

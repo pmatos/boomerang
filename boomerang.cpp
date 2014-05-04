@@ -10,7 +10,7 @@
 #include "config.h"
 #endif
 
-#define USE_XML 0			// Set to 0 to not use the expat library for XML loading and saving
+#define USE_XML 1			// Set to 0 to not use the expat library for XML loading and saving
 
 #include <iostream>
 #include <cstring>

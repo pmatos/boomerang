@@ -29,6 +29,7 @@ boomerang_SOURCES = \
 boomerang_LDADD = \
 	libdriver.la \
 	$(top_builddir)/db/libdb.la \
+	$(top_builddir)/db/libxmlprogparser.la \
 	$(top_builddir)/c/libansi-c.la \
 	$(top_builddir)/codegen/libcodegen.la \
 	$(top_builddir)/util/libutil.la \
