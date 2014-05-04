@@ -18,6 +18,8 @@
 #include "BinaryFile.h"
 #include <string>
 
+#define PACKED __attribute__((packed))
+
 /*
  * This file contains the definition of the DOS4GWBinaryFile class, and some
  * other definitions specific to the exe version of the BinaryFile object
@@ -34,11 +36,7 @@ typedef struct {				/* exe file header, just the signature really */
 		 Byte	sigHi;
 } Header;
 
-//#ifdef WIN32
-#pragma pack(1)
-//#endif
-
-typedef struct {
+typedef struct PACKED {
   Byte sigLo;
   Byte sigHi;
   Byte byteord;
@@ -88,7 +86,7 @@ typedef struct {
   DWord heapsize;
 } LXHeader;
 
-typedef struct {
+typedef struct PACKED {
   DWord VirtualSize;
   DWord RelocBaseAddr;
   DWord ObjectFlags;
@@ -97,24 +95,20 @@ typedef struct {
   DWord Reserved1;
 } LXObject;
 
-typedef struct {
+typedef struct PACKED {
   DWord pagedataoffset;
   SWord datasize;
   SWord flags;
 } LXPage;
 
 // this is correct for internal fixups only
-typedef struct {
+typedef struct PACKED {
     unsigned char src;
     unsigned char flags;
     short srcoff;
 //    unsigned char object;         // these are now variable length
 //    unsigned short trgoff;
 } LXFixup;
-
-//#ifdef WIN32
-#pragma pack(4)
-//#endif
 
 class DOS4GWBinaryFile : public BinaryFile
 {
@@ -191,7 +185,4 @@ virtual const char *GetDynamicProcName(ADDRESS uNative);
 
 };
 
-//#ifdef WIN32
-#pragma pack()
-//#endif
 #endif

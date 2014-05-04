@@ -26,19 +26,11 @@
 /* This is my bare bones implementation of a Mac OS-X binary loader.
  */
 
-//#ifdef WIN32
-#pragma pack(1)
-//#endif
-
 #ifndef _MACH_MACHINE_H_				// On OS X, this is already defined
 typedef unsigned long cpu_type_t;		// I guessed
 typedef unsigned long cpu_subtype_t;	// I guessed
 typedef unsigned long vm_prot_t;		// I guessed
 #endif
-
-//#ifdef WIN32
-#pragma pack(4)
-//#endif
 
 struct mach_header;
 
@@ -125,7 +117,4 @@ private:
         std::map<std::string, ObjcModule> modules;
 };
 
-//#ifdef WIN32
-#pragma pack()
-//#endif
 #endif

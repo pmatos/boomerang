@@ -7,8 +7,7 @@
 
 #define PACKED __attribute__((packed))
 
-struct coff_header
-{
+struct PACKED coff_header {
         uint16_t coff_magic;
         uint16_t coff_sections;
         uint32_t coff_timestamp;
@@ -16,7 +15,7 @@ struct coff_header
         uint32_t coff_num_syment;
         uint16_t coff_opthead_size;
         uint16_t coff_flags;
-} PACKED;
+};
 
 class IntelCoffFile : public BinaryFile
 {

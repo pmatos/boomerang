@@ -11,8 +11,7 @@
 #include <cstring>
 #include <assert.h>
 
-struct struc_coff_sect          // segment information
-{
+struct PACKED struc_coff_sect {  // segment information, 40 bytes
         char     sch_sectname[8];
         uint32_t sch_physaddr;
         uint32_t sch_virtaddr;
@@ -23,12 +22,10 @@ struct struc_coff_sect          // segment information
         uint16_t sch_nreloc;
         uint16_t sch_nlineno;
         uint32_t sch_flags;
-} PACKED;       // 40 bytes
+};
 
-struct coff_symbol      // symbol information
-{
-        union
-        {
+struct PACKED coff_symbol {  // symbol information, 18 bytes
+        union {
                 struct {
                         uint32_t zeros;
                         uint32_t offset;
@@ -48,16 +45,15 @@ struct coff_symbol      // symbol information
 
         unsigned char csym_loadclass;
         unsigned char csym_numaux;
-} PACKED;       // 18 bytes
+};
 
-struct struct_coff_rel
-{
+struct PACKED struct_coff_rel {
         uint32_t r_vaddr;
         uint32_t r_symndx;
         uint16_t r_type;
 #define RELOC_ADDR32    6
 #define RELOC_REL32     20
-} PACKED;
+};
 
 
 PSectionInfo IntelCoffFile::AddSection(PSectionInfo psi)
