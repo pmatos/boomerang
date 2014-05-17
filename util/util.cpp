@@ -15,7 +15,6 @@
  *             any particular subsystem of UQBT.
  *============================================================================*/
 
-#include <cassert>
 #include <string>
 #include <sstream>
 #include <iostream>

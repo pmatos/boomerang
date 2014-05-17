@@ -6,7 +6,6 @@
  * OVERVIEW:   Implementation of the RDIExpTransformer and related classes.
  *============================================================================*/
 
-#include <cassert>
 #include <numeric>      // For accumulate
 #include <algorithm>    // For std::max()
 #include <map>          // In decideType()

@@ -26,7 +26,6 @@
 #include <fcntl.h>
 #include <iostream>
 #include <cstring>
-#include <cassert>
 
 typedef std::map<std::string, int, std::less<std::string> >		StrIntMap;
 

@@ -20,7 +20,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <cassert>
 #include <iomanip>			// For setfill etc
 #include <sstream>
 #include "exp.h"

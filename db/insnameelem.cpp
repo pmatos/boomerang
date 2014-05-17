@@ -14,7 +14,6 @@
  * an element of an instruction name - contains definition of class InsNameElem
  */
 
-#include <cassert>
 #include <string>
 #include <map>
 #include "types.h"

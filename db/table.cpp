@@ -14,7 +14,6 @@
  *			   ExprTable
  *============================================================================*/
 
-#include <cassert>
 #include "types.h"
 #include "table.h"
 #include "statement.h"
