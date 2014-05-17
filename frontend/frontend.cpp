@@ -16,13 +16,7 @@
  *				frontsparc.cpp
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-#include <cstdlib>
 #include "frontend.h"
-#include <queue>
-#include <cstdarg>			// For varargs
-#include <sstream>
 
 #include "types.h"
 #include "exp.h"
@@ -42,6 +36,14 @@
 #include "boomerang.h"
 #include "log.h"
 #include "ansi-c-parser.h"
+
+#include <queue>
+#include <sstream>
+
+#include <cstdlib>
+#include <cstdarg>			// For varargs
+#include <cstring>
+#include <cassert>
 
 /*==============================================================================
  * FUNCTION:	  FrontEnd::FrontEnd

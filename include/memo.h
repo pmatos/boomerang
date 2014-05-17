@@ -15,6 +15,8 @@
 #ifndef MEMO_H
 #define MEMO_H
 
+#include <list>
+
 class Memo {
 public:
 	Memo(int m) : mId(m) { }

@@ -22,11 +22,12 @@
 #ifndef MANAGED_H
 #define MANAGED_H
 
+#include "exphelp.h"		// For lessExpStar
+
 #include <list>
 #include <set>
 #include <vector>
-
-#include "exphelp.h"		// For lessExpStar
+#include <ostream>
 
 class Statement;
 class Assign;

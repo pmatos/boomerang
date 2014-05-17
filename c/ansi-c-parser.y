@@ -30,13 +30,14 @@ public: \
 
 
 %header{
-  #include <list>
-  #include <string>
   #include "exp.h"
   #include "type.h"
   #include "cfg.h"
   #include "proc.h"
   #include "signature.h"
+
+  #include <list>
+  #include <string>
 
   class AnsiCScanner;
 

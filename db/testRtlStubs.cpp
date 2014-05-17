@@ -1,11 +1,12 @@
-#include <iostream>
-#include <string>
 #include "types.h"
 #include "cfg.h"
 #include "proc.h"
 #include "prog.h"
 #include "boomerang.h"
 #include "analysis.h"
+
+#include <iostream>
+#include <string>
 
 #include "typeStubs.cpp"
 #include "signatureStubs.cpp"

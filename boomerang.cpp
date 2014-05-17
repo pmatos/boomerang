@@ -12,14 +12,6 @@
 
 #define USE_XML 1			// Set to 0 to not use the expat library for XML loading and saving
 
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
-#include <fstream>
-#include <ctime>
-#include <sys/stat.h>		// For mkdir
-#include <unistd.h>			// For unlink
-#include <csignal>
 #include "prog.h"
 #include "proc.h"
 #include "BinaryFile.h"
@@ -35,6 +27,17 @@
 
 // For the -nG switch to disable the garbage collector
 #include "gc.h"
+
+#include <sys/stat.h>		// For mkdir
+#include <unistd.h>			// For unlink
+
+#include <iostream>
+#include <fstream>
+
+#include <cstdlib>
+#include <cstring>
+#include <csignal>
+#include <ctime>
 
 Boomerang *Boomerang::boomerang = NULL;
 

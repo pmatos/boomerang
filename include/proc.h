@@ -18,12 +18,6 @@
 #ifndef PROC_H
 #define PROC_H
 
-#include <list>
-#include <vector>
-#include <map>
-#include <set>
-#include <string>
-#include <cassert>
 #include "exp.h"				// For lessExpStar
 #include "cfg.h"				// For cfg->simplify()
 #include "hllcode.h"
@@ -31,6 +25,14 @@
 #include "dataflow.h"			// For class UseCollector
 #include "statement.h"			// For embedded ReturnStatement pointer, etc
 #include "boomerang.h"			// For USE_DOMINANCE_NUMS etc
+
+#include <list>
+#include <vector>
+#include <map>
+#include <set>
+#include <string>
+
+#include <cassert>
 
 class Prog;
 class UserProc;

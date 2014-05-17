@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "type.h"
 #include "types.h"
 #include "cfg.h"
@@ -7,6 +5,9 @@
 #include "prog.h"
 #include "signature.h"
 #include "boomerang.h"
+
+#include <iostream>
+#include <string>
 
 class Prog;
 

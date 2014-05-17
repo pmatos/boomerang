@@ -17,12 +17,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <cassert>
-#include <iomanip>			// For setfill etc
-
-#include <sstream>
-#include <cstring>
-#include <algorithm>
 #include "statement.h"
 #include "exp.h"
 #include "cfg.h"
@@ -36,6 +30,12 @@
 #include "dataflow.h"
 #include "log.h"
 
+#include <iomanip>			// For setfill etc
+#include <sstream>
+#include <algorithm>
+
+#include <cstring>
+#include <cassert>
 
 extern char debug_buffer[];		 // For prints functions
 

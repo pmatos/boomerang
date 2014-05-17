@@ -20,10 +20,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-#include <iomanip>			// For setfill etc
-#include <sstream>
 #include "exp.h"
 #include "register.h"
 #include "rtl.h"
@@ -39,6 +35,12 @@
 #include "boomerang.h"
 #include "signature.h"
 #include "log.h"
+
+#include <iomanip>			// For setfill etc
+#include <sstream>
+
+#include <cstring>
+#include <cassert>
 
 /*==============================================================================
  * FUNCTION:		 warnDCTcouple

@@ -32,13 +32,13 @@
 // Defines to control experimental features
 #define USE_DOMINANCE_NUMS 1				// Set true to store a statement number that has dominance properties
 
+#include "types.h"
+
 #include <iostream>
 #include <string>
 #include <set>
 #include <vector>
 #include <map>
-
-#include "types.h"
 
 class Log;
 class Prog;

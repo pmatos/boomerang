@@ -1,8 +1,9 @@
+#include "BinaryFile.h"
+#include "decoder.h"		// Actually use this class in the .cpp file
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-#include "BinaryFile.h"
-#include "decoder.h"		// Actually use this class in the .cpp file
 
 class FrontEnd;
 class PentiumFrontEnd;

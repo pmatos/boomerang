@@ -3,12 +3,12 @@
  * OVERVIEW:   Command line test of the utility functions (including class Type)
  *============================================================================*/
 
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
 #include "UtilTest.h"
-#include <iostream>
 
+#include <cppunit/TextTestResult.h>
+#include <cppunit/TestSuite.h>
+
+#include <iostream>
 
 int main(int argc, char** argv)
 {

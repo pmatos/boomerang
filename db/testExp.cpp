@@ -3,10 +3,10 @@
  * OVERVIEW:   Command line test of the Exp class
  *============================================================================*/
 
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
 #include "ExpTest.h"
+
+#include <cppunit/TextTestResult.h>
+#include <cppunit/TestSuite.h>
 
 #include <sstream>
 #include <iostream>

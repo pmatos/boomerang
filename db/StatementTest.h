@@ -4,12 +4,12 @@
  *				tests the dataflow subsystems
  *============================================================================*/
 
+#include "proc.h"
+#include "prog.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-
-#include "proc.h"
-#include "prog.h"
 
 class StatementTest : public CppUnit::TestCase {
   protected:

@@ -20,10 +20,12 @@
 #ifndef HLLCODE_H
 #define HLLCODE_H
 
+#include "statement.h"		// For CallStatement::RetLocs
+
 #include <iostream>
 #include <vector>
+
 #include <cassert>
-#include <statement.h>		// For CallStatement::RetLocs
 
 class BasicBlock;
 typedef BasicBlock *PBB;

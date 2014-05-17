@@ -15,14 +15,14 @@
 #ifndef DATAFLOW_H
 #define DATAFLOW_H
 
+#include "exphelp.h"		// For lessExpStar, etc
+#include "managed.h"		// For LocationSet
+#include "boomerang.h"		// For USE_DOMINANCE_NUMS etc
+
 #include <vector>
 #include <map>
 #include <set>
 #include <stack>
-
-#include "exphelp.h"		// For lessExpStar, etc
-#include "managed.h"		// For LocationSet
-#include "boomerang.h"		// For USE_DOMINANCE_NUMS etc
 
 class Cfg;
 class BasicBlock;

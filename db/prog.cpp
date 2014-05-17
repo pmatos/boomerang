@@ -23,13 +23,6 @@
 #include "config.h"
 #endif
 
-#include <cassert>
-#include <fstream>
-#include <sstream>
-#include <cstring>
-#include <cstdlib>
-#include <vector>
-#include <cmath>
 #include "type.h"
 #include "cluster.h"
 #include "types.h"
@@ -51,6 +44,15 @@
 
 #include <sys/stat.h>
 #include <sys/types.h>
+
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cassert>
 
 Prog::Prog() :
 		pBF(NULL),

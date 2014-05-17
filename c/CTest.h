@@ -1,10 +1,11 @@
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
 #include "util.h"
 #include "type.h"
 
 #include "ansi-c-parser.h"
+
+#include <cppunit/TestCaller.h>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestSuite.h>
 
 class CTest : public CppUnit::TestCase {
 

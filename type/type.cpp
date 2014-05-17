@@ -14,9 +14,6 @@
  * OVERVIEW:   Implementation of the Type class: low level type information
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-
 #include "types.h"
 #include "type.h"
 #include "util.h"
@@ -26,6 +23,9 @@
 #include "signature.h"
 #include "boomerang.h"
 #include "log.h"
+
+#include <cstring>
+#include <cassert>
 
 extern char debug_buffer[];		 // For prints functions
 

@@ -12,11 +12,12 @@
  * Desc: This class loads a Palm Pilot .prc file. Derived from class BinaryFile
  */
 
-#include <cassert>
-#include <cstring>
-#include <cstdlib>
 #include "PalmBinaryFile.h"
 #include "palmsystraps.h"
+
+#include <cstdlib>
+#include <cstring>
+#include <cassert>
 
 // Macro to convert a pointer to a Big Endian integer into a host integer
 #define UC(p) ((unsigned char*)p)

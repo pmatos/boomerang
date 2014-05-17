@@ -24,9 +24,7 @@
 
 // stuff to go in sslscanner.cc
 %{
-#include <assert.h>
 #include <cstring>
-#include "sslscanner.h"
 %}
 
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace

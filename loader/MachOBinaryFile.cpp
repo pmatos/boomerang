@@ -24,11 +24,6 @@
 
 #include "BinaryFile.h"
 #include "MachOBinaryFile.h"
-#include <iostream>
-#include <sstream>
-#include <cassert>
-#include <cstdlib>
-#include <cstring>
 
 #include "nlist.h"
 #include "macho-apple.h"
@@ -36,6 +31,13 @@
 #include "objc/objc-class.h"
 #include <cstdarg>					// For va_list for MinGW at least
 #include "objc/objc-runtime.h"
+
+#include <iostream>
+#include <sstream>
+
+#include <cstdlib>
+#include <cstring>
+#include <cassert>
 
 //#define DEBUG_MACHO_LOADER
 //#define DEBUG_MACHO_LOADER_OBJC

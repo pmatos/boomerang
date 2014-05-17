@@ -19,6 +19,9 @@
 
 #include "table.h"
 
+#include <string>
+#include <map>
+
 class InsNameElem {
 
 public:

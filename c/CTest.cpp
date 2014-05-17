@@ -4,9 +4,10 @@
  *              tests the c parser
  *============================================================================*/
 
-#include <sstream>
 #include "CTest.h"
 #include "sigenum.h"
+
+#include <sstream>
 
 /*==============================================================================
  * FUNCTION:        CTest::registerTests

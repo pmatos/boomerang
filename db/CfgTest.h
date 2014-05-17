@@ -1,8 +1,8 @@
+#include "cfg.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-
-#include "cfg.h"
 
 class CfgTest : public CppUnit::TestCase {
   protected:

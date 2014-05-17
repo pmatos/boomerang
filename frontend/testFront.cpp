@@ -3,13 +3,14 @@
  * OVERVIEW:   Command line test of the Frontend and related classes.
  *============================================================================*/
 
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
 #include "FrontSparcTest.h"
 #include "FrontPentTest.h"
 //#include "FrontendTest.h"
 #include "prog.h"
+
+#include <cppunit/TextTestResult.h>
+#include <cppunit/TestSuite.h>
+
 #include <iostream>
 
 int main(int argc, char** argv)

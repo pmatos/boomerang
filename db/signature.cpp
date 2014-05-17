@@ -12,9 +12,6 @@
  * OVERVIEW:   Implementation of the classes that describe a procedure signature
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-#include <sstream>
 #include "type.h"
 #include "signature.h"
 #include "exp.h"
@@ -28,6 +25,11 @@
 #include "boomerang.h"
 #include "log.h"
 #include "managed.h"
+
+#include <sstream>
+
+#include <cstring>
+#include <cassert>
 
 extern char debug_buffer[];				// For prints()
 

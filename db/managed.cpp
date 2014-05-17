@@ -12,9 +12,6 @@
  * OVERVIEW:   Implementation of "managed" classes such as StatementSet, which feature makeUnion etc
  *============================================================================*/
 
-#include <sstream>
-#include <cstring>
-
 #include "types.h"
 #include "managed.h"
 #include "statement.h"
@@ -22,6 +19,10 @@
 #include "log.h"
 #include "boomerang.h"
 #include "proc.h"
+
+#include <sstream>
+
+#include <cstring>
 
 extern char debug_buffer[];		// For prints functions
 

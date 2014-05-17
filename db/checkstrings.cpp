@@ -2,10 +2,11 @@
 // Could say "all is well" when not, if some operators are deleted and the
 // same number added
 
+#include "operstrings.h"
+#include "operator.h"
+
 #include <cstdio>
 #include <cstring>
-#include "operstrings.h"
-#include "../include/operator.h"
 
 int main() {
 	if (sizeof(operStrings)/sizeof(char*) == opNumOf) {

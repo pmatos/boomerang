@@ -14,7 +14,6 @@ FS			(f|F|l|L)
 IS			(u|U|l|L)*
 
 %header{
-#include <stdio.h>
 #include "transformation-parser.h"
 #define MAX_LINE 1024      // the longest line
 %}

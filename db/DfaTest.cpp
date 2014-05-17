@@ -5,9 +5,10 @@
  *============================================================================*/
 
 #include "DfaTest.h"
+#include "log.h"
+#include "boomerang.h"
+
 #include <iostream>		// For std::cerr
-#include <log.h>
-#include <boomerang.h>
 
 class ErrLogger : public Log {
 public:

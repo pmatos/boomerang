@@ -17,17 +17,19 @@
 #ifndef CFG_H
 #define CFG_H
 
-#include <cstdio>		// For FILE
+#include "types.h"
+#include "exphelp.h"	// For lessExpStar
+#include "basicblock.h"	// For the BB nodes
+#include "dataflow.h"	// For embedded class DataFlow
+
 #include <list>
 #include <vector>
 #include <set>
 #include <map>
 #include <iostream>
 #include <string>
-#include "types.h"
-#include "exphelp.h"	// For lessExpStar
-#include "basicblock.h"	// For the BB nodes
-#include "dataflow.h"	// For embedded class DataFlow
+
+#include <cstdio>		// For FILE
 
 #define DEBUG_LIVENESS	(Boomerang::get()->debugLiveness)
 

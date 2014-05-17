@@ -1,8 +1,8 @@
+#include "prog.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-
-#include "prog.h"
 
 class ProgTest : public CppUnit::TestCase {
   protected:

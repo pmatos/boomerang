@@ -21,6 +21,7 @@
 #define SYMTAB_H
 
 #include "types.h"
+
 #include <map>
 #include <string>
 

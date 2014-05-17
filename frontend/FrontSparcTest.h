@@ -1,7 +1,8 @@
+#include "BinaryFile.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-#include "BinaryFile.h"
 
 class FrontEnd;
 class SparcFrontEnd;

@@ -14,8 +14,8 @@
 #include "proc.h"
 #include "signature.h"
 #include "prog.h"
-#include <sstream>
 
+#include <sstream>
 
 // FixProcVisitor class
 

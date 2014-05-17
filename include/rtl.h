@@ -23,13 +23,14 @@
 #ifndef RTL_H
 #define RTL_H
 
+#include "exp.h"
+#include "register.h"
+
 #include <list>
 #include <vector>
 #include <map>
 #include <set>
 #include <iostream>
-#include "exp.h"
-#include "register.h"
 
 class BasicBlock;
 class HLLCode;

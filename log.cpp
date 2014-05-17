@@ -1,9 +1,10 @@
 #include "log.h"
-#include <sstream>
 #include "statement.h"
 #include "rtl.h"
 #include "exp.h"
 #include "managed.h"
+
+#include <sstream>
 
 Log &Log::operator<<(Statement *s)
 {

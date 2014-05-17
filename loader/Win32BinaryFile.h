@@ -16,6 +16,7 @@
 #define WIN32BINARYFILE_H
 
 #include "BinaryFile.h"
+
 #include <string>
 
 #define PACKED __attribute__((packed))

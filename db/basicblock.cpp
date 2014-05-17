@@ -18,9 +18,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-#include "gc.h"
 #include "types.h"
 #include "statement.h"
 #include "exp.h"
@@ -36,6 +33,10 @@
 #include "log.h"
 #include "visitor.h"
 
+#include "gc.h"
+
+#include <cstring>
+#include <cassert>
 
 /**********************************
  * BasicBlock methods

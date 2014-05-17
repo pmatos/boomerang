@@ -23,11 +23,13 @@
 
 #define ELFBINFILE      LIBPREFIX "ElfBinaryFile" LIBSUFFIX
 
-#include "string"
 #include "LoaderTest.h"
 //#include "util.h"           // For str()
-#include <iostream>         // For cout
+
 #include <dlfcn.h>          // dlopen, dlsym
+
+#include <iostream>         // For cout
+#include <string>
 
 /*==============================================================================
  * FUNCTION:        LoaderTest::registerTests

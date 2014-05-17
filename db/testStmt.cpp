@@ -3,10 +3,10 @@
  * OVERVIEW:   Command line test of the Statement class
  *============================================================================*/
 
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
 #include "StatementTest.h"
+
+#include <cppunit/TextTestResult.h>
+#include <cppunit/TestSuite.h>
 
 #include <sstream>
 #include <iostream>

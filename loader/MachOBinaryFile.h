@@ -16,6 +16,7 @@
 #define MACHOBINARYFILE_H
 
 #include "BinaryFile.h"
+
 #include <string>
 #include <vector>
 

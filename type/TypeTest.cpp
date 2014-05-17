@@ -5,7 +5,6 @@
 
 #define HELLO_WINDOWS		"test/windows/hello.exe"
 
-#include <iostream>
 #include "TypeTest.h"
 #include "BinaryFile.h"			// Ugh - needed before frontend.h
 #include "pentiumfrontend.h"
@@ -14,6 +13,8 @@
 #include "log.h"
 #include "prog.h"
 #include "proc.h"
+
+#include <iostream>
 
 /*==============================================================================
  * FUNCTION:		TypeTest::registerTests

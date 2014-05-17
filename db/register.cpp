@@ -15,10 +15,11 @@
  *		 a single register.
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
 #include "register.h"
 #include "type.h"
+
+#include <cstring>
+#include <cassert>
 
 /*==============================================================================
  * FUNCTION:	  Register::Register

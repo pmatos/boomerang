@@ -15,17 +15,19 @@
  *             any particular subsystem of UQBT.
  *============================================================================*/
 
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <fstream>
-#include <cstdio>
-#include <cstring>
 #include "util.h"
 
 #include <unistd.h>
 #include <fcntl.h>
+
 #include <iomanip>          // For setw
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <fstream>
+
+#include <cstdio>
+#include <cstring>
 
 /*==============================================================================
  * FUNCTION:      string::operator+(string, int)

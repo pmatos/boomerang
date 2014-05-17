@@ -3,10 +3,10 @@
  * OVERVIEW:   Command line test of the Rtl class
  *============================================================================*/
 
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
 #include "RtlTest.h"
+
+#include <cppunit/TextTestResult.h>
+#include <cppunit/TestSuite.h>
 
 #include <sstream>
 #include <iostream>

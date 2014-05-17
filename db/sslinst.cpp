@@ -21,9 +21,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-#include <algorithm>	// For remove()
 #include "types.h"
 #include "statement.h"
 #include "exp.h"
@@ -36,6 +33,10 @@
 #include "sslparser.h"
 #include "boomerang.h"
 
+#include <algorithm>	// For remove()
+
+#include <cstring>
+#include <cassert>
 
 //#define DEBUG_SSLPARSER 1
 

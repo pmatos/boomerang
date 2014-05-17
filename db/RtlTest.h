@@ -1,8 +1,8 @@
+#include "rtl.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-
-#include "rtl.h"
 
 class RtlTest : public CppUnit::TestCase {
   protected:

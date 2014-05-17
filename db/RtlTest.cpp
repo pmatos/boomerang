@@ -7,7 +7,6 @@
 #include "RtlTest.h"
 #include "statement.h"
 #include "exp.h"
-#include <sstream>
 #include "BinaryFile.h"
 #include "frontend.h"
 #include "sparcfrontend.h"
@@ -16,6 +15,8 @@
 #include "proc.h"
 #include "prog.h"
 #include "visitor.h"
+
+#include <sstream>
 
 #define SWITCH_SPARC		"test/sparc/switch_cc"
 #define SWITCH_PENT			"test/pentium/switch_cc"

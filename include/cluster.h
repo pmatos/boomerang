@@ -18,13 +18,14 @@
 #ifndef CLUSTER_H
 #define CLUSTER_H
 
+#include "memo.h"
+
 #include <list>
 #include <vector>
 #include <map>
 #include <set>
 #include <string>
 #include <fstream>
-#include "memo.h"
 
 class XMLProgParser;
 class Cluster;

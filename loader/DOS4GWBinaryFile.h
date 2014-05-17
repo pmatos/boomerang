@@ -16,6 +16,7 @@
 #define DOS4GWBINARYFILE_H
 
 #include "BinaryFile.h"
+
 #include <string>
 
 #define PACKED __attribute__((packed))

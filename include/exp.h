@@ -19,19 +19,21 @@
 				 Ternary
 */
 
-#include <iostream>
-#include <fstream>		// For ostream, cout etc
-#include <cstdio>		// For sprintf
-#include <list>
-#include <vector>
-#include <set>
-#include <cassert>
 #include "operator.h"	// Declares the OPER enum
 #include "types.h"		// For ADDRESS, etc
 #include "type.h"		// The Type class for typed expressions
 //#include "statement.h"	// For StmtSet etc
 #include "exphelp.h"
 #include "memo.h"
+
+#include <iostream>
+#include <fstream>		// For ostream, cout etc
+#include <list>
+#include <vector>
+#include <set>
+
+#include <cstdio>		// For sprintf
+#include <cassert>
 
 class UseSet;
 class DefSet;

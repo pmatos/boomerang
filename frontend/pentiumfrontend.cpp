@@ -14,9 +14,6 @@
  *			   These functions replace frontend.cpp for decoding pentium instructions.
  *============================================================================*/
 
-#include <cassert>
-#include <cstring>
-#include <sstream>
 #include "types.h"
 #include "BinaryFile.h"
 #include "frontend.h"
@@ -34,6 +31,11 @@
 #include "BinaryFile.h"		// For SymbolByAddress()
 #include "boomerang.h"
 #include "log.h"
+
+#include <sstream>
+
+#include <cstring>
+#include <cassert>
 
 /*==============================================================================
  * Forward declarations.

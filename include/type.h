@@ -17,15 +17,17 @@
 #ifndef TYPE_H
 #define TYPE_H
 
+#include "memo.h"
+#include "types.h"			// For STD_SIZE
+
 #include <string>
 #include <map>
 #include <functional>		// For binary_function
 #include <vector>
-#include <cassert>
 #include <list>
 #include <fstream>
-#include "memo.h"
-#include "types.h"			// For STD_SIZE
+
+#include <cassert>
 
 class Signature;
 class UserProc;

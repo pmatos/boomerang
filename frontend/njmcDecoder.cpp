@@ -14,8 +14,6 @@
  * OVERVIEW:   This file contains the machine independent decoding functionality.
  *============================================================================*/ 
 
-#include <cassert>
-#include <cstdarg>			// For varargs
 #include "rtl.h"
 #include "decoder.h"
 #include "exp.h"
@@ -25,6 +23,9 @@
 #include "prog.h"
 #include "BinaryFile.h"
 #include "boomerang.h"
+
+#include <cstdarg>			// For varargs
+#include <cassert>
 
 /**********************************
  * NJMCDecoder methods.

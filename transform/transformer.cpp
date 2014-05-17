@@ -6,10 +6,6 @@
  * OVERVIEW:	Implementation of the Transformer and related classes.
  *============================================================================*/
 
-#include <numeric>			// For accumulate
-#include <algorithm>		// For std::max()
-#include <map>				// In decideType()
-#include <sstream>			// Need gcc 3.0 or better
 #include "types.h"
 #include "statement.h"
 #include "cfg.h"
@@ -22,6 +18,11 @@
 #include "rdi.h"
 #include "log.h"
 #include "transformation-parser.h"
+
+#include <numeric>			// For accumulate
+#include <algorithm>		// For std::max()
+#include <map>				// In decideType()
+#include <sstream>			// Need gcc 3.0 or better
 
 std::list<ExpTransformer*> ExpTransformer::transformers;
 

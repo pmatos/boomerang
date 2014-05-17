@@ -21,10 +21,10 @@
 #ifndef VISITOR_H
 #define VISITOR_H
 
-#include <cstddef>
-
 #include "exp.h"			// Needs to know class hierarchy, e.g. so that can convert Unary* to Exp* in return of
 							// ExpModifier::preVisit()
+
+#include <cstddef>
 
 class Statement;
 class Assignment;

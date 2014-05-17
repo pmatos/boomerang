@@ -9,14 +9,15 @@
 #define IFTHEN_PENTIUM			"test/pentium/ifthen"
 
 #include "CfgTest.h"
-#include <sstream>
-#include <string>
 #include "BinaryFile.h"
 #include "frontend.h"
 #include "proc.h"
 #include "prog.h"
 #include "dataflow.h"
 #include "pentiumfrontend.h"
+
+#include <sstream>
+#include <string>
 
 /*==============================================================================
  * FUNCTION:		CfgTest::registerTests

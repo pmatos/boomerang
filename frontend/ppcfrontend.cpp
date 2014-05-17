@@ -20,8 +20,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <iomanip>			// For setfill etc
-#include <sstream>
 #include "exp.h"
 #include "register.h"
 #include "rtl.h"
@@ -36,6 +34,9 @@
 #include "BinaryFile.h"		// E.g. IsDynamicallyLinkedProc
 #include "boomerang.h"
 #include "signature.h"
+
+#include <iomanip>			// For setfill etc
+#include <sstream>
 
 PPCFrontEnd::PPCFrontEnd(BinaryFile *pBF, Prog* prog, BinaryFileFactory* pbff) : FrontEnd(pBF, prog, pbff)
 {

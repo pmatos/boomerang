@@ -14,9 +14,10 @@
  *              Derived from class BinaryFile
  *============================================================================*/
 
-#include <cassert>
 #include "HpSomBinaryFile.h"
+
 #include <cstring>
+#include <cassert>
 
 // Macro to convert a pointer to a Big Endian integer into a host integer
 #define UC(p) ((unsigned char*)p)

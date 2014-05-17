@@ -17,11 +17,12 @@
 #ifndef PROG_H
 #define PROG_H
 
-#include <map>
 #include "BinaryFile.h"
 #include "frontend.h"
 #include "type.h"
 #include "cluster.h"
+
+#include <map>
 
 class RTLInstDict;
 class Proc;

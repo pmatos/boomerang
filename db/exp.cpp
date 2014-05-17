@@ -6,12 +6,6 @@
  * OVERVIEW:   Implementation of the Exp and related classes.
  *============================================================================*/
 
-#include <cassert>
-#include <numeric>		// For accumulate
-#include <algorithm>	// For std::max()
-#include <map>			// In decideType()
-#include <sstream>		// Need gcc 3.0 or better
-#include <cstring>
 #include "types.h"
 #include "statement.h"
 #include "cfg.h"
@@ -27,7 +21,15 @@
 //#include "transformer.h"
 #include "visitor.h"
 #include "log.h"
+
+#include <numeric>		// For accumulate
+#include <algorithm>	// For std::max()
+#include <map>			// In decideType()
+#include <sstream>		// Need gcc 3.0 or better
 #include <iomanip>			// For std::setw etc
+
+#include <cstring>
+#include <cassert>
 
 extern char debug_buffer[];		 ///< For prints functions
 

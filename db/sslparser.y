@@ -20,9 +20,6 @@
 
 // stuff to go in sslparser.h
 %header{
-#include "gc.h"
-#include <assert.h>
-#include <sstream>
 #include "types.h"
 #include "rtl.h"
 #include "table.h"
@@ -59,7 +56,14 @@ class SSLScanner;
 // Other stuff to go in sslparser.cc
 %{
 #include "sslscanner.h"
-#include <stdlib.h>
+
+#include "gc.h"
+
+#include <sstream>
+
+#include <cstdlib>
+#include <cassert>
+
 OPER strToTerm(char* s);		// Convert string to a Terminal (if possible)
 Exp* listExpToExp(std::list<Exp*>* le);	 // Convert a STL list of Exp* to opList
 Exp* listStrToExp(std::list<std::string>* ls);// Convert a STL list of strings to opList

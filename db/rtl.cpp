@@ -15,10 +15,6 @@
  *			   register transfer list)
  *============================================================================*/
 
-#include <cassert>
-#include <iomanip>			// For setfill
-#include <sstream>
-#include <cstring>
 #include "types.h"
 #include "statement.h"
 #include "exp.h"
@@ -33,6 +29,12 @@
 #include "boomerang.h"
 #include "visitor.h"
 #include "log.h"
+
+#include <iomanip>			// For setfill
+#include <sstream>
+
+#include <cstring>
+#include <cassert>
 
 /******************************************************************************
  * RTL methods.

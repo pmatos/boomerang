@@ -23,9 +23,7 @@
  *============================================================================*/
 
 #include "proc.h"
-#include <types.h>
-#include <sstream>
-#include <algorithm>		// For find()
+#include "types.h"
 #include "type.h"
 #include "cluster.h"
 #include "statement.h"
@@ -40,8 +38,11 @@
 #include "constraint.h"
 #include "visitor.h"
 #include "log.h"
+
+#include <algorithm>		// For find()
 #include <iomanip>			// For std::setw etc
 #include <sstream>
+
 #include <cstring>
 
 typedef std::map<Statement*, int> RefCounter;

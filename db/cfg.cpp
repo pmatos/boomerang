@@ -18,11 +18,6 @@
  * Dependencies.
  *============================================================================*/
 
-#include <cassert>
-#include <algorithm>		// For find()
-#include <fstream>
-#include <sstream>
-#include <cstring>
 #include "types.h"
 #include "statement.h"
 #include "signature.h"
@@ -36,6 +31,13 @@
 #include "hllcode.h"
 #include "boomerang.h"
 #include "log.h"
+
+#include <algorithm>		// For find()
+#include <fstream>
+#include <sstream>
+
+#include <cstring>
+#include <cassert>
 
 void delete_lrtls(std::list<RTL*>* pLrtl);
 void erase_lrtls(std::list<RTL*>* pLrtl, std::list<RTL*>::iterator begin,

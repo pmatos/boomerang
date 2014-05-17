@@ -3,10 +3,6 @@
  * OVERVIEW:   Command line test of all of Boomerang
  *============================================================================*/
 
-#include "string"
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
 #include "exp.h"
 
 #include "ExpTest.h"
@@ -24,6 +20,10 @@
 
 #include "prog.h"
 
+#include <cppunit/TextTestResult.h>
+#include <cppunit/TestSuite.h>
+
+#include <string>
 #include <sstream>
 #include <iostream>
 

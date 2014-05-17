@@ -12,9 +12,6 @@
  * OVERVIEW:   Implementation of the DataFlow class
  *============================================================================*/
 
-#include <sstream>
-#include <cstring>
-
 #include "dataflow.h"
 #include "cfg.h"
 #include "proc.h"
@@ -23,6 +20,10 @@
 #include "visitor.h"
 #include "log.h"
 #include "frontend.h"
+
+#include <sstream>
+
+#include <cstring>
 
 extern char debug_buffer[];		 // For prints functions
 

@@ -22,10 +22,11 @@
  *============================================================================*/
 
 #include "BinaryFile.h"
-#include <iostream>
-#include <cstring>
-#include <cstdio>
 
+#include <iostream>
+
+#include <cstdio>
+#include <cstring>
 
 BinaryFile::BinaryFile(bool bArch /*= false*/)
 {

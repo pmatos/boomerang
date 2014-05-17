@@ -20,13 +20,14 @@
 #ifndef FRONTEND_H
 #define FRONTEND_H
 
+#include "types.h"
+#include "sigenum.h"   // For enums platform and cc
+#include "BinaryFile.h"
+
 #include <list>
 #include <map>
 #include <queue>
 #include <fstream>
-#include "types.h"
-#include "sigenum.h"   // For enums platform and cc
-#include "BinaryFile.h"
 
 class UserProc;
 class Proc;

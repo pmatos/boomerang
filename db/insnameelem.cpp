@@ -14,11 +14,8 @@
  * an element of an instruction name - contains definition of class InsNameElem
  */
 
-#include <string>
-#include <map>
 #include "types.h"
 #include "insnameelem.h"
-
 
 InsNameElem::InsNameElem(const char *name)
 {

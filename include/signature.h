@@ -9,12 +9,13 @@
 #ifndef SIGNATURE_H
 #define SIGNATURE_H
 
-#include <string>
 #include "exp.h"
 #include "type.h"
 #include "sigenum.h"		// For enums platform and cc
 #include "memo.h"
 #include "statement.h"		// For class Return
+
+#include <string>
 
 class Statement;
 class StatementList;

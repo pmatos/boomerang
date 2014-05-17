@@ -15,6 +15,7 @@
  *======================================================================================================*/
 
 #include "boomerang.h"
+
 //#define GC_DEBUG 1		// Uncomment to debug the garbage collector
 #include "gc.h"
 

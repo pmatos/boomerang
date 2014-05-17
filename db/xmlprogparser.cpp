@@ -6,11 +6,6 @@
  * OVERVIEW:   Implementation of the XMLProgParser and related classes.
  *============================================================================*/
 
-#include <cstdio>
-#include <cstring>
-extern "C" {
-#include "expat.h"
-}
 #include "type.h"
 #include "cluster.h"
 #include "prog.h"
@@ -23,6 +18,13 @@ extern "C" {
 #include "boomerang.h"
 #include "log.h"
 #include "frontend.h"
+
+extern "C" {
+#include "expat.h"
+}
+
+#include <cstdio>
+#include <cstring>
 
 typedef enum { e_prog, e_procs, e_global, e_cluster, e_libproc, e_userproc, e_local, e_symbol, e_secondexp,
 		   e_proven_true, e_callee, e_caller, e_defines,

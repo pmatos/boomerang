@@ -1,4 +1,5 @@
 #include "BinaryFileStub.h"
+
 #include <cassert>
 
 // text segment of hello pentium

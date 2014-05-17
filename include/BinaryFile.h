@@ -22,10 +22,12 @@
 
 #include "types.h"
 //#include "SymTab.h"	// Was used for relocaton stuff
+
 #include <list>
 #include <map>
 #include <string>
 #include <vector>
+
 #include <cstdio>		// For FILE
 
 // Given a pointer p, returns the 16 bits (halfword) in the two bytes

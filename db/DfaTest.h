@@ -1,8 +1,8 @@
+#include "type.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-
-#include "type.h"
 
 class DfaTest : public CppUnit::TestCase {
   protected:

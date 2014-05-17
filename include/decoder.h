@@ -17,9 +17,10 @@
 #ifndef DECODER_H
 #define DECODER_H
 
-#include <list>
 #include "types.h"
 #include "rtl.h"
+
+#include <list>
 
 class Exp;
 class RTL;

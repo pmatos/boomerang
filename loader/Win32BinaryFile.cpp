@@ -24,10 +24,12 @@
 
 #include "BinaryFile.h"
 #include "Win32BinaryFile.h"
+
 #include <iostream>
 #include <sstream>
-#include <cstring>
+
 #include <cstdlib>
+#include <cstring>
 #include <cassert>
 
 extern "C" {

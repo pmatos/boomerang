@@ -24,10 +24,12 @@
 
 #include "BinaryFile.h"
 #include "DOS4GWBinaryFile.h"
+
 #include <iostream>
 #include <sstream>
-#include <cassert>
+
 #include <cstdlib>
+#include <cassert>
 
 extern "C" {
 	int microX86Dis(void* p);			// From microX86dis.c

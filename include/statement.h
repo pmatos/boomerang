@@ -25,13 +25,6 @@
        PhiAssign_/ Assign  BoolAssign \_ImplicitAssign
 */
 
-#include <vector>
-#include <set>
-#include <list>
-#include <map>
-#include <ostream>
-#include <iostream>		// For std::cerr
-#include <cassert>
 //#include "exp.h"		// No! This is (almost) the bottom of the #include hierarchy
 #include "memo.h"
 #include "exphelp.h"	// For lessExpStar, lessAssignment etc
@@ -39,6 +32,15 @@
 #include "managed.h"
 #include "dataflow.h"	// For embedded objects DefCollector and UseCollector
 #include "boomerang.h"	// For USE_DOMINANCE_NUMS etc
+
+#include <vector>
+#include <set>
+#include <list>
+#include <map>
+#include <ostream>
+#include <iostream>		// For std::cerr
+
+#include <cassert>
 
 class BasicBlock;
 typedef BasicBlock *PBB;

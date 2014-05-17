@@ -14,6 +14,7 @@
 
 #include "statement.h"
 #include "exp.h"
+
 #include <sstream>
 
 // This class represents fixed constraints (e.g. Ta = <int>, Tb = <alpha2*>),

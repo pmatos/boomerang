@@ -12,7 +12,6 @@
  *				manner
  *============================================================================*/
 
-#include "gc.h"
 #include "type.h"
 #include "boomerang.h"
 #include "signature.h"
@@ -22,7 +21,11 @@
 #include "visitor.h"
 #include "log.h"
 #include "proc.h"
+
+#include "gc.h"
+
 #include <sstream>
+
 #include <cstring>
 
 static int nextUnionNumber = 0;

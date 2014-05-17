@@ -1,8 +1,8 @@
+#include "exp.h"
+
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestCase.h>
 #include <cppunit/TestSuite.h>
-
-#include "exp.h"
 
 class ExpTest : public CppUnit::TestCase {
   protected:
