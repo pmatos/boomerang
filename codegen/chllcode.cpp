@@ -13,7 +13,7 @@
  *			   I guess this will be the most popular output language unless we do C++.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include "cfg.h"
 #include "statement.h"
 #include "exp.h"
@@ -28,7 +28,7 @@
 #include "log.h"
 #include <sstream>
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 
 extern char *operStrings[];
 

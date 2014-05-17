@@ -12,7 +12,7 @@
  * OVERVIEW:   Implementation of the classes that describe a procedure signature
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 #include <sstream>
 #include "type.h"

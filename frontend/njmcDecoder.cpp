@@ -14,8 +14,8 @@
  * OVERVIEW:   This file contains the machine independent decoding functionality.
  *============================================================================*/ 
 
-#include <assert.h>
-#include <stdarg.h>			// For varargs
+#include <cassert>
+#include <cstdarg>			// For varargs
 #include "rtl.h"
 #include "decoder.h"
 #include "exp.h"

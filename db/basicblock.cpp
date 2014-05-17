@@ -18,7 +18,7 @@
  * Dependencies.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 #include "gc.h"
 #include "types.h"

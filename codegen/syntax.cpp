@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iomanip>			// For setfill etc
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 #include "prog.h"
 #include "exp.h"
 #include "hllcode.h"

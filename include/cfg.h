@@ -17,7 +17,7 @@
 #ifndef CFG_H
 #define CFG_H
 
-#include <stdio.h>		// For FILE
+#include <cstdio>		// For FILE
 #include <list>
 #include <vector>
 #include <set>

@@ -15,7 +15,7 @@
  *		 a single register.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 #include "register.h"
 #include "type.h"

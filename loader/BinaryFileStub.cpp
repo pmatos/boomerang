@@ -1,6 +1,5 @@
-#include <assert.h>
 #include "BinaryFileStub.h"
-#include <assert.h>
+#include <cassert>
 
 // text segment of hello pentium
 static char pent_hello_text[] = {

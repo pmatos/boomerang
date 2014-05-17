@@ -12,9 +12,9 @@
  * Desc: This class loads a Palm Pilot .prc file. Derived from class BinaryFile
  */
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 #include "PalmBinaryFile.h"
 #include "palmsystraps.h"
 

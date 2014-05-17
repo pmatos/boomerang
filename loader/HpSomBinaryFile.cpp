@@ -14,7 +14,7 @@
  *              Derived from class BinaryFile
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include "HpSomBinaryFile.h"
 #include <cstring>
 

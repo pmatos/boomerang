@@ -24,7 +24,7 @@
 #include "BinaryFile.h"
 #include <iostream>
 #include <cstring>
-#include <stdio.h>
+#include <cstdio>
 
 
 BinaryFile::BinaryFile(bool bArch /*= false*/)

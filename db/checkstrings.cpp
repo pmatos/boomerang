@@ -2,8 +2,8 @@
 // Could say "all is well" when not, if some operators are deleted and the
 // same number added
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include "operstrings.h"
 #include "../include/operator.h"
 

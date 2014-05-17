@@ -14,7 +14,7 @@
  * OVERVIEW:   Implementation of the Type class: low level type information
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 
 #include "types.h"

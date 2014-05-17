@@ -15,12 +15,12 @@
  *             any particular subsystem of UQBT.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <string>
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include <stdio.h>
+#include <cstdio>
 #include <cstring>
 #include "util.h"
 

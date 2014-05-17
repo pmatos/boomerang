@@ -26,8 +26,8 @@
  *  - trentw
  */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 #include <dlfcn.h>
 
 extern "C" void *GC_start_routine(void * arg);

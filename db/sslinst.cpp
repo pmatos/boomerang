@@ -21,7 +21,7 @@
  * Dependencies.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 #include <algorithm>	// For remove()
 #include "types.h"

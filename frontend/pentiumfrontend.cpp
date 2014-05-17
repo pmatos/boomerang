@@ -14,7 +14,7 @@
  *			   These functions replace frontend.cpp for decoding pentium instructions.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 #include <sstream>
 #include "types.h"

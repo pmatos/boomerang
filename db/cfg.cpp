@@ -18,7 +18,7 @@
  * Dependencies.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <algorithm>		// For find()
 #include <fstream>
 #include <sstream>

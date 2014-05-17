@@ -26,15 +26,15 @@
 #include "MachOBinaryFile.h"
 #include <iostream>
 #include <sstream>
-#include <assert.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cassert>
+#include <cstdlib>
+#include <cstring>
 
 #include "nlist.h"
 #include "macho-apple.h"
 
 #include "objc/objc-class.h"
-#include <stdarg.h>					// For va_list for MinGW at least
+#include <cstdarg>					// For va_list for MinGW at least
 #include "objc/objc-runtime.h"
 
 //#define DEBUG_MACHO_LOADER

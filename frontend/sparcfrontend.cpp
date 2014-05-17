@@ -20,7 +20,7 @@
  * Dependencies.
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
 #include <iomanip>			// For setfill etc
 #include <sstream>

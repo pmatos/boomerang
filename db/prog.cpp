@@ -23,13 +23,13 @@
 #include "config.h"
 #endif
 
-#include <assert.h>
+#include <cassert>
 #include <fstream>
 #include <sstream>
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 #include <vector>
-#include <math.h>
+#include <cmath>
 #include "type.h"
 #include "cluster.h"
 #include "types.h"

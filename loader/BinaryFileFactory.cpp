@@ -13,9 +13,9 @@
 #include "BinaryFile.h"
 
 #include <dlfcn.h>
-#include <stdio.h>
-#include <string.h>
-#include <errno.h>
+#include <cstdio>
+#include <cstring>
+#include <cerrno>
 
 #define TESTMAGIC2(buf, off, a, b) \
    ( buf[off]   == a \

@@ -15,7 +15,7 @@
  *			   register transfer list)
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <iomanip>			// For setfill
 #include <sstream>
 #include <cstring>

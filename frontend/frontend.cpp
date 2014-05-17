@@ -16,12 +16,12 @@
  *				frontsparc.cpp
  *============================================================================*/
 
-#include <assert.h>
+#include <cassert>
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 #include "frontend.h"
 #include <queue>
-#include <stdarg.h>			// For varargs
+#include <cstdarg>			// For varargs
 #include <sstream>
 
 #include "types.h"

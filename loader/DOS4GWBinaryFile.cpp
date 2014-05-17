@@ -26,8 +26,8 @@
 #include "DOS4GWBinaryFile.h"
 #include <iostream>
 #include <sstream>
-#include <assert.h>
-#include <stdlib.h>
+#include <cassert>
+#include <cstdlib>
 
 extern "C" {
 	int microX86Dis(void* p);			// From microX86dis.c

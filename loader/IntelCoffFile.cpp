@@ -7,9 +7,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdlib.h>
+#include <cstdlib>
 #include <cstring>
-#include <assert.h>
+#include <cassert>
 
 struct PACKED struc_coff_sect {  // segment information, 40 bytes
         char     sch_sectname[8];

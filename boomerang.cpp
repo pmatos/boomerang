@@ -14,12 +14,12 @@
 
 #include <iostream>
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 #include <fstream>
-#include <time.h>
+#include <ctime>
 #include <sys/stat.h>		// For mkdir
 #include <unistd.h>			// For unlink
-#include <signal.h>
+#include <csignal>
 #include "prog.h"
 #include "proc.h"
 #include "BinaryFile.h"

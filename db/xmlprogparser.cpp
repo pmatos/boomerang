@@ -6,7 +6,7 @@
  * OVERVIEW:   Implementation of the XMLProgParser and related classes.
  *============================================================================*/
 
-#include <stdio.h>
+#include <cstdio>
 #include <cstring>
 extern "C" {
 #include "expat.h"

@@ -27,8 +27,8 @@
 #include <iostream>
 #include <sstream>
 #include <cstring>
-#include <stdlib.h>
-#include <assert.h>
+#include <cstdlib>
+#include <cassert>
 
 extern "C" {
 	int microX86Dis(void* p);			// From microX86dis.c
