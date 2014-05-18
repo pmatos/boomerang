@@ -39,7 +39,7 @@ void DecompilerThread::run()
 {
 	threadToCollect = QThread::currentThreadId();
 
-	Boomerang::get()->setOutputDirectory(".\\output\\");
+	Boomerang::get()->setOutputDirectory("./output/");
     //Boomerang::get()->vFlag = true;
 	//Boomerang::get()->traceDecoder = true;
 
