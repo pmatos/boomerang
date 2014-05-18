@@ -1,6 +1,16 @@
 AM_CPPFLAGS = \
 	-I$(top_srcdir)/include
 
+frontenddir = \
+	$(pkgdatadir)/frontend
+
+nobase_frontend_DATA = \
+	machine/mips/mips.ssl \
+	machine/pentium/pentium.ssl \
+	machine/ppc/ppc.ssl \
+	machine/st20/st20.ssl \
+	machine/sparc/sparc.ssl
+
 noinst_LTLIBRARIES = \
 	libfrontend.la \
 	libfrontsparc.la \

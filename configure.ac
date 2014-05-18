@@ -80,7 +80,9 @@ AC_CONFIG_FILES([
 	frontend/Makefile
 	loader/Makefile
 	qtgui2/Makefile
+	signatures/Makefile
 	transform/Makefile
+	transformations/Makefile
 	type/Makefile
 	util/Makefile
 ])

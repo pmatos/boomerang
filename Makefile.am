@@ -3,10 +3,12 @@ SUBDIRS = \
 	util \
 	type \
 	transform \
+	transformations \
 	codegen \
 	c \
 	db \
 	frontend \
+	signatures \
 	. \
 	qtgui2
 
