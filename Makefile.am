@@ -7,7 +7,8 @@ SUBDIRS = \
 	c \
 	db \
 	frontend \
-	.
+	. \
+	qtgui2
 
 AM_CPPFLAGS = \
 	$(GC_CFLAGS)

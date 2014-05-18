@@ -20,6 +20,10 @@ AC_PATH_PROG([FLEXPP],[flex++])
 AC_SUBST([FLEXPP])
 AC_PATH_PROG([M4],[m4])
 AC_SUBST([M4])
+AC_PATH_PROG([MOC],[moc])
+AC_SUBST([MOC])
+AC_PATH_PROG([UIC],[uic])
+AC_SUBST([UIC])
 
 # Three paths for frontend/mltk.sh. No longer give a "value-if-not-found", so can avoid errors when not installed
 AC_PATH_PROG([TKML],[.run-sml],,
@@ -45,6 +49,10 @@ PKG_CHECK_MODULES([GC],[bdw-gc],
 	[],
 	[AC_MSG_ERROR([cannot find gc])])
 
+PKG_CHECK_MODULES([QTGUI],[QtGui],
+	[],
+	[AC_MSG_ERROR([cannot find QtGui])])
+
 PKG_CHECK_MODULES([CPPUNIT],[cppunit],
 	[],
 	[AC_MSG_WARN([cannot find cppunit, needed only for testing])])
@@ -69,6 +77,7 @@ AC_CONFIG_FILES([
 	db/Makefile
 	frontend/Makefile
 	loader/Makefile
+	qtgui2/Makefile
 	transform/Makefile
 	type/Makefile
 	util/Makefile
