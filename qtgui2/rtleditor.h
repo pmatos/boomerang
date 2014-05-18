@@ -2,10 +2,11 @@
 #ifndef RTLEDITOR_H
 #define RTLEDITOR_H
 
+#include "types.h"
+
 #include <QtCore/QString>
 #include <QtGui/QTextEdit>
 
-#include "types.h"
 #include <vector>
 #include <map>
 #include <set>

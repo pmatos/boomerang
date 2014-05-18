@@ -1,10 +1,8 @@
-
-
-#include <QtGui>
-
 #include "mainwindow.h"
 #include "DecompilerThread.h"
 #include "rtleditor.h"
+
+#include <QtGui>
 
 MainWindow::MainWindow(QWidget *parent) : 
     QMainWindow(parent), 

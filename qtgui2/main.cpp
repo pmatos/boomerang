@@ -1,9 +1,8 @@
-
-#include <QApplication>
-
 #include "mainwindow.h"
 
 #include "gc.h"
+
+#include <QApplication>
 
 void init_dfa();			// Prototypes for
 void init_sslparser();		// various initialisation functions

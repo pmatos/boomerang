@@ -5,6 +5,7 @@
 #include "ui_boomerang.h"
 #include "ui_about.h"
 #include "types.h"
+
 #include <vector>
 #include <map>
 #include <set>

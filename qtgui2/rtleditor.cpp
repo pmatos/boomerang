@@ -1,8 +1,7 @@
-
-#include <QtGui>
-
 #include "rtleditor.h"
 #include "DecompilerThread.h"
+
+#include <QtGui>
 
 RTLEditor::RTLEditor(Decompiler *decompiler, const QString &name) : 
     decompiler(decompiler),

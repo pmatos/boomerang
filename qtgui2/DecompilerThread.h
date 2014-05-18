@@ -1,9 +1,8 @@
+#include "boomerang.h"
 
 #include <QThread>
 #include <QString>
 #include <QTableWidget>
-
-#include "../include/boomerang.h"
 
 class MainWindow;
 class FrontEnd;

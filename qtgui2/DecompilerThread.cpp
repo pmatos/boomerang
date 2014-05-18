@@ -1,14 +1,4 @@
-
-#include <QtGui>
-#include <QtCore>
-#include <Qt/QtCore>
-#include <QThread>
-#include <QString>
-#include <QTableWidget>
-
 #include "DecompilerThread.h"
-
-#include "gc.h"
 
 #include "boomerang.h"
 #include "log.h"
@@ -17,6 +7,15 @@
 #include "proc.h"
 #include "signature.h"
 #include "cluster.h"
+
+#include "gc.h"
+
+#include <QtGui>
+#include <QtCore>
+#include <QThread>
+#include <QString>
+#include <QTableWidget>
+
 #include <sstream>
 
 Qt::HANDLE threadToCollect = 0;
