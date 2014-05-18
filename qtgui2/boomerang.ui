@@ -89,7 +89,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset>rarrow.bmp</iconset>
+               <iconset>images/rarrow.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -136,7 +136,7 @@
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset>load1.bmp</iconset>
+                 <iconset>images/load1.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -190,7 +190,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset>rarrow.bmp</iconset>
+               <iconset>images/rarrow.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -237,7 +237,7 @@
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset>decode.bmp</iconset>
+                 <iconset>images/decode.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -285,7 +285,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset>rarrow.bmp</iconset>
+               <iconset>images/rarrow.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -332,7 +332,7 @@
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset>decompile.bmp</iconset>
+                 <iconset>images/decompile.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
@@ -386,7 +386,7 @@
                <string/>
               </property>
               <property name="icon" >
-               <iconset>rarrow.bmp</iconset>
+               <iconset>images/rarrow.png</iconset>
               </property>
               <property name="iconSize" >
                <size>
@@ -433,7 +433,7 @@
                  <string/>
                 </property>
                 <property name="icon" >
-                 <iconset>gencode.bmp</iconset>
+                 <iconset>images/gencode.png</iconset>
                 </property>
                 <property name="iconSize" >
                  <size>
