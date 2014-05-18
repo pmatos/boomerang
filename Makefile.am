@@ -13,6 +13,7 @@ SUBDIRS = \
 	qtgui2
 
 AM_CPPFLAGS = \
+	-DDATADIR='"$(pkgdatadir)"' \
 	$(GC_CFLAGS)
 
 noinst_LTLIBRARIES = \

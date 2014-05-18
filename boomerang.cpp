@@ -10,6 +10,14 @@
 #include "config.h"
 #endif
 
+#ifndef DATADIR
+#define DATADIR "."
+#endif
+
+#ifndef OUTPUTDIR
+#define OUTPUTDIR "./output"
+#endif
+
 #define USE_XML 1			// Set to 0 to not use the expat library for XML loading and saving
 
 #include "prog.h"
@@ -64,8 +72,8 @@ Boomerang::Boomerang() : logger(NULL), vFlag(false), printRtl(false),
 	propMaxDepth(3), generateCallGraph(false), generateSymbols(false), noGlobals(false), assumeABI(false),
 	experimental(false), minsToStopAfter(0)
 {
-	progPath = "./";
-	outputPath = "./output/";
+	progPath = DATADIR "/";
+	outputPath = OUTPUTDIR "/";
 }
 
 /**
@@ -151,7 +159,7 @@ void Boomerang::help() {
 	std::cout << "Output\n";
 	std::cout << "  -v               : Verbose\n";
 	std::cout << "  -h               : This help\n";
-	std::cout << "  -o <output path> : Where to generate output (defaults to ./output/)\n";
+	std::cout << "  -o <output path> : Where to generate output (defaults to ./output)\n";
 	std::cout << "  -x               : Dump XML files\n";
 	std::cout << "  -r               : Print RTL for each proc to log before code generation\n";
 	std::cout << "  -gd <dot file>   : Generate a dotty graph of the program's CFG and DFG\n";
@@ -160,8 +168,7 @@ void Boomerang::help() {
 	std::cout << "  -iw              : Write indirect call report to output/indirect.txt\n";
 	std::cout << "Misc.\n";
 	std::cout << "  -k               : Command mode, for available commands see -h cmd\n";
-	std::cout << "  -P <path>        : Path to Boomerang files, defaults to where you run\n";
-	std::cout << "                     Boomerang from\n";
+	std::cout << "  -P <path>        : Path to Boomerang files\n";
 	std::cout << "  -X               : activate eXperimental code; errors likely\n";
 	std::cout << "  --               : No effect (used for testing)\n";
 	std::cout << "Debug\n";
@@ -642,15 +649,6 @@ int Boomerang::commandLine(int argc, const char **argv)
 {
 	printf("%s\n", PACKAGE_STRING);
 	if (argc < 2) usage();
-	progPath = argv[0];
-	size_t j = progPath.rfind('/');			// Chop off after the last slash
-	if (j != std::string::npos) {
-		// Do the chop; keep the trailing slash or reverse slash
-		progPath = progPath.substr(0, j+1);
-	} else {
-		progPath = "./";			// Just assume the current directory
-	}
-	outputPath = progPath + "output/";				// Default output path (can be overridden with -o below)
 
 	// Parse switches on command line
 	if ((argc == 2) && (strcmp(argv[1], "-h") == 0)) {
