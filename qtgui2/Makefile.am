@@ -16,7 +16,8 @@ boomerang_gui_SOURCES = \
 	mainwindow.h \
 	moc_rtleditor.cpp \
 	rtleditor.cpp \
-	rtleditor.h
+	rtleditor.h \
+	qrc_boomerang.cpp
 boomerang_gui_LDADD = \
 	$(top_builddir)/libboomerang.la \
 	$(QTGUI_LIBS) \
@@ -26,11 +27,23 @@ moc_%.cpp: %.h
 	$(MOC) $(QTGUI_CFLAGS) -o $@ $<
 ui_%.h: %.ui
 	$(UIC) -o $@ $<
+qrc_%.cpp: %.qrc
+	$(RCC) -name $* -o $@ $<
 
 BUILT_SOURCES = \
 	ui_boomerang.h \
 	ui_about.h
 
+RESOURCES = \
+	images/closetab.png \
+	images/decode.png \
+	images/decompile.png \
+	images/gencode.png \
+	images/load1.png \
+	images/rarrow.png
+qrc_boomerang.cpp: $(RESOURCES)
+
 CLEANFILES = \
 	moc_* \
-	ui_*
+	ui_* \
+	qrc_*

@@ -24,6 +24,8 @@ AC_PATH_PROG([MOC],[moc])
 AC_SUBST([MOC])
 AC_PATH_PROG([UIC],[uic])
 AC_SUBST([UIC])
+AC_PATH_PROG([RCC],[rcc])
+AC_SUBST([RCC])
 
 # Three paths for frontend/mltk.sh. No longer give a "value-if-not-found", so can avoid errors when not installed
 AC_PATH_PROG([TKML],[.run-sml],,

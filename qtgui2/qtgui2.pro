@@ -11,3 +11,4 @@ INCLUDEPATH += .
 HEADERS += DecompilerThread.h mainwindow.h
 FORMS += boomerang.ui
 SOURCES += DecompilerThread.cpp main.cpp mainwindow.cpp
+RESOURCES += boomerang.qrc

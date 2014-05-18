@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui.entrypoints->verticalHeader()->hide();
 	ui.structMembers->verticalHeader()->hide();
 
-	QPushButton *closeButton = new QPushButton(QIcon("images/closetab.png"), "", ui.tabWidget);
+	QPushButton *closeButton = new QPushButton(QIcon(":/images/closetab.png"), "", ui.tabWidget);
 	closeButton->setFixedSize(closeButton->iconSize());
 	ui.tabWidget->setCornerWidget(closeButton);
 	ui.tabWidget->cornerWidget()->show();

@@ -21,6 +21,7 @@ SOURCES += DecompilerThread.cpp \
 # The below is only for Unixes
 #          mypthread.cpp \
            rtleditor.cpp
+RESOURCES += boomerang.qrc
 
 OBJECTS += ../boomerang.o \ 
 		../log.o \
