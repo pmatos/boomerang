@@ -816,16 +816,8 @@ void MainWindow::on_structName_returnPressed()
 	decompilerThread->getDecompiler()->getCompoundMembers(ui.structName->text(), ui.structMembers);
 }
 
-#ifdef Q_WS_WIN
-#include "windows.h"		// For the windows specific code below (ShellExecuteA)
-#endif
-
 void MainWindow::on_actionBoomerang_Website_activated()
 {
-	// This should be a whole lot easier and more portable!
-#ifdef Q_WS_WIN
-	ShellExecuteA(NULL, "open", "http://boomerang.sourceforge.net/", NULL, NULL, SW_SHOW);
-#else
 	// From a web search:
 	QProcess *browser = new QProcess( this );
 	browser->start("firefox http://boomerang.sourceforge.net");
@@ -834,7 +826,6 @@ void MainWindow::on_actionBoomerang_Website_activated()
 		QMessageBox::critical(this, "Critical!","Firefox reports error!",
 			QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton);
 	}
-#endif
 }
 
 void MainWindow::on_actionAbout_activated()
