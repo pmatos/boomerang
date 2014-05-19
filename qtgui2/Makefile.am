@@ -14,6 +14,7 @@ boomerang_gui_SOURCES = \
 	moc_mainwindow.cpp \
 	mainwindow.cpp \
 	mainwindow.h \
+	mypthread.cpp \
 	moc_rtleditor.cpp \
 	rtleditor.cpp \
 	rtleditor.h \

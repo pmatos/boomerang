@@ -19,7 +19,7 @@ SOURCES += DecompilerThread.cpp \
            main.cpp \
            mainwindow.cpp \
 # The below is only for Unixes
-#          mypthread.cpp \
+           mypthread.cpp \
            rtleditor.cpp
 RESOURCES += boomerang.qrc
 
