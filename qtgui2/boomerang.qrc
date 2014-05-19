@@ -1,11 +1,10 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
- <qresource>
-   <file>images/closetab.png</file>
-   <file>images/decode.png</file>
-   <file>images/decompile.png</file>
-   <file>images/gencode.png</file>
-   <file>images/load1.png</file>
-   <file>images/rarrow.png</file>
- </qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>images/closetab.png</file>
+        <file>images/decode.png</file>
+        <file>images/decompile.png</file>
+        <file>images/gencode.png</file>
+        <file>images/load1.png</file>
+        <file>images/rarrow.png</file>
+    </qresource>
 </RCC>
