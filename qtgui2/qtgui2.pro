@@ -8,7 +8,7 @@ DEPENDPATH += .
 INCLUDEPATH += .
 
 # Input
-HEADERS += DecompilerThread.h mainwindow.h
-FORMS += boomerang.ui
-SOURCES += DecompilerThread.cpp main.cpp mainwindow.cpp
+HEADERS += DecompilerThread.h mainwindow.h rtleditor.h
+FORMS += boomerang.ui about.ui
+SOURCES += DecompilerThread.cpp main.cpp mainwindow.cpp rtleditor.cpp
 RESOURCES += boomerang.qrc
