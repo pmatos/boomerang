@@ -1295,14 +1295,6 @@
     <string>Del</string>
    </property>
   </action>
-  <action name="actionSelect_All">
-   <property name="text">
-    <string>Select All</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+A</string>
-   </property>
-  </action>
   <action name="actionFind">
    <property name="text">
     <string>Find...</string>
@@ -1330,6 +1322,9 @@
   <action name="actionSelect_All">
    <property name="text">
     <string>Select All</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
    </property>
   </action>
   <action name="actionStructs">
