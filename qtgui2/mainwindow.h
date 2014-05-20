@@ -81,8 +81,6 @@ public slots:
 	void on_actionStructs_activated();
 	void on_structName_returnPressed();
 
-	void on_actionBoomerang_Website_activated();
-
 	void on_enableDFTAcheckBox_toggled(bool b);
     void on_enableNoDecodeChildren_toggled(bool b);
 

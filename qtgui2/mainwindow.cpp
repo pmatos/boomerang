@@ -816,18 +816,6 @@ void MainWindow::on_structName_returnPressed()
 	decompilerThread->getDecompiler()->getCompoundMembers(ui.structName->text(), ui.structMembers);
 }
 
-void MainWindow::on_actionBoomerang_Website_activated()
-{
-	// From a web search:
-	QProcess *browser = new QProcess( this );
-	browser->start("firefox http://boomerang.sourceforge.net");
-	if (browser->state() == QProcess::NotRunning)
-	{
-		QMessageBox::critical(this, "Critical!","Firefox reports error!",
-			QMessageBox::Ok | QMessageBox::Default, QMessageBox::NoButton);
-	}
-}
-
 void MainWindow::on_actionAbout_activated()
 {
 	QDialog *dlg = new QDialog;

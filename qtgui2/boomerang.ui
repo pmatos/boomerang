@@ -1201,7 +1201,6 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
-    <addaction name="actionBoomerang_Website"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuWindow"/>
@@ -1356,11 +1355,6 @@
   <action name="actionGenerate_Code">
    <property name="text">
     <string>Generate Code</string>
-   </property>
-  </action>
-  <action name="actionBoomerang_Website">
-   <property name="text">
-    <string>Boomerang Website</string>
    </property>
   </action>
   <action name="actionLoggingOptions">
