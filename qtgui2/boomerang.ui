@@ -102,7 +102,7 @@
               <property name="margin">
                <number>0</number>
               </property>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QPushButton" name="loadButton">
                 <property name="enabled">
                  <bool>true</bool>
@@ -140,13 +140,10 @@
                 </property>
                </widget>
               </item>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QLabel" name="label">
                 <property name="text">
                  <string>Load</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -201,7 +198,7 @@
               <property name="margin">
                <number>0</number>
               </property>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QPushButton" name="decodeButton">
                 <property name="enabled">
                  <bool>false</bool>
@@ -239,13 +236,10 @@
                 </property>
                </widget>
               </item>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QLabel" name="label_2">
                 <property name="text">
                  <string>Decode</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -294,7 +288,7 @@
               <property name="margin">
                <number>0</number>
               </property>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QPushButton" name="decompileButton">
                 <property name="enabled">
                  <bool>false</bool>
@@ -332,13 +326,10 @@
                 </property>
                </widget>
               </item>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QLabel" name="label_3">
                 <property name="text">
                  <string>Decompile</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -393,7 +384,7 @@
               <property name="margin">
                <number>0</number>
               </property>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QPushButton" name="generateCodeButton">
                 <property name="enabled">
                  <bool>false</bool>
@@ -431,16 +422,10 @@
                 </property>
                </widget>
               </item>
-              <item>
+              <item alignment="Qt::AlignHCenter">
                <widget class="QLabel" name="label_4">
                 <property name="text">
                  <string>Generate Code</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <property name="wordWrap">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
