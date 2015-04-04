@@ -103,7 +103,7 @@ exp
 	| CONSTANT           { $$ = new Const($1); }
 	| FUNC exp ')'       { $$ = new Binary(opFlagCall, new Const($1), $2); }
 	| IDENTIFIER         {
-		if (strlen($1) > 2 && $1[0] == 'o' && $1[1] == 'p')
+		if ($1[0] == 'o' && $1[1] == 'p' && $1[2] != '\0')
 			$$ = new Const($1); // treat op* as a string constant
 		else
 			$$ = new Unary(opVar, new Const($1));
