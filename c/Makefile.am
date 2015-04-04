@@ -47,7 +47,7 @@ check-local: $(check_PROGRAMS)
 # 4.  To bootstrap, add the .h files to BUILT_SOURCES.
 #
 YACC = $(BISONPP)
-AM_YFLAGS = -v
+AM_YFLAGS = -v --debug
 LEX = $(FLEXPP)
 AM_LFLAGS =
 
