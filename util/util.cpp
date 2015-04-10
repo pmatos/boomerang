@@ -23,9 +23,8 @@
 #include <iomanip>          // For setw
 #include <string>
 #include <sstream>
-#include <iostream>
-#include <fstream>
 
+#include <cctype>
 #include <cstdio>
 #include <cstring>
 
