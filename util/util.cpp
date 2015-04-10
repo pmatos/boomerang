@@ -138,7 +138,7 @@ void upperStr(const char *s, char *d)
 
 int lockFileRead(const char *fname)
 {
-	int fd = open("filename", O_RDONLY);  /* get the file descriptor */
+	int fd = open(fname, O_RDONLY);  /* get the file descriptor */
 	struct flock fl;
 	fl.l_type   = F_RDLCK;  /* F_RDLCK, F_WRLCK, F_UNLCK    */
 	fl.l_whence = SEEK_SET; /* SEEK_SET, SEEK_CUR, SEEK_END */
@@ -151,7 +151,7 @@ int lockFileRead(const char *fname)
 
 int lockFileWrite(const char *fname)
 {
-	int fd = open("filename", O_WRONLY);  /* get the file descriptor */
+	int fd = open(fname, O_WRONLY);  /* get the file descriptor */
 	struct flock fl;
 	fl.l_type   = F_WRLCK;  /* F_RDLCK, F_WRLCK, F_UNLCK    */
 	fl.l_whence = SEEK_SET; /* SEEK_SET, SEEK_CUR, SEEK_END */
