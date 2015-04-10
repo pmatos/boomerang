@@ -70,12 +70,12 @@ std::string initCapital(const std::string &s)
 bool hasExt(const std::string &s, const char *ext)
 {
 	std::string tailStr = std::string(".") + std::string(ext);
-	unsigned int i = s.rfind(tailStr);
+	size_t i = s.rfind(tailStr);
 	if (i == std::string::npos) {
 		return false;
 	} else {
-		unsigned int sLen = s.length();
-		unsigned int tailStrLen = tailStr.length();
+		size_t sLen = s.length();
+		size_t tailStrLen = tailStr.length();
 		return ((i + tailStrLen) == sLen);
 	}
 }
@@ -111,15 +111,14 @@ std::string searchAndReplace(const std::string &in, const std::string &match,
                              const std::string &rep)
 {
 	std::string result;
-	for (int n = 0; n != -1;) {
-		int l = in.find(match, n);
-		result.append(in.substr(n, (l == -1 ? in.length() : l) - n));
-		if (l != -1) {
-			result.append(rep);
-			l += match.length();
-		}
+	size_t l, n = 0;
+	while ((l = in.find(match, n)) != std::string::npos) {
+		result.append(in.substr(n, l - n));
+		result.append(rep);
+		l += match.length();
 		n = l;
 	}
+	result.append(in.substr(n));
 	return result;
 }
 
@@ -132,8 +131,8 @@ std::string searchAndReplace(const std::string &in, const std::string &match,
  *============================================================================*/
 void upperStr(const char *s, char *d)
 {
-	int len = strlen(s);
-	for (int i = 0; i < len; i++)
+	size_t len = strlen(s);
+	for (size_t i = 0; i < len; ++i)
 		d[i] = toupper(s[i]);
 	d[len] = '\0';
 }
@@ -176,8 +175,8 @@ void escapeXMLChars(std::string &s)
 {
 	std::string bad = "<>&";
 	const char *replace[] = { "&lt;", "&gt;", "&amp;" };
-	for (unsigned i = 0; i < s.size(); i++) {
-		unsigned n = bad.find(s[i]);
+	for (size_t i = 0; i < s.size(); ++i) {
+		size_t n = bad.find(s[i]);
 		if (n != std::string::npos) {
 			s.replace(i, 1, replace[n]);
 		}
@@ -194,14 +193,14 @@ char *escapeStr(char *str)
 	bool escapedSucessfully;
 
 	// test each character
-	for (; *str; str++) {
-		if (isprint((unsigned char)*str) && *str != '\"') {
+	for (; *str; ++str) {
+		if (isprint(*str) && *str != '\"') {
 			// it's printable, so just print it
 			out << *str;
 		} else { // in fact, this shouldn't happen, except for "
 			// maybe it's a known escape sequence
 			escapedSucessfully = false;
-			for (int i = 0; escaped[i] && !escapedSucessfully; i++) {
+			for (size_t i = 0; escaped[i] && !escapedSucessfully; ++i) {
 				if (*str == escaped[i]) {
 					out << "\\" << unescaped[i];
 					escapedSucessfully = true;
