@@ -24,6 +24,8 @@
 #include "boomerang.h"
 #include "log.h"
 
+#include <sstream>
+
 #include <cstring>
 #include <cassert>
 

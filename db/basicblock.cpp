@@ -35,6 +35,8 @@
 
 #include "gc.h"
 
+#include <sstream>
+
 #include <cstring>
 #include <cassert>
 

@@ -7,7 +7,6 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <sstream>
 #include <string>
 
 // was a workaround
