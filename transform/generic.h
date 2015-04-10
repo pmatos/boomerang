@@ -12,14 +12,13 @@
 class GenericExpTransformer : public ExpTransformer
 {
 protected:
-    Exp *match, *where, *become;
+	Exp *match, *where, *become;
 
-    bool checkCond(Exp *cond, Exp *bindings);
-    Exp *applyFuncs(Exp *rhs);
+	bool checkCond(Exp *cond, Exp *bindings);
+	Exp *applyFuncs(Exp *rhs);
 public:
-    GenericExpTransformer(Exp *match, Exp *where, Exp *become) : match(match), where(where), become(become) { }
-    virtual Exp *applyTo(Exp *e, bool &bMod);
+	GenericExpTransformer(Exp *match, Exp *where, Exp *become) : match(match), where(where), become(become) {}
+	virtual Exp *applyTo(Exp *e, bool &bMod);
 };
 
 #endif
-

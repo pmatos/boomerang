@@ -2,8 +2,8 @@
  * Copyright (C) 2004, Mike Van Emmerik and Trent Waddington
  */
 /*==============================================================================
- * FILE:		transformer.cpp
- * OVERVIEW:	Implementation of the Transformer and related classes.
+ * FILE:        transformer.cpp
+ * OVERVIEW:    Implementation of the Transformer and related classes.
  *============================================================================*/
 
 #include "types.h"
@@ -19,23 +19,23 @@
 #include "log.h"
 #include "transformation-parser.h"
 
-#include <numeric>			// For accumulate
-#include <algorithm>		// For std::max()
-#include <map>				// In decideType()
-#include <sstream>			// Need gcc 3.0 or better
+#include <numeric>          // For accumulate
+#include <algorithm>        // For std::max()
+#include <map>              // In decideType()
+#include <sstream>          // Need gcc 3.0 or better
 
-std::list<ExpTransformer*> ExpTransformer::transformers;
+std::list<ExpTransformer *> ExpTransformer::transformers;
 
 ExpTransformer::ExpTransformer()
 {
 	transformers.push_back(this);
 }
 
-std::list<Exp*> cache;
+std::list<Exp *> cache;
 
 Exp *ExpTransformer::applyAllTo(Exp *p, bool &bMod)
 {
-	for (std::list<Exp*>::iterator it = cache.begin(); it != cache.end(); it++)
+	for (std::list<Exp *>::iterator it = cache.begin(); it != cache.end(); it++)
 		if (*(*it)->getSubExp1() == *p)
 			return (*it)->getSubExp2()->clone();
 
@@ -56,7 +56,7 @@ Exp *ExpTransformer::applyAllTo(Exp *p, bool &bMod)
 			if (mod && i == 2)
 				e->setSubExp3(subs[i]);
 			bMod |= mod;
-//			if (mod) i--;
+			//if (mod) i--;
 		}
 
 #if 0
@@ -93,8 +93,8 @@ void ExpTransformer::loadAll()
 		size_t j = sFile.find('#');
 		if (j != (size_t)-1)
 			sFile = sFile.substr(0, j);
-		if (sFile.size() > 0 && sFile[sFile.size()-1] == '\n')
-			sFile = sFile.substr(0, sFile.size()-1);
+		if (sFile.size() > 0 && sFile[sFile.size() - 1] == '\n')
+			sFile = sFile.substr(0, sFile.size() - 1);
 		if (sFile == "") continue;
 		std::ifstream ifs1;
 		std::string sPath1 = Boomerang::get()->getProgPath() + "transformations/" + sFile;
@@ -109,5 +109,3 @@ void ExpTransformer::loadAll()
 	}
 	ifs.close();
 }
-
-
