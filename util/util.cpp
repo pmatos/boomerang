@@ -185,11 +185,11 @@ void escapeXMLChars(std::string &s)
 
 // Turn things like newline, return, tab into \n, \r, \t etc
 // Note: assumes a C or C++ back end...
-char *escapeStr(char *str)
+char *escapeStr(const char *str)
 {
 	std::ostringstream out;
-	char unescaped[] = "ntvbrfa\"";
-	char escaped[] = "\n\t\v\b\r\f\a\"";
+	const char unescaped[] = "ntvbrfa\"";
+	const char escaped[] = "\n\t\v\b\r\f\a\"";
 	bool escapedSucessfully;
 
 	// test each character
