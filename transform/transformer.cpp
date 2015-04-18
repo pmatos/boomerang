@@ -91,11 +91,11 @@ void ExpTransformer::loadAll()
 		std::string sFile;
 		ifs >> sFile;
 		size_t j = sFile.find('#');
-		if (j != (size_t)-1)
-			sFile = sFile.substr(0, j);
+		if (j != std::string::npos)
+			sFile.erase(j);
 		if (sFile.size() > 0 && sFile[sFile.size() - 1] == '\n')
-			sFile = sFile.substr(0, sFile.size() - 1);
-		if (sFile == "") continue;
+			sFile.erase(sFile.size() - 1);
+		if (sFile.empty()) continue;
 		std::ifstream ifs1;
 		std::string sPath1 = Boomerang::get()->getProgPath() + "transformations/" + sFile;
 		ifs1.open(sPath1.c_str());
