@@ -611,7 +611,7 @@ Type *UnionType::meetWith(Type *other, bool &ch, bool bHighestPtr)
 	char name[20];
 #if PRINT_UNION  // Set above
 	if (unionCount == 999)  // Adjust the count to catch the one you want
-		std::cerr << "createUnion breakpokint\n";  // Note: you need two breakpoints (also in Type::createUnion)
+		std::cerr << "createUnion breakpoint\n";  // Note: you need two breakpoints (also in Type::createUnion)
 	std::cerr << "  " << ++unionCount << " Created union from " << getCtype() << " and " << other->getCtype();
 #endif
 	sprintf(name, "x%d", ++nextUnionNumber);
@@ -720,7 +720,7 @@ Type *Type::createUnion(Type *other, bool &ch, bool bHighestPtr /* = false */)
 	char name[20];
 #if PRINT_UNION
 	if (unionCount == 999)  // Adjust the count to catch the one you want
-		std::cerr << "createUnion breakpokint\n";  // Note: you need two breakpoints (also in UnionType::meetWith)
+		std::cerr << "createUnion breakpoint\n";  // Note: you need two breakpoints (also in UnionType::meetWith)
 #endif
 	sprintf(name, "x%d", ++nextUnionNumber);
 	UnionType *u = new UnionType;
