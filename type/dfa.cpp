@@ -1098,12 +1098,8 @@ Type *Unary::ascendType()
 			return ta->asPointer()->getPointsTo();
 		else
 			return new VoidType();  // NOT SURE! Really should be bottom
-		break;
 	case opAddrOf:
 		return new PointerType(ta);
-		break;
-	default:
-		break;
 	}
 	return new VoidType;
 }
@@ -1119,9 +1115,6 @@ Type *Ternary::ascendType()
 			int toSize = ((Const *)subExp2)->getInt();
 			return Type::newIntegerLikeType(toSize, op == opZfill ? -1 : 1);
 		}
-
-	default:
-		break;
 	}
 	return new VoidType;
 }
@@ -1352,8 +1345,6 @@ void Unary::descendType(Type *parentType, bool &ch, Statement *s)
 			prog->setGlobalType(name, ty);
 		}
 		break;
-	default:
-		break;
 	}
 }
 
@@ -1371,9 +1362,6 @@ void Ternary::descendType(Type *parentType, bool &ch, Statement *s)
 			fromType = Type::newIntegerLikeType(fromSize, op == opZfill ? -1 : 1);
 			subExp3->descendType(fromType, ch, s);
 		}
-		break;
-
-	default:
 		break;
 	}
 }

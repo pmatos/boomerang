@@ -839,11 +839,11 @@ const char *IntegerType::getCtype(bool final) const
 		return strdup(s.c_str());
 	} else {
 		switch (size) {
-		case 32: return "unsigned int";       break;
-		case 16: return "unsigned short";     break;
-		case  8: return "unsigned char";      break;
-		case  1: return "bool";               break;
-		case 64: return "unsigned long long"; break;
+		case 32: return "unsigned int";
+		case 16: return "unsigned short";
+		case  8: return "unsigned char";
+		case  1: return "bool";
+		case 64: return "unsigned long long";
 		default:
 			if (final) return "unsigned int";
 			else return "?unsigned int";
@@ -854,9 +854,9 @@ const char *IntegerType::getCtype(bool final) const
 const char *FloatType::getCtype(bool final) const
 {
 	switch (size) {
-	case 32: return "float";  break;
-	case 64: return "double"; break;
-	default: return "double"; break;
+	case 32: return "float";
+	case 64: return "double";
+	default: return "double";
 	}
 }
 
