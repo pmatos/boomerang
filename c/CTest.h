@@ -8,18 +8,16 @@
 #include <cppunit/TestSuite.h>
 
 class CTest : public CppUnit::TestCase {
+public:
+	CTest(std::string name) : CppUnit::TestCase(name)
+	{}
 
-  public:
-    CTest(std::string name) : CppUnit::TestCase (name)
-    {}
+	virtual void registerTests(CppUnit::TestSuite *suite);
 
-    virtual void registerTests(CppUnit::TestSuite* suite);
+	int countTestCases() const;
 
-    int countTestCases () const;
+	void setUp();
+	void tearDown();
 
-    void setUp ();
-    void tearDown ();
-
-    void testSignature();
+	void testSignature();
 };
-
