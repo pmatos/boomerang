@@ -644,7 +644,6 @@ void CHLLCode::appendExp(std::ostringstream &str, Exp *exp, PREC curPrec, bool u
 	case opPC:
 		str << "pc";
 		break;
-		break;
 	case opZfill:
 		// MVE: this is a temporary hack... needs cast?
 		//sprintf(s, "/* zfill %d->%d */ ",
