@@ -170,10 +170,10 @@ _?[A-Za-z][A-Za-z0-9_]*    { yylval.str = strdup(yytext); return SSLParser::NAME
 "."[A-Za-z][A-Za-z.0-9]*   |
 "^"\"[A-Za-z][A-Za-z]*\"   { yylval.str = strdup(yytext); return SSLParser::DECOR; }
 
-[?,{}()'"]  { return yytext[0]; }
-"]"         { return yytext[0]; }
-"["         { return yytext[0]; }
-";"         { return yytext[0]; }
+[?,{}()'"]  |
+"]"         |
+"["         |
+";"         |
 "$"         { return yytext[0]; }
 
 -?[0-9]+"."[0-9]+ { yylval.dbl = atof(yytext); return SSLParser::FLOATNUM; }

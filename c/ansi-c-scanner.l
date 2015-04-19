@@ -114,8 +114,8 @@ IS          (u|U|l|L)*
 {D}+{IS}?               { count(); sscanf(yytext, "%d", &yylval.ival); return AnsiCParser::CONSTANT; }
 L?'(\\.|[^\\'])+'       { count(); return AnsiCParser::CONSTANT; }
 
-{D}+{E}{FS}?            { count(); return AnsiCParser::CONSTANT; }
-{D}*"."{D}+({E})?{FS}?  { count(); return AnsiCParser::CONSTANT; }
+{D}+{E}{FS}?            |
+{D}*"."{D}+({E})?{FS}?  |
 {D}+"."{D}*({E})?{FS}?  { count(); return AnsiCParser::CONSTANT; }
 
 L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return AnsiCParser::STRING_LITERAL; }

@@ -74,8 +74,8 @@ IS                      (u|U|l|L)*
 {D}+{IS}?               { count(); sscanf(yytext, "%d", &yylval.ival); return TransformationParser::CONSTANT; }
 L?'(\\.|[^\\'])+'       { count(); return TransformationParser::CONSTANT; }
 
-{D}+{E}{FS}?            { count(); return TransformationParser::CONSTANT; }
-{D}*"."{D}+({E})?{FS}?  { count(); return TransformationParser::CONSTANT; }
+{D}+{E}{FS}?            |
+{D}*"."{D}+({E})?{FS}?  |
 {D}+"."{D}*({E})?{FS}?  { count(); return TransformationParser::CONSTANT; }
 
 L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return TransformationParser::STRING_LITERAL; }
