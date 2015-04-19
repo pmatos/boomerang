@@ -12,14 +12,15 @@ libansi_c_la_SOURCES = \
 	ansi-c-parser.y \
 	ansi-c-scanner.l
 
-# FIXME:  Doesn't actually work (needs to link to more libs),
-# but convinces make to compile the ansi-c files in C++ mode.
+# Do not remove, this has a helpful side-effect of convincing
+# make to compile the ansi-c files in C++ mode.
 testC_SOURCES = \
 	testC.cc \
 	CTest.cpp \
 	CTest.h
+# FIXME:  Shouldn't need to link all of boomerang to run this test.
 testC_LDADD = \
-	libansi-c.la \
+	$(top_builddir)/libboomerang.la \
 	$(CPPUNIT_LIBS)
 testC_CPPFLAGS = \
 	$(AM_CPPFLAGS) \

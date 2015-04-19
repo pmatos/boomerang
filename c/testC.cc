@@ -1,11 +1,9 @@
 /*==============================================================================
- * FILE:       testExp.cc
- * OVERVIEW:   Command line test of the Exp and related classes.
+ * FILE:       testC.cc
+ * OVERVIEW:   Command line test of the C parser.
  *============================================================================*/
 
-#include "exp.h"
-
-#include "ExpTest.h"
+#include "CTest.h"
 
 #include <cppunit/TextTestResult.h>
 #include <cppunit/TestSuite.h>
@@ -17,9 +15,9 @@ int main(int argc, char **argv)
 {
 	CppUnit::TestSuite suite;
 
-	ExpTest et("ExpTest");
+	CTest ct("C Parser Test");
 
-	et.registerTests(&suite);
+	ct.registerTests(&suite);
 
 	CppUnit::TextTestResult res;
 
