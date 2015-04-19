@@ -1001,7 +1001,7 @@ SSLParser::~SSLParser()
  *============================================================================*/
 void SSLParser::yyerror(const char* msg)
 {
-	std::cerr << sslFile << ":" << theScanner->theLine << ": " << msg << std::endl;
+	std::cerr << sslFile << ":" << theScanner->theLine << ": " << msg << "\n";
 }
 
 /*==============================================================================
@@ -1168,7 +1168,7 @@ OPER SSLParser::strToOper(const char *s)
 	case '^': return opBitXor;
 	}
 	std::ostringstream o;
-	o << "Unknown operator " << s << std::endl;
+	o << "Unknown operator " << s << "\n";
 	yyerror(o.str().c_str());
 	return opWild;
 }
