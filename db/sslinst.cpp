@@ -31,6 +31,7 @@
 #include "proc.h"
 #include "prog.h"
 #include "sslparser.h"
+#include "util.h"
 #include "boomerang.h"
 
 #include <algorithm>	// For remove()

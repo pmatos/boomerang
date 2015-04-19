@@ -9,8 +9,6 @@
 
 #include <string>
 
-// was a workaround
-#define STR(x) (char *)(x.str().c_str())
 // Upper case a C string: s is source, d is dest
 void upperStr(const char *s, char *d);
 // Add string and integer

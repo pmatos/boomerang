@@ -23,7 +23,6 @@
 	#include "rtl.h"
 	#include "table.h"
 	#include "insnameelem.h"
-	#include "util.h"           // E.g. str()
 	#include "statement.h"
 
 	class SSLScanner;
@@ -53,6 +52,7 @@
 	#include "gc.h"
 
 	#include <sstream>
+	#include <string>
 
 	#include <cstdlib>
 	#include <cassert>
@@ -462,11 +462,11 @@ name_expand
 				$$ = new std::deque<std::string>(TableDict[$2]->records);
 			else {
 				o << "name " << $2 << " is not a NAMETABLE.\n";
-				yyerror(STR(o));
+				yyerror(o.str().c_str());
 			}
 		else {
 			o << "could not dereference name " << $2 << "\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		}
 	  }
 
@@ -478,7 +478,7 @@ name_expand
 			else {
 				std::ostringstream o;
 				o << "name " << $1 << " is not a NAMETABLE.\n";
-				yyerror(STR(o));
+				yyerror(o.str().c_str());
 			}
 		else {
 			$$ = new std::deque<std::string>;
@@ -558,10 +558,10 @@ name_contract
 		std::ostringstream o;
 		if (TableDict.find($1) == TableDict.end()) {
 			o << "Table " << $1 << " has not been declared.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if (($2 < 0) || ($2 >= (int)TableDict[$1]->records.size())) {
 			o << "Can't get element " << $2 << " of table " << $1 << ".\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else
 			$$ = new InsNameElem(TableDict[$1]->records[$2].c_str());
 	  }
@@ -571,7 +571,7 @@ name_contract
 		std::ostringstream o;
 		if (TableDict.find($1) == TableDict.end()) {
 			o << "Table " << $1 << " has not been declared.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else
 			$$ = new InsListElem($1, TableDict[$1], $2);
 	  }
@@ -580,10 +580,10 @@ name_contract
 		std::ostringstream o;
 		if (TableDict.find($2) == TableDict.end()) {
 			o << "Table " << $2 << " has not been declared.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if (($3 < 0) || ($3 >= (int)TableDict[$2]->records.size())) {
 			o << "Can't get element " << $3 << " of table " << $2 << ".\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else
 			$$ = new InsNameElem(TableDict[$2]->records[$3].c_str());
 	  }
@@ -592,7 +592,7 @@ name_contract
 		std::ostringstream o;
 		if (TableDict.find($2) == TableDict.end()) {
 			o << "Table " << $2 << " has not been declared.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else
 			$$ = new InsListElem($2, TableDict[$2], $3);
 	  }
@@ -631,7 +631,7 @@ rt
 			                                             listExpToExp($2)));
 		} else {
 			o << $1 << " is not declared as a flag function.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		}
 	  }
 
@@ -731,17 +731,17 @@ exp_term
 		std::ostringstream o;
 		if (indexrefmap.find($2) == indexrefmap.end()) {
 			o << "index " << $2 << " not declared for use.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if (TableDict.find($1) == TableDict.end()) {
 			o << "table " << $1 << " not declared for use.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if (TableDict[$1]->getType() != EXPRTABLE) {
 			o << "table " << $1 << " is not an expression table but appears to be used as one.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if ((int)((ExprTable *)TableDict[$1])->expressions.size() < indexrefmap[$2]->ntokens()) {
 			o << "table " << $1 << " (" << ((ExprTable *)TableDict[$1])->expressions.size()
 			  << ") is too small to use " << $2 << " (" << indexrefmap[$2]->ntokens() << ") as an index.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		}
 		// $1 is a map from string to Table*; $2 is a map from string to InsNameElem*
 		$$ = new Binary(opExpTable, new Const($1), new Const($2));
@@ -758,7 +758,7 @@ exp_term
 				if ($2->size() != param.funcParams.size()) {
 					o << $1 << " requires " << param.funcParams.size() << " parameters, but received "
 					  << $2->size() << ".\n";
-					yyerror(STR(o));
+					yyerror(o.str().c_str());
 				} else {
 					// Everything checks out. *phew*
 					// Note: the below may not be right! (MVE)
@@ -767,7 +767,7 @@ exp_term
 				}
 			} else {
 				o << $1 << " is not defined as a OPERAND function.\n";
-				yyerror(STR(o));
+				yyerror(o.str().c_str());
 			}
 		} else {
 			o << "Unrecognized name " << $1 << " in lambda call.\n";
@@ -807,16 +807,16 @@ exp
 		std::ostringstream o;
 		if (indexrefmap.find($3) == indexrefmap.end()) {
 			o << "index " << $3 << " not declared for use.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if (TableDict.find($2) == TableDict.end()) {
 			o << "table " << $2 << " not declared for use.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if (TableDict[$2]->getType() != OPTABLE) {
 			o << "table " << $2 << " is not an operator table but appears to be used as one.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		} else if ((int)TableDict[$2]->records.size() < indexrefmap[$3]->ntokens()) {
 			o << "table " << $2 << " is too small to use with " << $3 << " as an index.\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		}
 		$$ = new Ternary(opOpTable,
 		                 new Const($2),
@@ -839,9 +839,9 @@ location
 		bool isFlag = strstr($1, "flags") != 0;
 		std::map<std::string, int>::const_iterator it = Dict.RegMap.find($1);
 		if (it == Dict.RegMap.end() && !isFlag) {
-			std::ostringstream ost;
-			ost << "register `" << $1 << "' is undefined";
-			yyerror(STR(ost));
+			std::ostringstream o;
+			o << "register `" << $1 << "' is undefined";
+			yyerror(o.str().c_str());
 		} else if (isFlag || it->second == -1) {
 			// A special register, e.g. %npc or %CF. Return a Terminal for it
 			OPER op = strToTerm($1);
@@ -877,9 +877,9 @@ location
 		} else if (ConstTable.find($1) != ConstTable.end()) {
 			s = new Const(ConstTable[$1]);
 		} else {
-			std::ostringstream ost;
-			ost << "`" << $1 << "' is not a constant, definition or a parameter of this instruction\n";
-			yyerror(STR(ost));
+			std::ostringstream o;
+			o << "`" << $1 << "' is not a constant, definition or a parameter of this instruction\n";
+			yyerror(o.str().c_str());
 			s = new Const(0);
 		}
 		$$ = s;
@@ -1167,9 +1167,9 @@ OPER SSLParser::strToOper(const char *s)
 	case '|': return opBitOr;
 	case '^': return opBitXor;
 	}
-	std::ostringstream ost;
-	ost << "Unknown operator " << s << std::endl;
-	yyerror(STR(ost));
+	std::ostringstream o;
+	o << "Unknown operator " << s << std::endl;
+	yyerror(o.str().c_str());
 	return opWild;
 }
 
@@ -1320,7 +1320,7 @@ void SSLParser::expandTables(InsNameElem *iname, std::list<std::string> *params,
 
 		if (Dict.appendToDict(nam, *params, *rtl) != 0) {
 			o << "Pattern " << iname->getinspattern() << " conflicts with an earlier declaration of " << nam << ".\n";
-			yyerror(STR(o));
+			yyerror(o.str().c_str());
 		}
 	}
 	indexrefmap.erase(indexrefmap.begin(), indexrefmap.end());
