@@ -49,12 +49,12 @@ CHLLCode::~CHLLCode()
 {
 }
 
-/// Output 4 * \a indLevel spaces to \a str
+/// Output \a indLevel tabs to \a str
 void CHLLCode::indent(std::ostringstream &str, int indLevel)
 {
 	// Can probably do more efficiently
 	for (int i = 0; i < indLevel; i++)
-		str << "    ";
+		str << "\t";
 }
 
 /**
@@ -1487,7 +1487,7 @@ void CHLLCode::AddReturnStatement(int indLevel, StatementList *rets)
 void CHLLCode::AddProcStart(UserProc *proc)
 {
 	std::ostringstream s;
-	s << "// address: 0x" << std::hex << proc->getNativeAddress() << std::dec;
+	s << "/* address: 0x" << std::hex << proc->getNativeAddress() << std::dec << " */";
 	appendLine(s);
 	AddProcDec(proc, true);
 }
@@ -1610,8 +1610,9 @@ void CHLLCode::AddLocal(const char *name, Type *type, bool last)
 			appendExp(s, e->getSubExp1(), PREC_NONE);
 			s << ";";
 		} else {
-			s << "; \t\t// ";
+			s << "; /* ";
 			e->print(s);
+			s << " */";
 		}
 	} else
 		s << ";";
@@ -1656,7 +1657,7 @@ void CHLLCode::AddGlobal(const char *name, Type *type, Exp *init)
 	}
 	s << ";";
 	if (type->isSize())
-		s << "// " << type->getSize() / 8 << " bytes";
+		s << " /* " << type->getSize() / 8 << " bytes */";
 	appendLine(s);
 }
 
