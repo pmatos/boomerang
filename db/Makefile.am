@@ -3,6 +3,7 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/c \
 	$(GC_CFLAGS)
 
+
 noinst_LTLIBRARIES = \
 	libxmlprogparser.la \
 	libdb.la
@@ -38,6 +39,15 @@ libdb_la_SOURCES = \
 	visitor.cpp
 libdb_la_LIBADD = \
 	$(GC_LIBS)
+
+
+TESTS = $(check_PROGRAMS)
+check_PROGRAMS = \
+	checkstrings
+
+checkstrings_SOURCES = \
+	checkstrings.cpp
+
 
 # Various, fragile hacks to use flex++/bison++
 # Tested with GNU automake 1.11.5, GNU make 3.82
