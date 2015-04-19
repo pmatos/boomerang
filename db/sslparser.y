@@ -769,7 +769,8 @@ exp_term
 				yyerror(o.str().c_str());
 			}
 		} else {
-			o << "Unrecognized name " << $1 << " in lambda call.\n";
+			o << "Unrecognized name " << $1 << " in lambda call";
+			yyerror(o.str().c_str());
 		}
 	  }
 
