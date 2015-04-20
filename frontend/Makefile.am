@@ -1,6 +1,7 @@
 AM_CPPFLAGS = \
 	-I$(top_srcdir)/include
 
+
 frontenddir = \
 	$(pkgdatadir)/frontend
 
@@ -10,6 +11,7 @@ nobase_frontend_DATA = \
 	machine/ppc/ppc.ssl \
 	machine/st20/st20.ssl \
 	machine/sparc/sparc.ssl
+
 
 noinst_LTLIBRARIES = \
 	libfrontend.la \
@@ -61,3 +63,36 @@ libfrontmips_la_SOURCES = \
 	mipsdecoder.h \
 	mipsfrontend.cpp \
 	mipsfrontend.h
+
+
+check_LTLIBRARIES = \
+	libFrontendTest.la \
+	libFrontPentTest.la \
+	libFrontSparcTest.la
+
+libFrontendTest_la_SOURCES = \
+	FrontendTest.cpp \
+	FrontendTest.h
+libFrontendTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libFrontendTest_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libFrontPentTest_la_SOURCES = \
+	FrontPentTest.cpp \
+	FrontPentTest.h
+libFrontPentTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libFrontPentTest_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libFrontSparcTest_la_SOURCES = \
+	FrontSparcTest.cpp \
+	FrontSparcTest.h
+libFrontSparcTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libFrontSparcTest_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)

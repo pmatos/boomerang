@@ -2,32 +2,29 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/include \
 	-I$(top_srcdir)/db
 
+
 noinst_LTLIBRARIES = \
 	libansi-c.la
-
-check_PROGRAMS = \
-	testC
 
 libansi_c_la_SOURCES = \
 	ansi-c-parser.y \
 	ansi-c-scanner.l
 
+
+check_LTLIBRARIES = \
+	libCTest.la
+
 # Do not remove, this has a helpful side-effect of convincing
-# make to compile the ansi-c files in C++ mode.
-testC_SOURCES = \
-	testC.cc \
+# make to compile the parser/scanner files in C++ mode.
+libCTest_la_SOURCES = \
 	CTest.cpp \
 	CTest.h
-# FIXME:  Shouldn't need to link all of boomerang to run this test.
-testC_LDADD = \
-	$(top_builddir)/libboomerang.la \
+libCTest_la_LIBADD = \
 	$(CPPUNIT_LIBS)
-testC_CPPFLAGS = \
+libCTest_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	$(CPPUNIT_CFLAGS)
 
-check-local: $(check_PROGRAMS)
-	./testC
 
 # Various, fragile hacks to use flex++/bison++
 # Tested with GNU automake 1.11.5, GNU make 3.82

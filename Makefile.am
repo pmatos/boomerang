@@ -16,11 +16,9 @@ AM_CPPFLAGS = \
 	-DDATADIR='"$(pkgdatadir)"' \
 	$(GC_CFLAGS)
 
+
 noinst_LTLIBRARIES = \
 	libboomerang.la
-
-bin_PROGRAMS = \
-	boomerang
 
 libboomerang_la_SOURCES = \
 	boomerang.cpp \
@@ -37,8 +35,41 @@ libboomerang_la_LIBADD = \
 	$(top_builddir)/transform/libtransform.la \
 	$(GC_LIBS)
 
+
+bin_PROGRAMS = \
+	boomerang
+
 boomerang_SOURCES = \
 	driver.cpp
 boomerang_LDADD = \
 	libboomerang.la \
 	$(GC_LIBS)
+
+
+TESTS = $(check_PROGRAMS)
+check_PROGRAMS = \
+	testAll
+
+testAll_SOURCES = \
+	testAll.cpp
+testAll_LDADD = \
+	$(top_builddir)/db/libExpTest.la \
+	$(top_builddir)/db/libProgTest.la \
+	$(top_builddir)/db/libProcTest.la \
+	$(top_builddir)/db/libRtlTest.la \
+	$(top_builddir)/db/libParserTest.la \
+	$(top_builddir)/type/libTypeTest.la \
+	$(top_builddir)/frontend/libFrontSparcTest.la \
+	$(top_builddir)/frontend/libFrontPentTest.la \
+	$(top_builddir)/c/libCTest.la \
+	$(top_builddir)/db/libStatementTest.la \
+	$(top_builddir)/db/libCfgTest.la \
+	$(top_builddir)/db/libDfaTest.la \
+	$(top_builddir)/loader/libBinaryFileStub.la \
+	libboomerang.la \
+	$(CPPUNIT_LIBS)
+testAll_CPPFLAGS = \
+	-I$(top_srcdir)/db \
+	-I$(top_srcdir)/type \
+	-I$(top_srcdir)/frontend \
+	-I$(top_srcdir)/c

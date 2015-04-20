@@ -41,6 +41,95 @@ libdb_la_LIBADD = \
 	$(GC_LIBS)
 
 
+check_LTLIBRARIES = \
+	libCfgTest.la \
+	libDfaTest.la \
+	libExpTest.la \
+	libParserTest.la \
+	libProcTest.la \
+	libProgTest.la \
+	libRtlTest.la \
+	libStatementTest.la
+
+
+libCfgTest_la_SOURCES = \
+	CfgTest.cpp \
+	CfgTest.h
+libCfgTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libCfgTest_la_CPPFLAGS = \
+	-I$(top_srcdir)/frontend \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libDfaTest_la_SOURCES = \
+	DfaTest.cpp \
+	DfaTest.h
+libDfaTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libDfaTest_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libExpTest_la_SOURCES = \
+	ExpTest.cpp \
+	ExpTest.h
+libExpTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libExpTest_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libParserTest_la_SOURCES = \
+	ParserTest.cpp \
+	ParserTest.h
+libParserTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libParserTest_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libProcTest_la_SOURCES = \
+	ProcTest.cpp \
+	ProcTest.h
+libProcTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libProcTest_la_CPPFLAGS = \
+	-I$(top_srcdir)/frontend \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libProgTest_la_SOURCES = \
+	ProgTest.cpp \
+	ProgTest.h
+libProgTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libProgTest_la_CPPFLAGS = \
+	-I$(top_srcdir)/frontend \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libRtlTest_la_SOURCES = \
+	RtlTest.cpp \
+	RtlTest.h
+libRtlTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libRtlTest_la_CPPFLAGS = \
+	-I$(top_srcdir)/frontend \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+libStatementTest_la_SOURCES = \
+	StatementTest.cpp \
+	StatementTest.h
+libStatementTest_la_LIBADD = \
+	$(CPPUNIT_LIBS)
+libStatementTest_la_CPPFLAGS = \
+	-I$(top_srcdir)/frontend \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
+
+
 TESTS = $(check_PROGRAMS)
 check_PROGRAMS = \
 	checkstrings

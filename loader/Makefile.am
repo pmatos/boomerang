@@ -61,18 +61,28 @@ bffDump_LDADD = libBinaryFileFactory.la
 
 
 check_LTLIBRARIES = \
+	libLoaderTest.la \
 	libBinaryFileStub.la
+
+libLoaderTest_la_SOURCES = \
+	LoaderTest.cpp \
+	LoaderTest.h
 
 libBinaryFileStub_la_SOURCES = \
 	BinaryFileStub.cpp
 
 
+TESTS = $(check_PROGRAMS)
 check_PROGRAMS = \
 	testLoader
 
-testLoader_SOURCES = testLoader.cpp LoaderTest.cpp
-testLoader_LDADD = libBinaryFileFactory.la libmicroX86dis.la $(CPPUNIT_LIBS)
-testLoader_CPPFLAGS = $(AM_CPPFLAGS) $(CPPUNIT_CFLAGS)
-
-check-local: $(check_PROGRAMS) $(pkglib_LTLIBRARIES)
-	./testLoader
+testLoader_SOURCES = \
+	testLoader.cpp
+testLoader_LDADD = \
+	libLoaderTest.la \
+	libBinaryFileFactory.la \
+	libmicroX86dis.la \
+	$(CPPUNIT_LIBS)
+testLoader_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)
