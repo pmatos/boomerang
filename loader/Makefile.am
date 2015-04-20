@@ -1,5 +1,6 @@
 AM_CPPFLAGS = -I$(top_srcdir)/include
 
+
 noinst_LTLIBRARIES = \
 	libmicroX86dis.la \
 	libBinaryFile.la
@@ -7,6 +8,7 @@ noinst_LTLIBRARIES = \
 libmicroX86dis_la_SOURCES = microX86dis.c
 
 libBinaryFile_la_SOURCES = BinaryFile.cpp SymTab.cpp
+
 
 pkglib_LTLIBRARIES = \
 	libBinaryFileFactory.la \
@@ -50,11 +52,20 @@ MachOBinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
 PalmBinaryFile_la_LDFLAGS   = -no-undefined -avoid-version -module -shared
 Win32BinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
 
+
 bin_PROGRAMS = \
 	bffDump
 
 bffDump_SOURCES = bffDump.cpp
 bffDump_LDADD = libBinaryFileFactory.la
+
+
+check_LTLIBRARIES = \
+	libBinaryFileStub.la
+
+libBinaryFileStub_la_SOURCES = \
+	BinaryFileStub.cpp
+
 
 check_PROGRAMS = \
 	testLoader
