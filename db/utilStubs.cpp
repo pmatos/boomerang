@@ -2,7 +2,7 @@
 
 void loadValue(std::istream &is, bool &b, bool wantlen) {}
 void loadValue(std::istream &is, char &ch, bool wantlen) {}
-void loadValue(std::istream &is, int& i, bool wantlen) {}
+void loadValue(std::istream &is, int &i, bool wantlen) {}
 void loadValue(std::istream &is, double &d, bool wantlen) {}
 void loadString(std::istream &is, std::string &str) {}
 int loadFID(std::istream &is) {return 0;}
@@ -19,4 +19,3 @@ void skipFID(std::istream &is, int fid) {}
 void saveLen(std::ostream &os, int len, bool large) {}
 void loadValue(std::istream &is, ADDRESS &a, bool wantlen) {}
 void saveValue(std::ostream &os, ADDRESS a, bool wantlen) {}
-

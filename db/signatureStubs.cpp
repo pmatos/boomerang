@@ -1,8 +1,8 @@
 #include "signature.h"
 
-std::list<Exp*> *Signature::getCallerSave(Prog* prog) {return NULL;}
+std::list<Exp *> *Signature::getCallerSave(Prog *prog) {return NULL;}
 Signature::Signature(const char *nam) {}
-bool Signature::operator==(const Signature& other) const {return false;}
+bool Signature::operator==(const Signature &other) const {return false;}
 Signature *Signature::clone() {return 0;}
 Exp *Signature::getReturnExp() {return 0;}
 Exp *Signature::getReturnExp2(BinaryFile *pBF) {return NULL;}
@@ -23,9 +23,5 @@ const char *Signature::getParamName(int n) {return 0;}
 Signature *Signature::promote(UserProc *p) {return 0;}
 void Signature::getInternalStatements(StatementList &stmts) {}
 void Signature::print(std::ostream &out) {}
-int Signature::getStackRegister(Prog* prog) {return 0;}
-Signature *Signature::instantiate(const char *str, const char *nam)
-{return 0;}
-
-
-
+int Signature::getStackRegister(Prog *prog) {return 0;}
+Signature *Signature::instantiate(const char *str, const char *nam) {return 0;}
