@@ -65,6 +65,7 @@ testAll_LDADD = \
 	$(top_builddir)/db/libStatementTest.la \
 	$(top_builddir)/db/libCfgTest.la \
 	$(top_builddir)/db/libDfaTest.la \
+	$(top_builddir)/util/libUtilTest.la \
 	$(top_builddir)/loader/libBinaryFileStub.la \
 	libboomerang.la \
 	$(CPPUNIT_LIBS)
@@ -72,4 +73,5 @@ testAll_CPPFLAGS = \
 	-I$(top_srcdir)/db \
 	-I$(top_srcdir)/type \
 	-I$(top_srcdir)/frontend \
-	-I$(top_srcdir)/c
+	-I$(top_srcdir)/c \
+	-I$(top_srcdir)/util
