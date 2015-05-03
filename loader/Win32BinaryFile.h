@@ -197,14 +197,14 @@ public:
 
 	virtual std::map<ADDRESS, std::string> &getSymbols() { return dlprocptrs; }
 
-	        bool        hasDebugInfo() { return haveDebugInfo; }
+	virtual bool        hasDebugInfo() { return haveDebugInfo; }
 
 protected:
 	virtual bool        RealLoad(const char *sName);  // Load the file; pure virtual
 
 private:
 
-	        bool        PostLoad(void *handle);  // Called after archive member loaded
+	virtual bool        PostLoad(void *handle);  // Called after archive member loaded
 	        void        findJumps(ADDRESS curr);  // Find names for jumps to IATs
 
 	        Header     *m_pHeader;      // Pointer to header

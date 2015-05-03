@@ -168,7 +168,7 @@ protected:
 	virtual bool        RealLoad(const char *sName);  // Load the file; pure virtual
 
 private:
-	        bool        PostLoad(void *handle);  // Called after archive member loaded
+	virtual bool        PostLoad(void *handle);  // Called after archive member loaded
 
 	        Header     *m_pHeader;      // Pointer to header
 	        LXHeader   *m_pLXHeader;    // Pointer to lx header

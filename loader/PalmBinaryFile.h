@@ -39,9 +39,9 @@ public:
 	virtual size_t      getImageSize();
 
 	// Get a symbol given an address
-	        const char *SymbolByAddress(ADDRESS dwAddr);
+	virtual const char *SymbolByAddress(ADDRESS dwAddr);
 	// Return true if the address matches the convention for A-line system calls
-	        bool        IsDynamicLinkedProc(ADDRESS uNative);
+	virtual bool        IsDynamicLinkedProc(ADDRESS uNative);
 
 	// Specific to BinaryFile objects that implement a "global pointer"
 	// Gets a pair of unsigned integers representing the address of %agp (first)

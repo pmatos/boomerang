@@ -24,7 +24,7 @@ public:
 	// Interface
 	//
 	IntelCoffFile();
-	~IntelCoffFile();
+	virtual ~IntelCoffFile();
 
 	virtual void UnLoad();
 

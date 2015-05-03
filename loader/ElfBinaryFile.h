@@ -165,26 +165,26 @@ public:
 	//virtual ADDRESS     GetFirstHeaderAddress();  // Get ADDRESS of main header
 	//        ADDRESS     GetNextHeaderAddress();   // Get any other headers
 
-	        int         readNative1(ADDRESS a);       // Read 1 bytes from native addr
-	        int         readNative2(ADDRESS a);       // Read 2 bytes from native addr
-	        int         readNative4(ADDRESS a);       // Read 4 bytes from native addr
-	        QWord       readNative8(ADDRESS a);       // Read 8 bytes from native addr
-	        float       readNativeFloat4(ADDRESS a);  // Read 4 bytes as float
-	        double      readNativeFloat8(ADDRESS a);  // Read 8 bytes as float
+	virtual int         readNative1(ADDRESS a);       // Read 1 bytes from native addr
+	virtual int         readNative2(ADDRESS a);       // Read 2 bytes from native addr
+	virtual int         readNative4(ADDRESS a);       // Read 4 bytes from native addr
+	virtual QWord       readNative8(ADDRESS a);       // Read 8 bytes from native addr
+	virtual float       readNativeFloat4(ADDRESS a);  // Read 4 bytes as float
+	virtual double      readNativeFloat8(ADDRESS a);  // Read 8 bytes as float
 
 	        void        writeNative4(ADDRESS nat, unsigned int n);
 
 	// Symbol functions
-	        const char *SymbolByAddress(ADDRESS uAddr); // Get name of symbol
+	virtual const char *SymbolByAddress(ADDRESS uAddr); // Get name of symbol
 	// Get value of symbol, if any
-	        ADDRESS     GetAddressByName(const char *pName, bool bNoTypeOK = false);
+	virtual ADDRESS     GetAddressByName(const char *pName, bool bNoTypeOK = false);
 	// Get the size associated with the symbol
-	        int         GetSizeByName(const char *pName, bool bNoTypeOK = false);
+	virtual int         GetSizeByName(const char *pName, bool bNoTypeOK = false);
 	// Get the size associated with the symbol; guess if necessary
 	        int         GetDistanceByName(const char *pName);
 	        int         GetDistanceByName(const char *pName, const char *pSectName);
 	// Add an extra symbol
-	        void        AddSymbol(ADDRESS uNative, const char *pName);
+	virtual void        AddSymbol(ADDRESS uNative, const char *pName);
 	        void        dumpSymbols();  // For debugging
 
 	virtual ADDRESS    *GetImportStubs(int &numImports);
@@ -219,7 +219,7 @@ public:
 	virtual ADDRESS     GetMainEntryPoint();
 	virtual ADDRESS     GetEntryPoint();
 
-	        bool        IsDynamicLinkedProc(ADDRESS wNative);
+	virtual bool        IsDynamicLinkedProc(ADDRESS wNative);
 	        ADDRESS     NativeToHostAddress(ADDRESS uNative);
 	// Get a map from ADDRESS to const char*. This map contains the native addresses and symbolic names of global
 	// data items (if any) which are shared with dynamically linked libraries. Example: __iob (basis for stdout).
@@ -249,7 +249,7 @@ private:
 	        bool        ValueByName(const char *pName, SymValue *pVal, bool bNoTypeOK = false);
 	        bool        SearchValueByName(const char *pName, SymValue *pVal);
 	        bool        SearchValueByName(const char *pName, SymValue *pVal, const char *pSectName, const char *pStrName);
-	        bool        PostLoad(void *handle); // Called after archive member loaded
+	virtual bool        PostLoad(void *handle); // Called after archive member loaded
 	// Search the .rel[a].plt section for an entry with symbol table index i.
 	// If found, return the native address of the associated PLT entry.
 	        ADDRESS     findRelPltOffset(int i, ADDRESS addrRelPlt, int sizeRelPlt, int numRelPlt, ADDRESS addrPlt);

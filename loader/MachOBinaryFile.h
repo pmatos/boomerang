@@ -101,7 +101,7 @@ protected:
 	virtual bool        RealLoad(const char *sName); // Load the file; pure virtual
 
 private:
-	        bool        PostLoad(void *handle);  // Called after archive member loaded
+	virtual bool        PostLoad(void *handle);  // Called after archive member loaded
 	        void        findJumps(ADDRESS curr);  // Find names for jumps to IATs
 
 	        struct mach_header *header;      // The Mach-O header
