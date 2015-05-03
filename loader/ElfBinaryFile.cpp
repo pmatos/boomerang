@@ -758,11 +758,6 @@ void ElfBinaryFile::Close()
 	UnLoad();
 }
 
-LOAD_FMT ElfBinaryFile::GetFormat() const
-{
-	return LOADFMT_ELF;
-}
-
 MACHINE ElfBinaryFile::GetMachine() const
 {
 	int machine = elfRead2(&((Elf32_Ehdr *)m_pImage)->e_machine);

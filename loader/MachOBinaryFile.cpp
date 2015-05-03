@@ -569,16 +569,6 @@ const char *MachOBinaryFile::GetDynamicProcName(ADDRESS uNative)
 	return dlprocs[uNative].c_str();
 }
 
-LOAD_FMT MachOBinaryFile::GetFormat() const
-{
-	return LOADFMT_MACHO;
-}
-
-MACHINE MachOBinaryFile::GetMachine() const
-{
-	return machine;
-}
-
 bool MachOBinaryFile::isLibrary() const
 {
 	return false;

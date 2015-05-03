@@ -273,16 +273,6 @@ bool PalmBinaryFile::PostLoad(void *handle)
 	return false;
 }
 
-LOAD_FMT PalmBinaryFile::GetFormat() const
-{
-	return LOADFMT_PALM;
-}
-
-MACHINE PalmBinaryFile::GetMachine() const
-{
-	return MACHINE_PALM;
-}
-
 bool PalmBinaryFile::isLibrary() const
 {
 	return strncmp((char *)(m_pImage + 0x3C), "libr", 4) == 0;

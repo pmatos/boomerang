@@ -83,8 +83,8 @@ public:
 	virtual void        Close();                  // Close file opened with Open()
 	virtual void        UnLoad();                 // Unload the image
 	virtual bool        PostLoad(void *handle);   // For archive files only
-	virtual LOAD_FMT    GetFormat() const;        // Get format i.e. LOADFMT_PALM
-	virtual MACHINE     GetMachine() const;       // Get format i.e. MACHINE_HPRISC
+	virtual LOAD_FMT    GetFormat() const { return LOADFMT_PAR; }
+	virtual MACHINE     GetMachine() const { return MACHINE_HPRISC; }
 	virtual const char *getFilename() const { return m_pFilename; }
 
 	virtual bool        isLibrary() const;

@@ -435,16 +435,6 @@ bool HpSomBinaryFile::PostLoad(void *handle)
 	return false;
 }
 
-LOAD_FMT HpSomBinaryFile::GetFormat() const
-{
-	return LOADFMT_PAR;
-}
-
-MACHINE HpSomBinaryFile::GetMachine() const
-{
-	return MACHINE_HPRISC;
-}
-
 bool HpSomBinaryFile::isLibrary() const
 {
 	int type =  UINT4(m_pImage) & 0xFFFF;

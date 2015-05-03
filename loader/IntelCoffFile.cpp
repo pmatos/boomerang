@@ -317,16 +317,6 @@ void IntelCoffFile::Close()
 	printf("IntelCoffFile::Close called\n");
 }
 
-LOAD_FMT IntelCoffFile::GetFormat() const
-{
-	return LOADFMT_COFF;
-}
-
-MACHINE IntelCoffFile::GetMachine() const
-{
-	return MACHINE_PENTIUM;
-}
-
 bool IntelCoffFile::isLibrary() const
 {
 	printf("IntelCoffFile::isLibrary called\n");

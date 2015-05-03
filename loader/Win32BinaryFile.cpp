@@ -848,16 +848,6 @@ const char *Win32BinaryFile::GetDynamicProcName(ADDRESS uNative)
 	return dlprocptrs[uNative].c_str();
 }
 
-LOAD_FMT Win32BinaryFile::GetFormat() const
-{
-	return LOADFMT_PE;
-}
-
-MACHINE Win32BinaryFile::GetMachine() const
-{
-	return MACHINE_PENTIUM;
-}
-
 bool Win32BinaryFile::isLibrary() const
 {
 	return (m_pPEHeader->Flags & 0x2000) != 0;

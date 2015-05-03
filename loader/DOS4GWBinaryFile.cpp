@@ -513,16 +513,6 @@ const char *DOS4GWBinaryFile::GetDynamicProcName(ADDRESS uNative)
 	return dlprocptrs[uNative].c_str();
 }
 
-LOAD_FMT DOS4GWBinaryFile::GetFormat() const
-{
-	return LOADFMT_LX;
-}
-
-MACHINE DOS4GWBinaryFile::GetMachine() const
-{
-	return MACHINE_PENTIUM;
-}
-
 bool DOS4GWBinaryFile::isLibrary() const
 {
 	return false; // TODO

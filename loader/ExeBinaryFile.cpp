@@ -201,16 +201,6 @@ bool ExeBinaryFile::DisplayDetails(const char *fileName, FILE *f /* = stdout */)
 	return false;
 }
 
-LOAD_FMT ExeBinaryFile::GetFormat() const
-{
-	return LOADFMT_EXE;
-}
-
-MACHINE ExeBinaryFile::GetMachine() const
-{
-	return MACHINE_PENTIUM;
-}
-
 bool ExeBinaryFile::Open(const char *sName)
 {
 	// Not implemented yet
