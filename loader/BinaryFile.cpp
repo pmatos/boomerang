@@ -50,7 +50,7 @@ int BinaryFile::GetNumSections() const
 	return m_iNumSections;
 }
 
-PSectionInfo BinaryFile::GetSectionInfo(int idx) const
+SectionInfo *BinaryFile::GetSectionInfo(int idx) const
 {
 	return m_pSections + idx;
 }
@@ -65,9 +65,9 @@ int BinaryFile::GetSectionIndexByName(const char *sName)
 	return -1;
 }
 
-PSectionInfo BinaryFile::GetSectionInfoByAddr(ADDRESS uEntry) const
+SectionInfo *BinaryFile::GetSectionInfoByAddr(ADDRESS uEntry) const
 {
-	PSectionInfo pSect;
+	SectionInfo *pSect;
 	for (int i = 0; i < m_iNumSections; i++) {
 		pSect = &m_pSections[i];
 		if ((uEntry >= pSect->uNativeAddr)
@@ -80,7 +80,7 @@ PSectionInfo BinaryFile::GetSectionInfoByAddr(ADDRESS uEntry) const
 	return NULL;
 }
 
-PSectionInfo BinaryFile::GetSectionInfoByName(const char *sName)
+SectionInfo *BinaryFile::GetSectionInfoByName(const char *sName)
 {
 	int i = GetSectionIndexByName(sName);
 	if (i == -1) return 0;

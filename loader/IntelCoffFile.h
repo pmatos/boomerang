@@ -68,7 +68,7 @@ private:
 	std::list<ADDRESS> m_Relocations;
 	struct coff_header m_Header;
 
-	PSectionInfo AddSection(SectionInfo *);
+	SectionInfo *AddSection(SectionInfo *);
 	unsigned char *getAddrPtr(ADDRESS a, ADDRESS range);
 	int readNative(ADDRESS a, unsigned short n);
 

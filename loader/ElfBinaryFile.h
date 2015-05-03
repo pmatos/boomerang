@@ -245,7 +245,7 @@ private:
 	        int         ProcessElfFile();       // Does most of the work
 	        void        AddSyms(int secIndex);
 	        void        AddRelocsAsSyms(int secIndex);
-	        void        SetRelocInfo(PSectionInfo pSect);
+	        void        SetRelocInfo(SectionInfo *pSect);
 	        bool        ValueByName(const char *pName, SymValue *pVal, bool bNoTypeOK = false);
 	        bool        SearchValueByName(const char *pName, SymValue *pVal);
 	        bool        SearchValueByName(const char *pName, SymValue *pVal, const char *pSectName, const char *pStrName);

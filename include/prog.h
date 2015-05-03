@@ -235,7 +235,7 @@ virtual				~Prog();
 						{ return pBF->GetMachine();}	// e.g. MACHINE_SPARC
 		const char*	symbolByAddress(ADDRESS dest) // Get a symbol from an address
 						{ return pBF->SymbolByAddress(dest);}
-		PSectionInfo getSectionInfoByAddr(ADDRESS a)
+		SectionInfo *getSectionInfoByAddr(ADDRESS a)
 						{ return pBF->GetSectionInfoByAddr(a);}
 		ADDRESS		getLimitTextLow() {return pBF->getLimitTextLow();}
 		ADDRESS		getLimitTextHigh() {return pBF->getLimitTextHigh();}

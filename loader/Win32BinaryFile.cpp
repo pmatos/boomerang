@@ -626,7 +626,7 @@ int Win32BinaryFile::win32Read4(int *pi) const
 // Read 2 bytes from given native address
 int Win32BinaryFile::readNative1(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0)
 		return -1;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
@@ -636,7 +636,7 @@ int Win32BinaryFile::readNative1(ADDRESS nat)
 // Read 2 bytes from given native address
 int Win32BinaryFile::readNative2(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0) return 0;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
 	int n = win32Read2((short *)host);
@@ -646,7 +646,7 @@ int Win32BinaryFile::readNative2(ADDRESS nat)
 // Read 4 bytes from given native address
 int Win32BinaryFile::readNative4(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0) return 0;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
 	int n = win32Read4((int *)host);
@@ -714,7 +714,7 @@ bool Win32BinaryFile::IsStaticLinkedLibProc(ADDRESS uNative)
 bool Win32BinaryFile::IsMinGWsAllocStack(ADDRESS uNative)
 {
 	if (mingw_main) {
-		PSectionInfo si = GetSectionInfoByAddr(uNative);
+		SectionInfo *si = GetSectionInfoByAddr(uNative);
 		if (si) {
 			ADDRESS host = si->uHostAddr - si->uNativeAddr + uNative;
 			unsigned char pat[] = {
@@ -736,7 +736,7 @@ bool Win32BinaryFile::IsMinGWsAllocStack(ADDRESS uNative)
 bool Win32BinaryFile::IsMinGWsFrameInit(ADDRESS uNative)
 {
 	if (mingw_main) {
-		PSectionInfo si = GetSectionInfoByAddr(uNative);
+		SectionInfo *si = GetSectionInfoByAddr(uNative);
 		if (si) {
 			ADDRESS host = si->uHostAddr - si->uNativeAddr + uNative;
 			unsigned char pat1[] = {
@@ -764,7 +764,7 @@ bool Win32BinaryFile::IsMinGWsFrameInit(ADDRESS uNative)
 bool Win32BinaryFile::IsMinGWsFrameEnd(ADDRESS uNative)
 {
 	if (mingw_main) {
-		PSectionInfo si = GetSectionInfoByAddr(uNative);
+		SectionInfo *si = GetSectionInfoByAddr(uNative);
 		if (si) {
 			ADDRESS host = si->uHostAddr - si->uNativeAddr + uNative;
 			unsigned char pat1[] = {
@@ -788,7 +788,7 @@ bool Win32BinaryFile::IsMinGWsFrameEnd(ADDRESS uNative)
 bool Win32BinaryFile::IsMinGWsCleanupSetup(ADDRESS uNative)
 {
 	if (mingw_main) {
-		PSectionInfo si = GetSectionInfoByAddr(uNative);
+		SectionInfo *si = GetSectionInfoByAddr(uNative);
 		if (si) {
 			ADDRESS host = si->uHostAddr - si->uNativeAddr + uNative;
 			unsigned char pat1[] = {
@@ -816,7 +816,7 @@ bool Win32BinaryFile::IsMinGWsCleanupSetup(ADDRESS uNative)
 bool Win32BinaryFile::IsMinGWsMalloc(ADDRESS uNative)
 {
 	if (mingw_main) {
-		PSectionInfo si = GetSectionInfoByAddr(uNative);
+		SectionInfo *si = GetSectionInfoByAddr(uNative);
 		if (si) {
 			ADDRESS host = si->uHostAddr - si->uNativeAddr + uNative;
 			unsigned char pat1[] = {

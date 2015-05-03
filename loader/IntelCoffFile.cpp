@@ -58,10 +58,10 @@ struct PACKED struct_coff_rel {
 };
 
 
-PSectionInfo IntelCoffFile::AddSection(PSectionInfo psi)
+SectionInfo *IntelCoffFile::AddSection(SectionInfo *psi)
 {
 	int idxSect = m_iNumSections++;
-	PSectionInfo ps = new SectionInfo[m_iNumSections];
+	SectionInfo *ps = new SectionInfo[m_iNumSections];
 	for (int i = 0; i < idxSect; i++)
 		ps[i] = m_pSections[i];
 	ps[idxSect] = *psi;
@@ -125,7 +125,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 		strncpy(sectname, psh[iSection].sch_sectname, sizeof psh->sch_sectname);
 		sectname[sizeof psh->sch_sectname] = '\0';
 
-		PSectionInfo psi = NULL;
+		SectionInfo *psi = NULL;
 		int sidx = GetSectionIndexByName(sectname);
 		if (-1 == sidx) {
 			SectionInfo si;
@@ -150,7 +150,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 
 	ADDRESS a = 0x40000000;
 	for (int sidx = 0; sidx < m_iNumSections; sidx++) {
-		PSectionInfo psi = GetSectionInfo(sidx);
+		SectionInfo *psi = GetSectionInfo(sidx);
 		if (psi->uSectionSize > 0) {
 			void *pData = malloc(psi->uSectionSize);
 			if (!pData)
@@ -165,7 +165,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 	for (int iSection = 0; iSection < m_Header.coff_sections; iSection++) {
 		printf("Loading section %d of %hd\n", iSection + 1, m_Header.coff_sections);
 
-		PSectionInfo psi = GetSectionInfo(psh[iSection].sch_physaddr);
+		SectionInfo *psi = GetSectionInfo(psh[iSection].sch_physaddr);
 
 		if ((off_t)psh[iSection].sch_sectptr != lseek(m_fd, (off_t)psh[iSection].sch_sectptr, SEEK_SET))
 			return false;
@@ -208,12 +208,12 @@ bool IntelCoffFile::RealLoad(const char *sName)
 
 		if (!(pSymbols[iSym].csym_loadclass & 0x60) && (pSymbols[iSym].csym_sectnum <= m_Header.coff_sections)) {
 			if (pSymbols[iSym].csym_sectnum > 0) {
-				PSectionInfo psi = GetSectionInfo(psh[pSymbols[iSym].csym_sectnum - 1].sch_physaddr);
+				SectionInfo *psi = GetSectionInfo(psh[pSymbols[iSym].csym_sectnum - 1].sch_physaddr);
 				pSymbols[iSym].csym_value += psh[pSymbols[iSym].csym_sectnum - 1].sch_virtaddr + psi->uNativeAddr;
 				if (strcmp(name, ".strip."))
 					m_Symbols.Add(pSymbols[iSym].csym_value, name);
 				if (pSymbols[iSym].csym_type & 0x20 && psi->bCode) {
-					PSectionInfo si = new SectionInfo();
+					SectionInfo *si = new SectionInfo();
 					*si = *psi;
 					si->uNativeAddr = pSymbols[iSym].csym_value;
 					si->uHostAddr = psi->uHostAddr + psh[pSymbols[iSym].csym_sectnum - 1].sch_virtaddr;
@@ -243,7 +243,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 
 	for (int iSection = 0; iSection < m_Header.coff_sections; iSection++) {
 		//printf("Relocating section %d of %hd\n", iSection + 1, m_Header.coff_sections);
-		PSectionInfo psi = GetSectionInfo(psh[iSection].sch_physaddr);
+		SectionInfo *psi = GetSectionInfo(psh[iSection].sch_physaddr);
 		char *pData = (char *)psi->uHostAddr + psh[iSection].sch_virtaddr;
 
 		if (!psh[iSection].sch_nreloc) continue;
@@ -417,7 +417,7 @@ std::map<ADDRESS, std::string> &IntelCoffFile::getSymbols()
 unsigned char *IntelCoffFile::getAddrPtr(ADDRESS a, ADDRESS range)
 {
 	for (int iSection = 0; iSection < m_iNumSections; iSection++) {
-		PSectionInfo psi = GetSectionInfo(iSection);
+		SectionInfo *psi = GetSectionInfo(iSection);
 		if (a >= psi->uNativeAddr && (a + range) < (psi->uNativeAddr + psi->uSectionSize)) {
 			return (unsigned char *)(psi->uHostAddr + (a - psi->uNativeAddr));
 		}
@@ -444,7 +444,7 @@ int IntelCoffFile::readNative4(ADDRESS a)
 	return readNative(a, 4);
 #if 0
 	for (int iSection = 0; iSection < m_iNumSections; iSection++) {
-		PSectionInfo psi = GetSectionInfo(iSection);
+		SectionInfo *psi = GetSectionInfo(iSection);
 		if (a >= psi->uNativeAddr && (a + 3) < (psi->uNativeAddr + psi->uSectionSize)) {
 			unsigned long tmp;
 			unsigned char *buf = (unsigned char *)(psi->uHostAddr + (a - psi->uNativeAddr));

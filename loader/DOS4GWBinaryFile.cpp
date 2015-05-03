@@ -433,7 +433,7 @@ int DOS4GWBinaryFile::dos4gwRead4(int *pi) const
 // Read 2 bytes from given native address
 int DOS4GWBinaryFile::readNative1(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0)
 		si = GetSectionInfo(0);
 	char *host = (char *)(si->uHostAddr - si->uNativeAddr + nat);
@@ -443,7 +443,7 @@ int DOS4GWBinaryFile::readNative1(ADDRESS nat)
 // Read 2 bytes from given native address
 int DOS4GWBinaryFile::readNative2(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0) return 0;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
 	int n = dos4gwRead2((short *)host);
@@ -453,7 +453,7 @@ int DOS4GWBinaryFile::readNative2(ADDRESS nat)
 // Read 4 bytes from given native address
 int DOS4GWBinaryFile::readNative4(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0) return 0;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
 	int n = dos4gwRead4((int *)host);

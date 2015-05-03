@@ -495,7 +495,7 @@ unsigned short MachOBinaryFile::BMMHW(unsigned short x)
 // Read 2 bytes from given native address
 int MachOBinaryFile::readNative1(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0)
 		si = GetSectionInfo(0);
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
@@ -505,7 +505,7 @@ int MachOBinaryFile::readNative1(ADDRESS nat)
 // Read 2 bytes from given native address
 int MachOBinaryFile::readNative2(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0) return 0;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
 	int n = machORead2((short *)host);
@@ -515,7 +515,7 @@ int MachOBinaryFile::readNative2(ADDRESS nat)
 // Read 4 bytes from given native address
 int MachOBinaryFile::readNative4(ADDRESS nat)
 {
-	PSectionInfo si = GetSectionInfoByAddr(nat);
+	SectionInfo *si = GetSectionInfoByAddr(nat);
 	if (si == 0) return 0;
 	ADDRESS host = si->uHostAddr - si->uNativeAddr + nat;
 	int n = machORead4((int *)host);

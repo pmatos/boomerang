@@ -101,8 +101,6 @@ struct SectionInfo {
 	unsigned    bReadOnly : 1;      // Set if this is a read only section
 };
 
-typedef SectionInfo *PSectionInfo;
-
 // Objective-C stuff
 class ObjcIvar {
 public:
@@ -209,14 +207,14 @@ public:
 
 	// Section functions
 	        int         GetNumSections() const;  // Return number of sections
-	        PSectionInfo GetSectionInfo(int idx) const;  // Return section struct
+	        SectionInfo *GetSectionInfo(int idx) const;  // Return section struct
 	        // Find section info given name, or 0 if not found
-	        PSectionInfo GetSectionInfoByName(const char *sName);
+	        SectionInfo *GetSectionInfoByName(const char *sName);
 	        // Find the end of a section, given an address in the section
-	        PSectionInfo GetSectionInfoByAddr(ADDRESS uEntry) const;
+	        SectionInfo *GetSectionInfoByAddr(ADDRESS uEntry) const;
 
 	// returns true if the given address is in a read only section
-	        bool        isReadOnly(ADDRESS uEntry) { PSectionInfo p = GetSectionInfoByAddr(uEntry); return p && p->bReadOnly; }
+	        bool        isReadOnly(ADDRESS uEntry) { SectionInfo *p = GetSectionInfoByAddr(uEntry); return p && p->bReadOnly; }
 	virtual int         readNative1(ADDRESS a) { return 0; }
 	// Read 2 bytes from given native address a; considers endianness
 	virtual int         readNative2(ADDRESS a) { return 0; }
@@ -319,7 +317,7 @@ protected:
 	// Data
 	        bool        m_bArchive;      // True if archive member
 	        int         m_iNumSections;  // Number of sections
-	        PSectionInfo m_pSections;    // The section info
+	        SectionInfo *m_pSections;    // The section info
 	        ADDRESS     m_uInitPC;       // Initial program counter
 	        ADDRESS     m_uInitSP;       // Initial stack pointer
 

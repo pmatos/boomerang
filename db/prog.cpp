@@ -167,7 +167,7 @@ void Prog::generateCode(Cluster *cluster, UserProc *proc, bool intermixRTL) {
 				for (int j = 0; sections[j]; j++) {
 					std::string str = ".";
 					str += sections[j];
-					PSectionInfo info = pBF->GetSectionInfoByName(str.c_str());
+					SectionInfo *info = pBF->GetSectionInfoByName(str.c_str());
 					str = "start_";
 					str	+= sections[j];
 					code->AddGlobal(str.c_str(), new IntegerType(32, -1), new Const(info ? info->uNativeAddr : (unsigned int)-1));
@@ -1437,7 +1437,7 @@ Global::~Global() {
 
 Exp* Global::getInitialValue(Prog* prog) {
 	Exp* e = NULL;
-	PSectionInfo si = prog->getSectionInfoByAddr(uaddr);
+	SectionInfo *si = prog->getSectionInfoByAddr(uaddr);
 	if (si && si->isAddressBss(uaddr))
 		// This global is in the BSS, so it can't be initialised
 		return NULL;
@@ -1456,7 +1456,7 @@ void Global::print(std::ostream& os, Prog* prog) {
 Exp *Prog::readNativeAs(ADDRESS uaddr, Type *type)
 {
 	Exp *e = NULL;
-	PSectionInfo si = getSectionInfoByAddr(uaddr);
+	SectionInfo *si = getSectionInfoByAddr(uaddr);
 	if (si == NULL)
 		return NULL;
 	if (type->resolvesToPointer()) {
