@@ -11,11 +11,11 @@
 
 /* File: BinaryFile.cpp
  * Desc: This file contains the implementation of the class BinaryFile
- * 
+ *
  * This file implements the abstract BinaryFile class.
  * All classes derived from this class must implement the Load()
  *function.
-*/
+ */
 
 /*==============================================================================
  * Dependencies.
@@ -30,9 +30,9 @@
 
 BinaryFile::BinaryFile(bool bArch /*= false*/)
 {
-	m_bArchive = bArch;			// Remember whether an archive member
-	m_iNumSections = 0;			// No sections yet
-	m_pSections = 0;			// No section data yet
+	m_bArchive = bArch;  // Remember whether an archive member
+	m_iNumSections = 0;  // No sections yet
+	m_pSections = 0;     // No section data yet
 }
 
 // This struct used to be initialised with a memset, but now that overwrites the virtual table (if compiled under gcc
@@ -55,12 +55,10 @@ PSectionInfo BinaryFile::GetSectionInfo(int idx) const
 	return m_pSections + idx;
 }
 
-int BinaryFile::GetSectionIndexByName(const char* sName)
+int BinaryFile::GetSectionIndexByName(const char *sName)
 {
-	for (int i=0; i < m_iNumSections; i++)
-	{
-		if (strcmp(m_pSections[i].pSectionName, sName) == 0)
-		{
+	for (int i = 0; i < m_iNumSections; i++) {
+		if (strcmp(m_pSections[i].pSectionName, sName) == 0) {
 			return i;
 		}
 	}
@@ -70,12 +68,10 @@ int BinaryFile::GetSectionIndexByName(const char* sName)
 PSectionInfo BinaryFile::GetSectionInfoByAddr(ADDRESS uEntry) const
 {
 	PSectionInfo pSect;
-	for (int i=0; i < m_iNumSections; i++)
-	{
+	for (int i = 0; i < m_iNumSections; i++) {
 		pSect = &m_pSections[i];
-		if ((uEntry >= pSect->uNativeAddr) &&
-			(uEntry < pSect->uNativeAddr + pSect->uSectionSize))
-		{
+		if ((uEntry >= pSect->uNativeAddr)
+		 && (uEntry <  pSect->uNativeAddr + pSect->uSectionSize)) {
 			// We have the right section
 			return pSect;
 		}
@@ -84,7 +80,7 @@ PSectionInfo BinaryFile::GetSectionInfoByAddr(ADDRESS uEntry) const
 	return NULL;
 }
 
-PSectionInfo BinaryFile::GetSectionInfoByName(const char* sName)
+PSectionInfo BinaryFile::GetSectionInfoByName(const char *sName)
 {
 	int i = GetSectionIndexByName(sName);
 	if (i == -1) return 0;
@@ -92,28 +88,33 @@ PSectionInfo BinaryFile::GetSectionInfoByName(const char* sName)
 }
 
 
-	///////////////////////
-	// Trivial functions //
-	// Overridden if reqd//
-	///////////////////////
+///////////////////////
+// Trivial functions //
+// Overridden if reqd//
+///////////////////////
 
-const char* BinaryFile::SymbolByAddress(ADDRESS uNative) {
-	return 0;		// Overridden by subclasses that support syms
+const char *BinaryFile::SymbolByAddress(ADDRESS uNative)
+{
+	return 0;  // Overridden by subclasses that support syms
 }
 
-ADDRESS BinaryFile::GetAddressByName(const char* pName, bool bNoTypeOK) {
+ADDRESS BinaryFile::GetAddressByName(const char *pName, bool bNoTypeOK)
+{
 	return 0;
 }
 
-int BinaryFile::GetSizeByName(const char* pName, bool bNoTypeOK) {
+int BinaryFile::GetSizeByName(const char *pName, bool bNoTypeOK)
+{
 	return 0;
 }
 
-bool BinaryFile::IsDynamicLinkedProc(ADDRESS uNative) {
+bool BinaryFile::IsDynamicLinkedProc(ADDRESS uNative)
+{
 	return false;
 }
 
-bool BinaryFile::IsStaticLinkedLibProc(ADDRESS uNative) {
+bool BinaryFile::IsStaticLinkedLibProc(ADDRESS uNative)
+{
 	return false;
 }
 
@@ -132,19 +133,19 @@ const char *BinaryFile::GetDynamicProcName(ADDRESS uNative)
 	return "dynamic";
 }
 
-bool BinaryFile::DisplayDetails(const char* fileName, FILE* f /* = stdout */)
+bool BinaryFile::DisplayDetails(const char *fileName, FILE *f /* = stdout */)
 {
-	return false;			// Should always be overridden
-							// Should display file header, program 
-							// headers and section headers, as well 
-							// as contents of each of the sections. 
+	return false;  // Should always be overridden
+	               // Should display file header, program
+	               // headers and section headers, as well
+	               // as contents of each of the sections.
 }
 
 // Specific to BinaryFile objects that implement a "global pointer"
 // Gets a pair of unsigned integers representing the address of %agp, and
 // a machine specific value (GLOBALOFFSET)
 // This is a stub routine that should be overridden if required
-std::pair<unsigned,unsigned> BinaryFile::GetGlobalPointerInfo()
+std::pair<unsigned, unsigned> BinaryFile::GetGlobalPointerInfo()
 {
 	return std::pair<unsigned, unsigned>(0, 0);
 }
@@ -152,13 +153,13 @@ std::pair<unsigned,unsigned> BinaryFile::GetGlobalPointerInfo()
 // Get a pointer to a new map of dynamic global data items.
 // If the derived class doesn't implement this function, return an empty map
 // Caller should delete the returned map
-std::map<ADDRESS, const char*>* BinaryFile::GetDynamicGlobalMap()
+std::map<ADDRESS, const char *> *BinaryFile::GetDynamicGlobalMap()
 {
-	return new std::map<ADDRESS, const char*>;
+	return new std::map<ADDRESS, const char *>;
 }
 
 // Get an array of exported function stub addresses. Normally overridden.
-ADDRESS* BinaryFile::GetImportStubs(int& numExports)
+ADDRESS *BinaryFile::GetImportStubs(int &numExports)
 {
 	numExports = 0;
 	return NULL;
@@ -170,8 +171,8 @@ void BinaryFile::getTextLimits()
 	limitTextLow = 0xFFFFFFFF;
 	limitTextHigh = 0;
 	textDelta = 0;
-	for (int i=0; i < n; i++) {
-		SectionInfo* pSect = GetSectionInfo(i);
+	for (int i = 0; i < n; i++) {
+		SectionInfo *pSect = GetSectionInfo(i);
 		if (pSect->bCode) {
 			// The .plt section is an anomaly. It's code, but we never want to
 			// decode it, and in Sparc ELF files, it's actually in the data
@@ -187,9 +188,10 @@ void BinaryFile::getTextLimits()
 			if (textDelta == 0)
 				textDelta = pSect->uHostAddr - pSect->uNativeAddr;
 			else {
-				if (textDelta != (int) (pSect->uHostAddr - pSect->uNativeAddr))
-					std::cerr << "warning: textDelta different for section " << pSect->pSectionName <<
-						" (ignoring).\n";
+				if (textDelta != (int)(pSect->uHostAddr - pSect->uNativeAddr))
+					std::cerr << "warning: textDelta different for section "
+					          << pSect->pSectionName
+					          << " (ignoring).\n";
 			}
 		}
 	}

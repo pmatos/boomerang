@@ -46,34 +46,34 @@ static const char *detect_libname(FILE *f)
 	unsigned char buf[64];
 
 	fread(buf, sizeof buf, 1, f);
-	if (TESTMAGIC4(buf, 0, '\177','E','L','F')) {
+	if (TESTMAGIC4(buf, 0, '\177', 'E', 'L', 'F')) {
 		/* ELF Binary */
 		return ELFBINFILE;
-	} else if (TESTMAGIC2(buf, 0, 'M','Z')) {
+	} else if (TESTMAGIC2(buf, 0, 'M', 'Z')) {
 		/* DOS-based file */
 		int peoff = LMMH(buf[0x3c]);
 		if (peoff != 0 && fseek(f, peoff, SEEK_SET) != -1) {
 			fread(buf, 4, 1, f);
-			if (TESTMAGIC4(buf, 0, 'P','E',0,0)) {
+			if (TESTMAGIC4(buf, 0, 'P', 'E', 0, 0)) {
 				/* Win32 Binary */
 				return WIN32BINFILE;
-			} else if (TESTMAGIC2(buf, 0, 'N','E')) {
+			} else if (TESTMAGIC2(buf, 0, 'N', 'E')) {
 				/* Win16 / Old OS/2 Binary */
-			} else if (TESTMAGIC2(buf, 0, 'L','E')) {
+			} else if (TESTMAGIC2(buf, 0, 'L', 'E')) {
 				/* Win32 VxD (Linear Executable) or DOS4GW app */
 				return DOS4GWBINFILE;
-			} else if (TESTMAGIC2(buf, 0, 'L','X')) {
+			} else if (TESTMAGIC2(buf, 0, 'L', 'X')) {
 				/* New OS/2 Binary */
 			}
 		}
 		/* Assume MS-DOS Real-mode binary. */
 		return EXEBINFILE;
-	} else if (TESTMAGIC4(buf, 0x3c, 'a','p','p','l')
-	        || TESTMAGIC4(buf, 0x3c, 'p','a','n','l')) {
+	} else if (TESTMAGIC4(buf, 0x3c, 'a', 'p', 'p', 'l')
+	        || TESTMAGIC4(buf, 0x3c, 'p', 'a', 'n', 'l')) {
 		/* PRC Palm-pilot binary */
 		return PALMBINFILE;
-	} else if (TESTMAGIC4(buf, 0, 0xfe,0xed,0xfa,0xce)
-	        || TESTMAGIC4(buf, 0, 0xce,0xfa,0xed,0xfe)) {
+	} else if (TESTMAGIC4(buf, 0, 0xfe, 0xed, 0xfa, 0xce)
+	        || TESTMAGIC4(buf, 0, 0xce, 0xfa, 0xed, 0xfe)) {
 		/* Mach-O Mac OS-X binary */
 		return MACHOBINFILE;
 	} else if (buf[0] == 0x02
@@ -82,7 +82,7 @@ static const char *detect_libname(FILE *f)
 	        && (buf[3] == 0x07 || buf[3] == 0x08 || buf[4] == 0x0b)) {
 		/* HP Som binary (last as it's not really particularly good magic) */
 		return HPSOMBINFILE;
-	} else if (TESTMAGIC2(buf, 0, 0x4c,0x01)) {
+	} else if (TESTMAGIC2(buf, 0, 0x4c, 0x01)) {
 		return INTELCOFFFILE;
 	}
 	return NULL;

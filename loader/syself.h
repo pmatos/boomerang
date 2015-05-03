@@ -25,7 +25,7 @@
 #include <elf.h>
 #endif
 #ifdef HAVE_LIBELF_LIBELF_H
-#include <libelf/libelf.h> 
+#include <libelf/libelf.h>
 #endif
 #ifdef HAVE_LIBELF_H
 #include <libelf.h>

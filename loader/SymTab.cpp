@@ -10,23 +10,27 @@
 /*==============================================================================
  * FILE:        SymTab.cpp
  * OVERVIEW:    This file contains the implementation of the class SymTab, a simple class to maintain a pair of maps
- *				so that symbols can be accessed by symbol or by name
+ *              so that symbols can be accessed by symbol or by name
  *============================================================================*/
 
 #include "SymTab.h"
 
-SymTab::SymTab() {
+SymTab::SymTab()
+{
 }
 
-SymTab::~SymTab() {
+SymTab::~SymTab()
+{
 }
 
-void SymTab::Add(ADDRESS a, char* s) {
+void SymTab::Add(ADDRESS a, char *s)
+{
 	amap[a] = s;
 	smap[s] = a;
 }
 
-const char* SymTab::find(ADDRESS a) {
+const char *SymTab::find(ADDRESS a)
+{
 	std::map<ADDRESS, std::string>::iterator ff;
 	ff = amap.find(a);
 	if (ff == amap.end())
@@ -34,11 +38,11 @@ const char* SymTab::find(ADDRESS a) {
 	return ff->second.c_str();
 }
 
-ADDRESS SymTab::find(const char* s) {
+ADDRESS SymTab::find(const char *s)
+{
 	std::map<std::string, ADDRESS>::iterator ff;
 	ff = smap.find(s);
 	if (ff == smap.end())
 		return NO_ADDRESS;
 	return ff->second;
 }
-
