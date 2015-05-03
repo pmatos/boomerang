@@ -35,7 +35,7 @@ public:
 
 	virtual LOAD_FMT    GetFormat() const;
 	virtual MACHINE     GetMachine() const;
-	virtual const char *getFilename() const;
+	virtual const char *getFilename() const { return m_pFilename; }
 
 	virtual bool        isLibrary() const;
 	virtual std::list<const char *> getDependencyList();

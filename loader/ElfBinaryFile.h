@@ -154,7 +154,7 @@ public:
 	virtual void        UnLoad();                 // Unload the image
 	virtual LOAD_FMT    GetFormat() const;        // Get format (e.g. LOADFMT_ELF)
 	virtual MACHINE     GetMachine() const;       // Get machine (e.g. MACHINE_SPARC)
-	virtual const char *getFilename() const { return m_pFileName; }
+	virtual const char *getFilename() const { return m_pFilename; }
 
 	virtual bool        isLibrary() const;
 	virtual std::list<const char *> getDependencyList();
@@ -236,7 +236,7 @@ public:
 	// sections that will be idx's sh_link and sh_info respectively
 	        void        SetLinkAndInfo(int idx, int link, int info);
 
-	        const char *m_pFileName;  // Pointer to input file name
+	        const char *m_pFilename;  // Pointer to input file name
 protected:
 	virtual bool        RealLoad(const char *sName);  // Load the file; pure virtual
 

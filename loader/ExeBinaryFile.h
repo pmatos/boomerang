@@ -76,7 +76,7 @@ public:
 	virtual bool        PostLoad(void *handle);   // For archive files only
 	virtual LOAD_FMT    GetFormat() const;        // Get format (i.e. LOADFMT_EXE)
 	virtual MACHINE     GetMachine() const;       // Get machine (i.e. MACHINE_PENTIUM)
-	virtual const char *getFilename() const { return m_pFileName; }
+	virtual const char *getFilename() const { return m_pFilename; }
 
 	virtual bool        isLibrary() const;
 	virtual std::list<const char *> getDependencyList();
@@ -107,7 +107,7 @@ private:
 	        int         m_cbImage;      // Size of image
 	        int         m_cReloc;       // Number of relocation entries
 	        DWord      *m_pRelocTable;  // The relocation table
-	        const char *m_pFileName;
+	        const char *m_pFilename;
 };
 
 #endif

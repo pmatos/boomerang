@@ -35,7 +35,7 @@ extern "C" {
 	int microX86Dis(void *p);  // From microX86dis.c
 }
 
-DOS4GWBinaryFile::DOS4GWBinaryFile() : m_pFileName(0)
+DOS4GWBinaryFile::DOS4GWBinaryFile() : m_pFilename(NULL)
 {
 }
 
@@ -145,7 +145,7 @@ ADDRESS DOS4GWBinaryFile::GetMainEntryPoint()
 
 bool DOS4GWBinaryFile::RealLoad(const char *sName)
 {
-	m_pFileName = sName;
+	m_pFilename = sName;
 	FILE *fp = fopen(sName, "rb");
 
 	DWord lxoffLE, lxoff;

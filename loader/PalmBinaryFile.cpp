@@ -47,7 +47,7 @@ bool PalmBinaryFile::RealLoad(const char *sName)
 	FILE *fp;
 	char buf[32];
 
-	m_pFileName = sName;
+	m_pFilename = sName;
 
 	if ((fp = fopen(sName, "rb")) == NULL) {
 		fprintf(stderr, "Could not open binary file %s\n", sName);

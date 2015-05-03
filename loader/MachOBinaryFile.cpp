@@ -42,7 +42,7 @@
 //#define DEBUG_MACHO_LOADER
 //#define DEBUG_MACHO_LOADER_OBJC
 
-MachOBinaryFile::MachOBinaryFile() : m_pFileName(0)
+MachOBinaryFile::MachOBinaryFile() : m_pFilename(NULL)
 {
 	machine = MACHINE_PPC;
 	swap_bytes = false;
@@ -95,7 +95,7 @@ ADDRESS MachOBinaryFile::GetMainEntryPoint()
 
 bool MachOBinaryFile::RealLoad(const char *sName)
 {
-	m_pFileName = sName;
+	m_pFilename = sName;
 	FILE *fp = fopen(sName, "rb");
 
 	header = new struct mach_header;

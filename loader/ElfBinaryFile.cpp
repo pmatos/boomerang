@@ -36,7 +36,7 @@ ElfBinaryFile::ElfBinaryFile(bool bArchive /* = false */)
 	: BinaryFile(bArchive), next_extern(0)
 {
 	m_fd = 0;
-	m_pFileName = 0;
+	m_pFilename = NULL;
 	Init();  // Initialise all the common stuff
 }
 
@@ -96,7 +96,7 @@ bool ElfBinaryFile::RealLoad(const char *sName)
 		return false;
 	}
 
-	m_pFileName = sName;
+	m_pFilename = sName;
 	m_fd = fopen(sName, "rb");
 	if (m_fd == NULL) return 0;
 

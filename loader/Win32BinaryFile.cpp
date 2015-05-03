@@ -97,7 +97,7 @@ typedef char ct_failure[sizeof(SectionInfo) == sizeof(PESectionInfo)];
 }
 
 
-Win32BinaryFile::Win32BinaryFile() : m_pFileName(0), mingw_main(false)
+Win32BinaryFile::Win32BinaryFile() : m_pFilename(NULL), mingw_main(false)
 {
 }
 
@@ -391,7 +391,7 @@ ADDRESS Win32BinaryFile::GetMainEntryPoint()
 
 bool Win32BinaryFile::RealLoad(const char *sName)
 {
-	m_pFileName = sName;
+	m_pFilename = sName;
 	FILE *fp = fopen(sName, "rb");
 
 	DWord peoffLE, peoff;

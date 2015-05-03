@@ -29,7 +29,7 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 	Byte buf[4];
 	int fCOM;
 
-	m_pFileName = sName;
+	m_pFilename = sName;
 
 	// Always just 3 sections
 	m_pSections = new SectionInfo[3];

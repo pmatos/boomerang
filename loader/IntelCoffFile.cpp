@@ -327,11 +327,6 @@ MACHINE IntelCoffFile::GetMachine() const
 	return MACHINE_PENTIUM;
 }
 
-const char *IntelCoffFile::getFilename() const
-{
-	return m_pFilename;
-}
-
 bool IntelCoffFile::isLibrary() const
 {
 	printf("IntelCoffFile::isLibrary called\n");

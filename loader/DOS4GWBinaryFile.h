@@ -122,7 +122,7 @@ public:
 	virtual void        UnLoad();                 // Unload the image
 	virtual LOAD_FMT    GetFormat() const;        // Get format (i.e. LOADFMT_DOS4GW)
 	virtual MACHINE     GetMachine() const;       // Get machine (i.e. MACHINE_Pentium)
-	virtual const char *getFilename() const { return m_pFileName; }
+	virtual const char *getFilename() const { return m_pFilename; }
 
 	virtual bool        isLibrary() const;
 	virtual std::list<const char *> getDependencyList();
@@ -180,7 +180,7 @@ private:
 	        char       *base;           // Beginning of the loaded image
 	// Map from address of dynamic pointers to library procedure names:
 	        std::map<ADDRESS, std::string> dlprocptrs;
-	        const char *m_pFileName;
+	        const char *m_pFilename;
 };
 
 #endif

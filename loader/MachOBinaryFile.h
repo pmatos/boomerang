@@ -45,7 +45,7 @@ public:
 	virtual void        UnLoad();                 // Unload the image
 	virtual LOAD_FMT    GetFormat() const;        // Get format (i.e. LOADFMT_MACHO)
 	virtual MACHINE     GetMachine() const;       // Get machine (i.e. MACHINE_PPC)
-	virtual const char *getFilename() const { return m_pFileName; }
+	virtual const char *getFilename() const { return m_pFilename; }
 
 	virtual bool        isLibrary() const;
 	virtual std::list<const char *> getDependencyList();
@@ -106,7 +106,7 @@ private:
 
 	        struct mach_header *header;      // The Mach-O header
 	        char       *base;                // Beginning of the loaded image
-	        const char *m_pFileName;
+	        const char *m_pFilename;
 	        ADDRESS     entrypoint, loaded_addr;
 	        unsigned    loaded_size;
 	        MACHINE     machine;
