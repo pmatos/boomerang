@@ -213,7 +213,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 #define AUXHDR(idx) (UINT4(m_pImage + (int)(auxHeaders + idx)))
 
 	// Section 0: header
-	m_pSections[0].pSectionName = const_cast<char *>("$HEADER$");
+	m_pSections[0].pSectionName = "$HEADER$";
 	m_pSections[0].uNativeAddr = 0;         // Not applicable
 	m_pSections[0].uHostAddr = (ADDRESS)m_pImage;
 	//m_pSections[0].uSectionSize = AUXHDR(4);
@@ -228,7 +228,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 	m_pSections[0].bReadOnly = 0;
 
 	// Section 1: text (code)
-	m_pSections[1].pSectionName = const_cast<char *>("$TEXT$");
+	m_pSections[1].pSectionName = "$TEXT$";
 	m_pSections[1].uNativeAddr = AUXHDR(3);
 	m_pSections[1].uHostAddr = (ADDRESS)m_pImage + AUXHDR(4);
 	m_pSections[1].uSectionSize = AUXHDR(2);
@@ -239,7 +239,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 	m_pSections[1].bReadOnly = 1;
 
 	// Section 2: initialised data
-	m_pSections[2].pSectionName = const_cast<char *>("$DATA$");
+	m_pSections[2].pSectionName = "$DATA$";
 	m_pSections[2].uNativeAddr = AUXHDR(6);
 	m_pSections[2].uHostAddr = (ADDRESS)m_pImage + AUXHDR(7);
 	m_pSections[2].uSectionSize = AUXHDR(5);
@@ -250,7 +250,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 	m_pSections[2].bReadOnly = 0;
 
 	// Section 3: BSS
-	m_pSections[3].pSectionName = const_cast<char *>("$BSS$");
+	m_pSections[3].pSectionName = "$BSS$";
 	// For now, assume that BSS starts at the end of the initialised data
 	m_pSections[3].uNativeAddr = AUXHDR(6) + AUXHDR(5);
 	m_pSections[3].uHostAddr = 0;           // Not applicable

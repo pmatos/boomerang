@@ -41,11 +41,13 @@ DOS4GWBinaryFile::DOS4GWBinaryFile() : m_pFilename(NULL)
 
 DOS4GWBinaryFile::~DOS4GWBinaryFile()
 {
+#if 0
 	for (int i = 0; i < m_iNumSections; i++) {
 		if (m_pSections[i].pSectionName)
-			; //delete [] m_pSections[i].pSectionName;
+			delete [] m_pSections[i].pSectionName;
 	}
-	// if (m_pSections) delete [] m_pSections;
+	if (m_pSections) delete [] m_pSections;
+#endif
 }
 
 bool DOS4GWBinaryFile::Open(const char *sName)
@@ -210,8 +212,9 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 			       LMMH(m_pLXObjects[n].PageTblIdx),
 			       LMMH(m_pLXObjects[n].NumPageTblEntries));
 
-			m_pSections[n].pSectionName = new char[9];
-			sprintf(m_pSections[n].pSectionName, "seg%i", n);   // no section names in LX
+			char *name = new char[9];
+			snprintf(name, sizeof name, "seg%i", n);  // no section names in LX
+			m_pSections[n].pSectionName = name;
 			m_pSections[n].uNativeAddr = (ADDRESS)LMMH(m_pLXObjects[n].RelocBaseAddr);
 			m_pSections[n].uHostAddr = (ADDRESS)(LMMH(m_pLXObjects[n].RelocBaseAddr) - LMMH(m_pLXObjects[0].RelocBaseAddr) + base);
 			m_pSections[n].uSectionSize = LMMH(m_pLXObjects[n].VirtualSize);

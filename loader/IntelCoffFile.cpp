@@ -121,7 +121,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 		//assert(0 == psh[iSection].sch_virtaddr);
 		//assert(0 == psh[iSection].sch_physaddr);
 
-		char sectname[sizeof psh->sch_sectname + 1];
+		char *sectname = new char[sizeof psh->sch_sectname + 1];
 		strncpy(sectname, psh[iSection].sch_sectname, sizeof psh->sch_sectname);
 		sectname[sizeof psh->sch_sectname] = '\0';
 
@@ -133,7 +133,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 			si.bData = 0 != (psh[iSection].sch_flags & 0x40);
 			si.bBss = 0 != (psh[iSection].sch_flags & 0x80);
 			si.bReadOnly = 0 != (psh[iSection].sch_flags & 0x1000);
-			si.pSectionName = strdup(sectname);
+			si.pSectionName = sectname;
 
 			sidx = m_iNumSections;
 			psi = AddSection(&si);

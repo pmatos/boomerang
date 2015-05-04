@@ -437,8 +437,10 @@ bool Win32BinaryFile::RealLoad(const char *sName)
 	for (int i = 0; i < m_iNumSections; i++, o++) {
 		SectionInfo &sect = m_pSections[i];
 		//printf("%.8s RVA=%08X Offset=%08X size=%08X\n", (char*)o->ObjectName, LMMH(o->RVA), LMMH(o->PhysicalOffset), LMMH(o->VirtualSize));
-		sect.pSectionName = new char[9];
-		strncpy(sect.pSectionName, o->ObjectName, 8);
+		char *name = new char[9];
+		strncpy(name, o->ObjectName, 8);
+		name[8] = '\0';
+		sect.pSectionName = name;
 #if 0
 		if (!strcmp(sect.pSectionName, ".reloc"))
 			reloc = &sect;

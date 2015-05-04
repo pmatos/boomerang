@@ -45,7 +45,6 @@ PalmBinaryFile::~PalmBinaryFile()
 bool PalmBinaryFile::RealLoad(const char *sName)
 {
 	FILE *fp;
-	char buf[32];
 
 	m_pFilename = sName;
 
@@ -97,17 +96,23 @@ bool PalmBinaryFile::RealLoad(const char *sName)
 	unsigned off = 0;
 	for (int i = 0; i < m_iNumSections; i++) {
 		// First get the name (4 alpha)
-		strncpy(buf, (char *)p, 4);
-		buf[4] = '\0';
-		std::string name(buf);
+		char *name = new char[10];
+		strncpy(name, (char *)p, 4);
+		name[4] = '\0';
+		p += 4;
+
 		// Now get the identifier (2 byte binary)
-		unsigned id = (p[4] << 8) + p[5];
-		sprintf(buf, "%d", id);
+		unsigned id = (p[0] << 8) + p[1];
+		p += 2;
+
+		// Decide if code or data; note that code0 is a special case (not code)
+		m_pSections[i].bCode = strcmp(name, "code") == 0 && id != 0;
+		m_pSections[i].bData = strcmp(name, "data") == 0;
+
 		// Join the id to the name, e.g. code0, data12
-		name += buf;
-		m_pSections[i].pSectionName = new char[name.size() + 1];
-		strcpy(m_pSections[i].pSectionName, name.c_str());
-		p += 4 + 2;
+		snprintf(name + 4, 6, "%u", id);
+		m_pSections[i].pSectionName = name;
+
 		off = UINT4(p);
 		p += 4;
 		m_pSections[i].uNativeAddr = off;
@@ -118,11 +123,6 @@ bool PalmBinaryFile::RealLoad(const char *sName)
 			m_pSections[i - 1].uSectionSize = off - m_pSections[i - 1].uNativeAddr;
 			m_pSections[i].uSectionEntrySize = 1;        // No info available
 		}
-
-		// Decide if code or data; note that code0 is a special case (not code)
-		m_pSections[i].bCode = (name != "code0") && (name.substr(0, 4) == "code");
-		m_pSections[i].bData = name.substr(0, 4) == "data";
-
 	}
 
 	// Set the length for the last section

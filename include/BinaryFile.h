@@ -89,7 +89,7 @@ struct SectionInfo {
 	// the behaviour of (at least) the question "Is this address in BSS".
 	virtual bool isAddressBss(ADDRESS a) const { return bBss != 0; }
 
-	char       *pSectionName;       // Name of section
+	const char *pSectionName;       // Name of section
 	ADDRESS     uNativeAddr;        // Logical or native load address
 	ADDRESS     uHostAddr;          // Host or actual address of data
 	ADDRESS     uSectionSize;       // Size of section in bytes

@@ -269,9 +269,10 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 		fprintf(stderr, "loaded segment %x %i in mem %i in file\n", a, sz, fsz);
 #endif
 
-		m_pSections[i].pSectionName = new char[17];
-		strncpy(m_pSections[i].pSectionName, segments[i].segname, 16);
-		m_pSections[i].pSectionName[16] = 0;
+		char *name = new char[17];
+		strncpy(name, segments[i].segname, 16);
+		name[16] = '\0';
+		m_pSections[i].pSectionName = name;
 		m_pSections[i].uNativeAddr = BMMH(segments[i].vmaddr);
 		m_pSections[i].uHostAddr = (ADDRESS)base + BMMH(segments[i].vmaddr) - loaded_addr;
 		m_pSections[i].uSectionSize = BMMH(segments[i].vmsize);
