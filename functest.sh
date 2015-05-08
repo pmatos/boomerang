@@ -103,9 +103,9 @@ echo === Pentium floating point handling ===
 # 2) Don't handle two halves of a double properly for printf
 # However, fbranch2.sed does not exist; there are issues with the name of the local whose address is taken
 # Note also that fbranch has issues with returning values that depend on flags, hence fbranch2 now
-$TESTONE pentium fbranch2       4 $BOOMSW < test/source/fbranch.in4
-$TESTONE pentium fbranch2       5 $BOOMSW < test/source/fbranch.in5
-$TESTONE pentium fbranch2       6 $BOOMSW < test/source/fbranch.in6
+$TESTONE pentium fbranch2       4 "$BOOMSW" < test/source/fbranch.in4
+$TESTONE pentium fbranch2       5 "$BOOMSW" < test/source/fbranch.in5
+$TESTONE pentium fbranch2       6 "$BOOMSW" < test/source/fbranch.in6
 
 echo === End tests requiring type analysis ===
 
