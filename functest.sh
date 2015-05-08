@@ -16,7 +16,6 @@ BOOMSW=$*
 
 # Clean up
 rm -rf functest
-mkdir functest
 rm -rf functests.out
 
 # Run the tests

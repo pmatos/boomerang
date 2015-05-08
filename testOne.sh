@@ -9,7 +9,7 @@
 # $1 = platform $2 = test $3 = test-set $4 = options $5 = parameters to the recompiled executable
 
 echo $* > functest.res
-rm -f functest/$2/*
+rm -f functest/$1/$2/*
 
 SPACES="                                                 "
 RES="Result for $1"
@@ -19,7 +19,7 @@ WHITE=${SPACES:0:(34 - ${#RES})}
 RES=$RES$WHITE
 echo -n -e "$RES"
 
-sh -c "./boomerang -o functest $4 test/$1/$2 2>/dev/null >/dev/null"
+sh -c "./boomerang -o functest/$1 $4 test/$1/$2 2>/dev/null >/dev/null"
 ret=$?
 if [[ ret -ge 128 ]]; then
 	SIGNAL="signal $((ret-128))"
@@ -28,10 +28,10 @@ if [[ ret -ge 128 ]]; then
 	if [ "$SIGNAL" = "signal 15" ]; then SIGNAL="a termination signal"; fi
 	RESULT="Boomerang FAILED set $3 with $SIGNAL"
 else
-	if [[ ! -f functest/$2/$2.c ]]; then
+	if [[ ! -f functest/$1/$2/$2.c ]]; then
 		RESULT="NO BOOMERANG OUTPUT set $3!"
 	else
-		cat `ls -rt functest/$2/*.c` > functest.c
+		cat `ls -rt functest/$1/$2/*.c` > functest.c
 		# if test/$1/$2.sed exists, use it to make "known error" corrections to the source code
 		if [[ -f test/$1/$2.sed ]]; then
 			echo Warning... $1/$2.sed used >> functest.res
