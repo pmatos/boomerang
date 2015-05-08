@@ -3,7 +3,7 @@
 # Call with test platform, test-program test-set [,options [,arguments]]
 # test-set is a char usually 1-9 for the various .out files, usually use 1 for .out1
 # e.g. "./testOne.sh pentium hello"
-# or   "./testOne.sh sparc fibo 1 '' 10" 
+# or   "./testOne.sh sparc fibo 1 '' 10"
 # or   "./testOne.sh sparc switch_cc 6 '-Td -nG' '2 3 4 5 6'"
 # Note: options and arguments are quoted strings
 # $1 = platform $2 = test $3 = test-set $4 = options $5 = parameters to the recompiled executable
@@ -84,5 +84,3 @@ echo -e "$RES""$RESULT" >> functest.res
 echo >> functest.res
 cat functest.res >> functests.out
 #grep "^Result" functest.res
-
-
