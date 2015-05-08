@@ -10,4 +10,4 @@ if [[ $? != 0 ]]; then
 	exit 11
 fi
 ./functest.exe > functest.out
-diff -c test/pentium/$1.out functest.out
+diff -u test/pentium/$1.out functest.out

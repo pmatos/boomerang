@@ -61,7 +61,7 @@ else
 					echo Warning! return code from execute was $((ret)) >> functest.res
 				fi
 				# Note: empty command string seems to remove carriage returns (needed on MinGW)
-				sed -e "" functest.out | diff -c test/source/$2.out$3 - > functest.tmp
+				sed -e "" functest.out | diff -u test/source/$2.out$3 - > functest.tmp
 				ret=$?
 				# Filter out control chars that may happen due to bad decomp.
 				# tr -s -d < functest.tmp [:cntrl:] >> functest.res
