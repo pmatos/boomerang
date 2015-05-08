@@ -35,13 +35,12 @@ else
 		# if test/$1/$2.sed exists, use it to make "known error" corrections to the source code
 		if [[ -f test/$1/$2.sed ]]; then
 			echo Warning... $1/$2.sed used >> functest.res
-			sed -f test/$1/$2.sed functest.c > functest.tmp
+			sed -i -f test/$1/$2.sed functest.c
 			ret=$?
 			if [[ ret -ne 0 ]]; then
 				echo test/$1/$2.sed FAILED! >> functest.res
 				exit 10
 			fi
-			mv functest.tmp functest.c
 		fi
 		gcc -D__size32=int -D__size16=short -D__size8=char -o functest.exe functest.c >> functest.res 2>&1
 		if [[ $? != 0 ]]; then
@@ -60,12 +59,8 @@ else
 				if [[ ret -ne 0 ]]; then
 					echo Warning! return code from execute was $((ret)) >> functest.res
 				fi
-				# Note: empty command string seems to remove carriage returns (needed on MinGW)
-				sed -e "" functest.out | diff -u test/source/$2.out$3 - > functest.tmp
+				diff -u test/source/$2.out$3 functest.out >> functest.res
 				ret=$?
-				# Filter out control chars that may happen due to bad decomp.
-				# tr -s -d < functest.tmp [:cntrl:] >> functest.res
-				sed -e "s/[[:cntrl:]]//g" functest.tmp >> functest.res
 				if [[ ret -ne 0 ]]; then
 					RESULT="FAILED diff set $3"
 				else
