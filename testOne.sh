@@ -9,7 +9,7 @@
 # $1 = platform $2 = test $3 = test-set $4 = options $5 = parameters to the recompiled executable
 
 echo $* > functest.res
-rm -f functest/$1/$2/*
+rm -rf functest/$1/$2
 
 SPACES="                                                 "
 RES="Result for $1"
@@ -46,8 +46,7 @@ else
 		if [[ $? != 0 ]]; then
 			RESULT="Compile FAILED"
 		else
-			rm -f functest.out
-			sh -c "./functest.exe $5 >> functest.out 2>&1"
+			sh -c "./functest.exe $5 > functest.out 2>&1"
 			ret=$?
 			if [[ ret -ge 128 ]]; then
 				SIGNAL="signal $((ret-128))"
@@ -79,3 +78,4 @@ echo -e "$RES""$RESULT" >> functest.res
 echo >> functest.res
 cat functest.res >> functests.out
 #grep "^Result" functest.res
+rm -f functest.{res,c,exe,out}
