@@ -25,57 +25,55 @@ ExeBinaryFile::ExeBinaryFile()
 bool ExeBinaryFile::RealLoad(const char *sName)
 {
 	FILE *fp;
-	int i, cb;
-	Byte buf[4];
-	int fCOM;
+	int cb;
 
 	m_pFilename = sName;
 
 	// Always just 3 sections
-	m_pSections = new SectionInfo[3];
+	m_iNumSections = 3;
+	m_pSections = new SectionInfo[m_iNumSections];
 	if (m_pSections == 0) {
 		fprintf(stderr, "Could not allocate section information\n");
-		return 0;
+		return false;
 	}
-	m_iNumSections = 3;
 	m_pHeader = new exeHeader;
 	if (m_pHeader == 0) {
 		fprintf(stderr, "Could not allocate header memory\n");
-		return 0;
+		return false;
 	}
 
 	/* Open the input file */
 	if ((fp = fopen(sName, "rb")) == NULL) {
 		fprintf(stderr, "Could not open file %s\n", sName);
-		return 0;
+		return false;
 	}
 
 	/* Read in first 2 bytes to check EXE signature */
 	if (fread(m_pHeader, 1, 2, fp) != 2) {
 		fprintf(stderr, "Cannot read file %s\n", sName);
-		return 0;
+		return false;
 	}
 
 	// Check for the "MZ" exe header
-	if (!(fCOM = (m_pHeader->sigLo != 0x4D || m_pHeader->sigHi != 0x5A))) {
+	if (m_pHeader->sigLo == 'M' && m_pHeader->sigHi == 'Z') {
 		/* Read rest of m_pHeader */
 		fseek(fp, 0, SEEK_SET);
 		if (fread(m_pHeader, sizeof(exeHeader), 1, fp) != 1) {
 			fprintf(stderr, "Cannot read file %s\n", sName);
-			return 0;
+			return false;
 		}
 
 		/* This is a typical DOS kludge! */
 		if (LH(&m_pHeader->relocTabOffset) == 0x40) {
 			fprintf(stderr, "Error - NE format executable\n");
-			return 0;
+			return false;
 		}
 
 		/* Calculate the load module size.
 		 * This is the number of pages in the file
 		 * less the length of the m_pHeader and reloc table
 		 * less the number of bytes unused on last page
-		*/
+		 */
 		cb = (dword)LH(&m_pHeader->numPages) * 512
 		   - (dword)LH(&m_pHeader->numParaHeader) * 16;
 		if (m_pHeader->lastPageSize) {
@@ -89,7 +87,7 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 		 * Certainly m_ams that prod around in DOS or BIOS are going
 		 * to have to load DS from a constant so it'll be pretty
 		 * obvious.
-		*/
+		 */
 		m_cReloc = (SWord)LH(&m_pHeader->numReloc);
 
 		/* Allocate the relocation table */
@@ -97,12 +95,13 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 			m_pRelocTable = new dword[m_cReloc];
 			if (m_pRelocTable == 0) {
 				fprintf(stderr, "Could not allocate relocation table (%d entries)\n", m_cReloc);
-				return 0;
+				return false;
 			}
 			fseek(fp, LH(&m_pHeader->relocTabOffset), SEEK_SET);
 
 			/* Read in seg:offset pairs and convert to Image ptrs */
-			for (i = 0; i < m_cReloc; i++) {
+			for (int i = 0; i < m_cReloc; i++) {
+				Byte buf[4];
 				fread(buf, 1, 4, fp);
 				m_pRelocTable[i] = LH(buf) + (((int)LH(buf + 2)) << 4);
 			}
@@ -112,20 +111,20 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 		fseek(fp, (int)LH(&m_pHeader->numParaHeader) * 16, SEEK_SET);
 
 		// Initial PC and SP. Note that we fake the seg:offset by putting
-		// the segment in the top half, and offset int he bottom
+		// the segment in the top half, and offset in the bottom
 		m_uInitPC = ((LH(&m_pHeader->initCS)) << 16) + LH(&m_pHeader->initIP);
 		m_uInitSP = ((LH(&m_pHeader->initSS)) << 16) + LH(&m_pHeader->initSP);
 	} else {
 		/* COM file
 		 * In this case the load module size is just the file length
-		*/
+		 */
 		fseek(fp, 0, SEEK_END);
 		cb = ftell(fp);
 
 		/* COM programs start off with an ORG 100H (to leave room for a PSP)
 		 * This is also the implied start address so if we load the image
 		 * at offset 100H addresses should all line up properly again.
-		*/
+		 */
 		m_uInitPC = 0x100;
 		m_uInitSP = 0xFFFE;
 		m_cReloc = 0;
@@ -139,20 +138,18 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 
 	if (cb != (int)fread(m_pImage, 1, (size_t)cb, fp)) {
 		fprintf(stderr, "Cannot read file %s\n", sName);
-		return 0;
-	}
-
-	/* Relocate segment constants */
-	if (m_cReloc) {
-		for (i = 0; i < m_cReloc; i++) {
-			Byte *p = &m_pImage[m_pRelocTable[i]];
-			SWord w = (SWord)LH(p);
-			*p++    = (Byte)(w & 0x00FF);
-			*p      = (Byte)((w & 0xFF00) >> 8);
-		}
+		return false;
 	}
 
 	fclose(fp);
+
+	/* Relocate segment constants */
+	for (int i = 0; i < m_cReloc; i++) {
+		Byte *p = &m_pImage[m_pRelocTable[i]];
+		SWord w = (SWord)LH(p);
+		*p++    = (Byte)(w & 0x00FF);
+		*p      = (Byte)((w & 0xFF00) >> 8);
+	}
 
 	m_pSections[0].pSectionName = "$HEADER";  // Special header section
 	//m_pSections[0].fSectionFlags = ST_HEADER;
@@ -176,7 +173,7 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 	m_pSections[2].uSectionSize = sizeof(DWord) * m_cReloc;
 	m_pSections[2].uSectionEntrySize = sizeof(DWord);
 
-	return 1;
+	return true;
 }
 
 // Clean up and unload the binary image
