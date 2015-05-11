@@ -70,6 +70,8 @@ bool PalmBinaryFile::RealLoad(const char *sName)
 		return false;
 	}
 
+	fclose(fp);
+
 	// Check type at offset 0x3C; should be "appl" (or "palm"; ugh!)
 	if (strncmp((char *)(m_pImage + 0x3C), "appl", 4) != 0
 	 && strncmp((char *)(m_pImage + 0x3C), "panl", 4) != 0

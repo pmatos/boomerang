@@ -140,6 +140,8 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 		return false;
 	}
 
+	fclose(fp);
+
 	// Check type at offset 0x0; should be 0x0210 or 0x20B then
 	// 0107, 0108, or 010B
 	unsigned magic = UINT4(m_pImage);
