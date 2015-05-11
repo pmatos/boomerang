@@ -1,5 +1,5 @@
 /*==============================================================================
- * FILE:	   testAll.cc
+ * FILE:       testAll.cc
  * OVERVIEW:   Command line test of all of Boomerang
  *============================================================================*/
 
@@ -33,14 +33,14 @@ int main(int argc, char** argv)
 //std::cerr << "Prog at " << std::hex << &prog << std::endl;
 	CppUnit::TestSuite suite;
 
-	ExpTest	 expt("Exp Test");
+	ExpTest expt("Exp Test");
 	ProgTest progt("Prog Test");
 	ProcTest proct("Proc Test");
 	RtlTest rtlt("Rtl Test");
 	ParserTest parsert("SSL Parser Test");
 	TypeTest typet("Type Test");
 	FrontSparcTest fst("SPARC Frontend Test");
-//	  FrontendTest fet("FrontendTest");
+	//FrontendTest fet("FrontendTest");
 	FrontPentTest fpt("Pentium Frontend Test");
 	CTest ct("C Parser Test");
 	StatementTest stt("Statement Test");

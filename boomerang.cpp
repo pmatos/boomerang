@@ -2,7 +2,7 @@
  * Copyright (C) 2002-2006, Mike Van Emmerik and Trent Waddington
  */
 /*==============================================================================
- * FILE:	   boomerang.cpp
+ * FILE:       boomerang.cpp
  * OVERVIEW:   Command line processing for the Boomerang decompiler
  *============================================================================*/
 
@@ -18,7 +18,7 @@
 #define OUTPUTDIR "./output"
 #endif
 
-#define USE_XML 1			// Set to 0 to not use the expat library for XML loading and saving
+#define USE_XML 1           // Set to 0 to not use the expat library for XML loading and saving
 
 #include "prog.h"
 #include "proc.h"
@@ -36,8 +36,8 @@
 // For the -nG switch to disable the garbage collector
 #include "gc.h"
 
-#include <sys/stat.h>		// For mkdir
-#include <unistd.h>			// For unlink
+#include <sys/stat.h>       // For mkdir
+#include <unistd.h>         // For unlink
 
 #include <iostream>
 #include <fstream>
@@ -58,7 +58,7 @@ Boomerang *Boomerang::boomerang = NULL;
  * - The path to the executable is "./"
  * - The output directory is "./output/"
  */
-Boomerang::Boomerang() : logger(NULL), vFlag(false), printRtl(false), 
+Boomerang::Boomerang() : logger(NULL), vFlag(false), printRtl(false),
 	noBranchSimplify(false), noRemoveNull(false), noLocals(false),
 	noRemoveLabels(false), noDataflow(false), noDecompile(false), stopBeforeDecompile(false),
 	traceDecoder(false), dotFile(NULL), numToPropagate(-1),
@@ -79,27 +79,31 @@ Boomerang::Boomerang() : logger(NULL), vFlag(false), printRtl(false),
 /**
  * Returns the Log object associated with the object.
  */
-Log &Boomerang::log() {
+Log &Boomerang::log()
+{
 	return *logger;
 }
 
 /**
  * Sets the outputfile to be the file "log" in the default output directory.
  */
-FileLogger::FileLogger() : out((Boomerang::get()->getOutputPath() + "log").c_str()) {
+FileLogger::FileLogger() : out((Boomerang::get()->getOutputPath() + "log").c_str())
+{
 }
 
 /**
  * Returns the HLLCode for the given proc.
  */
-HLLCode *Boomerang::getHLLCode(UserProc *p) {
+HLLCode *Boomerang::getHLLCode(UserProc *p)
+{
 	return new CHLLCode(p);
 }
 
 /**
  * Prints a short usage statement.
  */
-void Boomerang::usage() {
+void Boomerang::usage()
+{
 	std::cout << "Usage: boomerang [ switches ] <program>" << std::endl;
 	std::cout << "boomerang -h for switch help" << std::endl;
 	exit(1);
@@ -108,7 +112,8 @@ void Boomerang::usage() {
 /**
  * Prints help for the interactive mode.
  */
-void Boomerang::helpcmd() {
+void Boomerang::helpcmd()
+{
 	// Column 98 of this source file is column 80 of output (don't use tabs)
 	//            ____.____1____.____2____.____3____.____4____.____5____.____6____.____7____.____8
 	std::cout << "Available commands (for use with -k):\n";
@@ -136,7 +141,8 @@ void Boomerang::helpcmd() {
 /**
  * Prints help about the command line switches.
  */
-void Boomerang::help() {
+void Boomerang::help()
+{
 	std::cout << "Symbols\n";
 	std::cout << "  -s <addr> <name> : Define a symbol\n";
 	std::cout << "  -sf <filename>   : Read a symbol/signature file\n";
@@ -155,7 +161,7 @@ void Boomerang::help() {
 #endif
 	std::cout << "  -a               : Assume ABI compliance\n";
 	std::cout << "  -W               : Windows specific decompilation mode (requires pdb information)\n";
-//	std::cout << "  -pa              : only propagate if can propagate to all\n";
+	//std::cout << "  -pa              : only propagate if can propagate to all\n";
 	std::cout << "Output\n";
 	std::cout << "  -v               : Verbose\n";
 	std::cout << "  -h               : This help\n";
@@ -187,7 +193,7 @@ void Boomerang::help() {
 	std::cout << "  -nd              : No (reduced) dataflow analysis\n";
 	std::cout << "  -nD              : No decompilation (at all!)\n";
 	std::cout << "  -nl              : No creation of local variables\n";
-//	std::cout << "  -nm              : No decoding of the 'main' procedure\n";
+	//std::cout << "  -nm              : No decoding of the 'main' procedure\n";
 	std::cout << "  -ng              : No replacement of expressions with Globals\n";
 	std::cout << "  -nG              : No garbage collection\n";
 	std::cout << "  -nn              : No removal of NULL and unused statements\n";
@@ -201,27 +207,28 @@ void Boomerang::help() {
 	std::cout << "  -m <num>         : Max memory depth\n";
 	exit(1);
 }
-		
+
 /**
  * Creates a directory and tests it.
  *
- * \param dir	The name of the directory.
- * 
+ * \param dir   The name of the directory.
+ *
  * \retval true The directory is valid.
  * \retval false The directory is invalid.
  */
-bool createDirectory(std::string dir) {
+bool createDirectory(std::string dir)
+{
 	std::string remainder(dir);
 	std::string path;
 	unsigned i;
 	while ((i = remainder.find('/')) != std::string::npos) {
-		path += remainder.substr(0, i+1);
-		remainder = remainder.substr(i+1);
-		mkdir(path.c_str(), 0777);				// Doesn't matter if already exists
-			}
+		path += remainder.substr(0, i + 1);
+		remainder = remainder.substr(i + 1);
+		mkdir(path.c_str(), 0777);  // Doesn't matter if already exists
+	}
 	// Now try to create a test file
 	path += remainder;
-	mkdir(path.c_str(), 0777);				// Make the last dir if needed
+	mkdir(path.c_str(), 0777);  // Make the last dir if needed
 	path += "test.file";
 	std::ofstream test;
 	test.open(path.c_str(), std::ios::out);
@@ -240,7 +247,7 @@ void Cluster::printTree(std::ostream &out)
 {
 	out << "\t\t" << name << "\n";
 	for (unsigned i = 0; i < children.size(); i++)
-	children[i]->printTree(out);
+		children[i]->printTree(out);
 }
 
 typedef char *crazy_vc_bug;
@@ -249,8 +256,8 @@ typedef char *crazy_vc_bug;
  * Splits a string up in different words.
  * use like: argc = splitLine(line, &argv);
  *
- * \param[in] line		the string to parse
- * \param[out] pargc	&argv
+ * \param[in] line      the string to parse
+ * \param[out] pargc    &argv
  *
  * \return The number of words found (argc).
  */
@@ -259,8 +266,8 @@ int Boomerang::splitLine(char *line, char ***pargv)
 	int argc = 0;
 	*pargv = new crazy_vc_bug[100];
 	const char *p = strtok(line, " \r\n");
-	while(p) {
-		(*pargv)[argc++] = (char*)p;
+	while (p) {
+		(*pargv)[argc++] = (char *)p;
 		p = strtok(NULL, " \r\n");
 	}
 	return argc;
@@ -269,8 +276,8 @@ int Boomerang::splitLine(char *line, char ***pargv)
 /**
  * Parse and execute a command supplied in interactive mode.
  *
- * \param argc		The number of arguments.
- * \param argv		Pointers to the arguments.
+ * \param argc      The number of arguments.
+ * \param argv      Pointers to the arguments.
  *
  * \return A value indicating what happened.
  *
@@ -288,10 +295,10 @@ int Boomerang::parseCmd(int argc, const char **argv)
 		}
 		const char *fname = argv[1];
 		Prog *p = loadAndDecode(fname);
-			if (p == NULL) {
-				std::cerr << "failed to load " << fname << "\n";
-				return 1;
-			}
+		if (p == NULL) {
+			std::cerr << "failed to load " << fname << "\n";
+			return 1;
+		}
 		prog = p;
 #if USE_XML
 	} else if (!strcmp(argv[0], "load")) {
@@ -306,8 +313,8 @@ int Boomerang::parseCmd(int argc, const char **argv)
 			// try guessing
 			pr = p->parse((outputPath + fname + "/" + fname + ".xml").c_str());
 			if (pr == NULL) {
-			std::cerr << "failed to read xml " << fname << "\n";
-			return 1;
+				std::cerr << "failed to read xml " << fname << "\n";
+				return 1;
 			}
 		}
 		prog = pr;
@@ -331,16 +338,16 @@ int Boomerang::parseCmd(int argc, const char **argv)
 				return 1;
 			}
 			int indent = 0;
-			((UserProc*)proc)->decompile(new ProcList, indent);
+			((UserProc *)proc)->decompile(new ProcList, indent);
 		} else {
 			prog->decompile();
 		}
 	} else if (!strcmp(argv[0], "codegen")) {
-		if (argc > 1 ) {
+		if (argc > 1) {
 			Cluster *cluster = prog->findCluster(argv[1]);
 			if (cluster == NULL) {
-			std::cerr << "cannot find cluster " << argv[1] << "\n";
-			return 1;
+				std::cerr << "cannot find cluster " << argv[1] << "\n";
+				return 1;
 			}
 			prog->generateCode(cluster);
 		} else {
@@ -518,14 +525,14 @@ int Boomerang::parseCmd(int argc, const char **argv)
 			std::cout << "\n\tlibprocs:\n";
 			PROGMAP::const_iterator it;
 			for (Proc *p = prog->getFirstProc(it); p; p = prog->getNextProc(it))
-			if (p->isLib())
-				std::cout << "\t\t" << p->getName() << "\n";
+				if (p->isLib())
+					std::cout << "\t\t" << p->getName() << "\n";
 			std::cout << "\n\tuserprocs:\n";
 			for (Proc *p = prog->getFirstProc(it); p; p = prog->getNextProc(it))
-			if (!p->isLib())
-				std::cout << "\t\t" << p->getName() << "\n";
+				if (!p->isLib())
+					std::cout << "\t\t" << p->getName() << "\n";
 			std::cout << "\n";
-			
+
 			return 0;
 		} else if (!strcmp(argv[1], "cluster")) {
 			if (argc <= 2) {
@@ -550,7 +557,7 @@ int Boomerang::parseCmd(int argc, const char **argv)
 				if (p->getCluster() == cluster)
 					std::cout << "\t\t" << p->getName() << "\n";
 			std::cout << "\n";
-			
+
 			return 0;
 		} else if (!strcmp(argv[1], "proc")) {
 			if (argc <= 2) {
@@ -571,11 +578,13 @@ int Boomerang::parseCmd(int argc, const char **argv)
 				std::cout << "\tis a library proc.\n";
 			else {
 				std::cout << "\tis a user proc.\n";
-				UserProc *p = (UserProc*)proc;
+				UserProc *p = (UserProc *)proc;
 				if (p->isDecoded())
 					std::cout << "\thas been decoded.\n";
-				//if (p->isAnalysed())
-				//	std::cout << "\thas been analysed.\n";
+#if 0
+				if (p->isAnalysed())
+					std::cout << "\thas been analysed.\n";
+#endif
 			}
 			std::cout << "\n";
 
@@ -600,7 +609,7 @@ int Boomerang::parseCmd(int argc, const char **argv)
 			return 1;
 		}
 
-		((UserProc*)proc)->print(std::cout);
+		((UserProc *)proc)->print(std::cout);
 		std::cout << "\n";
 		return 0;
 	} else if (!strcmp(argv[0], "exit")) {
@@ -632,7 +641,7 @@ int Boomerang::cmdLine()
 	while (fgets(line, sizeof(line), stdin)) {
 		char **argv;
 		int argc = splitLine(line, &argv);
-		if (parseCmd(argc, (const char **)argv) == 2) 
+		if (parseCmd(argc, (const char **)argv) == 2)
 			return 2;
 		printf("boomerang: ");
 		fflush(stdout);
@@ -645,7 +654,7 @@ int Boomerang::cmdLine()
  *
  * \return Zero on success, nonzero on faillure.
  */
-int Boomerang::commandLine(int argc, const char **argv) 
+int Boomerang::commandLine(int argc, const char **argv)
 {
 	printf("%s\n", PACKAGE_STRING);
 	if (argc < 2) usage();
@@ -662,254 +671,267 @@ int Boomerang::commandLine(int argc, const char **argv)
 
 	int kmd = 0;
 
-	for (int i=1; i < argc; i++) {
+	for (int i = 1; i < argc; i++) {
 		if (argv[i][0] != '-' && i == argc - 1)
 			break;
 		if (argv[i][0] != '-')
 			usage();
 		switch (argv[i][1]) {
-			case '-': break;		// No effect: ignored
-			case 'h': help(); break;
-			case 'v': vFlag = true; break;
-			case 'x': dumpXML = true; break;
-			case 'X': experimental = true;
-				std::cout << "Warning: experimental code active!\n"; break;
-			case 'r': printRtl = true; break;
-			case 't': traceDecoder = true; break;
-			case 'T':
-				if (argv[i][2] == 'c') {
-					conTypeAnalysis = true;		// -Tc: use old constraint-based type analysis
-					dfaTypeAnalysis = false;
-				}
-				else if (argv[i][2] == 'd')
-					dfaTypeAnalysis = true;		// -Td: use data-flow-based type analysis (now default)
-				break;
-			case 'g': 
-				if(argv[i][2]=='d')
-					dotFile = argv[++i];
-				else if(argv[i][2]=='c')
-					generateCallGraph=true;
-				else if(argv[i][2]=='s') {
-					generateSymbols=true;
-					stopBeforeDecompile=true;
-				}
-				break;
-			case 'o': {
-				outputPath = argv[++i];
-				if (outputPath[outputPath.length()-1] != '/')
-					outputPath += '/';		// Maintain the convention of a trailing slash
-				break;
+		case '-':
+			break;  // No effect: ignored
+		case 'h':
+			help();
+			break;
+		case 'v':
+			vFlag = true;
+			break;
+		case 'x':
+			dumpXML = true;
+			break;
+		case 'X':
+			experimental = true;
+			std::cout << "Warning: experimental code active!\n";
+			break;
+		case 'r':
+			printRtl = true;
+			break;
+		case 't':
+			traceDecoder = true;
+			break;
+		case 'T':
+			if (argv[i][2] == 'c') {
+				conTypeAnalysis = true;  // -Tc: use old constraint-based type analysis
+				dfaTypeAnalysis = false;
 			}
-			case 'p':
-				if (argv[i][2] == 'a') {
-					propOnlyToAll = true;
-					std::cerr << " * * Warning! -pa is not implemented yet!\n";
+			else if (argv[i][2] == 'd')
+				dfaTypeAnalysis = true;  // -Td: use data-flow-based type analysis (now default)
+			break;
+		case 'g':
+			if (argv[i][2] == 'd')
+				dotFile = argv[++i];
+			else if (argv[i][2] == 'c')
+				generateCallGraph = true;
+			else if (argv[i][2] == 's') {
+				generateSymbols = true;
+				stopBeforeDecompile = true;
+			}
+			break;
+		case 'o': {
+			outputPath = argv[++i];
+			if (outputPath[outputPath.length() - 1] != '/')
+				outputPath += '/';  // Maintain the convention of a trailing slash
+			break;
+		}
+		case 'p':
+			if (argv[i][2] == 'a') {
+				propOnlyToAll = true;
+				std::cerr << " * * Warning! -pa is not implemented yet!\n";
+			}
+			else {
+				if (++i == argc) {
+					usage();
+					return 1;
 				}
-				else {
-					if (++i == argc) {
-						usage();
-						return 1;
-					}
-					sscanf(argv[i], "%i", &numToPropagate);
-				}
+				sscanf(argv[i], "%i", &numToPropagate);
+			}
+			break;
+		case 'n':
+			switch (argv[i][2]) {
+			case 'b':
+				noBranchSimplify = true;
 				break;
-			case 'n':
-				switch(argv[i][2]) {
-					case 'b':
-						noBranchSimplify = true;
-						break;
-					case 'c':
-						noDecodeChildren = true;
-						break;
-					case 'd':
-						noDataflow = true;
-						break;
-					case 'D':
-						noDecompile = true;
-						break;
-					case 'l':
-						noLocals = true;
-						break;
-					case 'n':
-						noRemoveNull = true;
-						break;
-					case 'P':
-						noPromote = true;
-						break;
-					case 'p':
-						noParameterNames = true;
-						break;
-					case 'r':
-						noRemoveLabels = true;
-						break;
-					case 'R':
-						noRemoveReturns = true;
-						break;
-					case 'g':
-						noGlobals = true;
-						break;
-					case 'G':
-#ifndef NO_GARBAGE_COLLECTOR
-						GC_disable();
-#endif
-						break;
-					default:
-						help();
-				}
-				break;
-			case 'E':
+			case 'c':
 				noDecodeChildren = true;
-				// Fall through
-			case 'e':
-				{
-					ADDRESS addr;
-					int n;
-					decodeMain = false;
-					if (++i == argc) {
-						usage();
-						return 1;
-					}
-					if (argv[i][0] == '0' && argv[i+1][1] == 'x') {
-						n = sscanf(argv[i], "0x%x", &addr);
-					} else {
-						n = sscanf(argv[i], "%i", &addr);
-					}
-					if (n != 1) {
-						std::cerr << "bad address: " << argv[i] << std::endl;
-						exit(1);
-					}
-					entrypoints.push_back(addr);
-				}
-				break;
-			case 's':
-				{
-					if (argv[i][2] == 'f') {
-						symbolFiles.push_back(argv[i+1]);
-						i++;
-						break;
-					}
-					ADDRESS addr;
-					int n;
-					if (++i == argc) {
-						usage();
-						return 1;
-					}
-					if (argv[i][0] == '0' && argv[i+1][1] == 'x') {
-						n = sscanf(argv[i], "0x%x", &addr);
-					} else {
-						n = sscanf(argv[i], "%i", &addr);
-					}
-					if (n != 1) {
-						std::cerr << "bad address: " << argv[i+1] << std::endl;
-						exit(1);
-					}
-					const char *nam = argv[++i];
-					symbols[addr] = nam;
-				}
 				break;
 			case 'd':
-				switch(argv[i][2]) {
-					case 'a':
-						printAST = true;
-						break;
-					case 'c':
-						debugSwitch = true;
-						break;
-					case 'd':
-						debugDecoder = true;
-						break;
-					case 'g':
-						debugGen = true;
-						break;
-					case 'l':
-						debugLiveness = true;
-						break;
-					case 'p':
-						debugProof = true;
-						break;
-					case 's':
-						stopAtDebugPoints = true;
-						break;
-					case 't':		// debug type analysis
-						debugTA = true;
-						break;
-					case 'u':		// debug unused locations (including returns and parameters now)
-						debugUnused = true;
-						break;
-					default:
-						help();
-				}
+				noDataflow = true;
 				break;
-			case 'm':
-				if (++i == argc) {
-					usage();
-					return 1;
-				}
-				sscanf(argv[i], "%i", &maxMemDepth);
-				break;
-			case 'i':
-				if (argv[i][2] == 'c')
-					decodeThruIndCall = true;		// -ic;
-				if (argv[i][2] == 'w')				// -iw
-					if (ofsIndCallReport) {
-						std::string fname = getOutputPath() + "indirect.txt";
-						ofsIndCallReport = new std::ofstream(fname.c_str());
-					}
-				break;
-			case 'L':
-				if (argv[i][2] == 'D')
-					#if USE_XML
-					loadBeforeDecompile = true;
-					#else
-					std::cerr << "LD command not enabled since compiled without USE_XML\n";
-					#endif
-				break;
-			case 'S':
-				if (argv[i][2] == 'D')
-					#if USE_XML
-					saveBeforeDecompile = true;
-					#else
-					std::cerr << "SD command not enabled since compiled without USE_XML\n";
-					#endif
-				else {
-					sscanf(argv[++i], "%i", &minsToStopAfter);					
-				}
-				break;
-			case 'k':
-				kmd = 1;
-				break;
-			case 'P':
-				progPath = argv[++i];
-				if (progPath[progPath.length()-1] != '/')
-					progPath += "/";
-				break;
-			case 'a':
-				assumeABI = true;
+			case 'D':
+				noDecompile = true;
 				break;
 			case 'l':
-				if (++i == argc) {
-					usage();
-					return 1;
-				}
-				sscanf(argv[i], "%i", &propMaxDepth);
+				noLocals = true;
+				break;
+			case 'n':
+				noRemoveNull = true;
+				break;
+			case 'P':
+				noPromote = true;
+				break;
+			case 'p':
+				noParameterNames = true;
+				break;
+			case 'r':
+				noRemoveLabels = true;
+				break;
+			case 'R':
+				noRemoveReturns = true;
+				break;
+			case 'g':
+				noGlobals = true;
+				break;
+			case 'G':
+#ifndef NO_GARBAGE_COLLECTOR
+				GC_disable();
+#endif
 				break;
 			default:
 				help();
+			}
+			break;
+		case 'E':
+			noDecodeChildren = true;
+			// Fall through
+		case 'e':
+			{
+				ADDRESS addr;
+				int n;
+				decodeMain = false;
+				if (++i == argc) {
+					usage();
+					return 1;
+				}
+				if (argv[i][0] == '0' && argv[i + 1][1] == 'x') {
+					n = sscanf(argv[i], "0x%x", &addr);
+				} else {
+					n = sscanf(argv[i], "%i", &addr);
+				}
+				if (n != 1) {
+					std::cerr << "bad address: " << argv[i] << std::endl;
+					exit(1);
+				}
+				entrypoints.push_back(addr);
+			}
+			break;
+		case 's':
+			{
+				if (argv[i][2] == 'f') {
+					symbolFiles.push_back(argv[i + 1]);
+					i++;
+					break;
+				}
+				ADDRESS addr;
+				int n;
+				if (++i == argc) {
+					usage();
+					return 1;
+				}
+				if (argv[i][0] == '0' && argv[i + 1][1] == 'x') {
+					n = sscanf(argv[i], "0x%x", &addr);
+				} else {
+					n = sscanf(argv[i], "%i", &addr);
+				}
+				if (n != 1) {
+					std::cerr << "bad address: " << argv[i + 1] << std::endl;
+					exit(1);
+				}
+				const char *nam = argv[++i];
+				symbols[addr] = nam;
+			}
+			break;
+		case 'd':
+			switch (argv[i][2]) {
+			case 'a':
+				printAST = true;
+				break;
+			case 'c':
+				debugSwitch = true;
+				break;
+			case 'd':
+				debugDecoder = true;
+				break;
+			case 'g':
+				debugGen = true;
+				break;
+			case 'l':
+				debugLiveness = true;
+				break;
+			case 'p':
+				debugProof = true;
+				break;
+			case 's':
+				stopAtDebugPoints = true;
+				break;
+			case 't':  // debug type analysis
+				debugTA = true;
+				break;
+			case 'u':  // debug unused locations (including returns and parameters now)
+				debugUnused = true;
+				break;
+			default:
+				help();
+			}
+			break;
+		case 'm':
+			if (++i == argc) {
+				usage();
+				return 1;
+			}
+			sscanf(argv[i], "%i", &maxMemDepth);
+			break;
+		case 'i':
+			if (argv[i][2] == 'c')  // -ic;
+				decodeThruIndCall = true;
+			if (argv[i][2] == 'w')  // -iw
+				if (ofsIndCallReport) {
+					std::string fname = getOutputPath() + "indirect.txt";
+					ofsIndCallReport = new std::ofstream(fname.c_str());
+				}
+			break;
+		case 'L':
+			if (argv[i][2] == 'D')
+#if USE_XML
+				loadBeforeDecompile = true;
+#else
+				std::cerr << "LD command not enabled since compiled without USE_XML\n";
+#endif
+			break;
+		case 'S':
+			if (argv[i][2] == 'D')
+#if USE_XML
+				saveBeforeDecompile = true;
+#else
+				std::cerr << "SD command not enabled since compiled without USE_XML\n";
+#endif
+			else {
+				sscanf(argv[++i], "%i", &minsToStopAfter);
+			}
+			break;
+		case 'k':
+			kmd = 1;
+			break;
+		case 'P':
+			progPath = argv[++i];
+			if (progPath[progPath.length() - 1] != '/')
+				progPath += "/";
+			break;
+		case 'a':
+			assumeABI = true;
+			break;
+		case 'l':
+			if (++i == argc) {
+				usage();
+				return 1;
+			}
+			sscanf(argv[i], "%i", &propMaxDepth);
+			break;
+		default:
+			help();
 		}
 	}
 
 	setOutputDirectory(outputPath.c_str());
-	
+
 	if (kmd)
 		return cmdLine();
 
-	return decompile(argv[argc-1]);	   
+	return decompile(argv[argc - 1]);
 }
 
 /**
  * Sets the directory in which Boomerang creates its output files.  The directory will be created if it doesn't exist.
  *
- * \param path		the path to the directory
+ * \param path      the path to the directory
  *
  * \retval true Success.
  * \retval false The directory could not be created.
@@ -985,11 +1007,10 @@ Prog *Boomerang::loadAndDecode(const char *fname, const char *pname)
 	prog->setFrontEnd(fe);
 
 	// Add symbols from -s switch(es)
-	for (std::map<ADDRESS, std::string>::iterator it = symbols.begin();
-		 it != symbols.end(); it++) {
+	for (std::map<ADDRESS, std::string>::iterator it = symbols.begin(); it != symbols.end(); it++) {
 		fe->AddSymbol((*it).first, (*it).second.c_str());
 	}
-	fe->readLibraryCatalog();		// Needed before readSymbolFile()
+	fe->readLibraryCatalog();  // Needed before readSymbolFile()
 
 	for (unsigned i = 0; i < symbolFiles.size(); i++) {
 		std::cout << "reading symbol file " << symbolFiles[i].c_str() << "\n";
@@ -1002,11 +1023,11 @@ Prog *Boomerang::loadAndDecode(const char *fname, const char *pname)
 
 	// Entry points from -e (and -E) switch(es)
 	for (unsigned i = 0; i < entrypoints.size(); i++) {
-		std::cout<< "decoding specified entrypoint " << std::hex << entrypoints[i] << "\n";
+		std::cout << "decoding specified entrypoint " << std::hex << entrypoints[i] << "\n";
 		prog->decodeEntryPoint(entrypoints[i]);
 	}
 
-	if (entrypoints.size() == 0) {		// no -e or -E given
+	if (entrypoints.size() == 0) {  // no -e or -E given
 		if (decodeMain)
 			std::cout << "decoding entry point...\n";
 		fe->decode(prog, decodeMain, pname);
@@ -1028,7 +1049,7 @@ Prog *Boomerang::loadAndDecode(const char *fname, const char *pname)
 	// GK: The analysis which was performed was not exactly very "analysing", and so it has been moved to
 	// prog::finishDecode, UserProc::assignProcsToCalls and UserProc::finalSimplify
 	//std::cout << "analysing...\n";
- 	//prog->analyse();
+	//prog->analyse();
 
 	if (generateSymbols) {
 		prog->printSymbolsToFile();
@@ -1067,8 +1088,8 @@ int Boomerang::decompile(const char *fname, const char *pname)
 		alarm(minsToStopAfter * 60);
 	}
 
-//	std::cout << "setting up transformers...\n";
-//	ExpTransformer::loadAll();
+	//std::cout << "setting up transformers...\n";
+	//ExpTransformer::loadAll();
 
 #if USE_XML
 	if (loadBeforeDecompile) {
@@ -1105,7 +1126,7 @@ int Boomerang::decompile(const char *fname, const char *pname)
 		PROGMAP::const_iterator it;
 		for (Proc *p = prog->getFirstProc(it); p; p = prog->getNextProc(it))
 			if (!p->isLib()) {
-				UserProc *u = (UserProc*)p;
+				UserProc *u = (UserProc *)p;
 				u->getCFG()->compressCfg();
 				u->printAST();
 			}
@@ -1121,9 +1142,9 @@ int Boomerang::decompile(const char *fname, const char *pname)
 
 	time_t end;
 	time(&end);
-	int hours = (int)((end-start) / 60 / 60);
-	int mins = (int)((end-start) / 60 - hours * 60);
-	int secs = (int)((end-start) - hours * 60 * 60 - mins * 60);
+	int hours = (int)((end - start) / 60 / 60);
+	int mins = (int)((end - start) / 60 - hours * 60);
+	int secs = (int)((end - start) - hours * 60 * 60 - mins * 60);
 	std::cout << "completed in " << std::dec;
 	if (hours)
 		std::cout << hours << " hours ";
@@ -1161,24 +1182,26 @@ Prog *Boomerang::loadFromXML(const char *fname)
 /**
  * Prints the last lines of the log file.
  */
-void Boomerang::logTail() {
+void Boomerang::logTail()
+{
 	logger->tail();
 }
 
-void Boomerang::alert_decompile_debug_point(UserProc *p, const char *description) {
+void Boomerang::alert_decompile_debug_point(UserProc *p, const char *description)
+{
 	if (stopAtDebugPoints) {
 		std::cout << "decompiling " << p->getName() << ": " << description << "\n";
 		static char *stopAt = NULL;
-		static std::set<Statement*> watches;
+		static std::set<Statement *> watches;
 		if (stopAt == NULL || !strcmp(p->getName(), stopAt)) {
 			// This is a mini command line debugger.  Feel free to expand it.
-			for (std::set<Statement*>::iterator it = watches.begin(); it != watches.end(); it++) {
+			for (std::set<Statement *>::iterator it = watches.begin(); it != watches.end(); it++) {
 				(*it)->print(std::cout);
 				std::cout << "\n";
 			}
 			std::cout << " <press enter to continue> \n";
 			char line[1024];
-			while(1) {
+			while (1) {
 				*line = 0;
 				fgets(line, 1024, stdin);
 				if (!strncmp(line, "print", 5))
@@ -1199,7 +1222,7 @@ void Boomerang::alert_decompile_debug_point(UserProc *p, const char *description
 					StatementList stmts;
 					p->getStatements(stmts);
 					StatementList::iterator it;
-					for (it = stmts.begin(); it != stmts.end(); it++) 
+					for (it = stmts.begin(); it != stmts.end(); it++)
 						if ((*it)->getNumber() == n) {
 							watches.insert(*it);
 							std::cout << "watching " << *it << "\n";
@@ -1209,10 +1232,11 @@ void Boomerang::alert_decompile_debug_point(UserProc *p, const char *description
 			}
 		}
 	}
-	for (std::set<Watcher*>::iterator it = watchers.begin(); it != watchers.end(); it++)
+	for (std::set<Watcher *>::iterator it = watchers.begin(); it != watchers.end(); it++)
 		(*it)->alert_decompile_debug_point(p, description);
 }
 
-char* Boomerang::getVersionStr() {
+char *Boomerang::getVersionStr()
+{
 	return const_cast<char *>(VERSION);
 }
