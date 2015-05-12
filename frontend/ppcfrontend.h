@@ -5,8 +5,8 @@
 // behaviour
 
 #include "decoder.h"
-#include "exp.h"			// Ugh... just for enum OPER
-#include "frontend.h"		// In case included bare, e.g. ProcTest.cpp
+#include "exp.h"            // Ugh... just for enum OPER
+#include "frontend.h"       // In case included bare, e.g. ProcTest.cpp
 
 #include <set>
 
@@ -15,26 +15,19 @@ class PPCDecoder;
 struct DecodeResult;
 class CallStatement;
 
-class PPCFrontEnd : public FrontEnd
-{
+class PPCFrontEnd : public FrontEnd {
 public:
-				PPCFrontEnd(BinaryFile *pBF, Prog* prog, BinaryFileFactory* pbff);
-	/**
-	 * Virtual destructor.
-	 */
-virtual ~PPCFrontEnd();
+	PPCFrontEnd(BinaryFile *pBF, Prog *prog, BinaryFileFactory *pbff);
+	virtual ~PPCFrontEnd();
 
-virtual platform getFrontEndId() { return PLAT_PPC; }
+	virtual platform getFrontEndId() { return PLAT_PPC; }
 
-virtual bool		processProc(ADDRESS uAddr, UserProc* pProc, std::ofstream &os, bool frag = false,
-						bool spec = false);
+	virtual bool processProc(ADDRESS uAddr, UserProc *pProc, std::ofstream &os, bool frag = false, bool spec = false);
 
+	virtual std::vector<Exp *> &getDefaultParams();
+	virtual std::vector<Exp *> &getDefaultReturns();
 
-virtual std::vector<Exp*> &getDefaultParams();
-virtual std::vector<Exp*> &getDefaultReturns();
-
-virtual ADDRESS getMainEntryPoint( bool &gotMain );
-	
+	virtual ADDRESS getMainEntryPoint(bool &gotMain);
 };
 
 #endif

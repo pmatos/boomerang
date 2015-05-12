@@ -10,11 +10,11 @@
  */
 
 /*==============================================================================
- * FILE:	   frontend/sparcfrontend.cpp
+ * FILE:       frontend/sparcfrontend.cpp
  * OVERVIEW:   This file contains routines to manage the decoding of sparc
- *			   instructions and the instantiation to RTLs, removing sparc
- *			   dependent features such as delay slots in the process. These
- *			   functions replace Frontend.cc for decoding sparc instructions.
+ *             instructions and the instantiation to RTLs, removing sparc
+ *             dependent features such as delay slots in the process. These
+ *             functions replace Frontend.cc for decoding sparc instructions.
  *============================================================================*/
 
 /*==============================================================================
@@ -32,30 +32,28 @@
 #include "BinaryFile.h"
 #include "frontend.h"
 #include "st20frontend.h"
-#include "BinaryFile.h"		// E.g. IsDynamicallyLinkedProc
+#include "BinaryFile.h"     // E.g. IsDynamicallyLinkedProc
 #include "boomerang.h"
 #include "signature.h"
 
-#include <iomanip>			// For setfill etc
+#include <iomanip>          // For setfill etc
 #include <sstream>
 
-ST20FrontEnd::ST20FrontEnd(BinaryFile *pBF, Prog* prog, BinaryFileFactory* pbff) : FrontEnd(pBF, prog, pbff) {
+ST20FrontEnd::ST20FrontEnd(BinaryFile *pBF, Prog *prog, BinaryFileFactory *pbff) : FrontEnd(pBF, prog, pbff)
+{
 	decoder = new ST20Decoder();
 }
 
-
-// destructor
 ST20FrontEnd::~ST20FrontEnd()
 {
 }
 
-
-std::vector<Exp*> &ST20FrontEnd::getDefaultParams()
+std::vector<Exp *> &ST20FrontEnd::getDefaultParams()
 {
-	static std::vector<Exp*> params;
+	static std::vector<Exp *> params;
 	if (params.size() == 0) {
 #if 0
-		for (int r=0; r<=2; r++) {
+		for (int r = 0; r <= 2; r++) {
 			params.push_back(Location::regOf(r));
 		}
 #endif
@@ -64,35 +62,33 @@ std::vector<Exp*> &ST20FrontEnd::getDefaultParams()
 	return params;
 }
 
-std::vector<Exp*> &ST20FrontEnd::getDefaultReturns()
+std::vector<Exp *> &ST20FrontEnd::getDefaultReturns()
 {
-	static std::vector<Exp*> returns;
+	static std::vector<Exp *> returns;
 	if (returns.size() == 0) {
 		returns.push_back(Location::regOf(0));
 		returns.push_back(Location::regOf(3));
-//		returns.push_back(new Terminal(opPC));
+		//returns.push_back(new Terminal(opPC));
 	}
 	return returns;
 }
 
-ADDRESS ST20FrontEnd::getMainEntryPoint( bool &gotMain ) 
+ADDRESS ST20FrontEnd::getMainEntryPoint(bool &gotMain)
 {
 	gotMain = true;
 	ADDRESS start = pBF->GetMainEntryPoint();
-	if( start != NO_ADDRESS ) return start;
+	if (start != NO_ADDRESS) return start;
 
 	start = pBF->GetEntryPoint();
 	gotMain = false;
-	if( start == NO_ADDRESS ) return NO_ADDRESS;
+	if (start == NO_ADDRESS) return NO_ADDRESS;
 
 	gotMain = true;
 	return start;
 }
 
-
-bool ST20FrontEnd::processProc(ADDRESS uAddr, UserProc* pProc, std::ofstream &os, bool frag /* = false */,
-		bool spec /* = false */) {
-
+bool ST20FrontEnd::processProc(ADDRESS uAddr, UserProc *pProc, std::ofstream &os, bool frag /* = false */, bool spec /* = false */)
+{
 	// Call the base class to do most of the work
 	if (!FrontEnd::processProc(uAddr, pProc, os, frag, spec))
 		return false;

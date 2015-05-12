@@ -4,11 +4,11 @@
 *
 *   \file mipsfrontend.cpp
 *
-* PURPOSE 
+* PURPOSE
 *
 *   Skeleton for MIPS disassembly.
 *
-* AUTHOR 
+* AUTHOR
 *
 *   \author Markus Gothe, nietzsche@lysator.liu.se
 *
@@ -25,66 +25,60 @@
 #include "BinaryFile.h"
 #include "frontend.h"
 #include "mipsfrontend.h"
-#include "BinaryFile.h"		// E.g. IsDynamicallyLinkedProc
+#include "BinaryFile.h"     // E.g. IsDynamicallyLinkedProc
 #include "boomerang.h"
 #include "signature.h"
 
-#include <iomanip>			// For setfill etc
+#include <iomanip>          // For setfill etc
 #include <sstream>
 
-MIPSFrontEnd::MIPSFrontEnd(BinaryFile *pBF, Prog* prog, BinaryFileFactory* pbff) : FrontEnd(pBF, prog, pbff)
+MIPSFrontEnd::MIPSFrontEnd(BinaryFile *pBF, Prog *prog, BinaryFileFactory *pbff) : FrontEnd(pBF, prog, pbff)
 {
 	decoder = new MIPSDecoder(prog);
 }
 
-
-// destructor
 MIPSFrontEnd::~MIPSFrontEnd()
 {
 }
 
-
-std::vector<Exp*> &MIPSFrontEnd::getDefaultParams()
+std::vector<Exp *> &MIPSFrontEnd::getDefaultParams()
 {
-	static std::vector<Exp*> params;
+	static std::vector<Exp *> params;
 	if (params.size() == 0) {
-		for (int r=31; r>=0; r--) {
+		for (int r = 31; r >= 0; r--) {
 			params.push_back(Location::regOf(r));
 		}
 	}
 	return params;
 }
 
-std::vector<Exp*> &MIPSFrontEnd::getDefaultReturns()
+std::vector<Exp *> &MIPSFrontEnd::getDefaultReturns()
 {
-	static std::vector<Exp*> returns;
+	static std::vector<Exp *> returns;
 	if (returns.size() == 0) {
-		for (int r=31; r>=0; r--) {
+		for (int r = 31; r >= 0; r--) {
 			returns.push_back(Location::regOf(r));
 		}
-
 	}
 	return returns;
 }
 
-ADDRESS MIPSFrontEnd::getMainEntryPoint( bool &gotMain ) 
+ADDRESS MIPSFrontEnd::getMainEntryPoint(bool &gotMain)
 {
 	gotMain = true;
 	ADDRESS start = pBF->GetMainEntryPoint();
-	if( start != NO_ADDRESS ) return start;
+	if (start != NO_ADDRESS) return start;
 
 	start = pBF->GetEntryPoint();
 	gotMain = false;
-	if( start == NO_ADDRESS ) return NO_ADDRESS;
+	if (start == NO_ADDRESS) return NO_ADDRESS;
 
 	gotMain = true;
 	return start;
 }
 
-
-bool MIPSFrontEnd::processProc(ADDRESS uAddr, UserProc* pProc, std::ofstream &os, bool frag /* = false */, bool spec /* = false */)
+bool MIPSFrontEnd::processProc(ADDRESS uAddr, UserProc *pProc, std::ofstream &os, bool frag /* = false */, bool spec /* = false */)
 {
-
 	// Call the base class to do most of the work
 	if (!FrontEnd::processProc(uAddr, pProc, os, frag, spec))
 		return false;
