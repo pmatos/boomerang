@@ -1416,7 +1416,7 @@ void Prog::printCallGraphXML()
 	int fd = lockFileWrite(fname.c_str());
 	std::ofstream f(fname.c_str());
 	f << "<prog name=\"" << getName() << "\">\n";
-	f << "\t <callgraph>\n";
+	f << "\t<callgraph>\n";
 	std::list<UserProc *>::iterator pp;
 	for (pp = entryProcs.begin(); pp != entryProcs.end(); ++pp)
 		(*pp)->printCallGraphXML(f, 2);
@@ -1425,7 +1425,7 @@ void Prog::printCallGraphXML()
 			(*it)->printCallGraphXML(f, 2);
 		}
 	}
-	f << "\t </callgraph>\n";
+	f << "\t</callgraph>\n";
 	f << "</prog>\n";
 	f.close();
 	unlockFile(fd);

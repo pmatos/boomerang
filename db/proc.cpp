@@ -202,8 +202,7 @@ void Proc::printCallGraphXML(std::ostream &os, int depth, bool recurse)
 	if (!DUMP_XML)
 		return;
 	visited = true;
-	for (int i = 0; i < depth; i++)
-		os << "\t  ";
+	for (int i = 0; i < depth; i++) os << "\t";
 	os << "<proc name=\"" << getName() << "\"/>\n";
 }
 
@@ -214,15 +213,13 @@ void UserProc::printCallGraphXML(std::ostream &os, int depth, bool recurse)
 	bool wasVisited = visited;
 	visited = true;
 	int i;
-	for (i = 0; i < depth; i++)
-		os << "\t  ";
+	for (i = 0; i < depth; i++) os << "\t";
 	os << "<proc name=\"" << getName() << "\">\n";
 	if (recurse) {
 		for (std::list<Proc *>::iterator it = calleeList.begin(); it != calleeList.end(); it++)
 			(*it)->printCallGraphXML(os, depth + 1, !wasVisited && !(*it)->isVisited());
 	}
-	for (i = 0; i < depth; i++)
-		os << "\t  ";
+	for (i = 0; i < depth; i++) os << "\t";
 	os << "</proc>\n";
 }
 
@@ -234,12 +231,12 @@ void Proc::printDetailsXML()
 	out << "<proc name=\"" << getName() << "\">\n";
 	unsigned i;
 	for (i = 0; i < signature->getNumParams(); i++)
-		out << "   <param name=\"" << signature->getParamName(i) << "\" "
-		    << "exp=\"" << signature->getParamExp(i) << "\" "
-		    << "type=\"" << signature->getParamType(i)->getCtype() << "\"\n";
+		out << "\t<param name=\"" << signature->getParamName(i)
+		    << "\" exp=\"" << signature->getParamExp(i)
+		    << "\" type=\"" << signature->getParamType(i)->getCtype() << "\"/>\n";
 	for (i = 0; i < signature->getNumReturns(); i++)
-		out << "   <return exp=\"" << signature->getReturnExp(i) << "\" "
-		    << "type=\"" << signature->getReturnType(i)->getCtype() << "\"/>\n";
+		out << "\t<return exp=\"" << signature->getReturnExp(i)
+		    << "\" type=\"" << signature->getReturnType(i)->getCtype() << "\"/>\n";
 	out << "</proc>\n";
 	out.close();
 }
