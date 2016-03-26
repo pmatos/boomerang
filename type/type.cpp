@@ -1634,7 +1634,7 @@ void CompoundType::updateGenericMember(int off, Type *ty, bool &ch)
 }
 
 
-#if USING_MEMO
+#ifdef USING_MEMO
 class FuncTypeMemo : public Memo
 {
 public:
@@ -1826,6 +1826,6 @@ void UnionType::readMemo(Memo *mm, bool dec)
 		it->type->restoreMemo(m->mId, dec);
 }
 
-// Don't insert new functions here! (Unles memo related.) Inside #if USING_MEMO!
+// Don't insert new functions here! (Unles memo related.) Inside #ifdef USING_MEMO!
 
-#endif // #if USING_MEMO
+#endif

@@ -1801,7 +1801,7 @@ bool CallingConvention::StdC::HppaSignature::isLocalOffsetPositive()
 }
 #endif
 
-#if USING_MEMO
+#ifdef USING_MEMO
 class SignatureMemo : public Memo {
 public:
 	SignatureMemo(int m) : Memo(m) { }
@@ -2091,7 +2091,7 @@ bool Return::operator==(Return &other)
 	return true;
 }
 
-#if USING_MEMO
+#ifdef USING_MEMO
 class ReturnMemo : public Memo {
 public:
 	ReturnMemo(int m) : Memo(m) { }

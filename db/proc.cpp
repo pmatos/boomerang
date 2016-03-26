@@ -5589,7 +5589,7 @@ void UserProc::checkLocalFor(RefExp *r)
 
 //  -   -   -   -   -   -   -   -   -
 
-#ifdef USING_MEMOS
+#ifdef USING_MEMO
 class LibProcMemo : public Memo {
 public:
 	LibProcMemo(int mId) : Memo(mId) { }
