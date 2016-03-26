@@ -5,22 +5,20 @@
 #include <cppunit/TestSuite.h>
 
 class DfaTest : public CppUnit::TestCase {
-  protected:
+protected:
 
-  public:
-	DfaTest(std::string name) : CppUnit::TestCase (name)
-	{}
+public:
+	DfaTest(std::string name) : CppUnit::TestCase(name) { }
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+	virtual void registerTests(CppUnit::TestSuite *suite);
 
-	int countTestCases () const;
+	int countTestCases() const;
 
-	void setUp ();
-	void tearDown ();
+	void setUp();
+	void tearDown();
 
 	void testMeetInt();
 	void testMeetSize();
 	void testMeetPointer();
 	void testMeetUnion();
 };
-

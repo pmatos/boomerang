@@ -8,8 +8,8 @@
  */
 
 /*=============================================================================
- * FILE:		memo.h
- * OVERVIEW:	declaration of the memo class.
+ * FILE:        memo.h
+ * OVERVIEW:    declaration of the memo class.
  *============================================================================*/
 
 #ifndef MEMO_H
@@ -22,7 +22,7 @@ public:
 	Memo(int m) : mId(m) { }
 	int mId;
 	virtual void doNothing() { }
-	virtual ~Memo() { }			// Kill gcc warning
+	virtual ~Memo() { }  // Kill gcc warning
 };
 
 class Memoisable {
@@ -41,9 +41,8 @@ public:
 	void restoreMemo(bool dec = false);
 
 protected:
-	std::list<Memo*> memos;
-	std::list<Memo*>::iterator cur_memo;
+	std::list<Memo *> memos;
+	std::list<Memo *>::iterator cur_memo;
 };
 
 #endif
-

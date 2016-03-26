@@ -16,7 +16,7 @@ protected:
 	static std::list<ExpTransformer *> transformers;
 public:
 	ExpTransformer();
-	virtual ~ExpTransformer() {}      // Prevent gcc4 warning
+	virtual ~ExpTransformer() { }  // Prevent gcc4 warning
 
 	static void loadAll();
 

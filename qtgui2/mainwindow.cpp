@@ -4,60 +4,48 @@
 
 #include <QtGui>
 
-MainWindow::MainWindow(QWidget *parent) : 
-    QMainWindow(parent), 
-    decompilerThread(NULL),
+MainWindow::MainWindow(QWidget *parent) :
+	QMainWindow(parent),
+	decompilerThread(NULL),
 	step(NULL)
 {
-    ui.setupUi(this);
+	ui.setupUi(this);
 
-    decompilerThread = new DecompilerThread();
+	decompilerThread = new DecompilerThread();
 	decompilerThread->start();
 	Decompiler *d = decompilerThread->getDecompiler();
 	connect(d, SIGNAL(newCluster(const QString &)), this, SLOT(showNewCluster(const QString &)));
-	connect(d, SIGNAL(newProcInCluster(const QString &, const QString &)), this, SLOT(showNewProcInCluster(
-		const QString &, const QString &)));
-	connect(d, SIGNAL(debuggingPoint(const QString &, const QString &)), this, SLOT(showDebuggingPoint(
-		const QString &, const QString &)));
+	connect(d, SIGNAL(newProcInCluster(const QString &, const QString &)), this, SLOT(showNewProcInCluster(const QString &, const QString &)));
+	connect(d, SIGNAL(debuggingPoint(const QString &, const QString &)), this, SLOT(showDebuggingPoint(const QString &, const QString &)));
 	connect(d, SIGNAL(loading()), this, SLOT(showLoadPage()));
 	connect(d, SIGNAL(decoding()), this, SLOT(showDecodePage()));
 	connect(d, SIGNAL(decompiling()), this, SLOT(showDecompilePage()));
 	connect(d, SIGNAL(generatingCode()), this, SLOT(showGenerateCodePage()));
 	connect(d, SIGNAL(loadCompleted()), this, SLOT(loadComplete()));
 	connect(d, SIGNAL(machineType(const QString &)), this, SLOT(showMachineType(const QString &)));
-	connect(d, SIGNAL(newEntrypoint(unsigned int, const QString &)), this, SLOT(showNewEntrypoint(
-		unsigned int, const QString &)));
+	connect(d, SIGNAL(newEntrypoint(unsigned int, const QString &)), this, SLOT(showNewEntrypoint(unsigned int, const QString &)));
 	connect(d, SIGNAL(decodeCompleted()), this, SLOT(decodeComplete()));
 	connect(d, SIGNAL(decompileCompleted()), this, SLOT(decompileComplete()));
 	connect(d, SIGNAL(generateCodeCompleted()), this, SLOT(generateCodeComplete()));
-	connect(d, SIGNAL(changeProcedureState(const QString &, const QString &)), this, SLOT(changeProcedureState(
-		const QString &, const QString &)));
-	connect(d, SIGNAL(consideringProc(const QString &, const QString &)), this, SLOT(showConsideringProc(
-		const QString &, const QString &)));
+	connect(d, SIGNAL(changeProcedureState(const QString &, const QString &)), this, SLOT(changeProcedureState(const QString &, const QString &)));
+	connect(d, SIGNAL(consideringProc(const QString &, const QString &)), this, SLOT(showConsideringProc(const QString &, const QString &)));
 	connect(d, SIGNAL(decompilingProc(const QString &)), this, SLOT(showDecompilingProc(const QString &)));
-	connect(d, SIGNAL(newUserProc(const QString &, unsigned int)), this, SLOT(showNewUserProc(
-		const QString &, unsigned int)));
-	connect(d, SIGNAL(newLibProc(const QString &, const QString &)), this, SLOT(showNewLibProc(
-		const QString &, const QString &)));
-	connect(d, SIGNAL(removeUserProc(const QString &, unsigned int)), this, SLOT(showRemoveUserProc(
-		const QString &, unsigned int)));
+	connect(d, SIGNAL(newUserProc(const QString &, unsigned int)), this, SLOT(showNewUserProc(const QString &, unsigned int)));
+	connect(d, SIGNAL(newLibProc(const QString &, const QString &)), this, SLOT(showNewLibProc(const QString &, const QString &)));
+	connect(d, SIGNAL(removeUserProc(const QString &, unsigned int)), this, SLOT(showRemoveUserProc(const QString &, unsigned int)));
 	connect(d, SIGNAL(removeLibProc(const QString &)), this, SLOT(showRemoveLibProc(const QString &)));
-	connect(d, SIGNAL(newSection(const QString &, unsigned int, unsigned int)), this, SLOT(showNewSection(
-		const QString &, unsigned int, unsigned int)));
-    connect(ui.toLoadButton, SIGNAL(clicked()), d, SLOT(load()));
-    connect(ui.toDecodeButton, SIGNAL(clicked()), d, SLOT(decode()));
-    connect(ui.toDecompileButton, SIGNAL(clicked()), d, SLOT(decompile()));
-    connect(ui.toGenerateCodeButton, SIGNAL(clicked()), d, SLOT(generateCode()));
-	//connect(ui.inputFileComboBox, SIGNAL(editTextChanged(const QString &)), d,  SLOT(
-	//	changeInputFile(const QString &)));
-	//connect(ui.outputPathComboBox, SIGNAL(editTextChanged(const QString &)), d,  SLOT(
-	//	changeOutputPath(const QString &)));
+	connect(d, SIGNAL(newSection(const QString &, unsigned int, unsigned int)), this, SLOT(showNewSection(const QString &, unsigned int, unsigned int)));
+	connect(ui.toLoadButton, SIGNAL(clicked()), d, SLOT(load()));
+	connect(ui.toDecodeButton, SIGNAL(clicked()), d, SLOT(decode()));
+	connect(ui.toDecompileButton, SIGNAL(clicked()), d, SLOT(decompile()));
+	connect(ui.toGenerateCodeButton, SIGNAL(clicked()), d, SLOT(generateCode()));
+	//connect(ui.inputFileComboBox, SIGNAL(editTextChanged(const QString &)), d, SLOT(changeInputFile(const QString &)));
+	//connect(ui.outputPathComboBox, SIGNAL(editTextChanged(const QString &)), d, SLOT(changeOutputPath(const QString &)));
 	//connect(ui.inputFileBrowseButton, SIGNAL(clicked()), this, SLOT(browseForInputFile()));
 	//connect(ui.outputPathBrowseButton, SIGNAL(clicked()), this, SLOT(browseForOutputPath()));
 
 	ui.userProcs->horizontalHeader()->disconnect(SIGNAL(sectionClicked(int)));
-	connect(ui.userProcs->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(
-		on_userProcs_horizontalHeader_sectionClicked(int)));
+	connect(ui.userProcs->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(on_userProcs_horizontalHeader_sectionClicked(int)));
 
 	ui.userProcs->verticalHeader()->hide();
 	ui.libProcs->verticalHeader()->hide();
@@ -106,7 +94,7 @@ void MainWindow::saveSettings()
 {
 	if (loadingSettings)
 		return;
-	QSettings settings("Boomerang", "Boomerang");			
+	QSettings settings("Boomerang", "Boomerang");
 	QStringList inputfiles;
 	for (int n = 0; n < ui.inputFileComboBox->count(); n++) {
 		inputfiles.append(ui.inputFileComboBox->itemText(n));
@@ -123,8 +111,8 @@ void MainWindow::saveSettings()
 
 void MainWindow::on_inputFileBrowseButton_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Select a file to decompile..."), "test", "Windows Binaries (*.exe *.dll *.scr *.sys);;Other Binaries (*.*)");
-    if (!s.isEmpty()) {
+	QString s = QFileDialog::getOpenFileName(this, tr("Select a file to decompile..."), "test", "Windows Binaries (*.exe *.dll *.scr *.sys);;Other Binaries (*.*)");
+	if (!s.isEmpty()) {
 		if (ui.inputFileComboBox->findText(s) == -1) {
 			ui.inputFileComboBox->addItem(s);
 			ui.inputFileComboBox->setCurrentIndex(ui.inputFileComboBox->findText(s));
@@ -138,8 +126,8 @@ void MainWindow::on_inputFileBrowseButton_clicked()
 
 void MainWindow::on_outputPathBrowseButton_clicked()
 {
-    QString s = QFileDialog::getExistingDirectory(this, tr("Select a location to write output..."), "output");
-    if (!s.isEmpty()) {
+	QString s = QFileDialog::getExistingDirectory(this, tr("Select a location to write output..."), "output");
+	if (!s.isEmpty()) {
 		if (ui.outputPathComboBox->findText(s) == -1) {
 			ui.outputPathComboBox->addItem(s);
 			saveSettings();
@@ -147,7 +135,7 @@ void MainWindow::on_outputPathBrowseButton_clicked()
 		ui.outputPathComboBox->setEditText(s);
 		if (!ui.inputFileComboBox->currentText().isEmpty())
 			ui.toLoadButton->setDisabled(false);
-    }
+	}
 }
 
 void MainWindow::on_inputFileComboBox_editTextChanged(const QString &text)
@@ -208,7 +196,7 @@ void MainWindow::on_actionOpen_activated()
 		if (filename.endsWith(".h"))
 			signatureFiles.insert(n);
 		connect(n, SIGNAL(textChanged()), this, SLOT(currentTabTextChanged()));
-		QString name = filename; 
+		QString name = filename;
 		name = name.right(name.length() - filename.lastIndexOf(QRegExp("[/\\\\]")) - 1);
 		ui.tabWidget->addTab(n, name);
 		ui.tabWidget->setCurrentWidget(n);
@@ -222,12 +210,12 @@ void MainWindow::on_actionSave_activated()
 		QFile file(filename);
 		if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
 			return;
-		QTextEdit *edit = (QTextEdit*)ui.tabWidget->currentWidget();
+		QTextEdit *edit = (QTextEdit *)ui.tabWidget->currentWidget();
 		file.write(edit->toPlainText().toAscii());
 		file.close();
 		QString text = ui.tabWidget->tabText(ui.tabWidget->currentIndex());
 		if (text.right(1) == "*")
-			ui.tabWidget->setTabText(ui.tabWidget->currentIndex(), text.left(text.length()-1));
+			ui.tabWidget->setTabText(ui.tabWidget->currentIndex(), text.left(text.length() - 1));
 		if (signatureFiles.find(ui.tabWidget->currentWidget()) != signatureFiles.end()) {
 			decompilerThread->getDecompiler()->rereadLibSignatures();
 		}
@@ -258,13 +246,13 @@ void MainWindow::showInitPage()
 {
 	ui.toLoadButton->setDisabled(true);
 	ui.loadButton->setDisabled(true);
-    ui.decodeButton->setDisabled(true);
-    ui.decompileButton->setDisabled(true);
-    ui.generateCodeButton->setDisabled(true);
-    ui.toDecodeButton->setDisabled(true);
-    ui.toDecompileButton->setDisabled(true);
-    ui.toGenerateCodeButton->setDisabled(true);
-    ui.stackedWidget->setCurrentIndex(0);
+	ui.decodeButton->setDisabled(true);
+	ui.decompileButton->setDisabled(true);
+	ui.generateCodeButton->setDisabled(true);
+	ui.toDecodeButton->setDisabled(true);
+	ui.toDecompileButton->setDisabled(true);
+	ui.toGenerateCodeButton->setDisabled(true);
+	ui.stackedWidget->setCurrentIndex(0);
 	ui.entrypoints->setRowCount(0);
 	ui.userProcs->setRowCount(0);
 	ui.libProcs->setRowCount(0);
@@ -293,12 +281,12 @@ void MainWindow::showLoadPage()
 void MainWindow::showDecodePage()
 {
 	ui.toLoadButton->setDisabled(true);
-    ui.loadButton->setDisabled(true);
-    ui.decodeButton->setDisabled(false);
-    ui.decompileButton->setDisabled(true);
-    ui.generateCodeButton->setDisabled(true);
+	ui.loadButton->setDisabled(true);
+	ui.decodeButton->setDisabled(false);
+	ui.decompileButton->setDisabled(true);
+	ui.generateCodeButton->setDisabled(true);
 	ui.toDecodeButton->setDisabled(true);
-    ui.stackedWidget->setCurrentIndex(2);
+	ui.stackedWidget->setCurrentIndex(2);
 
 	if (!ui.actionEnable->isChecked()) {
 		ui.userProcs->removeColumn(2);
@@ -313,12 +301,12 @@ void MainWindow::showDecodePage()
 void MainWindow::showDecompilePage()
 {
 	ui.toLoadButton->setDisabled(true);
-    ui.loadButton->setDisabled(true);
-    ui.decodeButton->setDisabled(true);
-    ui.decompileButton->setDisabled(false);
-    ui.generateCodeButton->setDisabled(true);
+	ui.loadButton->setDisabled(true);
+	ui.decodeButton->setDisabled(true);
+	ui.decompileButton->setDisabled(false);
+	ui.generateCodeButton->setDisabled(true);
 	ui.toDecompileButton->setDisabled(true);
-    ui.stackedWidget->setCurrentIndex(3);
+	ui.stackedWidget->setCurrentIndex(3);
 
 	ui.actionDecompile->setDisabled(false);
 }
@@ -326,26 +314,26 @@ void MainWindow::showDecompilePage()
 void MainWindow::showGenerateCodePage()
 {
 	ui.toLoadButton->setDisabled(true);
-    ui.loadButton->setDisabled(true);
-    ui.decodeButton->setDisabled(true);
-    ui.decompileButton->setDisabled(true);
-    ui.generateCodeButton->setDisabled(false);
+	ui.loadButton->setDisabled(true);
+	ui.decodeButton->setDisabled(true);
+	ui.decompileButton->setDisabled(true);
+	ui.generateCodeButton->setDisabled(false);
 	ui.toGenerateCodeButton->setDisabled(true);
-    ui.stackedWidget->setCurrentIndex(4);
+	ui.stackedWidget->setCurrentIndex(4);
 	ui.actionGenerate_Code->setDisabled(false);
 }
 
 void MainWindow::loadComplete()
 {
 	ui.toLoadButton->setDisabled(true);
-    ui.loadButton->setDisabled(false);
-    ui.decodeButton->setDisabled(true);
-    ui.decompileButton->setDisabled(true);
-    ui.generateCodeButton->setDisabled(true);
-    ui.toDecodeButton->setDisabled(false);
-    ui.toDecompileButton->setDisabled(true);
-    ui.toGenerateCodeButton->setDisabled(true);
-    ui.stackedWidget->setCurrentIndex(1);
+	ui.loadButton->setDisabled(false);
+	ui.decodeButton->setDisabled(true);
+	ui.decompileButton->setDisabled(true);
+	ui.generateCodeButton->setDisabled(true);
+	ui.toDecodeButton->setDisabled(false);
+	ui.toDecompileButton->setDisabled(true);
+	ui.toGenerateCodeButton->setDisabled(true);
+	ui.stackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::showMachineType(const QString &machine)
@@ -379,27 +367,27 @@ void MainWindow::decodeComplete()
 void MainWindow::decompileComplete()
 {
 	ui.toLoadButton->setDisabled(true);
-    ui.loadButton->setDisabled(true);
-    ui.decodeButton->setDisabled(true);
-    ui.decompileButton->setDisabled(false);
-    ui.generateCodeButton->setDisabled(true);
-    ui.toDecodeButton->setDisabled(true);
-    ui.toDecompileButton->setDisabled(true);
-    ui.toGenerateCodeButton->setDisabled(false);
-    ui.stackedWidget->setCurrentIndex(3);
+	ui.loadButton->setDisabled(true);
+	ui.decodeButton->setDisabled(true);
+	ui.decompileButton->setDisabled(false);
+	ui.generateCodeButton->setDisabled(true);
+	ui.toDecodeButton->setDisabled(true);
+	ui.toDecompileButton->setDisabled(true);
+	ui.toGenerateCodeButton->setDisabled(false);
+	ui.stackedWidget->setCurrentIndex(3);
 }
 
 void MainWindow::generateCodeComplete()
 {
 	ui.toLoadButton->setDisabled(true);
-    ui.loadButton->setDisabled(true);
-    ui.decodeButton->setDisabled(true);
-    ui.decompileButton->setDisabled(true);
-    ui.generateCodeButton->setDisabled(true);
-    ui.toDecodeButton->setDisabled(true);
-    ui.toDecompileButton->setDisabled(true);
-    ui.toGenerateCodeButton->setDisabled(true);
-    ui.stackedWidget->setCurrentIndex(4);
+	ui.loadButton->setDisabled(true);
+	ui.decodeButton->setDisabled(true);
+	ui.decompileButton->setDisabled(true);
+	ui.generateCodeButton->setDisabled(true);
+	ui.toDecodeButton->setDisabled(true);
+	ui.toDecompileButton->setDisabled(true);
+	ui.toGenerateCodeButton->setDisabled(true);
+	ui.stackedWidget->setCurrentIndex(4);
 }
 
 void MainWindow::showConsideringProc(const QString &parent, const QString &name)
@@ -416,7 +404,7 @@ void MainWindow::showConsideringProc(const QString &parent, const QString &name)
 				n->setData(0, 1, name);
 				ui.decompileProcsTreeWidget->expandItem(found.first());
 				ui.decompileProcsTreeWidget->scrollToItem(n);
-				ui.decompileProcsTreeWidget->setCurrentItem(n, 0);				
+				ui.decompileProcsTreeWidget->setCurrentItem(n, 0);
 			}
 		}
 	}
@@ -477,10 +465,10 @@ void MainWindow::showRemoveUserProc(const QString &name, unsigned int addr)
 	QString s = tr("%1").arg(addr, 8, 16, QChar('0'));
 	int nrows = ui.userProcs->rowCount();
 	for (int i = 0; i < nrows; i++)
-        if (ui.userProcs->item(i, 0)->text() == s) {
-            ui.userProcs->removeRow(i);
+		if (ui.userProcs->item(i, 0)->text() == s) {
+			ui.userProcs->removeRow(i);
 			break;
-        }
+		}
 	ui.userProcs->resizeColumnsToContents();
 	ui.userProcs->resizeRowsToContents();
 }
@@ -489,10 +477,10 @@ void MainWindow::showRemoveLibProc(const QString &name)
 {
 	int nrows = ui.libProcs->rowCount();
 	for (int i = 0; i < nrows; i++)
-        if (ui.libProcs->item(i, 0)->text() == name) {
-            ui.libProcs->removeRow(i);
+		if (ui.libProcs->item(i, 0)->text() == name) {
+			ui.libProcs->removeRow(i);
 			break;
-        }
+		}
 	ui.libProcs->resizeColumnsToContents();
 	ui.libProcs->resizeRowsToContents();
 }
@@ -557,7 +545,7 @@ void MainWindow::showRTLEditor(const QString &name)
 	RTLEditor *n = NULL;
 	for (int i = 0; i < ui.tabWidget->count(); i++)
 		if (ui.tabWidget->tabText(i) == name) {
-			n = dynamic_cast<RTLEditor*>(ui.tabWidget->widget(i));
+			n = dynamic_cast<RTLEditor *>(ui.tabWidget->widget(i));
 			break;
 		}
 	if (n == NULL) {
@@ -581,7 +569,7 @@ void MainWindow::on_userProcs_cellChanged(int row, int column)
 	if (column == 1) {
 		QString old_name = ui.userProcs->item(row, 1)->data(1).toString();
 		decompilerThread->getDecompiler()->renameProc(old_name, ui.userProcs->item(row, 1)->text());
-		ui.userProcs->item(row, 1)->setData(1, ui.userProcs->item(row, 1)->text());		
+		ui.userProcs->item(row, 1)->setData(1, ui.userProcs->item(row, 1)->text());
 	}
 }
 
@@ -593,11 +581,11 @@ void MainWindow::on_clusters_itemDoubleClicked(QTreeWidgetItem *item, int column
 	QTextEdit *n = NULL;
 	for (int i = 0; i < ui.tabWidget->count(); i++)
 		if (ui.tabWidget->tabText(i) == top->text(0)) {
-			n = dynamic_cast<QTextEdit*>(ui.tabWidget->widget(i));
+			n = dynamic_cast<QTextEdit *>(ui.tabWidget->widget(i));
 			break;
 		}
 	if (n == NULL) {
-		n = new QTextEdit();	
+		n = new QTextEdit();
 		QString name = top->text(0);
 		name = name.left(name.lastIndexOf("."));
 		QString filename = decompilerThread->getDecompiler()->getClusterFile(name);
@@ -638,7 +626,6 @@ void MainWindow::on_actionEnable_toggled(bool b)
 			statusBar()->removeWidget(step);
 		statusBar()->hide();
 	}
-	
 }
 
 void MainWindow::on_actionStep_activated()
@@ -693,7 +680,7 @@ void MainWindow::on_libProcs_cellDoubleClicked(int row, int column)
 	QTextEdit *n = NULL;
 	for (int i = 0; i < ui.tabWidget->count(); i++)
 		if (ui.tabWidget->tabText(i) == sigFile || ui.tabWidget->tabText(i) == sigFileStar) {
-			n = dynamic_cast<QTextEdit*>(ui.tabWidget->widget(i));
+			n = dynamic_cast<QTextEdit *>(ui.tabWidget->widget(i));
 			break;
 		}
 	if (n == NULL) {
@@ -728,7 +715,7 @@ void MainWindow::on_libProcs_cellDoubleClicked(int row, int column)
 void MainWindow::on_actionCut_activated()
 {
 	if (ui.tabWidget->currentIndex() != 0) {
-		QTextEdit *n = dynamic_cast<QTextEdit*>(ui.tabWidget->currentWidget());
+		QTextEdit *n = dynamic_cast<QTextEdit *>(ui.tabWidget->currentWidget());
 		if (n)
 			n->cut();
 	}
@@ -737,7 +724,7 @@ void MainWindow::on_actionCut_activated()
 void MainWindow::on_actionCopy_activated()
 {
 	if (ui.tabWidget->currentIndex() != 0) {
-		QTextEdit *n = dynamic_cast<QTextEdit*>(ui.tabWidget->currentWidget());
+		QTextEdit *n = dynamic_cast<QTextEdit *>(ui.tabWidget->currentWidget());
 		if (n)
 			n->copy();
 	}
@@ -746,7 +733,7 @@ void MainWindow::on_actionCopy_activated()
 void MainWindow::on_actionPaste_activated()
 {
 	if (ui.tabWidget->currentIndex() != 0) {
-		QTextEdit *n = dynamic_cast<QTextEdit*>(ui.tabWidget->currentWidget());
+		QTextEdit *n = dynamic_cast<QTextEdit *>(ui.tabWidget->currentWidget());
 		if (n)
 			n->paste();
 	}
@@ -755,7 +742,7 @@ void MainWindow::on_actionPaste_activated()
 void MainWindow::on_actionDelete_activated()
 {
 	if (ui.tabWidget->currentIndex() != 0) {
-		QTextEdit *n = dynamic_cast<QTextEdit*>(ui.tabWidget->currentWidget());
+		QTextEdit *n = dynamic_cast<QTextEdit *>(ui.tabWidget->currentWidget());
 		if (n)
 			n->textCursor().removeSelectedText();
 	}
@@ -776,7 +763,7 @@ void MainWindow::on_actionGo_To_activated()
 void MainWindow::on_actionSelect_All_activated()
 {
 	if (ui.tabWidget->currentIndex() != 0) {
-		QTextEdit *n = dynamic_cast<QTextEdit*>(ui.tabWidget->currentWidget());
+		QTextEdit *n = dynamic_cast<QTextEdit *>(ui.tabWidget->currentWidget());
 		if (n)
 			n->selectAll();
 	}
@@ -837,37 +824,37 @@ void MainWindow::on_enableDFTAcheckBox_toggled(bool b)
 
 void MainWindow::on_enableNoDecodeChildren_toggled(bool b)
 {
-    decompilerThread->getDecompiler()->setNoDecodeChildren(b);
+	decompilerThread->getDecompiler()->setNoDecodeChildren(b);
 }
 
 void MainWindow::on_entrypoints_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous)
 {
-    ui.removeButton->setEnabled(true);
+	ui.removeButton->setEnabled(true);
 }
 
 void MainWindow::on_addButton_pressed()
 {
-    if (ui.addressEdit->text() == "" || ui.nameEdit->text() == "")
-        return;
-    bool ok;
-    ADDRESS a = ui.addressEdit->text().toInt(&ok, 16);
-    if (!ok)
-        return;
-    decompilerThread->getDecompiler()->addEntryPoint(a, (const char *)ui.nameEdit->text().toAscii());
+	if (ui.addressEdit->text() == "" || ui.nameEdit->text() == "")
+		return;
+	bool ok;
+	ADDRESS a = ui.addressEdit->text().toInt(&ok, 16);
+	if (!ok)
+		return;
+	decompilerThread->getDecompiler()->addEntryPoint(a, (const char *)ui.nameEdit->text().toAscii());
 	int nrows = ui.entrypoints->rowCount();
 	ui.entrypoints->setRowCount(nrows + 1);
 	ui.entrypoints->setItem(nrows, 0, new QTableWidgetItem(ui.addressEdit->text()));
 	ui.entrypoints->setItem(nrows, 1, new QTableWidgetItem(ui.nameEdit->text()));
-    ui.addressEdit->clear();
-    ui.nameEdit->clear();
+	ui.addressEdit->clear();
+	ui.nameEdit->clear();
 }
 
 void MainWindow::on_removeButton_pressed()
 {
-    bool ok;
-    ADDRESS a = ui.entrypoints->item(ui.entrypoints->currentRow(), 0)->text().toInt(&ok, 16);
-    if (!ok)
-        return;
-    decompilerThread->getDecompiler()->removeEntryPoint(a);
-    ui.entrypoints->removeRow(ui.entrypoints->currentRow());
+	bool ok;
+	ADDRESS a = ui.entrypoints->item(ui.entrypoints->currentRow(), 0)->text().toInt(&ok, 16);
+	if (!ok)
+		return;
+	decompilerThread->getDecompiler()->removeEntryPoint(a);
+	ui.entrypoints->removeRow(ui.entrypoints->currentRow());
 }

@@ -20,15 +20,17 @@
 
 Qt::HANDLE threadToCollect = 0;
 
-void* operator new(size_t n) {
+void *operator new(size_t n)
+{
 	Qt::HANDLE curThreadId = QThread::currentThreadId();
 	if (curThreadId == threadToCollect)
 		return GC_malloc(n);
 	else
-		return GC_malloc_uncollectable(n);	// Don't collect, but mark
+		return GC_malloc_uncollectable(n);  // Don't collect, but mark
 }
 
-void operator delete(void* p) {
+void operator delete(void *p)
+{
 	Qt::HANDLE curThreadId = QThread::currentThreadId();
 	if (curThreadId != threadToCollect)
 		GC_free(p); // Important to call this if you call GC_malloc_uncollectable
@@ -39,7 +41,7 @@ void DecompilerThread::run()
 	threadToCollect = QThread::currentThreadId();
 
 	Boomerang::get()->setOutputDirectory("./output/");
-    //Boomerang::get()->vFlag = true;
+	//Boomerang::get()->vFlag = true;
 	//Boomerang::get()->traceDecoder = true;
 
 	decompiler = new Decompiler();
@@ -59,28 +61,32 @@ Decompiler *DecompilerThread::getDecompiler()
 	return decompiler;
 }
 
-void Decompiler::setUseDFTA(bool d) {
+void Decompiler::setUseDFTA(bool d)
+{
 	Boomerang::get()->dfaTypeAnalysis = d;
 }
 
-void Decompiler::setNoDecodeChildren(bool d) {
-    Boomerang::get()->noDecodeChildren = d;
+void Decompiler::setNoDecodeChildren(bool d)
+{
+	Boomerang::get()->noDecodeChildren = d;
 }
 
-void Decompiler::addEntryPoint(ADDRESS a, const char *nam) {
-    user_entrypoints.push_back(a);
-    fe->AddSymbol(a, nam);
+void Decompiler::addEntryPoint(ADDRESS a, const char *nam)
+{
+	user_entrypoints.push_back(a);
+	fe->AddSymbol(a, nam);
 }
 
-void Decompiler::removeEntryPoint(ADDRESS a) {
-    for (std::vector<ADDRESS>::iterator it = user_entrypoints.begin(); it != user_entrypoints.end(); it++)
-        if (*it == a) {
-            user_entrypoints.erase(it);
-            break;
-        }
+void Decompiler::removeEntryPoint(ADDRESS a)
+{
+	for (std::vector<ADDRESS>::iterator it = user_entrypoints.begin(); it != user_entrypoints.end(); it++)
+		if (*it == a) {
+			user_entrypoints.erase(it);
+			break;
+		}
 }
 
-void Decompiler::changeInputFile(const QString &f) 
+void Decompiler::changeInputFile(const QString &f)
 {
 	filename = f;
 }
@@ -103,31 +109,31 @@ void Decompiler::load()
 	prog->setFrontEnd(fe);
 	fe->readLibraryCatalog();
 
-	switch(prog->getMachine()) {
-		case MACHINE_PENTIUM:
-			emit machineType(QString("pentium"));
-			break;
-		case MACHINE_SPARC:
-			emit machineType(QString("sparc"));
-			break;
-		case MACHINE_HPRISC:
-			emit machineType(QString("hprisc"));
-			break;
-		case MACHINE_PALM:
-			emit machineType(QString("palm"));
-			break;
-		case MACHINE_PPC:
-			emit machineType(QString("ppc"));
-			break;
-		case MACHINE_ST20:
-			emit machineType(QString("st20"));
-			break;
+	switch (prog->getMachine()) {
+	case MACHINE_PENTIUM:
+		emit machineType(QString("pentium"));
+		break;
+	case MACHINE_SPARC:
+		emit machineType(QString("sparc"));
+		break;
+	case MACHINE_HPRISC:
+		emit machineType(QString("hprisc"));
+		break;
+	case MACHINE_PALM:
+		emit machineType(QString("palm"));
+		break;
+	case MACHINE_PPC:
+		emit machineType(QString("ppc"));
+		break;
+	case MACHINE_ST20:
+		emit machineType(QString("st20"));
+		break;
 	}
 
 	QStringList entrypointStrings;
 	std::vector<ADDRESS> entrypoints = fe->getEntryPoints();
 	for (unsigned int i = 0; i < entrypoints.size(); i++) {
-        user_entrypoints.push_back(entrypoints[i]);
+		user_entrypoints.push_back(entrypoints[i]);
 		emit newEntrypoint(entrypoints[i], fe->getBinaryFile()->SymbolByAddress(entrypoints[i]));
 	}
 
@@ -145,20 +151,20 @@ void Decompiler::decode()
 
 	bool gotMain;
 	ADDRESS a = fe->getMainEntryPoint(gotMain);
-	for (unsigned int i = 0; i < user_entrypoints.size(); i++) 
-        if (user_entrypoints[i] == a) {
-        	fe->decode(prog, true, NULL);
-            break;
-        }
+	for (unsigned int i = 0; i < user_entrypoints.size(); i++)
+		if (user_entrypoints[i] == a) {
+			fe->decode(prog, true, NULL);
+			break;
+		}
 
-    for (unsigned int i = 0; i < user_entrypoints.size(); i++) {
-        prog->decodeEntryPoint(user_entrypoints[i]);
+	for (unsigned int i = 0; i < user_entrypoints.size(); i++) {
+		prog->decodeEntryPoint(user_entrypoints[i]);
 	}
 
-    if (!Boomerang::get()->noDecodeChildren) {
-	    // decode anything undecoded
-	    fe->decode(prog, NO_ADDRESS);
-    }
+	if (!Boomerang::get()->noDecodeChildren) {
+		// decode anything undecoded
+		fe->decode(prog, NO_ADDRESS);
+	}
 
 	prog->finishDecode();
 
@@ -190,7 +196,7 @@ void Decompiler::generateCode()
 	Cluster *root = prog->getRootCluster();
 	if (root)
 		emitClusterAndChildren(root);
-	std::list<Proc*>::iterator it;
+	std::list<Proc *>::iterator it;
 	for (UserProc *p = prog->getFirstUserProc(it); p; p = prog->getNextUserProc(it)) {
 		emit newProcInCluster(QString(p->getName()), QString(p->getCluster()->getName()));
 	}
@@ -200,7 +206,7 @@ void Decompiler::generateCode()
 
 const char *Decompiler::procStatus(UserProc *p)
 {
-	switch(p->getStatus()) {
+	switch (p->getStatus()) {
 	case PROC_UNDECODED:
 		return "undecoded";
 	case PROC_DECODED:
@@ -245,7 +251,7 @@ void Decompiler::alert_new(Proc *p)
 				params.append(ty->getCtype());
 				params.append(" ");
 				params.append(p->getSignature()->getParamName(i));
-				if (i != p->getSignature()->getNumParams()-1)
+				if (i != p->getSignature()->getNumParams() - 1)
 					params.append(", ");
 			}
 		}
@@ -269,13 +275,12 @@ void Decompiler::alert_update_signature(Proc *p)
 	alert_new(p);
 }
 
-
 bool Decompiler::getRtlForProc(const QString &name, QString &rtl)
 {
 	Proc *p = prog->findProc((const char *)name.toAscii());
 	if (p->isLib())
 		return false;
-	UserProc *up = (UserProc*)p;
+	UserProc *up = (UserProc *)p;
 	std::ostringstream os;
 	up->print(os, true);
 	rtl = os.str().c_str();
@@ -284,13 +289,13 @@ bool Decompiler::getRtlForProc(const QString &name, QString &rtl)
 
 void Decompiler::alert_decompile_debug_point(UserProc *p, const char *description)
 {
-    LOG << p->getName() << ": " << description << "\n";
+	LOG << p->getName() << ": " << description << "\n";
 	if (debugging) {
 		waiting = true;
 		emit debuggingPoint(QString(p->getName()), QString(description));
 		while (waiting) {
 			thread()->wait(10);
-		}		
+		}
 	}
 }
 

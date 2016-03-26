@@ -142,7 +142,7 @@ public:
 	virtual bool        operator==(const Type &other) const = 0;    // Considers sign
 	virtual bool        operator!=(const Type &other) const;        // Considers sign
 	//virtual bool        operator-=(const Type &other) const = 0;    // Ignores sign
-	virtual bool        operator< (const Type &other) const = 0;    // Considers sign
+	virtual bool        operator<(const Type &other) const = 0;     // Considers sign
 	        bool        operator*=(const Type &other) const {       // Consider only
 		                    return id == other.id;                  // broad type
 	                    }
@@ -211,7 +211,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -240,7 +240,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -272,7 +272,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Type       *mergeWith(Type *other);
 	virtual Exp        *match(Type *pattern);
 
@@ -313,7 +313,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -340,7 +340,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -364,7 +364,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -397,7 +397,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -433,7 +433,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -446,7 +446,7 @@ public:
 
 protected:
 	friend class XMLProgParser;
-	                    ArrayType() : Type(eArray), base_type(NULL), length(0) {}
+	                    ArrayType() : Type(eArray), base_type(NULL), length(0) { }
 };
 
 class NamedType : public Type {
@@ -467,7 +467,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -518,7 +518,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -563,7 +563,7 @@ public:
 
 	virtual bool        operator==(const Type &other) const;
 	//virtual bool        operator-=(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	virtual Exp        *match(Type *pattern);
 
 	virtual unsigned    getSize() const;
@@ -586,12 +586,12 @@ class SizeType : public Type {
 private:
 	        unsigned    size;               // Size in bits, e.g. 16
 public:
-	                    SizeType() : Type(eSize) {}
-	                    SizeType(unsigned sz) : Type(eSize), size(sz) {}
-	virtual            ~SizeType() {}
+	                    SizeType() : Type(eSize) { }
+	                    SizeType(unsigned sz) : Type(eSize), size(sz) { }
+	virtual            ~SizeType() { }
 	virtual Type       *clone() const;
 	virtual bool        operator==(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	//virtual Exp        *match(Type *pattern);
 	virtual Type       *mergeWith(Type *other);
 
@@ -612,11 +612,11 @@ class UpperType : public Type {
 	        Type       *base_type;
 
 public:
-	                    UpperType(Type *base) : Type(eUpper), base_type(base) {}
-	virtual            ~UpperType() {}
+	                    UpperType(Type *base) : Type(eUpper), base_type(base) { }
+	virtual            ~UpperType() { }
 	virtual Type       *clone() const;
 	virtual bool        operator==(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	//virtual Exp        *match(Type *pattern);
 	virtual Type       *mergeWith(Type *other);
 	        Type       *getBaseType() { return base_type; }
@@ -637,11 +637,11 @@ class LowerType : public Type {
 	        Type       *base_type;
 
 public:
-	                    LowerType(Type *base) : Type(eUpper), base_type(base) {}
-	virtual            ~LowerType() {}
+	                    LowerType(Type *base) : Type(eUpper), base_type(base) { }
+	virtual            ~LowerType() { }
 	virtual Type       *clone() const;
 	virtual bool        operator==(const Type &other) const;
-	virtual bool        operator< (const Type &other) const;
+	virtual bool        operator<(const Type &other) const;
 	//virtual Exp        *match(Type *pattern);
 	virtual Type       *mergeWith(Type *other);
 	        Type       *getBaseType() { return base_type; }
@@ -680,7 +680,7 @@ class DataIntervalMap {
 	        std::map<ADDRESS, DataInterval> dimap;
 	        UserProc   *proc;                             // If used for locals, has ptr to UserProc, else NULL
 public:
-	                    DataIntervalMap() {}
+	                    DataIntervalMap() { }
 	typedef std::map<ADDRESS, DataInterval>::iterator iterator;
 	        void        setProc(UserProc *p) { proc = p; }// Initialise the proc pointer
 	        DataIntervalEntry *find(ADDRESS addr);        // Find the DataInterval at address addr, or NULL if none

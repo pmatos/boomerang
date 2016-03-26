@@ -30,16 +30,16 @@ public:
 	virtual int ntokens(void);
 	virtual std::string getinstruction(void);
 	virtual std::string getinspattern(void);
-	virtual void getrefmap(std::map<std::string, InsNameElem*> &m);
- 
+	virtual void getrefmap(std::map<std::string, InsNameElem *> &m);
+
 	int ninstructions(void);
-	void append(InsNameElem* next);
+	void append(InsNameElem *next);
 	bool increment(void);
 	void reset(void);
 	int getvalue(void);
-	
+
 protected:
-	InsNameElem* nextelem;
+	InsNameElem *nextelem;
 	std::string elemname;
 	int value;
 };
@@ -51,23 +51,23 @@ public:
 	virtual int ntokens(void);
 	virtual std::string getinstruction(void);
 	virtual std::string getinspattern(void);
- 
+
 };
 
 class InsListElem : public InsNameElem {
 
 public:
-	InsListElem(const char *name, Table* t, const char *idx);
+	InsListElem(const char *name, Table *t, const char *idx);
 	virtual int ntokens(void);
 	virtual std::string getinstruction(void);
 	virtual std::string getinspattern(void);
-	virtual void getrefmap(std::map<std::string, InsNameElem*> &m);
+	virtual void getrefmap(std::map<std::string, InsNameElem *> &m);
 
 	std::string getindex(void);
 
 protected:
 	std::string indexname;
-	Table* thetable;
+	Table *thetable;
 };
 
 #endif

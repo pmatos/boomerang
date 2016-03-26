@@ -1,4 +1,3 @@
-
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -13,14 +12,13 @@
 class DecompilerThread;
 class QToolButton;
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+	Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
+	MainWindow(QWidget *parent = 0);
 
-    void errorLoadingFile();
+	void errorLoadingFile();
 
 public slots:
 	void loadComplete();
@@ -82,11 +80,11 @@ public slots:
 	void on_structName_returnPressed();
 
 	void on_enableDFTAcheckBox_toggled(bool b);
-    void on_enableNoDecodeChildren_toggled(bool b);
+	void on_enableNoDecodeChildren_toggled(bool b);
 
-    void on_entrypoints_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous);
-    void on_addButton_pressed();
-    void on_removeButton_pressed();
+	void on_entrypoints_currentItemChanged(QTableWidgetItem *current, QTableWidgetItem *previous);
+	void on_addButton_pressed();
+	void on_removeButton_pressed();
 
 	void closeCurrentTab();
 	void currentTabTextChanged();
@@ -96,18 +94,17 @@ protected:
 	void saveSettings();
 
 private:
-    Ui::MainWindow ui;
-    DecompilerThread *decompilerThread;
+	Ui::MainWindow ui;
+	DecompilerThread *decompilerThread;
 
 	QToolButton *step;
 
 	int decompiledCount, codeGenCount;
-	std::map<QWidget*, QString> openFiles;
-	std::set<QWidget*> signatureFiles;
+	std::map<QWidget *, QString> openFiles;
+	std::set<QWidget *> signatureFiles;
 
 	QWidget *structs;
 	bool loadingSettings;
 };
 
 #endif
-

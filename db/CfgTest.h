@@ -5,24 +5,22 @@
 #include <cppunit/TestSuite.h>
 
 class CfgTest : public CppUnit::TestCase {
-  protected:
-	Cfg*  m_prog;
+protected:
+	Cfg *m_prog;
 
-  public:
-	CfgTest(std::string name) : CppUnit::TestCase (name)
-	{}
+public:
+	CfgTest(std::string name) : CppUnit::TestCase(name) { }
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+	virtual void registerTests(CppUnit::TestSuite *suite);
 
-	int countTestCases () const;
+	int countTestCases() const;
 
-	void setUp ();
-	void tearDown ();
+	void setUp();
+	void tearDown();
 
-	void testDominators ();
-	void testSemiDominators ();
-	void testPlacePhi ();
+	void testDominators();
+	void testSemiDominators();
+	void testPlacePhi();
 	void testPlacePhi2();
 	void testRenameVars();
 };
-

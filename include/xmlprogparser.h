@@ -8,8 +8,8 @@
  */
 
 /*=============================================================================
- * FILE:		XMLProgParser.h
- * OVERVIEW:	parses persisted XML output and creates a new prog.
+ * FILE:        XMLProgParser.h
+ * OVERVIEW:    parses persisted XML output and creates a new prog.
  *============================================================================*/
 
 #ifndef XMLPROGPARSER_H
@@ -35,95 +35,93 @@ class RTL;
 
 typedef struct {
 	const char *tag;
-	void (XMLProgParser::*start_proc)(const char**);
+	void (XMLProgParser::*start_proc)(const char **);
 	void (XMLProgParser::*end_proc)(Context *c, int e);
 } _tag;
 
-class XMLProgParser
-{
-	public:
+class XMLProgParser {
+public:
 	XMLProgParser() { }
 	Prog *parse(const char *filename);
 	void persistToXML(Prog *prog);
 	void handleElementStart(const char *el, const char **attr);
 	void handleElementEnd(const char *el);
 
-	protected:
-
+protected:
 	void parseFile(const char *filename);
 	void parseChildren(Cluster *c);
 
 #define TAGD(x) void start_ ## x (const char **attr); \
 	void addToContext_ ## x (Context *c, int e);
 
-	TAGD(prog) 
-	TAGD(procs) 
-	TAGD(global) 
-	TAGD(cluster) 
-	TAGD(libproc) 
-	TAGD(userproc) 
-	TAGD(local) 
-	TAGD(symbol) 
+	TAGD(prog)
+	TAGD(procs)
+	TAGD(global)
+	TAGD(cluster)
+	TAGD(libproc)
+	TAGD(userproc)
+	TAGD(local)
+	TAGD(symbol)
 	TAGD(secondexp)
-	TAGD(proven_true) 
-	TAGD(callee) 
-	TAGD(caller) 
+	TAGD(proven_true)
+	TAGD(callee)
+	TAGD(caller)
 	TAGD(defines)
-	TAGD(signature) 
-	TAGD(param) 
-	TAGD(return) 
-	TAGD(rettype) 
-	TAGD(prefparam) 
-	TAGD(prefreturn) 
-	TAGD(cfg) 
-	TAGD(bb) 
-	TAGD(inedge) 
-	TAGD(outedge) 
-	TAGD(livein) 
-	TAGD(order) 
+	TAGD(signature)
+	TAGD(param)
+	TAGD(return)
+	TAGD(rettype)
+	TAGD(prefparam)
+	TAGD(prefreturn)
+	TAGD(cfg)
+	TAGD(bb)
+	TAGD(inedge)
+	TAGD(outedge)
+	TAGD(livein)
+	TAGD(order)
 	TAGD(revorder)
-	TAGD(rtl) 
-	TAGD(stmt) 
-	TAGD(assign) 
-	TAGD(assignment) 
-	TAGD(phiassign) 
-	TAGD(lhs) 
-	TAGD(rhs) 
-	TAGD(callstmt) 
-	TAGD(dest) 
-	TAGD(argument) 
+	TAGD(rtl)
+	TAGD(stmt)
+	TAGD(assign)
+	TAGD(assignment)
+	TAGD(phiassign)
+	TAGD(lhs)
+	TAGD(rhs)
+	TAGD(callstmt)
+	TAGD(dest)
+	TAGD(argument)
 	TAGD(returnexp)
 	TAGD(returntype)
 	TAGD(returnstmt)
 	TAGD(returns)
 	TAGD(modifieds)
-	TAGD(gotostmt) 
-	TAGD(branchstmt) 
+	TAGD(gotostmt)
+	TAGD(branchstmt)
 	TAGD(cond)
 	TAGD(casestmt)
 	TAGD(boolasgn)
-	TAGD(type) 
-	TAGD(exp) 
-	TAGD(voidtype) 
-	TAGD(integertype) 
-	TAGD(pointertype) 
-	TAGD(chartype) 
-	TAGD(namedtype) 
+	TAGD(type)
+	TAGD(exp)
+	TAGD(voidtype)
+	TAGD(integertype)
+	TAGD(pointertype)
+	TAGD(chartype)
+	TAGD(namedtype)
 	TAGD(arraytype)
 	TAGD(basetype)
 	TAGD(sizetype)
-	TAGD(location) 
-	TAGD(unary) 
-	TAGD(binary) 
-	TAGD(ternary) 
-	TAGD(const) 
-	TAGD(terminal) 
-	TAGD(typedexp) 
+	TAGD(location)
+	TAGD(unary)
+	TAGD(binary)
+	TAGD(ternary)
+	TAGD(const)
+	TAGD(terminal)
+	TAGD(typedexp)
 	TAGD(refexp)
 	TAGD(def)
-	TAGD(subexp1) 
-	TAGD(subexp2) 
-	TAGD(subexp3)	
+	TAGD(subexp1)
+	TAGD(subexp2)
+	TAGD(subexp3)
 
 	void persistToXML(std::ostream &out, Global *g);
 	void persistToXML(std::ostream &out, Cluster *c);
@@ -143,8 +141,8 @@ class XMLProgParser
 	int operFromString(const char *s);
 	const char *getAttr(const char **attr, const char *name);
 
-	std::list<Context*> stack;
-	std::map<int, void*> idToX;
+	std::list<Context *> stack;
+	std::map<int, void *> idToX;
 	int phase;
 
 	void addId(const char **attr, void *x);

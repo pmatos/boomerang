@@ -5,23 +5,21 @@
 #include <cppunit/TestSuite.h>
 
 class RtlTest : public CppUnit::TestCase {
-  protected:
+protected:
 
-  public:
-	RtlTest(std::string name) : CppUnit::TestCase (name)
-	{}
+public:
+	RtlTest(std::string name) : CppUnit::TestCase(name) { }
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+	virtual void registerTests(CppUnit::TestSuite *suite);
 
-	int countTestCases () const;
+	int countTestCases() const;
 
-	void setUp ();
-	void tearDown ();
+	void setUp();
+	void tearDown();
 
-	void testAppend ();
-	void testClone ();
+	void testAppend();
+	void testClone();
 	void testVisitor();
 	void testIsCompare();
 	void testSetConscripts();
 };
-

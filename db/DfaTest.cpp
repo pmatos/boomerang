@@ -1,68 +1,73 @@
 /*==============================================================================
- * FILE:	   DfaTest.cc
+ * FILE:       DfaTest.cc
  * OVERVIEW:   Provides the implementation for the DfaTest class, which
- *				tests the data flow based type analysis code
+ *              tests the data flow based type analysis code
  *============================================================================*/
 
 #include "DfaTest.h"
 #include "log.h"
 #include "boomerang.h"
 
-#include <iostream>		// For std::cerr
+#include <iostream>     // For std::cerr
 
 class ErrLogger : public Log {
 public:
 	virtual Log &operator<<(const char *str) {
-	 std::cerr << str;
+		std::cerr << str;
 		return *this;
 	}
-	virtual ~ErrLogger() {};
+	virtual ~ErrLogger() { };
 };
-/*==============================================================================
- * FUNCTION:		DfaTest::registerTests
- * OVERVIEW:		Register the test functions in the given suite
- * PARAMETERS:		Pointer to the test suite
- * RETURNS:			<nothing>
- *============================================================================*/
-#define MYTEST(name) \
-suite->addTest(new CppUnit::TestCaller<DfaTest> ("DfaTest", \
-	&DfaTest::name, *this))
 
-void DfaTest::registerTests(CppUnit::TestSuite* suite) {
+/*==============================================================================
+ * FUNCTION:        DfaTest::registerTests
+ * OVERVIEW:        Register the test functions in the given suite
+ * PARAMETERS:      Pointer to the test suite
+ * RETURNS:         <nothing>
+ *============================================================================*/
+#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<DfaTest>("DfaTest", &DfaTest::name, *this))
+
+void DfaTest::registerTests(CppUnit::TestSuite *suite)
+{
 	MYTEST(testMeetInt);
 	MYTEST(testMeetSize);
 	MYTEST(testMeetPointer);
 	MYTEST(testMeetUnion);
 }
 
-int DfaTest::countTestCases () const
-{ return 2; }	// ? What's this for?
-
-/*==============================================================================
- * FUNCTION:		DfaTest::setUp
- * OVERVIEW:		Set up some expressions for use with all the tests
- * NOTE:			Called before any tests
- * PARAMETERS:		<none>
- * RETURNS:			<nothing>
- *============================================================================*/
-void DfaTest::setUp () {
+int DfaTest::countTestCases() const
+{
+	return 2;  // ? What's this for?
 }
 
 /*==============================================================================
- * FUNCTION:		DfaTest::tearDown
- * OVERVIEW:		Delete expressions created in setUp
- * NOTE:			Called after all tests
- * PARAMETERS:		<none>
- * RETURNS:			<nothing>
+ * FUNCTION:        DfaTest::setUp
+ * OVERVIEW:        Set up some expressions for use with all the tests
+ * NOTE:            Called before any tests
+ * PARAMETERS:      <none>
+ * RETURNS:         <nothing>
  *============================================================================*/
-void DfaTest::tearDown () {
+void DfaTest::setUp()
+{
 }
 
 /*==============================================================================
- * FUNCTION:		DfaTest::testMeetInt
- * OVERVIEW:		Test meeting IntegerTypes with various other types
+ * FUNCTION:        DfaTest::tearDown
+ * OVERVIEW:        Delete expressions created in setUp
+ * NOTE:            Called after all tests
+ * PARAMETERS:      <none>
+ * RETURNS:         <nothing>
  *============================================================================*/
-void DfaTest::testMeetInt () {
+void DfaTest::tearDown()
+{
+}
+
+/*==============================================================================
+ * FUNCTION:        DfaTest::testMeetInt
+ * OVERVIEW:        Test meeting IntegerTypes with various other types
+ *============================================================================*/
+void DfaTest::testMeetInt()
+{
 	IntegerType i32(32, 1);
 	IntegerType j32(32, 0);
 	IntegerType u32(32, -1);
@@ -73,12 +78,12 @@ void DfaTest::testMeetInt () {
 	FloatType flt(32);
 	PointerType pt(&flt);
 	VoidType v;
-	
+
 	bool ch = false;
 	i32.meetWith(&i32, ch, false);
 	CPPUNIT_ASSERT(ch == false);
 	std::ostringstream ost1;
-	ost1<< &i32;
+	ost1 << &i32;
 	std::string actual(ost1.str());
 	std::string expected("i32");
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
@@ -88,7 +93,7 @@ void DfaTest::testMeetInt () {
 	j32.meetWith(&i32, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost2;
-	ost2<< &i32;
+	ost2 << &i32;
 	actual = ost2.str();
 	expected = "i32";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
@@ -98,7 +103,7 @@ void DfaTest::testMeetInt () {
 	j32.meetWith(&v, ch, false);
 	CPPUNIT_ASSERT(ch == false);
 	std::ostringstream ost2a;
-	ost2a<< &j32;
+	ost2a << &j32;
 	actual = ost2a.str();
 	expected = "j32";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
@@ -107,7 +112,7 @@ void DfaTest::testMeetInt () {
 	j32.meetWith(&u32, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost3;
-	ost3<< &j32;
+	ost3 << &j32;
 	actual = ost3.str();
 	expected = "u32";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
@@ -116,24 +121,24 @@ void DfaTest::testMeetInt () {
 	u32.meetWith(&s32, ch, false);
 	CPPUNIT_ASSERT(ch == false);
 	std::ostringstream ost4;
-	ost4<< &u32;
+	ost4 << &u32;
 	actual = ost4.str();
 	expected = "u32";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
-	
+
 	u32.meetWith(&s64, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost5;
-	ost5<< &u32;
+	ost5 << &u32;
 	actual = ost5.str();
 	expected = "u64";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
 
 	ch = false;
-	Type* res = i32.meetWith(&flt, ch, false);
+	Type *res = i32.meetWith(&flt, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost6;
-	ost6<< res;
+	ost6 << res;
 	actual = ost6.str();
 	expected = "union";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
@@ -142,17 +147,18 @@ void DfaTest::testMeetInt () {
 	res = i32.meetWith(&pt, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost7;
-	ost7<< res;
+	ost7 << res;
 	actual = ost7.str();
 	expected = "union";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
 }
 
 /*==============================================================================
- * FUNCTION:		DfaTest::testMeetSize
- * OVERVIEW:		Test meeting IntegerTypes with various other types
+ * FUNCTION:        DfaTest::testMeetSize
+ * OVERVIEW:        Test meeting IntegerTypes with various other types
  *============================================================================*/
-void DfaTest::testMeetSize () {
+void DfaTest::testMeetSize()
+{
 	IntegerType i32(32, 1);
 	SizeType s32(32);
 	SizeType s16(16);
@@ -160,7 +166,7 @@ void DfaTest::testMeetSize () {
 	VoidType v;
 
 	bool ch = false;
-	Type* res = s32.meetWith(&i32, ch, false);
+	Type *res = s32.meetWith(&i32, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost1;
 	ost1 << res;
@@ -184,7 +190,7 @@ void DfaTest::testMeetSize () {
 	expected = "union";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
 #endif
-	
+
 	ch = false;
 	res = s16.meetWith(&v, ch, false);
 	CPPUNIT_ASSERT(ch == false);
@@ -193,20 +199,20 @@ void DfaTest::testMeetSize () {
 	actual = ost3.str();
 	expected = "16";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
-	
 }
 
 /*==============================================================================
- * FUNCTION:		DfaTest::testMeetPointer
- * OVERVIEW:		Test meeting IntegerTypes with various other types
+ * FUNCTION:        DfaTest::testMeetPointer
+ * OVERVIEW:        Test meeting IntegerTypes with various other types
  *============================================================================*/
-void DfaTest::testMeetPointer() {
+void DfaTest::testMeetPointer()
+{
 	IntegerType i32(32, 1);
 	IntegerType u32(32, -1);
 	PointerType pi32(&i32);
 	PointerType pu32(&u32);
 	VoidType v;
-	
+
 	std::ostringstream ost1;
 	ost1 << pu32.getCtype();
 	std::string actual(ost1.str());
@@ -214,7 +220,7 @@ void DfaTest::testMeetPointer() {
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
 
 	bool ch = false;
-	Type* res = pi32.meetWith(&pu32, ch, false);
+	Type *res = pi32.meetWith(&pu32, ch, false);
 	CPPUNIT_ASSERT(ch == true);
 	std::ostringstream ost2;
 	ost2 << res->getCtype();
@@ -223,7 +229,7 @@ void DfaTest::testMeetPointer() {
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
 
 	ch = false;
-	res = pi32.meetWith(&v, ch, false);	
+	res = pi32.meetWith(&v, ch, false);
 	CPPUNIT_ASSERT(ch == false);
 
 	res = pi32.meetWith(&i32, ch, false);
@@ -232,14 +238,14 @@ void DfaTest::testMeetPointer() {
 	actual = ost3.str();
 	expected = "union";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
-
 }
 
 /*==============================================================================
- * FUNCTION:		DfaTest::testMeetUnion
- * OVERVIEW:		Test meeting IntegerTypes with various other types
+ * FUNCTION:        DfaTest::testMeetUnion
+ * OVERVIEW:        Test meeting IntegerTypes with various other types
  *============================================================================*/
-void DfaTest::testMeetUnion() {
+void DfaTest::testMeetUnion()
+{
 	UnionType u1;
 	IntegerType i32(32, 1);
 	IntegerType j32(32, 0);
@@ -255,14 +261,14 @@ void DfaTest::testMeetUnion() {
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
 
 	bool ch = false;
-	Type* res = u1.meetWith(&j32, ch, false);
+	Type *res = u1.meetWith(&j32, ch, false);
 	CPPUNIT_ASSERT(ch == false);
 	std::ostringstream ost2;
 	ost2 << res->getCtype();
 	actual = ost2.str();
 	expected = "union { int bow; float wow; }";
 	CPPUNIT_ASSERT_EQUAL(expected, actual);
-	
+
 	res = u1.meetWith(&j32, ch, false);
 	CPPUNIT_ASSERT(ch == false);
 	std::ostringstream ost3;

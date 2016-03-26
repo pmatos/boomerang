@@ -1,5 +1,5 @@
 /*==============================================================================
- * FILE:	   testDbase.cc
+ * FILE:       testDbase.cc
  * OVERVIEW:   Command line test of the Exp and related classes.
  *============================================================================*/
 
@@ -18,11 +18,11 @@
 #include <sstream>
 #include <iostream>
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	CppUnit::TestSuite suite;
 
-	ExpTest	 expt("ExpTest");
+	ExpTest expt("ExpTest");
 	ProgTest progt("ProgTest");
 	ProcTest proct("ProcTest");
 	RtlTest rtlt("RtlTest");
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 
 	CppUnit::TextTestResult res;
 
-	suite.run( &res );
+	suite.run(&res);
 	std::cout << res << std::endl;
 
 	return 0;

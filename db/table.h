@@ -8,9 +8,9 @@
  */
 
 /*==============================================================================
- * FILE:	   table.h
+ * FILE:       table.h
  * OVERVIEW:   Provides the definition of class Table and children used by
- *			   the SSL parser
+ *             the SSL parser
  *============================================================================*/
 
 #ifndef TABLE_H
@@ -28,7 +28,7 @@ enum TABLE_TYPE {
 
 class Table {
 public:
-	Table(std::deque<std::string>& recs, TABLE_TYPE t = NAMETABLE);
+	Table(std::deque<std::string> &recs, TABLE_TYPE t = NAMETABLE);
 	Table(TABLE_TYPE t);
 	TABLE_TYPE getType() const;
 	std::deque<std::string> records;
@@ -39,16 +39,16 @@ private:
 
 class OpTable : public Table {
 public:
-	OpTable(std::deque<std::string>& ops);
+	OpTable(std::deque<std::string> &ops);
 };
 
 class Exp;
 
 class ExprTable : public Table {
 public:
-	ExprTable(std::deque<Exp*>& exprs);
+	ExprTable(std::deque<Exp *> &exprs);
 	~ExprTable(void);
-	std::deque<Exp*> expressions;
+	std::deque<Exp *> expressions;
 };
 
 #endif

@@ -1,4 +1,3 @@
-
 #ifndef RTLEDITOR_H
 #define RTLEDITOR_H
 
@@ -13,9 +12,8 @@
 
 class Decompiler;
 
-class RTLEditor : public QTextEdit
-{
-    Q_OBJECT
+class RTLEditor : public QTextEdit {
+	Q_OBJECT
 
 public:
 	RTLEditor(Decompiler *decompiler, const QString &name);
@@ -28,9 +26,8 @@ protected:
 	virtual void mousePressEvent(QMouseEvent *event);
 
 private:
-    Decompiler *decompiler;
+	Decompiler *decompiler;
 	QString name;
 };
 
 #endif
-

@@ -13,8 +13,7 @@ class Cluster;
 class QTableWidget;
 class QObject;
 
-class Decompiler : public QObject, public Watcher
-{
+class Decompiler : public QObject, public Watcher {
 	Q_OBJECT
 
 public:
@@ -24,7 +23,7 @@ public:
 	virtual void alert_considering(Proc *parent, Proc *p);
 	virtual void alert_decompiling(UserProc *p);
 	virtual void alert_new(Proc *p);
-    virtual void alert_remove(Proc *p);
+	virtual void alert_remove(Proc *p);
 	virtual void alert_update_signature(Proc *p);
 
 	bool getRtlForProc(const QString &name, QString &rtl);
@@ -36,10 +35,10 @@ public:
 
 	void setDebugging(bool d) { debugging = d; }
 	void setUseDFTA(bool d);
-    void setNoDecodeChildren(bool d);
+	void setNoDecodeChildren(bool d);
 
-    void addEntryPoint(ADDRESS a, const char *nam);
-    void removeEntryPoint(ADDRESS a);
+	void addEntryPoint(ADDRESS a, const char *nam);
+	void removeEntryPoint(ADDRESS a);
 
 public slots:
 	void changeInputFile(const QString &f);
@@ -87,12 +86,11 @@ protected:
 	const char *procStatus(UserProc *p);
 	void emitClusterAndChildren(Cluster *root);
 
-    std::vector<ADDRESS> user_entrypoints;
+	std::vector<ADDRESS> user_entrypoints;
 };
 
-class DecompilerThread : public QThread
-{
-    Q_OBJECT
+class DecompilerThread : public QThread {
+	Q_OBJECT
 
 public:
 	DecompilerThread() : QThread(), decompiler(NULL) { }
@@ -100,7 +98,7 @@ public:
 	Decompiler *getDecompiler();
 
 protected:
-    void run();
+	void run();
 
 	Decompiler *decompiler;
 };

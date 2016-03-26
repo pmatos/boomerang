@@ -1,7 +1,7 @@
 /*==============================================================================
- * FILE:	   StatementTest.h
+ * FILE:       StatementTest.h
  * OVERVIEW:   Provides the interface for the StatementTest class, which
- *				tests the dataflow subsystems
+ *              tests the dataflow subsystems
  *============================================================================*/
 
 #include "proc.h"
@@ -12,25 +12,24 @@
 #include <cppunit/TestSuite.h>
 
 class StatementTest : public CppUnit::TestCase {
-  protected:
+protected:
 
-  public:
-	StatementTest(std::string name) : CppUnit::TestCase (name)
-	{}
+public:
+	StatementTest(std::string name) : CppUnit::TestCase(name) { }
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+	virtual void registerTests(CppUnit::TestSuite *suite);
 
-	int countTestCases () const;
+	int countTestCases() const;
 
-	void setUp ();
-	void tearDown ();
+	void setUp();
+	void tearDown();
 
-	void testEmpty ();
-	void testFlow ();
-	void testKill ();
-	void testUse ();
-	void testUseOverKill ();
-	void testUseOverBB ();
+	void testEmpty();
+	void testFlow();
+	void testKill();
+	void testUse();
+	void testUseOverKill();
+	void testUseOverBB();
 	void testUseKill();
 	void testEndlessLoop();
 	void testLocationSet();
@@ -51,4 +50,3 @@ class StatementTest : public CppUnit::TestCase {
 	void testStripSizes();
 	void testFindConstants();
 };
-

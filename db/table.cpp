@@ -9,9 +9,9 @@
  */
 
 /*==============================================================================
- * FILE:	   table.cc
+ * FILE:       table.cc
  * OVERVIEW:   Provides the implementation of classes Table, OpTable, and
- *			   ExprTable
+ *             ExprTable
  *============================================================================*/
 
 #include "types.h"
@@ -24,26 +24,31 @@ Table::Table(TABLE_TYPE t) :
 {
 }
 
-Table::Table(std::deque<std::string>& recs, TABLE_TYPE t /* = NAMETABLE */) :
-	records(recs),type(t)
+Table::Table(std::deque<std::string> &recs, TABLE_TYPE t /* = NAMETABLE */) :
+	records(recs),
+	type(t)
 {
 }
 
-TABLE_TYPE Table::getType() const { return type; }
+TABLE_TYPE Table::getType() const
+{
+	return type;
+}
 
-OpTable::OpTable(std::deque<std::string>& ops) :
+OpTable::OpTable(std::deque<std::string> &ops) :
 	Table(ops, OPTABLE)
 {
 }
 
-ExprTable::ExprTable(std::deque<Exp*>& exprs) :
-	Table(EXPRTABLE),expressions(exprs)
+ExprTable::ExprTable(std::deque<Exp *> &exprs) :
+	Table(EXPRTABLE),
+	expressions(exprs)
 {
 }
 
 ExprTable::~ExprTable(void)
 {
-	std::deque<Exp*>::iterator loc;
+	std::deque<Exp *>::iterator loc;
 	for (loc = expressions.begin(); loc != expressions.end(); loc++)
 		delete (*loc);
 }

@@ -679,7 +679,7 @@ list_actualparameter
 	| /* empty */ { $$ = new std::list<Exp *>; }
 	;
 
-assign_rt 
+assign_rt
 	/*   Size   guard =>    lhs      :=   rhs */
 	: assigntype exp THEN location EQUATE exp {
 		Assign *a = new Assign($1, $4, $6);

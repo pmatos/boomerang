@@ -1,5 +1,5 @@
 /*==============================================================================
- * FILE:	   testRtl.cpp
+ * FILE:       testRtl.cpp
  * OVERVIEW:   Command line test of the Rtl class
  *============================================================================*/
 
@@ -11,17 +11,17 @@
 #include <sstream>
 #include <iostream>
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	CppUnit::TestSuite suite;
 
-	RtlTest	 expt("RtlTest");
+	RtlTest expt("RtlTest");
 
 	expt.registerTests(&suite);
 
 	CppUnit::TextTestResult res;
 
-	suite.run( &res );
+	suite.run(&res);
 	std::cout << res << std::endl;
 
 	return 0;

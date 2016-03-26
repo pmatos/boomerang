@@ -10,9 +10,9 @@
  */
 
 /*==============================================================================
- * FILE:	   rtl.cc
+ * FILE:       rtl.cc
  * OVERVIEW:   Implementation of the classes that describe a low level RTL (
- *			   register transfer list)
+ *             register transfer list)
  *============================================================================*/
 
 #include "types.h"
@@ -21,7 +21,7 @@
 #include "type.h"
 #include "register.h"
 #include "cfg.h"
-#include "proc.h"			// For printing proc names
+#include "proc.h"  // For printing proc names
 #include "rtl.h"
 #include "prog.h"
 #include "hllcode.h"
@@ -30,7 +30,7 @@
 #include "visitor.h"
 #include "log.h"
 
-#include <iomanip>			// For setfill
+#include <iomanip>  // For setfill
 #include <sstream>
 
 #include <cstring>
@@ -38,110 +38,120 @@
 
 /******************************************************************************
  * RTL methods.
- * Class RTL represents low-level register transfer lists. 
+ * Class RTL represents low-level register transfer lists.
  *****************************************************************************/
 
 /*==============================================================================
- * FUNCTION:		RTL::RTL
- * OVERVIEW:		Constructor.
- * PARAMETERS:		<none>
- * RETURNS:			N/a
+ * FUNCTION:        RTL::RTL
+ * OVERVIEW:        Constructor.
+ * PARAMETERS:      <none>
+ * RETURNS:         N/a
  *============================================================================*/
-RTL::RTL()
-  : nativeAddr(0)
-{ }
+RTL::RTL() :
+	nativeAddr(0)
+{
+}
 
 /*==============================================================================
- * FUNCTION:		RTL::RTL
- * OVERVIEW:		Constructor.
- * PARAMETERS:		instNativeAddr - the native address of the instruction
- *					listExp - ptr to existing list of Exps
- * RETURNS:			N/a
+ * FUNCTION:        RTL::RTL
+ * OVERVIEW:        Constructor.
+ * PARAMETERS:      instNativeAddr - the native address of the instruction
+ *                  listExp - ptr to existing list of Exps
+ * RETURNS:         N/a
  *============================================================================*/
-RTL::RTL(ADDRESS instNativeAddr, std::list<Statement*>* listStmt /*= NULL*/)
-	: nativeAddr(instNativeAddr) {
+RTL::RTL(ADDRESS instNativeAddr, std::list<Statement *> *listStmt /*= NULL*/) :
+	nativeAddr(instNativeAddr)
+{
 	if (listStmt)
 		stmtList = *listStmt;
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::RTL
- * OVERVIEW:		Copy constructor. A deep clone is made of the given object
- *					so that the lists of Exps do not share memory.
- * PARAMETERS:		other: RTL to copy from
- * RETURNS:			N/a
+ * FUNCTION:        RTL::RTL
+ * OVERVIEW:        Copy constructor. A deep clone is made of the given object
+ *                  so that the lists of Exps do not share memory.
+ * PARAMETERS:      other: RTL to copy from
+ * RETURNS:         N/a
  *============================================================================*/
-RTL::RTL(const RTL& other) : nativeAddr(other.nativeAddr) {
-	std::list<Statement*>::const_iterator it;
+RTL::RTL(const RTL &other) :
+	nativeAddr(other.nativeAddr)
+{
+	std::list<Statement *>::const_iterator it;
 	for (it = other.stmtList.begin(); it != other.stmtList.end(); it++) {
 		stmtList.push_back((*it)->clone());
 	}
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::~RTL
- * OVERVIEW:		Destructor.
- * PARAMETERS:		<none>
- * RETURNS:			N/a
+ * FUNCTION:        RTL::~RTL
+ * OVERVIEW:        Destructor.
+ * PARAMETERS:      <none>
+ * RETURNS:         N/a
  *============================================================================*/
-RTL::~RTL() { }
+RTL::~RTL()
+{
+}
 
 /*==============================================================================
- * FUNCTION:		RTL::operator=
- * OVERVIEW:		Assignment copy (deep).
- * PARAMETERS:		other - RTL to copy
- * RETURNS:			a reference to this object
+ * FUNCTION:        RTL::operator=
+ * OVERVIEW:        Assignment copy (deep).
+ * PARAMETERS:      other - RTL to copy
+ * RETURNS:         a reference to this object
  *============================================================================*/
-RTL& RTL::operator=(RTL& other) {
+RTL &RTL::operator=(RTL &other)
+{
 	if (this != &other) {
 		// Do a deep copy always
 		iterator it;
 		for (it = other.stmtList.begin(); it != other.stmtList.end(); it++)
 			stmtList.push_back((*it)->clone());
-		
+
 		nativeAddr = other.nativeAddr;
 	}
 	return *this;
 }
 
 /*==============================================================================
- * FUNCTION:		RTL:clone
- * OVERVIEW:		Deep copy clone; deleting the clone will not affect this
- *					 RTL object
- * PARAMETERS:		<none>
- * RETURNS:			Pointer to a new RTL that is a clone of this one
+ * FUNCTION:        RTL:clone
+ * OVERVIEW:        Deep copy clone; deleting the clone will not affect this
+ *                   RTL object
+ * PARAMETERS:      <none>
+ * RETURNS:         Pointer to a new RTL that is a clone of this one
  *============================================================================*/
-RTL* RTL::clone() {
-	std::list<Statement*> le;
+RTL *RTL::clone()
+{
+	std::list<Statement *> le;
 	iterator it;
 
 	for (it = stmtList.begin(); it != stmtList.end(); it++) {
 		le.push_back((*it)->clone());
 	}
-	
-	RTL* ret = new RTL(nativeAddr, &le);
+
+	RTL *ret = new RTL(nativeAddr, &le);
 	return ret;
 }
 
 // visit this RTL, and all its Statements
-bool RTL::accept(StmtVisitor* visitor) {
+bool RTL::accept(StmtVisitor *visitor)
+{
 	// Might want to do something at the RTL level:
 	if (!visitor->visit(this)) return false;
 	iterator it;
 	for (it = stmtList.begin(); it != stmtList.end(); it++) {
-		if (! (*it)->accept(visitor)) return false;
+		if (!(*it)->accept(visitor)) return false;
 	}
 	return true;
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::deepCopyList
- * OVERVIEW:		Make a copy of this RTLs list of Exp* to the given list
- * PARAMETERS:		Ref to empty list to copy to
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::deepCopyList
+ * OVERVIEW:        Make a copy of this RTLs list of Exp* to the given list
+ * PARAMETERS:      Ref to empty list to copy to
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::deepCopyList(std::list<Statement*>& dest) {
-	std::list<Statement*>::iterator it;
+void RTL::deepCopyList(std::list<Statement *> &dest)
+{
+	std::list<Statement *>::iterator it;
 
 	for (it = stmtList.begin(); it != stmtList.end(); it++) {
 		dest.push_back((*it)->clone());
@@ -149,15 +159,16 @@ void RTL::deepCopyList(std::list<Statement*>& dest) {
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::appendStmt
- * OVERVIEW:		Append the given Statement at the end of this RTL
- * NOTE:			Exception: Leaves any flag call at the end (so may push exp
- *					 to second last position, instead of last)
- * NOTE:			stmt is NOT copied. This is different to how UQBT was!
- * PARAMETERS:		s: pointer to Statement to append
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::appendStmt
+ * OVERVIEW:        Append the given Statement at the end of this RTL
+ * NOTE:            Exception: Leaves any flag call at the end (so may push exp
+ *                   to second last position, instead of last)
+ * NOTE:            stmt is NOT copied. This is different to how UQBT was!
+ * PARAMETERS:      s: pointer to Statement to append
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::appendStmt(Statement* s) {
+void RTL::appendStmt(Statement *s)
+{
 	if (stmtList.size()) {
 		if (stmtList.back()->isFlagAssgn()) {
 			iterator it = stmtList.end();
@@ -169,52 +180,56 @@ void RTL::appendStmt(Statement* s) {
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::prependStmt
- * OVERVIEW:		Prepend the given Statement at the start of this RTL
- * NOTE:			No clone of the statement is made. This is different to how UQBT was
- * PARAMETERS:		s: Ptr to Statement to prepend
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::prependStmt
+ * OVERVIEW:        Prepend the given Statement at the start of this RTL
+ * NOTE:            No clone of the statement is made. This is different to how UQBT was
+ * PARAMETERS:      s: Ptr to Statement to prepend
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::prependStmt(Statement* s) {
+void RTL::prependStmt(Statement *s)
+{
 	stmtList.push_front(s);
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::appendListStmt
- * OVERVIEW:		Append a given list of Statements to this RTL
- * NOTE:			A copy of the Statements in le are appended
- * PARAMETERS:		rtl: list of Exps to insert
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::appendListStmt
+ * OVERVIEW:        Append a given list of Statements to this RTL
+ * NOTE:            A copy of the Statements in le are appended
+ * PARAMETERS:      rtl: list of Exps to insert
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::appendListStmt(std::list<Statement*>& le) {
+void RTL::appendListStmt(std::list<Statement *> &le)
+{
 	iterator it;
-	for (it = le.begin();  it != le.end();	it++) {
+	for (it = le.begin(); it != le.end(); it++) {
 		stmtList.insert(stmtList.end(), (*it)->clone());
 	}
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::appendRTL
- * OVERVIEW:		Append the Statemens of another RTL to this object
- * NOTE:			A copy of the Statements in r are appended
- * PARAMETERS:		r: reterence to RTL whose Exps we are to insert
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::appendRTL
+ * OVERVIEW:        Append the Statemens of another RTL to this object
+ * NOTE:            A copy of the Statements in r are appended
+ * PARAMETERS:      r: reterence to RTL whose Exps we are to insert
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::appendRTL(RTL& r) {
+void RTL::appendRTL(RTL &r)
+{
 	appendListStmt(r.stmtList);
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::insertStmt
- * OVERVIEW:		Insert the given Statement before index i
- * NOTE:			No copy of stmt is made. This is different to UQBT
- * PARAMETERS:		s: pointer to the Statement to insert
- *					i: position to insert before (0 = first)
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::insertStmt
+ * OVERVIEW:        Insert the given Statement before index i
+ * NOTE:            No copy of stmt is made. This is different to UQBT
+ * PARAMETERS:      s: pointer to the Statement to insert
+ *                  i: position to insert before (0 = first)
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::insertStmt(Statement* s, unsigned i) {
+void RTL::insertStmt(Statement *s, unsigned i)
+{
 	// Check that position i is not out of bounds
-	assert (i < stmtList.size() || stmtList.size() == 0);
+	assert(i < stmtList.size() || stmtList.size() == 0);
 
 	// Find the position
 	iterator pp = stmtList.begin();
@@ -224,24 +239,26 @@ void RTL::insertStmt(Statement* s, unsigned i) {
 	stmtList.insert(pp, s);
 }
 
-void RTL::insertStmt(Statement* s, iterator it) {
+void RTL::insertStmt(Statement *s, iterator it)
+{
 	stmtList.insert(it, s);
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::updateStmt
- * OVERVIEW:		Replace the ith Statement with the given one
- * PARAMETERS:		s: pointer to the new Exp
- *					i: index of Exp position (0 = first)
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::updateStmt
+ * OVERVIEW:        Replace the ith Statement with the given one
+ * PARAMETERS:      s: pointer to the new Exp
+ *                  i: index of Exp position (0 = first)
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::updateStmt(Statement *s, unsigned i) {
+void RTL::updateStmt(Statement *s, unsigned i)
+{
 	// Check that position i is not out of bounds
-	assert (i < stmtList.size());
+	assert(i < stmtList.size());
 
 	// Find the position
 	iterator pp = stmtList.begin();
-	for (; i > 0; i--, pp++);	 
+	for (; i > 0; i--, pp++);
 
 	// Note that sometimes we might update even when we don't know if it's
 	// needed, e.g. after a searchReplace.
@@ -254,51 +271,55 @@ void RTL::updateStmt(Statement *s, unsigned i) {
 	}
 }
 
-void RTL::deleteStmt(unsigned i) {
+void RTL::deleteStmt(unsigned i)
+{
 	// check that position i is not out of bounds
-	assert (i < stmtList.size());
+	assert(i < stmtList.size());
 
 	// find the position
 	iterator pp = stmtList.begin();
-	for (; i > 0; i--, pp++);	 
+	for (; i > 0; i--, pp++);
 
 	// do the delete
 	stmtList.erase(pp);
 }
 
-void RTL::deleteLastStmt() {
+void RTL::deleteLastStmt()
+{
 	assert(stmtList.size());
 	stmtList.erase(--stmtList.end());
 }
 
-void RTL::replaceLastStmt(Statement* repl) {
+void RTL::replaceLastStmt(Statement *repl)
+{
 	assert(stmtList.size());
-	Statement*& last = stmtList.back();
+	Statement *&last = stmtList.back();
 	last = repl;
 }
 
-	
 /*==============================================================================
- * FUNCTION:		RTL::getNumStmt
- * OVERVIEW:		Get the number of Statements in this RTL
- * PARAMETERS:		None
- * RETURNS:			Integer number of Statements
+ * FUNCTION:        RTL::getNumStmt
+ * OVERVIEW:        Get the number of Statements in this RTL
+ * PARAMETERS:      None
+ * RETURNS:         Integer number of Statements
  *============================================================================*/
-int RTL::getNumStmt() {
+int RTL::getNumStmt()
+{
 	return stmtList.size();
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::at
- * OVERVIEW:		Provides indexing on a list. Changed from operator[] so that
- *					we keep in mind it is linear in its execution time.
- * PARAMETERS:		i - the index of the element we want (0 = first)
- * RETURNS:			the element at the given index or NULL if the index is out
- *					of bounds
+ * FUNCTION:        RTL::at
+ * OVERVIEW:        Provides indexing on a list. Changed from operator[] so that
+ *                  we keep in mind it is linear in its execution time.
+ * PARAMETERS:      i - the index of the element we want (0 = first)
+ * RETURNS:         the element at the given index or NULL if the index is out
+ *                  of bounds
  *============================================================================*/
-Statement* RTL::elementAt(unsigned i) {
+Statement *RTL::elementAt(unsigned i)
+{
 	iterator it;
-	for (it = stmtList.begin();	 i > 0 && it != stmtList.end();	 i--, it++);
+	for (it = stmtList.begin(); i > 0 && it != stmtList.end(); i--, it++);
 	if (it == stmtList.end()) {
 		return NULL;
 	}
@@ -306,18 +327,18 @@ Statement* RTL::elementAt(unsigned i) {
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::print
- * OVERVIEW:		Prints this object to a stream in text form.
- * PARAMETERS:		os - stream to output to (often cout or cerr)
- * RETURNS:			<nothing>
+ * FUNCTION:        RTL::print
+ * OVERVIEW:        Prints this object to a stream in text form.
+ * PARAMETERS:      os - stream to output to (often cout or cerr)
+ * RETURNS:         <nothing>
  *============================================================================*/
-void RTL::print(std::ostream& os /*= cout*/, bool html /*=false*/) {
-
+void RTL::print(std::ostream &os /*= cout*/, bool html /*=false*/)
+{
 	if (html)
 		os << "<tr><td>";
 	// print out the instruction address of this RTL
 	os << std::hex << std::setfill('0') << std::setw(8) << nativeAddr;
-	os << std::dec << std::setfill(' ');	  // Ugh - why is this needed?
+	os << std::dec << std::setfill(' ');  // Ugh - why is this needed?
 	if (html)
 		os << "</td>";
 
@@ -326,13 +347,13 @@ void RTL::print(std::ostream& os /*= cout*/, bool html /*=false*/) {
 	bool bFirst = true;
 	iterator ss;
 	for (ss = stmtList.begin(); ss != stmtList.end(); ss++) {
-		Statement* stmt = *ss;
+		Statement *stmt = *ss;
 		if (html) {
 			if (!bFirst) os << "<tr><td></td>";
 			os << "<td width=\"50\" align=\"center\">";
 		} else {
 			if (bFirst) os << " ";
-			else		os << std::setw(9) << " ";
+			else        os << std::setw(9) << " ";
 		}
 		if (stmt) stmt->print(os, html);
 		// Note: we only put newlines where needed. So none at the end of
@@ -342,55 +363,63 @@ void RTL::print(std::ostream& os /*= cout*/, bool html /*=false*/) {
 		os << "\n";
 		bFirst = false;
 	}
-	if (stmtList.empty()) os << std::endl;	   // New line for NOP
+	if (stmtList.empty()) os << std::endl;  // New line for NOP
 }
 
-void RTL::dump() {
+void RTL::dump()
+{
 	print(std::cerr);
 }
 
 extern char debug_buffer[];
 
-char* RTL::prints() {
-	  std::ostringstream ost;
-	  print(ost);
-	  strncpy(debug_buffer, ost.str().c_str(), DEBUG_BUFSIZE-1);
-	  debug_buffer[DEBUG_BUFSIZE-1] = '\0';
-	  return debug_buffer;
+char *RTL::prints()
+{
+	std::ostringstream ost;
+	print(ost);
+	strncpy(debug_buffer, ost.str().c_str(), DEBUG_BUFSIZE - 1);
+	debug_buffer[DEBUG_BUFSIZE - 1] = '\0';
+	return debug_buffer;
 }
 
 /*==============================================================================
- * FUNCTION:		operator<<
- * OVERVIEW:		Output operator for RTL*
- *					Just makes it easier to use e.g. std::cerr << myRTLptr
- * PARAMETERS:		os: output stream to send to
- *					p: ptr to RTL to print to the stream
- * RETURNS:			copy of os (for concatenation)
+ * FUNCTION:        operator<<
+ * OVERVIEW:        Output operator for RTL*
+ *                  Just makes it easier to use e.g. std::cerr << myRTLptr
+ * PARAMETERS:      os: output stream to send to
+ *                  p: ptr to RTL to print to the stream
+ * RETURNS:         copy of os (for concatenation)
  *============================================================================*/
-std::ostream& operator<<(std::ostream& os, RTL* r) {
-	if (r == NULL) {os << "NULL "; return os;}
+std::ostream &operator<<(std::ostream &os, RTL *r)
+{
+	if (r == NULL) {
+		os << "NULL ";
+		return os;
+	}
 	r->print(os);
 	return os;
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::updateAddress
- * OVERVIEW:		Set the nativeAddr field
- * PARAMETERS:		Native address
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::updateAddress
+ * OVERVIEW:        Set the nativeAddr field
+ * PARAMETERS:      Native address
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::updateAddress(ADDRESS addr) {
+void RTL::updateAddress(ADDRESS addr)
+{
 	nativeAddr = addr;
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::searchReplace
- * OVERVIEW:		Replace all instances of search with replace.
- * PARAMETERS:		search - ptr to an expression to search for
- *					replace - ptr to the expression with which to replace it
- * RETURNS:			<nothing>
+ * FUNCTION:        RTL::searchReplace
+ * OVERVIEW:        Replace all instances of search with replace.
+ * PARAMETERS:      search - ptr to an expression to search for
+ *                  replace - ptr to the expression with which to replace it
+ * RETURNS:         <nothing>
  *============================================================================*/
-bool RTL::searchAndReplace(Exp* search, Exp* replace) {
+bool RTL::searchAndReplace(Exp *search, Exp *replace)
+{
 	bool ch = false;
 	for (iterator it = stmtList.begin(); it != stmtList.end(); it++)
 		ch |= (*it)->searchAndReplace(search, replace);
@@ -398,18 +427,19 @@ bool RTL::searchAndReplace(Exp* search, Exp* replace) {
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::searchAll
- * OVERVIEW:		Find all instances of the search expression
- * PARAMETERS:		search - a location to search for
- *					result - a list which will have any matching exprs
- *							 appended to it
- * RETURNS:			true if there were any matches
+ * FUNCTION:        RTL::searchAll
+ * OVERVIEW:        Find all instances of the search expression
+ * PARAMETERS:      search - a location to search for
+ *                  result - a list which will have any matching exprs
+ *                           appended to it
+ * RETURNS:         true if there were any matches
  *============================================================================*/
-bool RTL::searchAll(Exp* search, std::list<Exp *> &result) {
+bool RTL::searchAll(Exp *search, std::list<Exp *> &result)
+{
 	bool found = false;
 	for (iterator it = stmtList.begin(); it != stmtList.end(); it++) {
 		Statement *e = *it;
-		Exp* res;
+		Exp *res;
 		if (e->search(search, res)) {
 			found = true;
 			result.push_back(res);
@@ -419,35 +449,36 @@ bool RTL::searchAll(Exp* search, std::list<Exp *> &result) {
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::clear
- * OVERVIEW:		Clear the list of Exps
- * PARAMETERS:		None
- * RETURNS:			Nothing
+ * FUNCTION:        RTL::clear
+ * OVERVIEW:        Clear the list of Exps
+ * PARAMETERS:      None
+ * RETURNS:         Nothing
  *============================================================================*/
-void RTL::clear() {
+void RTL::clear()
+{
 	stmtList.clear();
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::insertAssign
- * OVERVIEW:		Prepends or appends an assignment to the front or back of
- *					  this RTL
- * NOTE:			Is this really used? What about types?
- * ASSUMES:			Assumes that pLhs and pRhs are "new" Exp's that are
- *					not part of other Exps. (Otherwise, there will be problems
- *					when deleting this Exp)
- *					If size == -1, assumes there is already at least one assign-
- *					  ment in this RTL
- * PARAMETERS:		pLhs: ptr to Exp to place on LHS
- *					pRhs: ptr to Exp to place on the RHS
- *					prep: true if prepend (else append)
- *					type: type of the transfer, or NULL
- * RETURNS:			<nothing>
+ * FUNCTION:        RTL::insertAssign
+ * OVERVIEW:        Prepends or appends an assignment to the front or back of
+ *                    this RTL
+ * NOTE:            Is this really used? What about types?
+ * ASSUMES:         Assumes that pLhs and pRhs are "new" Exp's that are
+ *                  not part of other Exps. (Otherwise, there will be problems
+ *                  when deleting this Exp)
+ *                  If size == -1, assumes there is already at least one assign-
+ *                    ment in this RTL
+ * PARAMETERS:      pLhs: ptr to Exp to place on LHS
+ *                  pRhs: ptr to Exp to place on the RHS
+ *                  prep: true if prepend (else append)
+ *                  type: type of the transfer, or NULL
+ * RETURNS:         <nothing>
  *============================================================================*/
-void RTL::insertAssign(Exp* pLhs, Exp* pRhs, bool prep,
-						Type* type /*= NULL */) {
+void RTL::insertAssign(Exp *pLhs, Exp *pRhs, bool prep, Type *type /*= NULL */)
+{
 	// Generate the assignment expression
-	Assign* asgn = new Assign(type, pLhs, pRhs);
+	Assign *asgn = new Assign(type, pLhs, pRhs);
 	if (prep)
 		prependStmt(asgn);
 	else
@@ -455,31 +486,32 @@ void RTL::insertAssign(Exp* pLhs, Exp* pRhs, bool prep,
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::insertAfterTemps
- * OVERVIEW:		Inserts an assignment at or near the top of this RTL, after
- *					  any assignments to temporaries. If the last assignment
- *					  is to a temp, the insertion is done before that last
- *					  assignment
- * ASSUMES:			Assumes that ssLhs and ssRhs are "new" Exp's that are
- *					not part of other Exps. (Otherwise, there will be problems
- *					when deleting this Exp)
- *					If type == NULL, assumes there is already at least one
- *					  assignment in this RTL (?)
- * NOTE:			Hopefully this is only a temporary measure
- * PARAMETERS:		pLhs: ptr to Exp to place on LHS
- *					pRhs: ptr to Exp to place on the RHS
- *					size: size of the transfer, or -1 to be the same as the
- *					  first assign this RTL
- * RETURNS:			<nothing>
+ * FUNCTION:        RTL::insertAfterTemps
+ * OVERVIEW:        Inserts an assignment at or near the top of this RTL, after
+ *                    any assignments to temporaries. If the last assignment
+ *                    is to a temp, the insertion is done before that last
+ *                    assignment
+ * ASSUMES:         Assumes that ssLhs and ssRhs are "new" Exp's that are
+ *                  not part of other Exps. (Otherwise, there will be problems
+ *                  when deleting this Exp)
+ *                  If type == NULL, assumes there is already at least one
+ *                    assignment in this RTL (?)
+ * NOTE:            Hopefully this is only a temporary measure
+ * PARAMETERS:      pLhs: ptr to Exp to place on LHS
+ *                  pRhs: ptr to Exp to place on the RHS
+ *                  size: size of the transfer, or -1 to be the same as the
+ *                    first assign this RTL
+ * RETURNS:         <nothing>
  *============================================================================*/
-void RTL::insertAfterTemps(Exp* pLhs, Exp* pRhs, Type* type	 /* NULL */) {
+void RTL::insertAfterTemps(Exp *pLhs, Exp *pRhs, Type *type /* NULL */)
+{
 	iterator it;
 	// First skip all assignments with temps on LHS
 	for (it = stmtList.begin(); it != stmtList.end(); it++) {
 		Statement *s = *it;
 		if (!s->isAssign())
 			break;
-		Exp* LHS = ((Assign*)s)->getLeft();
+		Exp *LHS = ((Assign *)s)->getLeft();
 		if (LHS->isTemp())
 			break;
 	}
@@ -496,79 +528,81 @@ void RTL::insertAfterTemps(Exp* pLhs, Exp* pRhs, Type* type	 /* NULL */) {
 		type = getType();
 
 	// Generate the assignment expression
-	Assign* asgn = new Assign(type, pLhs, pRhs);
+	Assign *asgn = new Assign(type, pLhs, pRhs);
 
 	// Insert before "it"
 	stmtList.insert(it, asgn);
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::getType
- * OVERVIEW:		Get the "type" for this RTL. Just gets the type of
- *					  the first assignment Exp
- * NOTE:			The type of the first assign may not be the type that you
- *					  want!
- * PARAMETERS:		None
- * RETURNS:			A pointer to the type
+ * FUNCTION:        RTL::getType
+ * OVERVIEW:        Get the "type" for this RTL. Just gets the type of
+ *                    the first assignment Exp
+ * NOTE:            The type of the first assign may not be the type that you
+ *                    want!
+ * PARAMETERS:      None
+ * RETURNS:         A pointer to the type
  *============================================================================*/
-Type* RTL::getType() {
+Type *RTL::getType()
+{
 	iterator it;
 	for (it = stmtList.begin(); it != stmtList.end(); it++) {
 		Statement *e = *it;
 		if (e->isAssign())
-			return ((Assign*)e)->getType();
+			return ((Assign *)e)->getType();
 	}
-	return new IntegerType();	//	Default to 32 bit integer if no assignments
+	return new IntegerType();  // Default to 32 bit integer if no assignments
 }
 
 /*==============================================================================
- * FUNCTION:	  RTL::areFlagsAffected
- * OVERVIEW:	  Return true if this RTL affects the condition codes
- * NOTE:		  Assumes that if there is a flag call Exp, then it is the last
- * PARAMETERS:	  None
- * RETURNS:		  Boolean as above
+ * FUNCTION:      RTL::areFlagsAffected
+ * OVERVIEW:      Return true if this RTL affects the condition codes
+ * NOTE:          Assumes that if there is a flag call Exp, then it is the last
+ * PARAMETERS:    None
+ * RETURNS:       Boolean as above
  *============================================================================*/
-bool RTL::areFlagsAffected() {
+bool RTL::areFlagsAffected()
+{
 	if (stmtList.size() == 0) return false;
 	// Get an iterator to the last RT
 	iterator it = stmtList.end();
 	if (it == stmtList.begin())
-		return false;			// Not expressions at all
-	it--;						// Will now point to the end of the list
+		return false;  // Not expressions at all
+	it--;  // Will now point to the end of the list
 	Statement *e = *it;
 	// If it is a flag call, then the CCs are affected
 	return e->isFlagAssgn();
 }
 
-void RTL::generateCode(HLLCode *hll, BasicBlock *pbb, int indLevel) {
-	for (iterator it = stmtList.begin();
-	  it != stmtList.end(); it++) {
+void RTL::generateCode(HLLCode *hll, BasicBlock *pbb, int indLevel)
+{
+	for (iterator it = stmtList.begin(); it != stmtList.end(); it++) {
 		(*it)->generateCode(hll, pbb, indLevel);
 	}
 }
 
-void RTL::simplify() {
+void RTL::simplify()
+{
 	for (iterator it = stmtList.begin(); it != stmtList.end(); /*it++*/) {
 		Statement *s = *it;
-		s->simplify();		  
+		s->simplify();
 		if (s->isBranch()) {
-			Exp *cond =	 ((BranchStatement*)s)->getCondExpr();
+			Exp *cond = ((BranchStatement *)s)->getCondExpr();
 			if (cond && cond->getOper() == opIntConst) {
-				if (((Const*)cond)->getInt() == 0) {
+				if (((Const *)cond)->getInt() == 0) {
 					if (VERBOSE)
 						LOG << "removing branch with false condition at " << getAddress()  << " " << *it << "\n";
 					it = stmtList.erase(it);
 					continue;
 				} else {
 					if (VERBOSE)
-						LOG << "replacing branch with true condition with goto at " << getAddress() << " " << *it <<
-							"\n";
-					*it = new GotoStatement(((BranchStatement*)s)->getFixedDest());
+						LOG << "replacing branch with true condition with goto at " << getAddress() << " " << *it << "\n";
+					*it = new GotoStatement(((BranchStatement *)s)->getFixedDest());
 				}
 			}
 		} else if (s->isAssign()) {
-			Exp* guard = ((Assign*)s)->getGuard();
-			if (guard && (guard->isFalse() || (guard->isIntConst() && ((Const*)guard)->getInt() == 0))) {
+			Exp *guard = ((Assign *)s)->getGuard();
+			if (guard && (guard->isFalse() || (guard->isIntConst() && ((Const *)guard)->getInt() == 0))) {
 				// This assignment statement can be deleted
 				if (VERBOSE)
 					LOG << "removing assignment with false guard at " << getAddress() << " " << *it << "\n";
@@ -581,18 +615,19 @@ void RTL::simplify() {
 }
 
 /*==============================================================================
- * FUNCTION:		RTL::isCompare
- * OVERVIEW:		Return true if this is an unmodified compare instruction
- *					  of a register with an operand
- * NOTE:			Will also match a subtract if the flags are set
- * NOTE:			expOperand, if set, is not cloned
- * NOTE:			Assumes that the first subtract on the RHS is the actual
- *					  compare operation
- * PARAMETERS:		iReg: ref to integer to set with the register index
- *					expOperand: ref to ptr to expression of operand
- * RETURNS:			True if found
+ * FUNCTION:        RTL::isCompare
+ * OVERVIEW:        Return true if this is an unmodified compare instruction
+ *                    of a register with an operand
+ * NOTE:            Will also match a subtract if the flags are set
+ * NOTE:            expOperand, if set, is not cloned
+ * NOTE:            Assumes that the first subtract on the RHS is the actual
+ *                    compare operation
+ * PARAMETERS:      iReg: ref to integer to set with the register index
+ *                  expOperand: ref to ptr to expression of operand
+ * RETURNS:         True if found
  *============================================================================*/
-bool RTL::isCompare(int& iReg, Exp*& expOperand) {
+bool RTL::isCompare(int &iReg, Exp *&expOperand)
+{
 	// Expect to see a subtract, then a setting of the flags
 	// Dest of subtract should be a register (could be the always zero register)
 	if (getNumStmt() < 2) return false;
@@ -600,49 +635,53 @@ bool RTL::isCompare(int& iReg, Exp*& expOperand) {
 	// But the actual compare could also be an assignment to a temporary
 	// So we search for the first RHS with an opMinus, that has a LHS to
 	// a register (whether a temporary or a machine register)
-	int i=0;
-	Exp* rhs;
-	Statement* cur;
+	int i = 0;
+	Exp *rhs;
+	Statement *cur;
 	do {
 		cur = elementAt(i);
 		if (cur->getKind() != STMT_ASSIGN) return false;
-		rhs = ((Assign*)cur)->getRight();
+		rhs = ((Assign *)cur)->getRight();
 		i++;
 	} while (rhs->getOper() != opMinus && i < getNumStmt());
 	if (rhs->getOper() != opMinus) return false;
 	// We have a subtract assigning to a register.
 	// Check if there is a subflags last
-	Statement* last = elementAt(getNumStmt()-1);
+	Statement *last = elementAt(getNumStmt() - 1);
 	if (!last->isFlagAssgn()) return false;
-	Exp* sub = ((Binary*)rhs)->getSubExp1();
+	Exp *sub = ((Binary *)rhs)->getSubExp1();
 	// Should be a compare of a register and something (probably a constant)
 	if (!sub->isRegOf()) return false;
 	// Set the register and operand expression, and return true
-	iReg = ((Const*)((Unary*)sub)->getSubExp1())->getInt();
-	expOperand = ((Binary*)rhs)->getSubExp2();
+	iReg = ((Const *)((Unary *)sub)->getSubExp1())->getInt();
+	expOperand = ((Binary *)rhs)->getSubExp2();
 	return true;
 }
 
-bool RTL::isGoto() {
+bool RTL::isGoto()
+{
 	if (stmtList.empty()) return false;
-	Statement* last = stmtList.back();
+	Statement *last = stmtList.back();
 	return last->getKind() == STMT_GOTO;
 }
 
-bool RTL::isBranch() {
+bool RTL::isBranch()
+{
 	if (stmtList.empty()) return false;
-	Statement* last = stmtList.back();
+	Statement *last = stmtList.back();
 	return last->getKind() == STMT_BRANCH;
 }
 
-bool RTL::isCall() {
+bool RTL::isCall()
+{
 	if (stmtList.empty()) return false;
-	Statement* last = stmtList.back();
+	Statement *last = stmtList.back();
 	return last->getKind() == STMT_CALL;
 }
 
 // Use this slow function when you can't be sure that the HL Statement is last
-Statement* RTL::getHlStmt() {
+Statement *RTL::getHlStmt()
+{
 	reverse_iterator rit;
 	for (rit = stmtList.rbegin(); rit != stmtList.rend(); rit++) {
 		if ((*rit)->getKind() != STMT_ASSIGN)
@@ -651,7 +690,8 @@ Statement* RTL::getHlStmt() {
 	return NULL;
 }
 
-int RTL::setConscripts(int n, bool bClear) {
+int RTL::setConscripts(int n, bool bClear)
+{
 	StmtConscriptSetter ssc(n, bClear);
 	accept(&ssc);
 	return ssc.getLast();

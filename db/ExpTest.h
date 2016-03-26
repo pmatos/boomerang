@@ -5,27 +5,26 @@
 #include <cppunit/TestSuite.h>
 
 class ExpTest : public CppUnit::TestCase {
-  protected:
-	Const*		m_99;
-	Location*	m_rof2;
+protected:
+	Const *m_99;
+	Location *m_rof2;
 
-  public:
-	ExpTest(std::string name) : CppUnit::TestCase (name)
-	{}
+public:
+	ExpTest(std::string name) : CppUnit::TestCase(name) { }
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+	virtual void registerTests(CppUnit::TestSuite *suite);
 
-	int countTestCases () const;
+	int countTestCases() const;
 
-	void setUp ();
-	void tearDown ();
+	void setUp();
+	void tearDown();
 
-	void test99 ();
-	void testFlt ();
-	void testRegOf2 ();
+	void test99();
+	void testFlt();
+	void testRegOf2();
 
-	void testBinaries ();
-	void testUnaries ();
+	void testBinaries();
+	void testUnaries();
 
 	void testIsAfpTerm();
 
@@ -70,4 +69,3 @@ class ExpTest : public CppUnit::TestCase {
 	void testSubscriptVars();
 	void testVisitors();
 };
-

@@ -1,5 +1,5 @@
 /*==============================================================================
- * FILE:	   testStmt.cpp
+ * FILE:       testStmt.cpp
  * OVERVIEW:   Command line test of the Statement class
  *============================================================================*/
 
@@ -11,17 +11,17 @@
 #include <sstream>
 #include <iostream>
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 	CppUnit::TestSuite suite;
 
-	StatementTest  expt("StatementTest");
+	StatementTest expt("StatementTest");
 
 	expt.registerTests(&suite);
 
 	CppUnit::TextTestResult res;
 
-	suite.run( &res );
+	suite.run(&res);
 	std::cout << res << std::endl;
 
 	return 0;
