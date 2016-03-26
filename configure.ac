@@ -6,7 +6,7 @@ AC_INIT([Boomerang],[0.3.1])
 AC_CONFIG_SRCDIR([boomerang.cpp])
 AC_CONFIG_HEADERS([include/config.h])
 AM_INIT_AUTOMAKE([foreign])
-LT_INIT([dlopen])
+LT_INIT([dlopen disable-static])
 
 # Checks for programs.
 AC_PROG_CXX
