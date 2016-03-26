@@ -17,7 +17,7 @@ AM_CPPFLAGS = \
 	$(GC_CFLAGS)
 
 
-noinst_LTLIBRARIES = \
+pkglib_LTLIBRARIES = \
 	libboomerang.la
 
 libboomerang_la_SOURCES = \
@@ -34,6 +34,7 @@ libboomerang_la_LIBADD = \
 	$(top_builddir)/loader/libBinaryFileFactory.la \
 	$(top_builddir)/transform/libtransform.la \
 	$(GC_LIBS)
+libboomerang_la_LDFLAGS = -no-undefined -avoid-version
 
 
 bin_PROGRAMS = \
