@@ -51,8 +51,9 @@ protected:
 	void parseFile(const char *filename);
 	void parseChildren(Cluster *c);
 
-#define TAGD(x) void start_ ## x (const char **attr); \
-	void addToContext_ ## x (Context *c, int e);
+#define TAGD(x) \
+	void start_##x(const char **attr); \
+	void addToContext_##x(Context *c, int e);
 
 	TAGD(prog)
 	TAGD(procs)
