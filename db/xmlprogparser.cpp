@@ -2199,7 +2199,8 @@ int XMLProgParser::operFromString(const char *s)
 void XMLProgParser::persistToXML(std::ostream &out, Cluster *c)
 {
 	out << "<cluster id=\"" << (int)c
-	    << "\" name=\"" << c->name << "\">\n";
+	    << "\" name=\"" << c->name
+	    << "\">\n";
 	for (unsigned i = 0; i < c->children.size(); i++) {
 		persistToXML(out, c->children[i]);
 	}
@@ -2209,7 +2210,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Cluster *c)
 void XMLProgParser::persistToXML(std::ostream &out, Global *g)
 {
 	out << "<global name=\"" << g->nam
-	    << "\" uaddr=\"" << (int)g->uaddr << "\">\n";
+	    << "\" uaddr=\"" << (int)g->uaddr
+	    << "\">\n";
 	out << "<type>\n";
 	persistToXML(out, g->type);
 	out << "</type>\n";
@@ -2222,7 +2224,8 @@ void XMLProgParser::persistToXML(Prog *prog)
 	std::ofstream &os = prog->m_rootCluster->getStream();
 	os << "<prog path=\"" << prog->getPath()
 	   << "\" name=\"" << prog->getName()
-	   << "\" iNumberedProc=\"" << prog->m_iNumberedProc << "\">\n";
+	   << "\" iNumberedProc=\"" << prog->m_iNumberedProc
+	   << "\">\n";
 	for (std::set<Global *>::iterator it1 = prog->globals.begin(); it1 != prog->globals.end(); it1++)
 		persistToXML(os, *it1);
 	persistToXML(os, prog->m_rootCluster);
@@ -2239,12 +2242,12 @@ void XMLProgParser::persistToXML(std::ostream &out, LibProc *proc)
 {
 	out << "<libproc id=\"" << (int)proc
 	    << "\" address=\"" << (int)proc->address
-	    << "\" firstCallerAddress=\"" << proc->m_firstCallerAddr << "\"";
+	    << "\" firstCallerAddress=\"" << proc->m_firstCallerAddr;
 	if (proc->m_firstCaller)
-		out << " firstCaller=\"" << (int)proc->m_firstCaller << "\"";
+		out << "\" firstCaller=\"" << (int)proc->m_firstCaller;
 	if (proc->cluster)
-		out << " cluster=\"" << (int)proc->cluster << "\"";
-	out << ">\n";
+		out << "\" cluster=\"" << (int)proc->cluster;
+	out << "\">\n";
 
 	persistToXML(out, proc->signature);
 
@@ -2261,17 +2264,17 @@ void XMLProgParser::persistToXML(std::ostream &out, LibProc *proc)
 
 void XMLProgParser::persistToXML(std::ostream &out, UserProc *proc)
 {
-	out << "<userproc id=\"" << (int)proc << "\"";
-	out << " address=\"" << (int)proc->address << "\"";
-	out << " status=\"" << (int)proc->status << "\"";
-	out << " firstCallerAddress=\"" << proc->m_firstCallerAddr << "\"";
+	out << "<userproc id=\"" << (int)proc
+	    << "\" address=\"" << (int)proc->address
+	    << "\" status=\"" << (int)proc->status
+	    << "\" firstCallerAddress=\"" << proc->m_firstCallerAddr;
 	if (proc->m_firstCaller)
-		out << " firstCaller=\"" << (int)proc->m_firstCaller << "\"";
+		out << "\" firstCaller=\"" << (int)proc->m_firstCaller;
 	if (proc->cluster)
-		out << " cluster=\"" << (int)proc->cluster << "\"";
+		out << "\" cluster=\"" << (int)proc->cluster;
 	if (proc->theReturnStatement)
-		out << " retstmt=\"" << (int)proc->theReturnStatement << "\"";
-	out << ">\n";
+		out << "\" retstmt=\"" << (int)proc->theReturnStatement;
+	out << "\">\n";
 
 	persistToXML(out, proc->signature);
 
@@ -2321,18 +2324,19 @@ void XMLProgParser::persistToXML(std::ostream &out, Proc *proc)
 
 void XMLProgParser::persistToXML(std::ostream &out, Signature *sig)
 {
-	out << "<signature id=\"" << (int)sig << "\"";
-	out << " name=\"" << sig->name << "\"";
-	out << " ellipsis=\"" << (int)sig->ellipsis << "\"";
-	out << " preferedName=\"" << sig->preferedName << "\"";
+	out << "<signature id=\"" << (int)sig
+	    << "\" name=\"" << sig->name
+	    << "\" ellipsis=\"" << (int)sig->ellipsis
+	    << "\" preferedName=\"" << sig->preferedName;
 	if (sig->getPlatform() != PLAT_GENERIC)
-		out << " platform=\"" << sig->platformName(sig->getPlatform()) << "\"";
+		out << "\" platform=\"" << sig->platformName(sig->getPlatform());
 	if (sig->getConvention() != CONV_NONE)
-		out << " convention=\"" << sig->conventionName(sig->getConvention()) << "\"";
-	out << ">\n";
+		out << "\" convention=\"" << sig->conventionName(sig->getConvention());
+	out << "\">\n";
 	for (unsigned i = 0; i < sig->params.size(); i++) {
 		out << "<param id=\"" << (int)sig->params[i]
-		    << "\" name=\"" << sig->params[i]->getName() << "\">\n";
+		    << "\" name=\"" << sig->params[i]->getName()
+		    << "\">\n";
 		out << "<type>\n";
 		persistToXML(out, sig->params[i]->getType());
 		out << "</type>\n";
@@ -2384,7 +2388,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Type *ty)
 	if (i) {
 		out << "<integertype id=\"" << (int)ty
 		    << "\" size=\"" << i->size
-		    << "\" signedness=\"" << i->signedness << "\"/>\n";
+		    << "\" signedness=\"" << i->signedness
+		    << "\"/>\n";
 		return;
 	}
 	FloatType *fl = dynamic_cast<FloatType *>(ty);
@@ -2413,7 +2418,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Type *ty)
 	ArrayType *a = dynamic_cast<ArrayType *>(ty);
 	if (a) {
 		out << "<arraytype id=\"" << (int)ty
-		    << "\" length=\"" << (int)a->length << "\">\n";
+		    << "\" length=\"" << (int)a->length
+		    << "\">\n";
 		out << "<basetype>\n";
 		persistToXML(out, a->base_type);
 		out << "</basetype>\n";
@@ -2423,7 +2429,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Type *ty)
 	NamedType *n = dynamic_cast<NamedType *>(ty);
 	if (n) {
 		out << "<namedtype id=\"" << (int)ty
-		    << "\" name=\"" << n->name << "\"/>\n";
+		    << "\" name=\"" << n->name
+		    << "\"/>\n";
 		return;
 	}
 	CompoundType *co = dynamic_cast<CompoundType *>(ty);
@@ -2440,7 +2447,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Type *ty)
 	SizeType *sz = dynamic_cast<SizeType *>(ty);
 	if (sz) {
 		out << "<sizetype id=\"" << (int)ty
-		    << "\" size=\"" << sz->getSize() << "\"/>\n";
+		    << "\" size=\"" << sz->getSize()
+		    << "\"/>\n";
 		return;
 	}
 	std::cerr << "unknown type in persistToXML\n";
@@ -2452,7 +2460,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	TypeVal *t = dynamic_cast<TypeVal *>(e);
 	if (t) {
 		out << "<typeval id=\"" << (int)e
-		    << "\" op=\"" << operStrings[t->op] << "\">\n";
+		    << "\" op=\"" << operStrings[t->op]
+		    << "\">\n";
 		out << "<type>\n";
 		persistToXML(out, t->val);
 		out << "</type>\n";
@@ -2462,37 +2471,39 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	Terminal *te = dynamic_cast<Terminal *>(e);
 	if (te) {
 		out << "<terminal id=\"" << (int)e
-		    << "\" op=\"" << operStrings[te->op] << "\"/>\n";
+		    << "\" op=\"" << operStrings[te->op]
+		    << "\"/>\n";
 		return;
 	}
 	Const *c = dynamic_cast<Const *>(e);
 	if (c) {
 		out << "<const id=\"" << (int)e
-		    << "\" op=\"" << operStrings[c->op] << "\"";
-		out << " conscript=\"" << c->conscript << "\"";
+		    << "\" op=\"" << operStrings[c->op]
+		    << "\" conscript=\"" << c->conscript;
 		if (c->op == opIntConst)
-			out << " value=\"" << c->u.i << "\"";
+			out << "\" value=\"" << c->u.i;
 		else if (c->op == opFuncConst)
-			out << " value=\"" << c->u.a << "\"";
+			out << "\" value=\"" << c->u.a;
 		else if (c->op == opFltConst)
-			out << " value=\"" << c->u.d << "\"";
+			out << "\" value=\"" << c->u.d;
 		else if (c->op == opStrConst)
-			out << " value=\"" << c->u.p << "\"";
+			out << "\" value=\"" << c->u.p;
 		else {
 			// TODO
 			// QWord ll;
 			// Proc *pp;
 			assert(false);
 		}
-		out << "/>\n";
+		out << "\"/>\n";
 		return;
 	}
 	Location *l = dynamic_cast<Location *>(e);
 	if (l) {
-		out << "<location id=\"" << (int)e << "\"";
+		out << "<location id=\"" << (int)e;
 		if (l->proc)
-			out << " proc=\"" << (int)l->proc << "\"";
-		out << " op=\"" << operStrings[l->op] << "\">\n";
+			out << "\" proc=\"" << (int)l->proc;
+		out << "\" op=\"" << operStrings[l->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, l->subExp1);
 		out << "</subexp1>\n";
@@ -2501,10 +2512,11 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	}
 	RefExp *r = dynamic_cast<RefExp *>(e);
 	if (r) {
-		out << "<refexp id=\"" << (int)e << "\"";
+		out << "<refexp id=\"" << (int)e;
 		if (r->def)
-			out << " def=\"" << (int)r->def << "\"";
-		out << " op=\"" << operStrings[r->op] << "\">\n";
+			out << "\" def=\"" << (int)r->def;
+		out << "\" op=\"" << operStrings[r->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, r->subExp1);
 		out << "</subexp1>\n";
@@ -2513,10 +2525,11 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	}
 	FlagDef *f = dynamic_cast<FlagDef *>(e);
 	if (f) {
-		out << "<flagdef id=\"" << (int)e << "\"";
+		out << "<flagdef id=\"" << (int)e;
 		if (f->rtl)
-			out << " rtl=\"" << (int)f->rtl << "\"";
-		out << " op=\"" << operStrings[f->op] << "\">\n";
+			out << "\" rtl=\"" << (int)f->rtl;
+		out << "\" op=\"" << operStrings[f->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, f->subExp1);
 		out << "</subexp1>\n";
@@ -2526,7 +2539,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	TypedExp *ty = dynamic_cast<TypedExp *>(e);
 	if (ty) {
 		out << "<typedexp id=\"" << (int)e
-		    << "\" op=\"" << operStrings[ty->op] << "\">\n";
+		    << "\" op=\"" << operStrings[ty->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, ty->subExp1);
 		out << "</subexp1>\n";
@@ -2539,7 +2553,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	Ternary *tn = dynamic_cast<Ternary *>(e);
 	if (tn) {
 		out << "<ternary id=\"" << (int)e
-		    << "\" op=\"" << operStrings[tn->op] << "\">\n";
+		    << "\" op=\"" << operStrings[tn->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, tn->subExp1);
 		out << "</subexp1>\n";
@@ -2555,7 +2570,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	Binary *b = dynamic_cast<Binary *>(e);
 	if (b) {
 		out << "<binary id=\"" << (int)e
-		    << "\" op=\"" << operStrings[b->op] << "\">\n";
+		    << "\" op=\"" << operStrings[b->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, b->subExp1);
 		out << "</subexp1>\n";
@@ -2568,7 +2584,8 @@ void XMLProgParser::persistToXML(std::ostream &out, Exp *e)
 	Unary *u = dynamic_cast<Unary *>(e);
 	if (u) {
 		out << "<unary id=\"" << (int)e
-		    << "\" op=\"" << operStrings[u->op] << "\">\n";
+		    << "\" op=\"" << operStrings[u->op]
+		    << "\">\n";
 		out << "<subexp1>\n";
 		persistToXML(out, u->subExp1);
 		out << "</subexp1>\n";
@@ -2583,10 +2600,10 @@ void XMLProgParser::persistToXML(std::ostream &out, Cfg *cfg)
 {
 	out << "<cfg id=\"" << (int)cfg
 	    << "\" wellformed=\"" << (int)cfg->m_bWellFormed
-	    << "\" lastLabel=\"" << cfg->lastLabel << "\"";
-	out << " entryBB=\"" << (int)cfg->entryBB << "\"";
-	out << " exitBB=\"" << (int)cfg->exitBB << "\"";
-	out << ">\n";
+	    << "\" lastLabel=\"" << cfg->lastLabel
+	    << "\" entryBB=\"" << (int)cfg->entryBB
+	    << "\" exitBB=\"" << (int)cfg->exitBB
+	    << "\">\n";
 
 	for (std::list<PBB>::iterator it = cfg->m_listBB.begin(); it != cfg->m_listBB.end(); it++)
 		persistToXML(out, *it);
@@ -2615,54 +2632,54 @@ void XMLProgParser::persistToXML(std::ostream &out, BasicBlock *bb)
 	    << "\" labelneeded=\"" << (int)bb->m_labelneeded
 	    << "\" incomplete=\"" << (int)bb->m_bIncomplete
 	    << "\" jumpreqd=\"" << (int)bb->m_bJumpReqd
-	    << "\" m_traversed=\"" << bb->m_iTraversed << "\"";
-	out << " DFTfirst=\"" << bb->m_DFTfirst
+	    << "\" m_traversed=\"" << bb->m_iTraversed
+	    << "\" DFTfirst=\"" << bb->m_DFTfirst
 	    << "\" DFTlast=\"" << bb->m_DFTlast
 	    << "\" DFTrevfirst=\"" << bb->m_DFTrevfirst
-	    << "\" DFTrevlast=\"" << bb->m_DFTrevlast << "\"";
-	out << " structType=\"" << bb->m_structType << "\"";
-	out << " loopCondType=\"" << bb->m_loopCondType << "\"";
+	    << "\" DFTrevlast=\"" << bb->m_DFTrevlast
+	    << "\" structType=\"" << bb->m_structType
+	    << "\" loopCondType=\"" << bb->m_loopCondType;
 	if (bb->m_loopHead)
-		out << " m_loopHead=\"" << (int)bb->m_loopHead << "\"";
+		out << "\" m_loopHead=\"" << (int)bb->m_loopHead;
 	if (bb->m_caseHead)
-		out << " m_caseHead=\"" << (int)bb->m_caseHead << "\"";
+		out << "\" m_caseHead=\"" << (int)bb->m_caseHead;
 	if (bb->m_condFollow)
-		out << " m_condFollow=\"" << (int)bb->m_condFollow << "\"";
+		out << "\" m_condFollow=\"" << (int)bb->m_condFollow;
 	if (bb->m_loopFollow)
-		out << " m_loopFollow=\"" << (int)bb->m_loopFollow << "\"";
+		out << "\" m_loopFollow=\"" << (int)bb->m_loopFollow;
 	if (bb->m_latchNode)
-		out << " m_latchNode=\"" << (int)bb->m_latchNode << "\"";
-	out << " ord=\"" << bb->ord << "\"";
-	out << " revOrd=\"" << bb->revOrd << "\"";
-	out << " inEdgesVisited=\"" << bb->inEdgesVisited << "\"";
-	out << " numForwardInEdges=\"" << bb->numForwardInEdges << "\"";
-	out << " loopStamp1=\"" << bb->loopStamps[0] << "\"";
-	out << " loopStamp2=\"" << bb->loopStamps[1] << "\"";
-	out << " revLoopStamp1=\"" << bb->revLoopStamps[0] << "\"";
-	out << " revLoopStamp2=\"" << bb->revLoopStamps[1] << "\"";
-	out << " traversed=\"" << (int)bb->traversed << "\"";
-	out << " hllLabel=\"" << (int)bb->hllLabel << "\"";
+		out << "\" m_latchNode=\"" << (int)bb->m_latchNode;
+	out << "\" ord=\"" << bb->ord
+	    << "\" revOrd=\"" << bb->revOrd
+	    << "\" inEdgesVisited=\"" << bb->inEdgesVisited
+	    << "\" numForwardInEdges=\"" << bb->numForwardInEdges
+	    << "\" loopStamp1=\"" << bb->loopStamps[0]
+	    << "\" loopStamp2=\"" << bb->loopStamps[1]
+	    << "\" revLoopStamp1=\"" << bb->revLoopStamps[0]
+	    << "\" revLoopStamp2=\"" << bb->revLoopStamps[1]
+	    << "\" traversed=\"" << (int)bb->traversed
+	    << "\" hllLabel=\"" << (int)bb->hllLabel;
 	if (bb->labelStr)
-		out << " labelStr=\"" << bb->labelStr << "\"";
-	out << " indentLevel=\"" << bb->indentLevel << "\"";
+		out << "\" labelStr=\"" << bb->labelStr;
+	out << "\" indentLevel=\"" << bb->indentLevel;
 	// note the rediculous duplication here
 	if (bb->immPDom)
-		out << " immPDom=\"" << (int)bb->immPDom << "\"";
+		out << "\" immPDom=\"" << (int)bb->immPDom;
 	if (bb->loopHead)
-		out << " loopHead=\"" << (int)bb->loopHead << "\"";
+		out << "\" loopHead=\"" << (int)bb->loopHead;
 	if (bb->caseHead)
-		out << " caseHead=\"" << (int)bb->caseHead << "\"";
+		out << "\" caseHead=\"" << (int)bb->caseHead;
 	if (bb->condFollow)
-		out << " condFollow=\"" << (int)bb->condFollow << "\"";
+		out << "\" condFollow=\"" << (int)bb->condFollow;
 	if (bb->loopFollow)
-		out << " loopFollow=\"" << (int)bb->loopFollow << "\"";
+		out << "\" loopFollow=\"" << (int)bb->loopFollow;
 	if (bb->latchNode)
-		out << " latchNode=\"" << (int)bb->latchNode << "\"";
-	out << " sType=\"" << (int)bb->sType << "\"";
-	out << " usType=\"" << (int)bb->usType << "\"";
-	out << " lType=\"" << (int)bb->lType << "\"";
-	out << " cType=\"" << (int)bb->cType << "\"";
-	out << ">\n";
+		out << "\" latchNode=\"" << (int)bb->latchNode;
+	out << "\" sType=\"" << (int)bb->sType
+	    << "\" usType=\"" << (int)bb->usType
+	    << "\" lType=\"" << (int)bb->lType
+	    << "\" cType=\"" << (int)bb->cType
+	    << "\">\n";
 
 	for (unsigned i = 0; i < bb->m_InEdges.size(); i++)
 		out << "<inedge bb=\"" << (int)bb->m_InEdges[i] << "\"/>\n";
@@ -2686,7 +2703,8 @@ void XMLProgParser::persistToXML(std::ostream &out, BasicBlock *bb)
 void XMLProgParser::persistToXML(std::ostream &out, RTL *rtl)
 {
 	out << "<rtl id=\"" << (int)rtl
-	    << "\" addr=\"" << (int)rtl->nativeAddr << "\">\n";
+	    << "\" addr=\"" << (int)rtl->nativeAddr
+	    << "\">\n";
 	for (std::list<Statement *>::iterator it = rtl->stmtList.begin(); it != rtl->stmtList.end(); it++) {
 		out << "<stmt>\n";
 		persistToXML(out, *it);
@@ -2700,15 +2718,15 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 	BoolAssign *b = dynamic_cast<BoolAssign *>(stmt);
 	if (b) {
 		out << "<boolasgn id=\"" << (int)stmt
-		    << "\" number=\"" << b->number << "\"";
+		    << "\" number=\"" << b->number;
 		if (b->parent)
-			out << " parent=\"" << (int)b->parent << "\"";
+			out << "\" parent=\"" << (int)b->parent;
 		if (b->proc)
-			out << " proc=\"" << (int)b->proc << "\"";
-		out << " jtcond=\"" << b->jtCond << "\"";
-		out << " float=\"" << (int)b->bFloat << "\"";
-		out << " size=\"" << b->size << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)b->proc;
+		out << "\" jtcond=\"" << b->jtCond
+		    << "\" float=\"" << (int)b->bFloat
+		    << "\" size=\"" << b->size
+		    << "\">\n";
 		if (b->pCond) {
 			out << "<cond>\n";
 			persistToXML(out, b->pCond);
@@ -2720,13 +2738,13 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 	ReturnStatement *r = dynamic_cast<ReturnStatement *>(stmt);
 	if (r) {
 		out << "<returnstmt id=\"" << (int)stmt
-		    << "\" number=\"" << r->number << "\"";
+		    << "\" number=\"" << r->number;
 		if (r->parent)
-			out << " parent=\"" << (int)r->parent << "\"";
+			out << "\" parent=\"" << (int)r->parent;
 		if (r->proc)
-			out << " proc=\"" << (int)r->proc << "\"";
-		out << " retAddr=\"" << (int)r->retAddr << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)r->proc;
+		out << "\" retAddr=\"" << (int)r->retAddr
+		    << "\">\n";
 
 		ReturnStatement::iterator rr;
 		for (rr = r->modifieds.begin(); rr != r->modifieds.end(); ++rr) {
@@ -2747,13 +2765,13 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 	if (c) {
 		out << "<callstmt id=\"" << (int)stmt
 		    << "\" number=\"" << c->number
-		    << "\" computed=\"" << (int)c->m_isComputed << "\"";
+		    << "\" computed=\"" << (int)c->m_isComputed;
 		if (c->parent)
-			out << " parent=\"" << (int)c->parent << "\"";
+			out << "\" parent=\"" << (int)c->parent;
 		if (c->proc)
-			out << " proc=\"" << (int)c->proc << "\"";
-		out << " returnAfterCall=\"" << (int)c->returnAfterCall << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)c->proc;
+		out << "\" returnAfterCall=\"" << (int)c->returnAfterCall
+		    << "\">\n";
 
 		if (c->pDest) {
 			out << "<dest";
@@ -2784,12 +2802,12 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 	if (ca) {
 		out << "<casestmt id=\"" << (int)stmt
 		    << "\" number=\"" << ca->number
-		    << "\" computed=\"" << (int)ca->m_isComputed << "\"";
+		    << "\" computed=\"" << (int)ca->m_isComputed;
 		if (ca->parent)
-			out << " parent=\"" << (int)ca->parent << "\"";
+			out << "\" parent=\"" << (int)ca->parent;
 		if (ca->proc)
-			out << " proc=\"" << (int)ca->proc << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)ca->proc;
+		out << "\">\n";
 		if (ca->pDest) {
 			out << "<dest>\n";
 			persistToXML(out, ca->pDest);
@@ -2806,12 +2824,12 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 		    << "\" number=\"" << br->number
 		    << "\" computed=\"" << (int)br->m_isComputed
 		    << "\" jtcond=\"" << br->jtCond
-		    << "\" float=\"" << (int)br->bFloat << "\"";
+		    << "\" float=\"" << (int)br->bFloat;
 		if (br->parent)
-			out << " parent=\"" << (int)br->parent << "\"";
+			out << "\" parent=\"" << (int)br->parent;
 		if (br->proc)
-			out << " proc=\"" << (int)br->proc << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)br->proc;
+		out << "\">\n";
 		if (br->pDest) {
 			out << "<dest>\n";
 			persistToXML(out, br->pDest);
@@ -2829,12 +2847,12 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 	if (g) {
 		out << "<gotostmt id=\"" << (int)stmt
 		    << "\" number=\"" << g->number
-		    << "\" computed=\"" << (int) g->m_isComputed << "\"";
+		    << "\" computed=\"" << (int) g->m_isComputed;
 		if (g->parent)
-			out << " parent=\"" << (int)g->parent << "\"";
+			out << "\" parent=\"" << (int)g->parent;
 		if (g->proc)
-			out << " proc=\"" << (int)g->proc << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)g->proc;
+		out << "\">\n";
 		if (g->pDest) {
 			out << "<dest>\n";
 			persistToXML(out, g->pDest);
@@ -2846,31 +2864,32 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 	PhiAssign *p = dynamic_cast<PhiAssign *>(stmt);
 	if (p) {
 		out << "<phiassign id=\"" << (int)stmt
-		    << "\" number=\"" << p->number << "\"";
+		    << "\" number=\"" << p->number;
 		if (p->parent)
-			out << " parent=\"" << (int)p->parent << "\"";
+			out << "\" parent=\"" << (int)p->parent;
 		if (p->proc)
-			out << " proc=\"" << (int)p->proc << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)p->proc;
+		out << "\">\n";
 		out << "<lhs>\n";
 		persistToXML(out, p->lhs);
 		out << "</lhs>\n";
 		PhiAssign::iterator it;
 		for (it = p->begin(); it != p->end(); p++)
 			out << "<def stmt=\"" << (int)it->def
-			    << "\" exp=\"" << (int)it->e << "\" />\n";
+			    << "\" exp=\"" << (int)it->e
+			    << "\"/>\n";
 		out << "</phiassign>\n";
 		return;
 	}
 	Assign *a = dynamic_cast<Assign *>(stmt);
 	if (a) {
 		out << "<assign id=\"" << (int)stmt
-		    << "\" number=\"" << a->number << "\"";
+		    << "\" number=\"" << a->number;
 		if (a->parent)
-			out << " parent=\"" << (int)a->parent << "\"";
+			out << "\" parent=\"" << (int)a->parent;
 		if (a->proc)
-			out << " proc=\"" << (int)a->proc << "\"";
-		out << ">\n";
+			out << "\" proc=\"" << (int)a->proc;
+		out << "\">\n";
 		out << "<lhs>\n";
 		persistToXML(out, a->lhs);
 		out << "</lhs>\n";
@@ -2885,7 +2904,7 @@ void XMLProgParser::persistToXML(std::ostream &out, Statement *stmt)
 		if (a->guard) {
 			out << "<guard>\n";
 			persistToXML(out, a->guard);
-			out << "/guard>\n";
+			out << "</guard>\n";
 		}
 		out << "</assign>\n";
 		return;
