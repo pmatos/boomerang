@@ -43,7 +43,6 @@ class XMLProgParser {
 public:
 	XMLProgParser() { }
 	Prog *parse(const char *filename);
-	void persistToXML(Prog *prog);
 	void handleElementStart(const char *el, const char **attr);
 	void handleElementEnd(const char *el);
 
@@ -124,23 +123,10 @@ protected:
 	TAGD(subexp2)
 	TAGD(subexp3)
 
-	void persistToXML(std::ostream &out, Global *g);
-	void persistToXML(std::ostream &out, Cluster *c);
-	void persistToXML(std::ostream &out, Proc *proc);
-	void persistToXML(std::ostream &out, LibProc *proc);
-	void persistToXML(std::ostream &out, UserProc *proc);
-	void persistToXML(std::ostream &out, Signature *sig);
-	void persistToXML(std::ostream &out, Type *ty);
-	void persistToXML(std::ostream &out, Exp *e);
-	void persistToXML(std::ostream &out, Cfg *cfg);
-	void persistToXML(std::ostream &out, BasicBlock *bb);
-	void persistToXML(std::ostream &out, RTL *rtl);
-	void persistToXML(std::ostream &out, Statement *stmt);
-
 	static _tag tags[];
 
-	int operFromString(const char *s);
-	const char *getAttr(const char **attr, const char *name);
+	static int operFromString(const char *s);
+	static const char *getAttr(const char **attr, const char *name);
 
 	std::list<Context *> stack;
 	std::map<int, void *> idToX;
@@ -148,6 +134,22 @@ protected:
 
 	void addId(const char **attr, void *x);
 	void *findId(const char *id);
+
+public:
+	static void persistToXML(Prog *prog);
+protected:
+	static void persistToXML(std::ostream &out, Global *g);
+	static void persistToXML(std::ostream &out, Cluster *c);
+	static void persistToXML(std::ostream &out, Proc *proc);
+	static void persistToXML(std::ostream &out, LibProc *proc);
+	static void persistToXML(std::ostream &out, UserProc *proc);
+	static void persistToXML(std::ostream &out, Signature *sig);
+	static void persistToXML(std::ostream &out, Type *ty);
+	static void persistToXML(std::ostream &out, Exp *e);
+	static void persistToXML(std::ostream &out, Cfg *cfg);
+	static void persistToXML(std::ostream &out, BasicBlock *bb);
+	static void persistToXML(std::ostream &out, RTL *rtl);
+	static void persistToXML(std::ostream &out, Statement *stmt);
 };
 
 #endif

@@ -307,24 +307,22 @@ int Boomerang::parseCmd(int argc, const char **argv)
 			return 1;
 		}
 		const char *fname = argv[1];
-		XMLProgParser *p = new XMLProgParser();
-		Prog *pr = p->parse(fname);
-		if (pr == NULL) {
+		Prog *p = loadFromXML(fname);
+		if (p == NULL) {
 			// try guessing
-			pr = p->parse((outputPath + fname + "/" + fname + ".xml").c_str());
-			if (pr == NULL) {
+			p = loadFromXML((outputPath + fname + "/" + fname + ".xml").c_str());
+			if (p == NULL) {
 				std::cerr << "failed to read xml " << fname << "\n";
 				return 1;
 			}
 		}
-		prog = pr;
+		prog = p;
 	} else if (!strcmp(argv[0], "save")) {
 		if (prog == NULL) {
 			std::cerr << "need to load or decode before save!\n";
 			return 1;
 		}
-		XMLProgParser *p = new XMLProgParser();
-		p->persistToXML(prog);
+		persistToXML(prog);
 #endif
 	} else if (!strcmp(argv[0], "decompile")) {
 		if (argc > 1) {
@@ -1094,8 +1092,7 @@ int Boomerang::decompile(const char *fname, const char *pname)
 #if USE_XML
 	if (loadBeforeDecompile) {
 		std::cout << "loading persisted state...\n";
-		XMLProgParser *p = new XMLProgParser();
-		prog = p->parse(fname);
+		prog = loadFromXML(fname);
 	} else
 #endif
 	{
@@ -1107,8 +1104,7 @@ int Boomerang::decompile(const char *fname, const char *pname)
 #if USE_XML
 	if (saveBeforeDecompile) {
 		std::cout << "saving persistable state...\n";
-		XMLProgParser *p = new XMLProgParser();
-		p->persistToXML(prog);
+		persistToXML(prog);
 	}
 #endif
 
@@ -1163,8 +1159,7 @@ int Boomerang::decompile(const char *fname, const char *pname)
 void Boomerang::persistToXML(Prog *prog)
 {
 	LOG << "saving persistable state...\n";
-	XMLProgParser *p = new XMLProgParser();
-	p->persistToXML(prog);
+	XMLProgParser::persistToXML(prog);
 }
 /**
  * Loads the state of a Prog object from a XML file.
@@ -1173,9 +1168,9 @@ void Boomerang::persistToXML(Prog *prog)
  */
 Prog *Boomerang::loadFromXML(const char *fname)
 {
-	LOG << "loading persistable state...\n";
-	XMLProgParser *p = new XMLProgParser();
-	return p->parse(fname);
+	LOG << "loading persisted state...\n";
+	XMLProgParser p;
+	return p.parse(fname);
 }
 #endif
 
