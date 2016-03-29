@@ -43,12 +43,25 @@ class XMLProgParser {
 public:
 	XMLProgParser() { }
 	Prog *parse(const char *filename);
-	void handleElementStart(const char *el, const char **attr);
-	void handleElementEnd(const char *el);
-
 protected:
 	void parseFile(const char *filename);
 	void parseChildren(Cluster *c);
+
+public:
+	void handleElementStart(const char *el, const char **attr);
+	void handleElementEnd(const char *el);
+protected:
+	static _tag tags[];
+
+	static const char *getAttr(const char **attr, const char *name);
+	static int operFromString(const char *s);
+
+	std::list<Context *> stack;
+	std::map<int, void *> idToX;
+	int phase;
+
+	void addId(const char **attr, void *x);
+	void *findId(const char *id);
 
 #define TAGD(x) \
 	void start_##x(const char **attr); \
@@ -71,8 +84,8 @@ protected:
 	TAGD(param)
 	TAGD(return)
 	TAGD(rettype)
-	TAGD(prefparam)
 	TAGD(prefreturn)
+	TAGD(prefparam)
 	TAGD(cfg)
 	TAGD(bb)
 	TAGD(inedge)
@@ -122,18 +135,6 @@ protected:
 	TAGD(subexp1)
 	TAGD(subexp2)
 	TAGD(subexp3)
-
-	static _tag tags[];
-
-	static int operFromString(const char *s);
-	static const char *getAttr(const char **attr, const char *name);
-
-	std::list<Context *> stack;
-	std::map<int, void *> idToX;
-	int phase;
-
-	void addId(const char **attr, void *x);
-	void *findId(const char *id);
 
 public:
 	static void persistToXML(Prog *prog);
