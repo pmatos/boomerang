@@ -1231,7 +1231,7 @@ void Boomerang::alert_decompile_debug_point(UserProc *p, const char *description
 		(*it)->alert_decompile_debug_point(p, description);
 }
 
-char *Boomerang::getVersionStr()
+const char *Boomerang::getVersionStr()
 {
-	return const_cast<char *>(VERSION);
+	return VERSION;
 }
