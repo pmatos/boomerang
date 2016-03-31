@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2004, Trent Waddington
+ * Copyright (C) 2016, Kyle Guinn
  *
  * See the file "LICENSE.TERMS" for information on usage and
  * redistribution of this file, and for a DISCLAIMER OF ALL
@@ -31,12 +32,10 @@ class Cfg;
 class BasicBlock;
 class RTL;
 
-#define MAX_STACK 1024
-
 typedef struct {
 	const char *tag;
-	void (XMLProgParser::*start_proc)(const char **);
-	void (XMLProgParser::*end_proc)(Context *c, int e);
+	void (XMLProgParser::*start)(Context *node, const char **attr);
+	void (XMLProgParser::*addChildTo)(Context *node, const Context *child) const;
 } _tag;
 
 class XMLProgParser {
@@ -56,16 +55,17 @@ protected:
 	static const char *getAttr(const char **attr, const char *name);
 	static int operFromString(const char *s);
 
-	std::list<Context *> stack;
+	std::stack<Context *> stack;
 	std::map<int, void *> idToX;
 	int phase;
 
+	void addChildStub(Context *node, const Context *child) const;
 	void addId(const char **attr, void *x);
-	void *findId(const char *id);
+	void *findId(const char *id) const;
 
 #define TAGD(x) \
-	void start_##x(const char **attr); \
-	void addToContext_##x(Context *c, int e);
+	void start_##x(Context *node, const char **attr); \
+	void addChildTo_##x(Context *node, const Context *child) const;
 
 	TAGD(prog)
 	TAGD(procs)
