@@ -222,8 +222,8 @@ public:
 	        //bool        isFullSignature() { return bFullSig; }
 
 	// ascii versions of platform, calling convention name
-	static  char       *platformName(platform plat);
-	static  char       *conventionName(callconv cc);
+	static  const char *platformName(platform plat);
+	static  const char *conventionName(callconv cc);
 	virtual platform    getPlatform() { return PLAT_GENERIC; }
 	virtual callconv    getConvention() { return CONV_NONE; }
 
