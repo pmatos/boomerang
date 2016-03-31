@@ -1361,10 +1361,10 @@ bool DataIntervalMap::isClear(ADDRESS addr, unsigned size)
 }
 
 // With the forced parameter: are we forcing the name, the type, or always both?
-void DataIntervalMap::addItem(ADDRESS addr, char *name, Type *ty, bool forced /* = false */)
+void DataIntervalMap::addItem(ADDRESS addr, const char *name, Type *ty, bool forced /* = false */)
 {
 	if (name == NULL)
-		name = const_cast<char *>("<noname>");
+		name = "<noname>";
 	DataIntervalEntry *pdie = find(addr);
 	if (pdie == NULL) {
 		// Check that this new item is compatible with any items it overlaps with, and insert it
@@ -1402,7 +1402,7 @@ void DataIntervalMap::addItem(ADDRESS addr, char *name, Type *ty, bool forced /*
 }
 
 // We are entering an item that already exists in a larger type. Check for compatibility, meet if necessary.
-void DataIntervalMap::enterComponent(DataIntervalEntry *pdie, ADDRESS addr, char *name, Type *ty, bool forced)
+void DataIntervalMap::enterComponent(DataIntervalEntry *pdie, ADDRESS addr, const char *name, Type *ty, bool forced)
 {
 	if (pdie->second.type->resolvesToCompound()) {
 		unsigned bitOffset = (addr - pdie->first) * 8;
@@ -1430,7 +1430,7 @@ void DataIntervalMap::enterComponent(DataIntervalEntry *pdie, ADDRESS addr, char
 
 // We are entering a struct or array that overlaps existing components. Check for compatibility, and move the
 // components out of the way, meeting if necessary
-void DataIntervalMap::replaceComponents(ADDRESS addr, char *name, Type *ty, bool forced)
+void DataIntervalMap::replaceComponents(ADDRESS addr, const char *name, Type *ty, bool forced)
 {
 	iterator it;
 	unsigned pastLast = addr + ty->getSize() / 8; // This is the byte address just past the type to be inserted
@@ -1527,7 +1527,7 @@ void DataIntervalMap::replaceComponents(ADDRESS addr, char *name, Type *ty, bool
 	pdi->type = ty;
 }
 
-void DataIntervalMap::checkMatching(DataIntervalEntry *pdie, ADDRESS addr, char *name, Type *ty, bool forced)
+void DataIntervalMap::checkMatching(DataIntervalEntry *pdie, ADDRESS addr, const char *name, Type *ty, bool forced)
 {
 	if (pdie->second.type->isCompatibleWith(ty)) {
 		// Just merge the types and exit
