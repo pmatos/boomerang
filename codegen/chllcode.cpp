@@ -1557,12 +1557,12 @@ void CHLLCode::AddProcDec(UserProc *proc, bool open)
 				LOG << "ERROR in CHLLCode::AddProcDec: no type for parameter " << left << "!\n";
 			ty = new IntegerType();
 		}
-		char *name;
+		const char *name;
 		if (left->isParam())
 			name = ((Const *)((Location *)left)->getSubExp1())->getStr();
 		else {
 			LOG << "ERROR: parameter " << left << " is not opParam!\n";
-			name = const_cast<char *>("??");
+			name = "??";
 		}
 		if (ty->isPointer() && ((PointerType *)ty)->getPointsTo()->isArray()) {
 			// C does this by default when you pass an array, i.e. you pass &array meaning array
