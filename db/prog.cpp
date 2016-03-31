@@ -807,7 +807,7 @@ const char *Prog::newGlobalName(ADDRESS uaddr)
 	return nam;
 }
 
-Type *Prog::getGlobalType(char *nam)
+Type *Prog::getGlobalType(const char *nam)
 {
 	for (std::set<Global *>::iterator it = globals.begin(); it != globals.end(); it++)
 		if (!strcmp((*it)->getName(), nam))

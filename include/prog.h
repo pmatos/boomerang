@@ -217,7 +217,7 @@ public:
 	        bool        globalUsed(ADDRESS uaddr, Type *knownType = NULL);
 
 	// Get the type of a global variable
-	        Type       *getGlobalType(char *nam);
+	        Type       *getGlobalType(const char *nam);
 
 	// Set the type of a global variable
 	        void        setGlobalType(const char *name, Type *ty);
