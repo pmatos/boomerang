@@ -569,7 +569,7 @@ public:
 	        bool        isLocal(Exp *e);                    ///< True if e represents a stack local variable
 	        bool        isLocalOrParam(Exp *e);             ///< True if e represents a stack local or stack param
 	        bool        isLocalOrParamPattern(Exp *e);      ///< True if e could represent a stack local or stack param
-	        bool        existsLocal(char *name);            ///< True if a local exists with name \a name
+	        bool        existsLocal(const char *name);      ///< True if a local exists with name \a name
 	        bool        isAddressEscapedVar(Exp *e) { return addressEscapedVars.exists(e); }
 	        bool        isPropagatable(Exp *e);             ///< True if e can be propagated
 
@@ -756,7 +756,7 @@ public:
 	        void        renameLocal(const char *oldName, const char *newName);
 	virtual void        renameParam(const char *oldName, const char *newName);
 
-	        char       *getRegName(Exp *r);  /// Get a name like eax or o2 from r24 or r8
+	        const char *getRegName(Exp *r);  /// Get a name like eax or o2 from r24 or r8
 	        void        setParamType(const char *nam, Type *ty);
 	        void        setParamType(int idx, Type *ty);
 

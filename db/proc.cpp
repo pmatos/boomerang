@@ -2781,7 +2781,7 @@ char *UserProc::newLocalName(Exp *e)
 	std::ostringstream ost;
 	if (e->isSubscript() && ((RefExp *)e)->getSubExp1()->isRegOf()) {
 		// Assume that it's better to know what register this location was created from
-		char *regName = getRegName(((RefExp *)e)->getSubExp1());
+		const char *regName = getRegName(((RefExp *)e)->getSubExp1());
 		int tag = 0;
 		do {
 			ost.str("");
@@ -5497,11 +5497,11 @@ void UserProc::findPhiUnites(ConnectionGraph &pu)
 	}
 }
 
-char *UserProc::getRegName(Exp *r)
+const char *UserProc::getRegName(Exp *r)
 {
 	assert(r->isRegOf());
 	int regNum = ((Const *)((Location *)r)->getSubExp1())->getInt();
-	char *regName = const_cast<char *>(prog->getRegName(regNum));
+	const char *regName = prog->getRegName(regNum);
 	if (regName[0] == '%') regName++;  // Skip % if %eax
 	return regName;
 }
@@ -5558,7 +5558,7 @@ void UserProc::nameParameterPhis()
 	}
 }
 
-bool UserProc::existsLocal(char *name)
+bool UserProc::existsLocal(const char *name)
 {
 	std::string s(name);
 	return locals.find(s) != locals.end();
@@ -5573,7 +5573,7 @@ void UserProc::checkLocalFor(RefExp *r)
 		Type *ty = def->getTypeFor(base);
 		// No, get its name from the front end
 		if (base->isRegOf()) {
-			char *regName = getRegName(base);
+			const char *regName = getRegName(base);
 			// Create a new local, for the base name if it doesn't exist yet, so we don't need several names for the
 			// same combination of location and type. However if it does already exist, addLocal will allocate a
 			// new name. Example: r8{0}->argc type int, r8->o0 type int, now r8->o0_1 type char*.
@@ -5581,7 +5581,7 @@ void UserProc::checkLocalFor(RefExp *r)
 				regName = newLocalName(r);
 			addLocal(ty, regName, base);
 		} else {
-			char *locName = newLocalName(r);
+			const char *locName = newLocalName(r);
 			addLocal(ty, locName, base);
 		}
 	}
