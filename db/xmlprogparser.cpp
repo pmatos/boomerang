@@ -24,6 +24,7 @@ extern "C" {
 #include "expat.h"
 }
 
+#include <cctype>
 #include <cstdio>
 #include <cstring>
 
@@ -157,14 +158,14 @@ end(void *data, const char *el)
 static void XMLCALL
 text(void *data, const char *s, int len)
 {
-	int mylen;
-	char buf[1024];
-	if (len == 1 && *s == '\n')
-		return;
-	mylen = len < 1024 ? len : 1023;
-	memcpy(buf, s, mylen);
-	buf[mylen] = 0;
-	printf("error: text in document %i bytes (%s)\n", len, buf);
+	// Strip leading/trailing whitespace
+	while (len && std::isspace(*s)) { ++s; --len; }
+	if (!len) return;
+	while (std::isspace(s[len - 1])) --len;
+
+	std::cerr << "error: text in document " << len << " bytes (";
+	std::cerr.write(s, len);  // s is not NUL-terminated
+	std::cerr << ")\n";
 }
 
 const char *XMLProgParser::getAttr(const char **attr, const char *name)
