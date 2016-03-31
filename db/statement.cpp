@@ -907,12 +907,13 @@ bool Statement::doPropagateTo(Exp *e, Assign *def, bool &convert)
 	}
 
 	if (VERBOSE)
-		LOG << "propagating " << def << "\n" << "\t   into " << this << "\n";
+		LOG << "propagating " << def << "\n"
+		    << "       into " << this << "\n";
 
 	bool change = replaceRef(e, def, convert);
 
 	if (VERBOSE) {
-		LOG << "\t result " << this << "\n\n";
+		LOG << "     result " << this << "\n\n";
 	}
 	return change;
 }
