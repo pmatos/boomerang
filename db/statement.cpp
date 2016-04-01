@@ -5092,7 +5092,7 @@ StatementList *CallStatement::calcResults()
 				// But we have translated out of SSA form, so some registers have had to have been replaced with locals
 				// So wrap the return register in a ref to this and check the locals
 				RefExp *wrappedRet = new RefExp(sigReturn, this);
-				char *locName = proc->findLocal(wrappedRet);  // E.g. r24{16}
+				const char *locName = proc->findLocal(wrappedRet);  // E.g. r24{16}
 				if (locName)
 					sigReturn = Location::local(locName, proc);  // Replace e.g. r24 with local19
 #endif

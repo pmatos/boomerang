@@ -331,7 +331,7 @@ bool UsedLocalFinder::visit(Location *e, bool &override)
 {
 	override = false;
 #if 0
-	char *sym = proc->lookupSym(e);
+	const char *sym = proc->lookupSym(e);
 	if (sym)
 		override = true;  // Don't look inside this local or parameter
 	if (proc->findLocal(e))
@@ -953,7 +953,7 @@ bool BadMemofFinder::visit(RefExp *e, bool &override)
 		if (found)
 			return false;  // Don't continue searching
 #if NEW  // FIXME: not ready for this until have incremental propagation
-		char *sym = proc->lookupSym(e);
+		const char *sym = proc->lookupSym(e);
 		if (sym == NULL) {
 			found = true;     // Found a memof that is not a symbol
 			override = true;  // Don't look inside the refexp
@@ -1075,7 +1075,7 @@ bool StmtCastInserter::common(Assignment *s)
 
 Exp *ExpSsaXformer::postVisit(RefExp *e)
 {
-	char *sym = proc->lookupSymFromRefAny(e);
+	const char *sym = proc->lookupSymFromRefAny(e);
 	if (sym != NULL)
 		return Location::local(sym, proc);
 	// We should not get here: all locations should be replaced with Locals or Parameters
@@ -1089,7 +1089,7 @@ void StmtSsaXformer::commonLhs(Assignment *as)
 	Exp *lhs = as->getLeft();
 	lhs = lhs->accept((ExpSsaXformer *)mod);  // In case the LHS has say m[r28{0}+8] -> m[esp+8]
 	RefExp *re = new RefExp(lhs, as);
-	char *sym = proc->lookupSymFromRefAny(re);
+	const char *sym = proc->lookupSymFromRefAny(re);
 	if (sym)
 		as->setLeft(Location::local(sym, proc));
 }
@@ -1123,7 +1123,7 @@ void StmtSsaXformer::visit(PhiAssign *s, bool &recur)
 	for (it = s->begin(); it != s->end(); it++) {
 		if (it->e == NULL) continue;
 		RefExp *r = new RefExp(it->e, it->def);
-		char *sym = proc->lookupSymFromRefAny(r);
+		const char *sym = proc->lookupSymFromRefAny(r);
 		if (sym != NULL)
 			it->e = Location::local(sym, proc);  // Some may be parameters, but hopefully it won't matter
 	}

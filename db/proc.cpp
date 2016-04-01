@@ -3034,7 +3034,7 @@ void UserProc::removeUnusedLocals()
 		s->getDefinitions(ls);
 		for (ll = ls.begin(); ll != ls.end(); ++ll) {
 			Type *ty = s->getTypeFor(*ll);
-			char *name = findLocal(*ll, ty);
+			const char *name = findLocal(*ll, ty);
 			if (name == NULL) continue;
 			std::string str(name);
 			if (removes.find(str) != removes.end()) {
@@ -3178,8 +3178,8 @@ void UserProc::fromSSAform()
 		RefExp *r1, *r2;
 		r1 = (RefExp *)ii->first;
 		r2 = (RefExp *)ii->second;  // r1 -> r2 and vice versa
-		char *name1 = lookupSymFromRefAny(r1);
-		char *name2 = lookupSymFromRefAny(r2);
+		const char *name1 = lookupSymFromRefAny(r1);
+		const char *name2 = lookupSymFromRefAny(r2);
 		if (name1 && name2 && strcmp(name1, name2) != 0)
 			continue;  // Already different names, probably because of the redundant mapping
 		RefExp *rename = NULL;
@@ -3223,8 +3223,8 @@ void UserProc::fromSSAform()
 	for (ii = pu.begin(); ii != pu.end(); ++ii) {
 		RefExp *r1 = (RefExp *)ii->first;
 		RefExp *r2 = (RefExp *)ii->second;
-		char *name1 = lookupSymFromRef(r1);
-		char *name2 = lookupSymFromRef(r2);
+		const char *name1 = lookupSymFromRef(r1);
+		const char *name2 = lookupSymFromRef(r2);
 		if (name1 && !name2 && !ig.isConnected(r1, r2)) {
 			// There is a case where this is unhelpful, and it happen in test/pentium/fromssa2. We have renamed the
 			// destination of the phi to ebx_1, and that leaves the two phi operands as ebx. However, we attempt to
@@ -3236,7 +3236,7 @@ void UserProc::fromSSAform()
 			if (def1->isPhi()) {
 				bool allSame = true;
 				bool r2IsOperand = false;
-				char *firstName = NULL;
+				const char *firstName = NULL;
 				PhiAssign::iterator rr;
 				PhiAssign *pi = (PhiAssign *)def1;
 				for (rr = pi->begin(); rr != pi->end(); ++rr) {
@@ -3330,11 +3330,11 @@ void UserProc::fromSSAform()
 			// seems unlikely
 			Exp *lhs = pa->getLeft();
 			RefExp *wrappedLeft = new RefExp(lhs, pa)
-			char *lhsName = lookupSymForRef(wrappedLeft);
+			const char *lhsName = lookupSymForRef(wrappedLeft);
 			PhiAssign::iterator rr;
 			for (rr = pa->begin(); rr != pa->end(); rr++) {
 				RefExp *operand = new RefExp(rr->e, rr->def);
-				char *operName = lookupSymFromRef(operand);
+				const char *operName = lookupSymFromRef(operand);
 				if (strcmp(operName, lhsName) == 0)
 					continue;  // No need for copies for this operand
 				// Consider possible optimisation here: if have a = phi(b, b, b, b, a), then there is only one copy
@@ -3373,7 +3373,7 @@ void UserProc::mapParameters()
 	StatementList::iterator pp;
 	for (pp = parameters.begin(); pp != parameters.end(); ++pp) {
 		Exp *lhs = ((Assignment *)*pp)->getLeft();
-		char *mappedName = lookupParam(lhs);
+		const char *mappedName = lookupParam(lhs);
 		if (mappedName == NULL) {
 			LOG << "WARNING! No symbol mapping for parameter " << lhs << "\n";
 			bool allZero;
@@ -3986,7 +3986,7 @@ void UserProc::addImplicitAssigns()
 }
 
 // e is a parameter location, e.g. r8 or m[r28{0}+8]. Lookup a symbol for it
-char *UserProc::lookupParam(Exp *e)
+const char *UserProc::lookupParam(Exp *e)
 {
 	// Originally e.g. m[esp+K]
 	Statement *def = cfg->findTheImplicitAssign(e);
@@ -3999,7 +3999,7 @@ char *UserProc::lookupParam(Exp *e)
 	return lookupSym(re, ty);
 }
 
-char *UserProc::lookupSymFromRef(RefExp *r)
+const char *UserProc::lookupSymFromRef(RefExp *r)
 {
 	Statement *def = r->getDef();
 	Exp *base = r->getSubExp1();
@@ -4007,18 +4007,18 @@ char *UserProc::lookupSymFromRef(RefExp *r)
 	return lookupSym(r, ty);
 }
 
-char *UserProc::lookupSymFromRefAny(RefExp *r)
+const char *UserProc::lookupSymFromRefAny(RefExp *r)
 {
 	Statement *def = r->getDef();
 	Exp *base = r->getSubExp1();
 	Type *ty = def->getTypeFor(base);
-	char *ret = lookupSym(r, ty);
+	const char *ret = lookupSym(r, ty);
 	if (ret)
 		return ret;  // Found a specific symbol
 	return lookupSym(base, ty);  // Check for a general symbol
 }
 
-char *UserProc::lookupSym(Exp *e, Type *ty)
+const char *UserProc::lookupSym(Exp *e, Type *ty)
 {
 	if (e->isTypedExp())
 		e = ((TypedExp *)e)->getSubExp1();
@@ -4027,7 +4027,7 @@ char *UserProc::lookupSym(Exp *e, Type *ty)
 	while (it != symbolMap.end() && *it->first == *e) {
 		Exp *sym = it->second;
 		assert(sym->isLocal() || sym->isParam());
-		char *name = ((Const *)((Location *)sym)->getSubExp1())->getStr();
+		const char *name = ((Const *)((Location *)sym)->getSubExp1())->getStr();
 		Type *type = getLocalType(name);
 		if (type == NULL) type = getParamType(name);  // Ick currently linear search
 		if (type && type->isCompatibleWith(ty))
@@ -4318,12 +4318,12 @@ bool UserProc::filterParams(Exp *e)
 	return false;
 }
 
-char *UserProc::findLocal(Exp *e, Type *ty)
+const char *UserProc::findLocal(Exp *e, Type *ty)
 {
 	if (e->isLocal())
 		return ((Const *)((Unary *)e)->getSubExp1())->getStr();
 	// Look it up in the symbol map
-	char *name = lookupSym(e, ty);
+	const char *name = lookupSym(e, ty);
 	if (name == NULL)
 		return NULL;
 	// Now make sure it is a local; some symbols (e.g. parameters) are in the symbol map but not locals
@@ -4333,12 +4333,12 @@ char *UserProc::findLocal(Exp *e, Type *ty)
 	return NULL;
 }
 
-char *UserProc::findLocalFromRef(RefExp *r)
+const char *UserProc::findLocalFromRef(RefExp *r)
 {
 	Statement *def = r->getDef();
 	Exp *base = r->getSubExp1();
 	Type *ty = def->getTypeFor(base);
-	char *name = lookupSym(r, ty);
+	const char *name = lookupSym(r, ty);
 	if (name == NULL)
 		return NULL;
 	// Now make sure it is a local; some symbols (e.g. parameters) are in the symbol map but not locals
@@ -5537,13 +5537,13 @@ void UserProc::nameParameterPhis()
 		if (findFirstSymbol(lhsRef) != NULL)
 			continue;  // Already mapped to something
 		bool multiple = false;   // True if find more than one unique parameter
-		char *firstName = NULL;  // The name for the first parameter found
+		const char *firstName = NULL;  // The name for the first parameter found
 		Type *ty = pi->getType();
 		PhiAssign::iterator pp;
 		for (pp = pi->begin(); pp != pi->end(); ++pp) {
 			if (pp->def->isImplicit()) {
 				RefExp *phiArg = new RefExp(pp->e, pp->def);
-				char *name = lookupSym(phiArg, ty);
+				const char *name = lookupSym(phiArg, ty);
 				if (name != NULL) {
 					if (firstName != NULL && strcmp(firstName, name) != 0) {
 						multiple = true;
