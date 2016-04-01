@@ -70,7 +70,7 @@
 
 %union {
 	int ival;
-	char *str;
+	const char *str;
 	Type *type;
 	std::list<Parameter *> *param_list;
 	std::list<int> *num_list;

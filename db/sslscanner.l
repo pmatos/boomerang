@@ -138,9 +138,9 @@
 "truncu("        |
 "truncs("        |
 "zfill("         |
-"sgnex("         { yylval.str = strdup(yytext); yylval.str[strlen(yylval.str) - 1] = '\0'; return SSLParser::CONV_FUNC; }
-"ftrunc("        { yylval.str = strdup(yytext); yylval.str[strlen(yylval.str) - 1] = '\0'; return SSLParser::TRUNC_FUNC; }
-"fabs("          { yylval.str = strdup(yytext); yylval.str[strlen(yylval.str) - 1] = '\0'; return SSLParser::FABS_FUNC; }
+"sgnex("         { char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return SSLParser::CONV_FUNC; }
+"ftrunc("        { char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return SSLParser::TRUNC_FUNC; }
+"fabs("          { char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return SSLParser::FABS_FUNC; }
 "defineflags("   |
 "undefineflags(" { return SSLParser::FLAGMACRO; }
 "FPOP"           { return SSLParser::FPOP; }
@@ -153,7 +153,7 @@
 "loge("          |
 "log10("         |
 "execute("       |
-"sqrt("          { yylval.str = strdup(yytext); yylval.str[strlen(yylval.str) - 1] = '\0'; return SSLParser::TRANSCEND; }
+"sqrt("          { char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return SSLParser::TRANSCEND; }
 "succ("          { return SSLParser::SUCCESSOR; }
 
 "tmp"[a-zA-Z0-9_]* { yylval.str = strdup(yytext); return SSLParser::TEMP; }
@@ -164,8 +164,8 @@
 "_"         { return yytext[0]; }
 
 "%"[A-Za-z][A-Za-z0-9]*    { yylval.str = strdup(yytext); return SSLParser::REG_ID; }
-_?[A-Za-z][A-Za-z0-9_]*"(" { yylval.str = strdup(yytext); yylval.str[strlen(yylval.str) - 1] = '\0'; return SSLParser::NAME_CALL; }
-_?[A-Za-z][A-Za-z0-9_]*"[" { yylval.str = strdup(yytext); yylval.str[strlen(yylval.str) - 1] = '\0'; return SSLParser::NAME_LOOKUP; }
+_?[A-Za-z][A-Za-z0-9_]*"(" { char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return SSLParser::NAME_CALL; }
+_?[A-Za-z][A-Za-z0-9_]*"[" { char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return SSLParser::NAME_LOOKUP; }
 _?[A-Za-z][A-Za-z0-9_]*    { yylval.str = strdup(yytext); return SSLParser::NAME; }
 "."[A-Za-z][A-Za-z.0-9]*   |
 "^"\"[A-Za-z][A-Za-z]*\"   { yylval.str = strdup(yytext); return SSLParser::DECOR; }

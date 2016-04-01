@@ -65,7 +65,7 @@ IS                      (u|U|l|L)*
 "a["                    { count(); return TransformationParser::ADDROF; }
 "true"                  { count(); return TransformationParser::BOOL_TRUE; }
 "false"                 { count(); return TransformationParser::BOOL_FALSE; }
-{L}({L}|{D})*\(         { count(); yylval.str = strdup(yytext); yylval.str[strlen(yylval.str)-1] = 0; return TransformationParser::FUNC; }
+{L}({L}|{D})*\(         { count(); char *str = strdup(yytext); str[strlen(str) - 1] = '\0'; yylval.str = str; return TransformationParser::FUNC; }
 
 {L}({L}|{D})*           { count(); yylval.str = strdup(yytext); return TransformationParser::IDENTIFIER; }
 

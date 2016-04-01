@@ -30,7 +30,7 @@
 
 %union {
 	Exp            *exp;
-	char           *str;
+	const char     *str;
 	int             num;
 	double          dbl;
 	Statement      *regtransfer;
@@ -57,7 +57,7 @@
 	#include <cstdlib>
 	#include <cassert>
 
-	OPER strToTerm(char *s);                       // Convert string to a Terminal (if possible)
+	OPER strToTerm(const char *s);                 // Convert string to a Terminal (if possible)
 	Exp *listExpToExp(std::list<Exp *> *le);       // Convert a STL list of Exp* to opList
 	Exp *listStrToExp(std::list<std::string> *ls); // Convert a STL list of strings to opList
 %}
@@ -1173,7 +1173,7 @@ OPER SSLParser::strToOper(const char *s)
 	return opWild;
 }
 
-OPER strToTerm(char *s)
+OPER strToTerm(const char *s)
 {
 	// s could be %pc, %afp, %agp, %CF, %ZF, %OF, %NF, %DF, %flags, %fflags
 	if (s[2] == 'F') {

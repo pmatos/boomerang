@@ -18,7 +18,7 @@
 
 %union {
 	int ival;
-	char *str;
+	const char *str;
 	Type *type;
 	Exp *exp;
 }
