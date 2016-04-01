@@ -2875,7 +2875,7 @@ Exp *UserProc::getSymbolFor(Exp *from, Type *ty)
 	while (ff != symbolMap.end() && *ff->first == *from) {
 		Exp *currTo = ff->second;
 		assert(currTo->isLocal() || currTo->isParam());
-		char *name = ((Const *)((Location *)currTo)->getSubExp1())->getStr();
+		const char *name = ((Const *)((Location *)currTo)->getSubExp1())->getStr();
 		Type *currTy = getLocalType(name);
 		if (currTy == NULL) currTy = getParamType(name);
 		if (currTy && currTy->isCompatibleWith(ty))
@@ -3848,11 +3848,11 @@ void UserProc::conTypeAnalysis()
 			if (loc->isSubscript())
 				loc = ((RefExp *)loc)->getSubExp1();
 			if (loc->isGlobal()) {
-				char *nam = ((Const *)((Unary *)loc)->getSubExp1())->getStr();
+				const char *nam = ((Const *)((Unary *)loc)->getSubExp1())->getStr();
 				if (!ty->resolvesToVoid())
 					prog->setGlobalType(nam, ty->clone());
 			} else if (loc->isLocal()) {
-				char *nam = ((Const *)((Unary *)loc)->getSubExp1())->getStr();
+				const char *nam = ((Const *)((Unary *)loc)->getSubExp1())->getStr();
 				setLocalType(nam, ty);
 			} else if (loc->isIntConst()) {
 				Const *con = (Const *)loc;

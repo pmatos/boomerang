@@ -191,11 +191,11 @@ void UserProc::dfaTypeAnalysis()
 							                                new Unary(opAddrOf, g),
 							                                new Const(r)), this);
 						} else {
-							Type *ty = prog->getGlobalType((char *)gloName);
+							Type *ty = prog->getGlobalType(gloName);
 							if (s->isAssign() && ((Assign *)s)->getType()) {
 								int bits = ((Assign *)s)->getType()->getSize();
 								if (ty == NULL || ty->getSize() == 0)
-									prog->setGlobalType((char *)gloName, new IntegerType(bits));
+									prog->setGlobalType(gloName, new IntegerType(bits));
 							}
 							Location *g = Location::global(strdup(gloName), this);
 							if (ty && ty->resolvesToArray())
@@ -298,7 +298,7 @@ void UserProc::dfaTypeAnalysis()
 					prog->globalUsed(K, iType);
 				}
 			} else if (lhs->isGlobal()) {
-				char *gname = ((Const *)((Location *)lhs)->getSubExp1())->getStr();
+				const char *gname = ((Const *)((Location *)lhs)->getSubExp1())->getStr();
 				prog->setGlobalType(gname, iType);
 			}
 		}
@@ -1339,7 +1339,7 @@ void Unary::descendType(Type *parentType, bool &ch, Statement *s)
 	case opGlobal:
 		{
 			Prog *prog = s->getProc()->getProg();
-			char *name = ((Const *)subExp1)->getStr();
+			const char *name = ((Const *)subExp1)->getStr();
 			Type *ty = prog->getGlobalType(name);
 			ty = ty->meetWith(parentType, ch);
 			prog->setGlobalType(name, ty);
