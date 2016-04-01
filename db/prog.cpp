@@ -685,7 +685,7 @@ void Prog::dumpGlobals()
 	}
 }
 
-ADDRESS Prog::getGlobalAddr(char *nam)
+ADDRESS Prog::getGlobalAddr(const char *nam)
 {
 	for (std::set<Global *>::iterator it = globals.begin(); it != globals.end(); it++) {
 		if (!strcmp((*it)->getName(), nam))
@@ -694,7 +694,7 @@ ADDRESS Prog::getGlobalAddr(char *nam)
 	return pBF->GetAddressByName(nam);
 }
 
-Global *Prog::getGlobal(char *nam)
+Global *Prog::getGlobal(const char *nam)
 {
 	for (std::set<Global *>::iterator it = globals.begin(); it != globals.end(); it++) {
 		if (!strcmp((*it)->getName(), nam))
@@ -1862,7 +1862,7 @@ Exp *Prog::addReloc(Exp *e, ADDRESS lc)
 			const char *n = symbols[c->getInt()].c_str();
 			ADDRESS a = c->getInt();
 			unsigned int sz = pBF->GetSizeByName(n);
-			if (getGlobal((char *)n) == NULL) {
+			if (getGlobal(n) == NULL) {
 				Global *global = new Global(new SizeType(sz * 8), a, n);
 				globals.insert(global);
 			}

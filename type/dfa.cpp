@@ -183,7 +183,7 @@ void UserProc::dfaTypeAnalysis()
 					prog->globalUsed(addr, baseType);
 					const char *gloName = prog->getGlobalName(addr);
 					if (gloName) {
-						ADDRESS r = addr - prog->getGlobalAddr((char *)gloName);
+						ADDRESS r = addr - prog->getGlobalAddr(gloName);
 						Exp *ne;
 						if (r) {
 							Location *g = Location::global(strdup(gloName), this);

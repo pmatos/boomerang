@@ -884,7 +884,7 @@ Exp *ConstGlobalConverter::preVisit(RefExp *e, bool &recur)
 			return new Const(value);
 		} else if (base->isGlobal()) {
 			// We have a glo{-}
-			char *gname = ((Const *)(base->getSubExp1()))->getStr();
+			const char *gname = ((Const *)(base->getSubExp1()))->getStr();
 			ADDRESS gloValue = prog->getGlobalAddr(gname);
 			int value = prog->readNative4(gloValue);
 			recur = false;
@@ -894,7 +894,7 @@ Exp *ConstGlobalConverter::preVisit(RefExp *e, bool &recur)
 		        && (glo = ((Binary *)base)->getSubExp1(), glo->isGlobal())) {
 			// We have a glo[K]{-}
 			int K = ((Const *)idx)->getInt();
-			char *gname = ((Const *)(glo->getSubExp1()))->getStr();
+			const char *gname = ((Const *)(glo->getSubExp1()))->getStr();
 			ADDRESS gloValue = prog->getGlobalAddr(gname);
 			Type *gloType = prog->getGlobal(gname)->getType();
 			assert(gloType->isArray());

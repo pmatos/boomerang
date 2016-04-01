@@ -2504,7 +2504,7 @@ bool CallStatement::convertToDirect()
 	if (!e->isGlobal()) {
 		return false;
 	}
-	char *nam = ((Const *)e->getSubExp1())->getStr();
+	const char *nam = ((Const *)e->getSubExp1())->getStr();
 	Prog *prog = proc->getProg();
 	ADDRESS gloAddr = prog->getGlobalAddr(nam);
 	ADDRESS dest = prog->readNative4(gloAddr);

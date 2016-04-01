@@ -201,8 +201,8 @@ public:
 
 	// Get a global variable if possible, looking up the loader's symbol table if necessary
 	        const char *getGlobalName(ADDRESS uaddr);
-	        ADDRESS     getGlobalAddr(char *nam);
-	        Global     *getGlobal(char *nam);
+	        ADDRESS     getGlobalAddr(const char *nam);
+	        Global     *getGlobal(const char *nam);
 
 	// Make up a name for a new global at address uaddr (or return an existing name if address already used)
 	        const char *newGlobalName(ADDRESS uaddr);
