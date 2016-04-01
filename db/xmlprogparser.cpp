@@ -289,7 +289,7 @@ void XMLProgParser::parseChildren(Cluster *c)
 	}
 }
 
-extern char *operStrings[];
+extern const char *operStrings[];
 
 int XMLProgParser::operFromString(const char *s)
 {

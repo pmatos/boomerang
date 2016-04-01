@@ -170,7 +170,7 @@ void UserProc::dfaTypeAnalysis()
 				if (baseType->resolvesToChar()) {
 					// Convert to a string  MVE: check for read-only?
 					// Also, distinguish between pointer to one char, and ptr to many?
-					char *str = prog->getStringConstant(val, true);
+					const char *str = prog->getStringConstant(val, true);
 					if (str) {
 						// Make a string
 						con->setStr(str);

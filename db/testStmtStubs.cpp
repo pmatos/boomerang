@@ -26,7 +26,7 @@ void BasicBlock::addInEdge(PBB pNewInEdge) { }
 Prog::Prog() { }
 Prog::~Prog() { }
 Prog::Prog(BinaryFile *pBF, FrontEnd *pFE) { }
-char *Prog::getStringConstant(ADDRESS uaddr) { return NULL; }
+const char *Prog::getStringConstant(ADDRESS uaddr) { return NULL; }
 Proc *Prog::findProc(ADDRESS uAddr) const { return NULL; }
 void Prog::analyse() { }
 void Prog::decompile() { }

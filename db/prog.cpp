@@ -773,7 +773,7 @@ Type *Prog::guessGlobalType(const char *nam, ADDRESS u)
 	int sz = pBF->GetSizeByName(nam);
 	if (sz == 0) {
 		// Check if it might be a string
-		char *str = getStringConstant(u);
+		const char *str = getStringConstant(u);
 		if (str)
 			// return char* and hope it is dealt with properly
 			return new PointerType(new CharType());
@@ -823,7 +823,7 @@ void Prog::setGlobalType(const char *nam, Type *ty)
 
 // get a string constant at a given address if appropriate
 // if knownString, it is already known to be a char*
-char *Prog::getStringConstant(ADDRESS uaddr, bool knownString /* = false */)
+const char *Prog::getStringConstant(ADDRESS uaddr, bool knownString /* = false */)
 {
 	const SectionInfo *si = pBF->GetSectionInfoByAddr(uaddr);
 	// Too many compilers put constants, including string constants, into read/write sections
@@ -831,7 +831,7 @@ char *Prog::getStringConstant(ADDRESS uaddr, bool knownString /* = false */)
 	if (si && !si->isAddressBss(uaddr)) {
 		// At this stage, only support ascii, null terminated, non unicode strings.
 		// At least 4 of the first 6 chars should be printable ascii
-		char *p = (char *)(uaddr + si->uHostAddr - si->uNativeAddr);
+		const char *p = (const char *)(uaddr + si->uHostAddr - si->uNativeAddr);
 		if (knownString)
 			// No need to guess... this is hopefully a known string
 			return p;
@@ -1515,7 +1515,7 @@ Exp *Prog::readNativeAs(ADDRESS uaddr, Type *type)
 			// TODO: typecast?
 			return Location::global(nam, NULL);
 		if (type->asPointer()->getPointsTo()->resolvesToChar()) {
-			char *str = getStringConstant(init);
+			const char *str = getStringConstant(init);
 			if (str != NULL)
 				return new Const(str);
 		}
@@ -1543,7 +1543,7 @@ Exp *Prog::readNativeAs(ADDRESS uaddr, Type *type)
 		return e;
 	}
 	if (type->resolvesToArray() && type->asArray()->getBaseType()->resolvesToChar()) {
-		char *str = getStringConstant(uaddr, true);
+		const char *str = getStringConstant(uaddr, true);
 		if (str) {
 			// Make a global string
 			return new Const(str);
@@ -1868,7 +1868,7 @@ Exp *Prog::addReloc(Exp *e, ADDRESS lc)
 			}
 			e = new Unary(opAddrOf, Location::global(n, NULL));
 		} else {
-			char *str = getStringConstant(c->getInt());
+			const char *str = getStringConstant(c->getInt());
 			if (str)
 				e = new Const(str);
 			else {

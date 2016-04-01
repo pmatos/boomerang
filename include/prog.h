@@ -226,7 +226,7 @@ public:
 	        void        dumpGlobals();
 
 	// get a string constant at a give address if appropriate
-	        char       *getStringConstant(ADDRESS uaddr, bool knownString = false);
+	        const char *getStringConstant(ADDRESS uaddr, bool knownString = false);
 	        double      getFloatConstant(ADDRESS uaddr, bool &ok, int bits = 64);
 
 	// Hacks for Mike

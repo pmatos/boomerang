@@ -29,7 +29,7 @@ Prog *Proc::getProg() { return NULL; }
 void UserProc::getReturnSet(LocationSet &ret) { }
 
 // Prog
-char *Prog::getStringConstant(ADDRESS uaddr) { return NULL; }
+const char *Prog::getStringConstant(ADDRESS uaddr) { return NULL; }
 Proc *Prog::findProc(ADDRESS uAddr) const { return NULL; }
 void Prog::analyse() { }
 

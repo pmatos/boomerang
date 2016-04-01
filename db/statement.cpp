@@ -222,7 +222,7 @@ void Assign::rangeAnalysis(std::list<Statement *> &execution_paths)
 		if (a_rhs->isMemOf() && a_rhs->getSubExp1()->isIntConst()) {
 			ADDRESS c = ((Const *)a_rhs->getSubExp1())->getInt();
 			if (proc->getProg()->isDynamicLinkedProcPointer(c)) {
-				char *nam = (char *)proc->getProg()->GetDynamicProcName(c);
+				const char *nam = proc->getProg()->GetDynamicProcName(c);
 				if (nam) {
 					a_rhs = new Const(nam);
 					if (VERBOSE && DEBUG_RANGE_ANALYSIS)
@@ -2648,7 +2648,7 @@ Exp *processConstant(Exp *e, Type *t, Prog *prog, UserProc *proc, ADDRESS stmt)
 			if (t->isCString()) {
 				ADDRESS u = ((Const *)e)->getAddr();
 				if (u != 0) {   // can't do anything with NULL
-					char *str = prog->getStringConstant(u, true);
+					const char *str = prog->getStringConstant(u, true);
 					if (str) {
 						e = new Const(str);
 						// Check if we may have guessed this global incorrectly (usually as an array of char)

@@ -32,7 +32,7 @@
 #include <cstring>
 #include <cassert>
 
-extern char *operStrings[];
+extern const char *operStrings[];
 
 /// Empty constructor, calls HLLCode()
 CHLLCode::CHLLCode() : HLLCode()
@@ -1568,7 +1568,7 @@ void CHLLCode::AddProcDec(UserProc *proc, bool open)
 			// C does this by default when you pass an array, i.e. you pass &array meaning array
 			// Replace all m[param] with foo, param with foo, then foo with param
 			ty = ((PointerType *)ty)->getPointsTo();
-			Exp *foo = new Const(const_cast<char *>("foo123412341234"));
+			Exp *foo = new Const("foo123412341234");
 			m_proc->searchAndReplace(Location::memOf(left, NULL), foo);
 			m_proc->searchAndReplace(left, foo);
 			m_proc->searchAndReplace(foo, left);

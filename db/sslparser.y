@@ -1233,7 +1233,7 @@ Exp *listStrToExp(std::list<std::string> *ls)
 	Exp **cur = &e;
 	Exp *end = new Terminal(opNil);  // Terminate the chain
 	for (std::list<std::string>::iterator it = ls->begin(); it != ls->end(); it++) {
-		*cur = new Binary(opList, new Location(opParam, new Const((char *)(*it).c_str()), NULL), end);
+		*cur = new Binary(opList, new Location(opParam, new Const((*it).c_str()), NULL), end);
 		cur = &(*cur)->refSubExp2();
 	}
 	*cur = new Terminal(opNil);  // Terminate the chain

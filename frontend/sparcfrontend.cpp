@@ -1372,18 +1372,18 @@ void SparcFrontEnd::gen32op32gives64(OPER op, std::list<RTL *> *lrtl, ADDRESS ad
 	//      on V9 although the high-order bits are also written into the 32 high-order bits of the 64 bit r[rd].
 
 	// r[tmp] = r8 op r9
-	Assign *a = new Assign(Location::tempOf(new Const(const_cast<char *>("tmp"))),
+	Assign *a = new Assign(Location::tempOf(new Const("tmp")),
 	                       new Binary(op,  // opMult or opMults
 	                                  Location::regOf(8),
 	                                  Location::regOf(9)));
 	ls->push_back(a);
 	// r8 = r[tmp];  /* low-order bits */
 	a = new Assign(Location::regOf(8),
-	               Location::tempOf(new Const(const_cast<char *>("tmp"))));
+	               Location::tempOf(new Const("tmp")));
 	ls->push_back(a);
 	// r9 = %Y;      /* high-order bits */
 	a = new Assign(Location::regOf(8),
-	               new Unary(opMachFtr, new Const(const_cast<char *>("%Y"))));
+	               new Unary(opMachFtr, new Const("%Y")));
 	ls->push_back(a);
 #endif /* V9_ONLY */
 	RTL *rtl = new RTL(addr, ls);

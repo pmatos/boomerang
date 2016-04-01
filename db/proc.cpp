@@ -2511,7 +2511,7 @@ Exp *UserProc::getSymbolExp(Exp *le, Type *ty, bool lastPass)
 				CompoundType *compound = ty->asCompound();
 				if (VERBOSE)
 					LOG << "found reference to first member of compound " << name.c_str() << ": " << le << "\n";
-				char *nam = (char *)compound->getName(0);
+				const char *nam = compound->getName(0);
 				if (nam == NULL) nam = "??";
 				return new TypedExp(ty, new Binary(opMemberAccess, e, new Const(nam)));
 			}
@@ -3864,7 +3864,7 @@ void UserProc::conTypeAnalysis()
 					con->setOper(opFltConst);
 				} else if (ty->isCString()) {
 					// Convert to a string
-					char *str = prog->getStringConstant(val, true);
+					const char *str = prog->getStringConstant(val, true);
 					if (str) {
 						// Make a string
 						con->setStr(str);
