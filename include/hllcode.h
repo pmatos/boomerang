@@ -115,7 +115,7 @@ public:
 	virtual void    AddPrototype(UserProc *proc) = 0;
 
 	// comments
-	virtual void    AddLineComment(char *cmt) = 0;
+	virtual void    AddLineComment(const char *cmt) = 0;
 
 	/*
 	 * output functions, pure virtual.

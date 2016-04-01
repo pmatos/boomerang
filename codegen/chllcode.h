@@ -172,7 +172,7 @@ private:
 public:
 
 	// comments
-	virtual void AddLineComment(char *cmt);
+	virtual void AddLineComment(const char *cmt);
 
 	/*
 	 * output functions

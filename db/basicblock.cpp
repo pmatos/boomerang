@@ -1443,7 +1443,7 @@ void BasicBlock::generateCode(HLLCode *hll, int indLevel, PBB latch, std::list<P
 				assert(lastRTL->getNumStmt());
 				GotoStatement *gs = (GotoStatement *)lastRTL->elementAt(lastRTL->getNumStmt() - 1);
 				ost << "goto " << gs->getDest();
-				hll->AddLineComment((char *)ost.str().c_str());
+				hll->AddLineComment(ost.str().c_str());
 			}
 			return;
 		}
