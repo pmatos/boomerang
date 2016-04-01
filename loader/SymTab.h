@@ -35,7 +35,7 @@ public:
 	            SymTab();                       // Constructor
 	           ~SymTab();                       // Destructor
 
-	void        Add(ADDRESS a, char *s);        // Add a new entry
+	void        Add(ADDRESS a, const char *s);  // Add a new entry
 	const char *find(ADDRESS a);                // Find an entry by address; NULL if none
 	ADDRESS     find(const char *s);            // Find an entry by name; NO_ADDRESS if none
 #if 0

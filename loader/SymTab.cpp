@@ -23,7 +23,7 @@ SymTab::~SymTab()
 {
 }
 
-void SymTab::Add(ADDRESS a, char *s)
+void SymTab::Add(ADDRESS a, const char *s)
 {
 	amap[a] = s;
 	smap[s] = a;

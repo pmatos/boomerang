@@ -95,7 +95,7 @@ public:
 	// Get a symbol given an address
 	virtual const char *SymbolByAddress(ADDRESS dwAddr);
 	// Lookup the name, return the address
-	virtual ADDRESS     GetAddressByName(char *pName, bool bNoTypeOK = false);
+	virtual ADDRESS     GetAddressByName(const char *pName, bool bNoTypeOK = false);
 	// Return true if the address matches the convention for A-line system calls
 	virtual bool        IsDynamicLinkedProc(ADDRESS uNative);
 

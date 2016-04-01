@@ -323,7 +323,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 		//cout << "Exporting " << (pDlStrings+UINT4(&export_list[u].name)) << " value " << hex << UINT4(&export_list[u].value) << endl;
 		if (strncmp(pDlStrings + UINT4(&export_list[u].name), "main", 4) == 0) {
 			// Enter the symbol "_callmain" for this address
-			symbols.Add(UINT4(&export_list[u].value), const_cast<char *>("_callmain"));
+			symbols.Add(UINT4(&export_list[u].value), "_callmain");
 			// Found call to main. Extract the offset. See assemble_17
 			// in pa-risc 1.1 manual page 5-9
 			// +--------+--------+--------+----+------------+-+-+
@@ -341,14 +341,14 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 			           | ((bincall &        4) << 8)       // w2@10
 			           | ((bincall &   0x1ff8) >> 3);      // w2@0..9
 			// Address of main is st + 8 + offset << 2
-			symbols.Add(UINT4(&export_list[u].value) + 8 + (offset << 2), const_cast<char *>("main"));
+			symbols.Add(UINT4(&export_list[u].value) + 8 + (offset << 2), "main");
 			break;
 		}
 	}
 
 	// Read the main symbol table, if any
 	if (numSym) {
-		char *pNames = (char *)(m_pImage + (int)UINT4(m_pImage + 0x6C));
+		const char *pNames = (const char *)(m_pImage + (int)UINT4(m_pImage + 0x6C));
 #define SYMSIZE 20              // 5 4-byte words per symbol entry
 #define SYMBOLNM(idx)  (UINT4(symPtr + idx*SYMSIZE + 4))
 #define SYMBOLAUX(idx) (UINT4(symPtr + idx*SYMSIZE + 8))
@@ -365,7 +365,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 				// These are extension entries; not interested
 				continue;
 #endif
-			char *pSymName = pNames + SYMBOLNM(u);
+			const char *pSymName = pNames + SYMBOLNM(u);
 			// Ignore symbols starting with one $; for example, there are many
 			// $CODE$ (but we want to see helper functions like $$remU)
 			if ((pSymName[0] == '$') && (pSymName[1] != '$')) continue;
@@ -465,7 +465,7 @@ const char *HpSomBinaryFile::SymbolByAddress(ADDRESS a)
 	return symbols.find(a);
 }
 
-ADDRESS HpSomBinaryFile::GetAddressByName(char *pName, bool bNoTypeOK /* = false */)
+ADDRESS HpSomBinaryFile::GetAddressByName(const char *pName, bool bNoTypeOK /* = false */)
 {
 	// For now, we ignore the symbol table and do a linear search of our
 	// SymTab table
@@ -489,7 +489,7 @@ std::pair<ADDRESS, int> HpSomBinaryFile::getSubspaceInfo(const char *ssname)
 	unsigned numSubSpaces = UINT4(m_pImage + 0x38);
 	const char *spaceStrings = (const char *)(m_pImage + UINT4(m_pImage + 0x44));
 	for (unsigned u = 0; u < numSubSpaces; u++) {
-		char *thisName = (char *)(spaceStrings + UINT4(&subSpaces[u].name));
+		const char *thisName = spaceStrings + UINT4(&subSpaces[u].name);
 		unsigned thisNameSize = UINT4(spaceStrings + UINT4(&subSpaces[u].name) - 4);
 		//cout << "Subspace " << thisName << " starts " << hex << subSpaces[u].subspace_start << " length " << subSpaces[u].subspace_length << endl;
 		if (thisNameSize == strlen(ssname)
