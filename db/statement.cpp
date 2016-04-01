@@ -931,7 +931,7 @@ bool Statement::replaceRef(Exp *e, Assign *def, bool &convert)
 	if (base->getOper() == opCF && lhs->isFlags()) {
 		if (!rhs->isFlagCall())
 			return false;
-		char *str = ((Const *)((Binary *)rhs)->getSubExp1())->getStr();
+		const char *str = ((Const *)((Binary *)rhs)->getSubExp1())->getStr();
 		if (strncmp("SUBFLAGS", str, 8) == 0) {
 			/* When the carry flag is used bare, and was defined in a subtract of the form lhs - rhs, then CF has
 			   the value (lhs <u rhs).  lhs and rhs are the first and second parameters of the flagcall.
@@ -957,7 +957,7 @@ bool Statement::replaceRef(Exp *e, Assign *def, bool &convert)
 	if (base->getOper() == opZF && lhs->isFlags()) {
 		if (!rhs->isFlagCall())
 			return false;
-		char *str = ((Const *)((Binary *)rhs)->getSubExp1())->getStr();
+		const char *str = ((Const *)((Binary *)rhs)->getSubExp1())->getStr();
 		if (strncmp("SUBFLAGS", str, 8) == 0) {
 			// for zf we're only interested in if the result part of the subflags is equal to zero
 			Exp *relExp = new Binary(opEquals,
@@ -2756,7 +2756,7 @@ bool CallStatement::ellipsisProcessing(Prog *prog)
 	else return false;
 	if (VERBOSE)
 		LOG << "ellipsis processing for " << name << "\n";
-	char *formatStr = NULL;
+	const char *formatStr = NULL;
 	Exp *formatExp = getArgumentExp(format);
 	// We sometimes see a[m[blah{...}]]
 	if (formatExp->isAddrOf()) {
@@ -2799,7 +2799,7 @@ bool CallStatement::ellipsisProcessing(Prog *prog)
 	char ch;
 	// Set a flag if the name of the function is scanf/sscanf/fscanf
 	bool isScanf = name == "scanf" || name.substr(1, 5) == "scanf";
-	char *p = formatStr;
+	const char *p = formatStr;
 	while ((p = strchr(p, '%'))) {
 		p++;  // Point past the %
 		bool veryLong = false;  // %lld or %L
@@ -3821,12 +3821,12 @@ void CallStatement::genConstraints(LocationSet &cons)
 		std::string name = dest->getName();
 		// Note: might have to chase back via a phi statement to get a sample
 		// string
-		char *str;
+		const char *str;
 		Exp *arg0 = ((Assign *)*arguments.begin())->getRight();
 		if ((name == "printf" || name == "scanf") && (str = arg0->getAnyStrConst()) != NULL) {
 			// actually have to parse it
 			int n = 1;  // Number of %s plus 1 = number of args
-			char *p = str;
+			const char *p = str;
 			while ((p = strchr(p, '%'))) {
 				p++;
 				Type *t = NULL;

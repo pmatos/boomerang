@@ -362,7 +362,7 @@ bool UsedLocalFinder::visit(Terminal *e)
 {
 	if (e->getOper() == opDefineAll)
 		all = true;
-	char *sym = proc->findFirstSymbol(e);
+	const char *sym = proc->findFirstSymbol(e);
 	if (sym)
 		used->insert(e);
 	return true;  // Always continue recursion
@@ -827,7 +827,7 @@ bool TempToLocalMapper::visit(Location *e, bool &override)
 {
 	if (e->isTemp()) {
 		// We have a temp subexpression; get its name
-		char *tempName = ((Const *)e->getSubExp1())->getStr();
+		const char *tempName = ((Const *)e->getSubExp1())->getStr();
 		Type *ty = Type::getTempType(tempName);  // Types for temps strictly depend on the name
 		// This call will do the mapping from the temp to a new local:
 		proc->getSymbolExp(e, ty, true);

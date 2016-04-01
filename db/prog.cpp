@@ -1171,7 +1171,7 @@ void Prog::removeUnusedGlobals()
 		namedGlobals[(*it)->getName()] = (*it);
 
 	// rebuild the globals vector
-	char *name;
+	const char *name;
 	Global *usedGlobal;
 
 	globals.clear();

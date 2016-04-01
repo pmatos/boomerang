@@ -749,10 +749,10 @@ public:
 	/// symbol map and the name is in the locals map. If it is a local, return its name, else NULL
 	        const char *findLocal(Exp *e, Type *ty);
 	        const char *findLocalFromRef(RefExp *r);
-	        char       *findFirstSymbol(Exp *e);
+	        const char *findFirstSymbol(Exp *e);
 	        int         getNumLocals() { return (int)locals.size(); }
 	        const char *getLocalName(int n);
-	        char       *getSymbolName(Exp *e);  ///< As getLocalName, but look for expression e
+	        const char *getSymbolName(Exp *e);  ///< As getLocalName, but look for expression e
 	        void        renameLocal(const char *oldName, const char *newName);
 	virtual void        renameParam(const char *oldName, const char *newName);
 

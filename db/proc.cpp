@@ -2447,7 +2447,7 @@ Exp *UserProc::getSymbolExp(Exp *le, Type *ty, bool lastPass)
 	 && le->getSubExp1()->getSubExp2()->isIntConst()) {
 		for (SymbolMap::iterator it = symbolMap.begin(); it != symbolMap.end(); it++) {
 			if ((*it).second->isLocal()) {
-				char *nam = ((Const *)(*it).second->getSubExp1())->getStr();
+				const char *nam = ((Const *)(*it).second->getSubExp1())->getStr();
 				if (locals.find(nam) != locals.end()) {
 					Type *lty = locals[nam];
 					Exp *loc = (*it).first;
@@ -2919,7 +2919,7 @@ const char *UserProc::getLocalName(int n)
 	return NULL;
 }
 
-char *UserProc::getSymbolName(Exp *e)
+const char *UserProc::getSymbolName(Exp *e)
 {
 	SymbolMap::iterator it = symbolMap.find(e);
 	if (it == symbolMap.end()) return NULL;
@@ -3056,7 +3056,7 @@ void UserProc::removeUnusedLocals()
 	for (SymbolMap::iterator sm = symbolMap.begin(); sm != symbolMap.end(); ) {
 		Exp *mapsTo = sm->second;
 		if (mapsTo->isLocal()) {
-			char *tmpName = ((Const *)((Location *)mapsTo)->getSubExp1())->getStr();
+			const char *tmpName = ((Const *)((Location *)mapsTo)->getSubExp1())->getStr();
 			if (removes.find(tmpName) != removes.end()) {
 				symbolMap.erase(sm++);
 				continue;
@@ -4348,7 +4348,7 @@ const char *UserProc::findLocalFromRef(RefExp *r)
 	return NULL;
 }
 
-char *UserProc::findFirstSymbol(Exp *e)
+const char *UserProc::findFirstSymbol(Exp *e)
 {
 	SymbolMap::iterator ff = symbolMap.find(e);
 	if (ff == symbolMap.end()) return NULL;
@@ -5508,7 +5508,7 @@ const char *UserProc::getRegName(Exp *r)
 
 Type *UserProc::getTypeForLocation(Exp *e)
 {
-	char *name;
+	const char *name;
 	if (e->isLocal()) {
 		name = ((Const *)((Unary *)e)->getSubExp1())->getStr();
 		if (locals.find(name) != locals.end())

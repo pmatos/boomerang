@@ -793,7 +793,7 @@ void CHLLCode::appendExp(std::ostringstream &str, Exp *exp, PREC curPrec, bool u
 			str << "/* machine specific */ (int) ";
 			Exp *sub = u->getSubExp1();
 			assert(sub->isStrConst());
-			char *s = ((Const *)sub)->getStr();
+			const char *s = ((Const *)sub)->getStr();
 			if (s[0] == '%')  // e.g. %Y
 				str << s + 1; // Just use Y
 			else

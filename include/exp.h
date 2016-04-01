@@ -157,7 +157,7 @@ public:
 	// True if is string const
 	        bool        isStrConst() { return op == opStrConst; }
 	// Get string constant even if mangled
-	        char       *getAnyStrConst();
+	        const char *getAnyStrConst();
 	// True if is flt point const
 	        bool        isFltConst() { return op == opFltConst; }
 	// True if inteter or string constant
@@ -360,26 +360,26 @@ std::ostream &operator<<(std::ostream &os, Exp *p);  // Print the Exp poited to 
  *============================================================================*/
 class Const : public Exp {
 	union {
-		int     i;          // Integer
+		int         i;      // Integer
 		// Note: although we have i and a as unions, both often use the same operator (opIntConst).
 		// There is no opCodeAddr any more.
-		ADDRESS a;          // void* conflated with unsigned int: needs fixing
-		QWord   ll;         // 64 bit integer
-		double  d;          // Double precision float
-		char   *p;          // Pointer to string
+		ADDRESS     a;      // void* conflated with unsigned int: needs fixing
+		QWord       ll;     // 64 bit integer
+		double      d;      // Double precision float
+		const char *p;      // Pointer to string
 		                    // Don't store string: function could be renamed
-		Proc   *pp;         // Pointer to function
+		Proc       *pp;     // Pointer to function
 	} u;
-	int         conscript;  // like a subscript for constants
-	Type       *type;       // Constants need types during type analysis
+	        int         conscript;  // like a subscript for constants
+	        Type       *type;       // Constants need types during type analysis
 public:
 	// Special constructors overloaded for the various constants
 	                    Const(int i);
 	                    Const(QWord ll);
 	                    Const(ADDRESS a);
 	                    Const(double d);
-	                    Const(char *p);
-	                    Const(Proc *p);
+	                    Const(const char *p);
+	                    Const(Proc *pp);
 	// Copy constructor
 	                    Const(Const &o);
 
@@ -394,19 +394,19 @@ public:
 	virtual bool        operator*=(Exp &o);
 
 	// Get the constant
-	        int         getInt()  { return u.i; }
+	        int         getInt()  { return u.i;  }
 	        QWord       getLong() { return u.ll; }
-	        double      getFlt()  { return u.d; }
-	        char       *getStr()  { return u.p; }
-	        ADDRESS     getAddr() { return u.a; }
+	        double      getFlt()  { return u.d;  }
+	        const char *getStr()  { return u.p;  }
+	        ADDRESS     getAddr() { return u.a;  }
 	        const char *getFuncName();
 
 	// Set the constant
-	        void        setInt(int i)      { u.i = i; }
-	        void        setLong(QWord ll)  { u.ll = ll; }
-	        void        setFlt(double d)   { u.d = d; }
-	        void        setStr(char *p)    { u.p = p; }
-	        void        setAddr(ADDRESS a) { u.a = a; }
+	        void        setInt(int i)         { u.i  = i;  }
+	        void        setLong(QWord ll)     { u.ll = ll; }
+	        void        setFlt(double d)      { u.d  = d;  }
+	        void        setStr(const char *p) { u.p  = p;  }
+	        void        setAddr(ADDRESS a)    { u.a  = a;  }
 
 	// Get and set the type
 	        Type       *getType() { return type; }

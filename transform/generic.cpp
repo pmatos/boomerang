@@ -66,7 +66,7 @@ Exp *GenericExpTransformer::applyFuncs(Exp *rhs)
 #else
 		Type *ty = NULL;  // Note: will cause a segfault
 #endif
-		char *member = ((Const *)p2)->getStr();
+		const char *member = ((Const *)p2)->getStr();
 		int offset = ty->asCompound()->getOffsetTo(member) / 8;
 		Exp *result = new Const(offset);
 		bool change;
