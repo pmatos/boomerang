@@ -1197,7 +1197,7 @@ bool DfaLocalMapper::processExp(Exp *e)
 			std::ostringstream ost;
 			ost << "tparam" << proc->nextParamNum();
 			const char *name = strdup(ost.str().c_str());
-			proc->mapSymbolTo(e, Location::param(const_cast<char *>(name), proc));
+			proc->mapSymbolTo(e, Location::param(name, proc));
 #endif
 		}
 		return false;  // set recur false: Don't dig inside m[x] to make m[a[m[x]]] !

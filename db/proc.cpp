@@ -2429,7 +2429,7 @@ void UserProc::addParameterSymbols()
 		Exp *lhs = ((Assignment *)*it)->getLeft();
 		lhs = lhs->expSubscriptAllNull();
 		lhs = lhs->accept(&ic);
-		Location *to = Location::param(strdup((char *)signature->getParamName(i)), this);
+		Location *to = Location::param(strdup(signature->getParamName(i)), this);
 		mapSymbolTo(lhs, to);
 	}
 }
