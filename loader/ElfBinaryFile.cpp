@@ -279,15 +279,15 @@ void ElfBinaryFile::UnLoad()
 }
 
 // Like a replacement for elf_strptr()
-char *ElfBinaryFile::GetStrPtr(int idx, int offset)
+const char *ElfBinaryFile::GetStrPtr(int idx, int offset)
 {
 	if (idx < 0) {
 		// Most commonly, this will be an index of -1, because a call to GetSectionIndexByName() failed
 		fprintf(stderr, "Error! GetStrPtr passed index of %d\n", idx);
-		return (char *)"Error!";
+		return "Error!";
 	}
 	// Get a pointer to the start of the string table
-	char *pSym = (char *)m_pSections[idx].uHostAddr;
+	const char *pSym = (const char *)m_pSections[idx].uHostAddr;
 	// Just add the offset
 	return pSym + offset;
 }
@@ -491,7 +491,7 @@ const char *ElfBinaryFile::SymbolByAddress(const ADDRESS dwAddr)
 	std::map<ADDRESS, std::string>::iterator aa = m_SymTab.find(dwAddr);
 	if (aa == m_SymTab.end())
 		return 0;
-	return (char *)aa->second.c_str();
+	return aa->second.c_str();
 }
 
 bool ElfBinaryFile::ValueByName(const char *pName, SymValue *pVal, bool bNoTypeOK /* = false */)
@@ -807,7 +807,7 @@ std::list<const char *> ElfBinaryFile::getDependencyList()
 
 	for (dyn = (Elf32_Dyn *)dynsect->uHostAddr; dyn->d_tag != DT_NULL; dyn++) {
 		if (dyn->d_tag == DT_NEEDED) {
-			const char *need = (char *)stringtab + dyn->d_un.d_val;
+			const char *need = (const char *)stringtab + dyn->d_un.d_val;
 			if (need != NULL)
 				result.push_back(need);
 		}
@@ -1100,7 +1100,7 @@ void ElfBinaryFile::applyRelocations()
 					}
 					int symSection = m_sh_link[i];          // Section index for the associated symbol table
 					int strSection = m_sh_link[symSection]; // Section index for the string section assoc with this
-					char *pStrSection = (char *)m_pSections[strSection].uHostAddr;
+					const char *pStrSection = (const char *)m_pSections[strSection].uHostAddr;
 					Elf32_Sym *symOrigin = (Elf32_Sym *)m_pSections[symSection].uHostAddr;
 					for (unsigned u = 0; u < size; u += 2 * sizeof(unsigned)) {
 						unsigned r_offset = elfRead4(pReloc++);
@@ -1145,7 +1145,7 @@ void ElfBinaryFile::applyRelocations()
 									// So we use some very improbable addresses (e.g. -1, -2, etc) and give them entries
 									// in the symbol table
 									int nameOffset = elfRead4((int *)&symOrigin[symTabIndex].st_name);
-									char *pName = pStrSection + nameOffset;
+									const char *pName = pStrSection + nameOffset;
 									// this is too slow, I'm just going to assume it is 0
 									//S = GetAddressByName(pName);
 									//if (S == (e_type == E_REL ? 0x8000000 : 0)) {
@@ -1210,7 +1210,7 @@ bool ElfBinaryFile::IsRelocationAt(ADDRESS uNative)
 					}
 					//int symSection = m_sh_link[i];          // Section index for the associated symbol table
 					//int strSection = m_sh_link[symSection]; // Section index for the string section assoc with this
-					//char *pStrSection = (char *)m_pSections[strSection].uHostAddr;
+					//const char *pStrSection = (const char *)m_pSections[strSection].uHostAddr;
 					//Elf32_Sym *symOrigin = (Elf32_Sym *)m_pSections[symSection].uHostAddr;
 					for (unsigned u = 0; u < size; u += 2 * sizeof(unsigned)) {
 						unsigned r_offset = elfRead4(pReloc++);

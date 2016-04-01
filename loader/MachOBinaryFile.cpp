@@ -293,7 +293,7 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 #ifdef DEBUG_MACHO_LOADER
 			fprintf(stdout, "stub for %s at %x\n", strtbl + BMMH(symbols[symbol].n_un.n_strx), addr);
 #endif
-			char *name = strtbl + BMMH(symbols[symbol].n_un.n_strx);
+			const char *name = strtbl + BMMH(symbols[symbol].n_un.n_strx);
 			if (*name == '_')  // we want printf not _printf
 				name++;
 			m_SymA[addr] = name;
@@ -303,7 +303,7 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 
 	// process the remaining symbols
 	for (unsigned i = 0; i < symbols.size(); i++) {
-		char *name = strtbl + BMMH(symbols[i].n_un.n_strx);
+		const char *name = strtbl + BMMH(symbols[i].n_un.n_strx);
 		if (BMMH(symbols[i].n_un.n_strx) != 0 && BMMH(symbols[i].n_value) != 0 && *name != 0) {
 
 #ifdef DEBUG_MACHO_LOADER
@@ -324,7 +324,7 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 #endif
 		for (unsigned i = 0; i < objc_modules_size;) {
 			struct objc_module *module = (struct objc_module *)((ADDRESS)base + objc_modules - loaded_addr + i);
-			char *name = (char *)((ADDRESS)base + BMMH(module->name) - loaded_addr);
+			const char *name = (const char *)((ADDRESS)base + BMMH(module->name) - loaded_addr);
 			Symtab symtab = (Symtab)((ADDRESS)base + BMMH(module->symtab) - loaded_addr);
 #ifdef DEBUG_MACHO_LOADER_OBJC
 			fprintf(stdout, "module %s (%i classes)\n", name, BMMHW(symtab->cls_def_cnt));
@@ -333,7 +333,7 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 			m->name = name;
 			for (unsigned j = 0; j < BMMHW(symtab->cls_def_cnt); j++) {
 				struct objc_class *def = (struct objc_class *)((ADDRESS)base + BMMH(symtab->defs[j]) - loaded_addr);
-				char *name = (char *)((ADDRESS)base + BMMH(def->name) - loaded_addr);
+				const char *name = (const char *)((ADDRESS)base + BMMH(def->name) - loaded_addr);
 #ifdef DEBUG_MACHO_LOADER_OBJC
 				fprintf(stdout, "  class %s\n", name);
 #endif
@@ -342,8 +342,8 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 				struct objc_ivar_list *ivars = (struct objc_ivar_list *)((ADDRESS)base + BMMH(def->ivars) - loaded_addr);
 				for (unsigned k = 0; k < static_cast<unsigned int>(BMMH(ivars->ivar_count)); k++) {
 					struct objc_ivar *ivar = &ivars->ivar_list[k];
-					char *name = (char *)((ADDRESS)base + BMMH(ivar->ivar_name) - loaded_addr);
-					char *types = (char *)((ADDRESS)base + BMMH(ivar->ivar_type) - loaded_addr);
+					const char *name = (const char *)((ADDRESS)base + BMMH(ivar->ivar_name) - loaded_addr);
+					const char *types = (const char *)((ADDRESS)base + BMMH(ivar->ivar_type) - loaded_addr);
 #ifdef DEBUG_MACHO_LOADER_OBJC
 					fprintf(stdout, "    ivar %s %s %x\n", name, types, BMMH(ivar->ivar_offset));
 #endif
@@ -356,8 +356,8 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 				struct objc_method_list *methods = (struct objc_method_list *)((ADDRESS)base + BMMH(def->methodLists) - loaded_addr);
 				for (unsigned k = 0; k < static_cast<unsigned int>(BMMH(methods->method_count)); k++) {
 					struct objc_method *method = &methods->method_list[k];
-					char *name = (char *)((ADDRESS)base + BMMH(method->method_name) - loaded_addr);
-					char *types = (char *)((ADDRESS)base + BMMH(method->method_types) - loaded_addr);
+					const char *name = (const char *)((ADDRESS)base + BMMH(method->method_name) - loaded_addr);
+					const char *types = (const char *)((ADDRESS)base + BMMH(method->method_types) - loaded_addr);
 #ifdef DEBUG_MACHO_LOADER_OBJC
 					fprintf(stdout, "    method %s %s %x\n", name, types, BMMH((void *)method->method_imp));
 #endif
@@ -393,7 +393,7 @@ const char *MachOBinaryFile::SymbolByAddress(ADDRESS dwAddr) {
 	std::map<ADDRESS, std::string>::iterator it = m_SymA.find(dwAddr);
 	if (it == m_SymA.end())
 		return 0;
-	return (char *)it->second.c_str();
+	return it->second.c_str();
 }
 
 ADDRESS MachOBinaryFile::GetAddressByName(const char *pName, bool bNoTypeOK /* = false */)

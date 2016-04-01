@@ -45,7 +45,7 @@ public:
 
 	// Not meant to be used externally, but sometimes you just
 	// have to have it.
-	        char       *GetStrPtr(int idx, int offset);  // Calc string pointer
+	        const char *GetStrPtr(int idx, int offset);  // Calc string pointer
 
 	// Similarly here; sometimes you just need to change a section's
 	// link and info fields

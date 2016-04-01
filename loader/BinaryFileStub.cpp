@@ -196,7 +196,7 @@ BinaryFileStub::BinaryFileStub()
 {
 	m_iNumSections = 1;
 	SectionInfo *text = new SectionInfo();
-	text->pSectionName = (char *)".text";
+	text->pSectionName = ".text";
 	text->uNativeAddr = 0x8048810;
 	text->uHostAddr = (ADDRESS)pent_hello_text;
 	text->uSectionSize = sizeof(pent_hello_text);
@@ -276,7 +276,7 @@ std::map<ADDRESS, const char *> *BinaryFileStub::GetDynamicGlobalMap()
 	return new std::map<ADDRESS, const char *>;
 }
 
-char *BinaryFileStub::GetStrPtr(int idx, int offset)
+const char *BinaryFileStub::GetStrPtr(int idx, int offset)
 {
 	return NULL;
 }

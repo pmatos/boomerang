@@ -389,7 +389,7 @@ const char *DOS4GWBinaryFile::SymbolByAddress(ADDRESS dwAddr)
 	std::map<ADDRESS, std::string>::iterator it = dlprocptrs.find(dwAddr);
 	if (it == dlprocptrs.end())
 		return 0;
-	return (char *)it->second.c_str();
+	return it->second.c_str();
 }
 
 ADDRESS DOS4GWBinaryFile::GetAddressByName(const char *pName, bool bNoTypeOK /* = false */)

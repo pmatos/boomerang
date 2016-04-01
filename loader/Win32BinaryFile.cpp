@@ -582,7 +582,7 @@ const char *Win32BinaryFile::SymbolByAddress(ADDRESS dwAddr)
 	std::map<ADDRESS, std::string>::iterator it = dlprocptrs.find(dwAddr);
 	if (it == dlprocptrs.end())
 		return 0;
-	return (char *)it->second.c_str();
+	return it->second.c_str();
 }
 
 ADDRESS Win32BinaryFile::GetAddressByName(const char *pName, bool bNoTypeOK /* = false */)

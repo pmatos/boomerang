@@ -204,7 +204,7 @@ bool HpSomBinaryFile::RealLoad(const char *sName)
 	char *subspace_location = (char *)m_pImage + UINT4(m_pImage + 0x34);
 	ADDRESS first_subspace_fileloc = UINT4(subspace_location + 8);
 	char *DLTable = (char *)m_pImage + first_subspace_fileloc;
-	char *pDlStrings = DLTable + UINT4(DLTable + 0x28);
+	const char *pDlStrings = DLTable + UINT4(DLTable + 0x28);
 	unsigned numImports = UINT4(DLTable + 0x14);    // Number of import strings
 	import_entry *import_list = (import_entry *)(DLTable + UINT4(DLTable + 0x10));
 	unsigned numExports = UINT4(DLTable + 0x24);    // Number of export strings
@@ -536,9 +536,9 @@ std::map<ADDRESS, const char *> *HpSomBinaryFile::GetDynamicGlobalMap()
 	// The DL table (Dynamic Link info) is supposed to be at the start of
 	// the $TEXT$ space, but the only way I can presently find that is to
 	// assume that the first subspace entry points to it
-	const char *subspace_location = (char *)m_pImage + UINT4(m_pImage + 0x34);
+	const char *subspace_location = (const char *)m_pImage + UINT4(m_pImage + 0x34);
 	ADDRESS first_subspace_fileloc = UINT4(subspace_location + 8);
-	const char *DLTable = (char *)m_pImage + first_subspace_fileloc;
+	const char *DLTable = (const char *)m_pImage + first_subspace_fileloc;
 
 	unsigned numDLT = UINT4(DLTable + 0x40);
 	// Offset 0x38 in the DL table has the offset relative to $DATA$ (section 2)
