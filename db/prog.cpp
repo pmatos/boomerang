@@ -101,11 +101,6 @@ void Prog::setName(const char *name)  // Assign a name to this program
 	m_rootCluster->setName(name);
 }
 
-char *Prog::getName()
-{
-	return (char *)m_name.c_str();
-}
-
 // well form the entire program
 bool Prog::wellForm()
 {
