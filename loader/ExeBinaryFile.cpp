@@ -184,10 +184,10 @@ void ExeBinaryFile::UnLoad()
 	if (m_pRelocTable) delete [] m_pRelocTable;
 }
 
-char *ExeBinaryFile::SymbolByAddr(ADDRESS dwAddr)
+const char *ExeBinaryFile::SymbolByAddr(ADDRESS dwAddr)
 {
 	if (dwAddr == GetMainEntryPoint())
-		return const_cast<char *>("main");
+		return "main";
 
 	// No symbol table handled at present
 	return 0;

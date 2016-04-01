@@ -83,7 +83,7 @@ public:
 	virtual ADDRESS     getImageBase();
 	virtual size_t      getImageSize();
 
-	virtual char       *SymbolByAddr(ADDRESS a);
+	virtual const char *SymbolByAddr(ADDRESS a);
 
 	// Analysis functions
 	virtual std::list<SectionInfo *> &GetEntryPoints(const char *pEntry = "main");
