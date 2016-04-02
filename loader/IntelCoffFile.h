@@ -63,7 +63,7 @@ private:
 	// Internal stuff
 	//
 	const char *m_pFilename;
-	int m_fd;
+	FILE *m_fd;
 	std::list<SectionInfo *> m_EntryPoints;
 	std::list<ADDRESS> m_Relocations;
 	struct coff_header m_Header;
