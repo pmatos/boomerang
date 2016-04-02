@@ -3847,7 +3847,7 @@ void CallStatement::genConstraints(LocationSet &cons)
 					case 'd':
 						{
 							int size = 32;
-							// Note: the following only works for 32 bit code or where sizeof(long) == sizeof(int)
+							// Note: the following only works for 32 bit code or where sizeof (long) == sizeof (int)
 							if (longness == 2) size = 64;
 							t = new IntegerType(size, sign);
 						}
@@ -4399,7 +4399,7 @@ void PhiAssign::convertToAssign(Exp *rhs)
 	// I believe we always want to propagate to these ex-phi's; check!:
 	rhs = rhs->propagateAll();
 	// Thanks to tamlin for this cleaner way of implementing this hack
-	assert(sizeof(Assign) <= sizeof(PhiAssign));
+	assert(sizeof (Assign) <= sizeof (PhiAssign));
 	int n = number;  // These items disappear with the destructor below
 	PBB bb = pbb;
 	UserProc *p = proc;

@@ -158,7 +158,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 	fseek(fp, lxoff, SEEK_SET);
 	m_pLXHeader = new LXHeader;
 
-	fread(m_pLXHeader, sizeof(LXHeader), 1, fp);
+	fread(m_pLXHeader, sizeof *m_pLXHeader, 1, fp);
 
 	if (m_pLXHeader->sigLo != 'L' || (m_pLXHeader->sigHi != 'X' && m_pLXHeader->sigHi != 'E')) {
 		fprintf(stderr, "error loading file %s, bad LE/LX magic\n", sName);
@@ -167,7 +167,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 
 	fseek(fp, lxoff + LMMH(m_pLXHeader->objtbloffset), SEEK_SET);
 	m_pLXObjects = new LXObject[LMMH(m_pLXHeader->numobjsinmodule)];
-	fread(m_pLXObjects, sizeof(LXObject), LMMH(m_pLXHeader->numobjsinmodule), fp);
+	fread(m_pLXObjects, sizeof *m_pLXObjects, LMMH(m_pLXHeader->numobjsinmodule), fp);
 
 	// at this point we're supposed to read in the page table and fuss around with it
 	// but I'm just going to assume the file is flat.
@@ -185,7 +185,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 
 	fseek(fp, lxoff + LMMH(m_pLXHeader->objpagetbloffset), SEEK_SET);
 	m_pLXPages = new LXPage[npagetblentries];
-	fread(m_pLXPages, sizeof(LXPage), npagetblentries, fp);
+	fread(m_pLXPages, sizeof *m_pLXPages, npagetblentries, fp);
 #endif
 
 	unsigned npages = 0;
@@ -213,7 +213,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 			       LMMH(m_pLXObjects[n].NumPageTblEntries));
 
 			char *name = new char[9];
-			snprintf(name, sizeof name, "seg%i", n);  // no section names in LX
+			snprintf(name, sizeof (char[9]), "seg%i", n);  // no section names in LX
 			m_pSections[n].pSectionName = name;
 			m_pSections[n].uNativeAddr = (ADDRESS)LMMH(m_pLXObjects[n].RelocBaseAddr);
 			m_pSections[n].uHostAddr = (ADDRESS)(LMMH(m_pLXObjects[n].RelocBaseAddr) - LMMH(m_pLXObjects[0].RelocBaseAddr) + base);
@@ -324,7 +324,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 	// fixups
 	fseek(fp, LMMH(m_pLXHeader->fixuppagetbloffset) + lxoff, SEEK_SET);
 	unsigned int *fixuppagetbl = new unsigned int[npages + 1];
-	fread(fixuppagetbl, sizeof(unsigned int), npages + 1, fp);
+	fread(fixuppagetbl, sizeof *fixuppagetbl, npages + 1, fp);
 
 #if 0
 	for (unsigned n = 0; n < npages; n++)
@@ -336,7 +336,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 	LXFixup fixup;
 	unsigned srcpage = 0;
 	do {
-		fread(&fixup, sizeof(fixup), 1, fp);
+		fread(&fixup, sizeof fixup, 1, fp);
 		if (fixup.src != 7 || (fixup.flags & ~0x50)) {
 			fprintf(stderr, "unknown fixup type %02x %02x\n", fixup.src, fixup.flags);
 			return false;

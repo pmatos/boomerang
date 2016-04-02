@@ -58,7 +58,7 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 	if (m_pHeader->sigLo == 'M' && m_pHeader->sigHi == 'Z') {
 		/* Read rest of m_pHeader */
 		fseek(fp, 0, SEEK_SET);
-		if (fread(m_pHeader, sizeof(exeHeader), 1, fp) != 1) {
+		if (fread(m_pHeader, sizeof *m_pHeader, 1, fp) != 1) {
 			fprintf(stderr, "Cannot read file %s\n", sName);
 			return false;
 		}
@@ -155,7 +155,7 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 	//m_pSections[0].fSectionFlags = ST_HEADER;
 	m_pSections[0].uNativeAddr = 0;  // Not applicable
 	m_pSections[0].uHostAddr = (DWord)m_pHeader;
-	m_pSections[0].uSectionSize = sizeof(exeHeader);
+	m_pSections[0].uSectionSize = sizeof *m_pHeader;
 	m_pSections[0].uSectionEntrySize = 1;  // Not applicable
 
 	m_pSections[1].pSectionName = ".text";  // The text and data section
@@ -170,8 +170,8 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 	//m_pSections[2].fSectionFlags = ST_RELOC;  // Give it a special flag
 	m_pSections[2].uNativeAddr = 0;  // Not applicable
 	m_pSections[2].uHostAddr = (DWord)m_pRelocTable;
-	m_pSections[2].uSectionSize = sizeof(DWord) * m_cReloc;
-	m_pSections[2].uSectionEntrySize = sizeof(DWord);
+	m_pSections[2].uSectionSize =  m_cReloc * sizeof *m_pRelocTable;
+	m_pSections[2].uSectionEntrySize = sizeof *m_pRelocTable;
 
 	return true;
 }

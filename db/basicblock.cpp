@@ -1915,7 +1915,7 @@ static char chForms[] = {   'a',   'A',   'o',   'O',   'R',   'r' };
 void init_basicblock()
 {
 #ifndef NO_GARBAGE_COLLECTOR
-	Exp **gc_pointers = (Exp **)GC_MALLOC_UNCOLLECTABLE(6 * sizeof(Exp *));
+	Exp **gc_pointers = (Exp **)GC_MALLOC_UNCOLLECTABLE(6 * sizeof *gc_pointers);
 	gc_pointers[0] = forma;
 	gc_pointers[1] = formA;
 	gc_pointers[2] = formo;
@@ -2149,7 +2149,7 @@ bool BasicBlock::decodeIndirectJmp(UserProc *proc)
 		bool convert;
 		lastStmt->propagateTo(convert, NULL, NULL, true /* force */);
 		Exp *e = lastStmt->getDest();
-		int n = sizeof(hlForms) / sizeof(Exp *);
+		int n = sizeof hlForms / sizeof *hlForms;
 		char form = 0;
 		for (int i = 0; i < n; i++) {
 			if (*e *= *hlForms[i]) {  // *= compare ignores subscripts
@@ -2255,7 +2255,7 @@ bool BasicBlock::decodeIndirectJmp(UserProc *proc)
 		if (DEBUG_SWITCH)
 			LOG << "decodeIndirect: propagated and const global converted call expression is " << e << "\n";
 
-		int n = sizeof(hlVfc) / sizeof(Exp *);
+		int n = sizeof hlVfc / sizeof *hlVfc;
 		bool recognised = false;
 		int i;
 		for (i = 0; i < n; i++) {

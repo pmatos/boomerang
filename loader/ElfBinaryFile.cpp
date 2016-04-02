@@ -1102,7 +1102,7 @@ void ElfBinaryFile::applyRelocations()
 					int strSection = m_sh_link[symSection]; // Section index for the string section assoc with this
 					const char *pStrSection = (const char *)m_pSections[strSection].uHostAddr;
 					Elf32_Sym *symOrigin = (Elf32_Sym *)m_pSections[symSection].uHostAddr;
-					for (unsigned u = 0; u < size; u += 2 * sizeof(unsigned)) {
+					for (unsigned u = 0; u < size; u += 2 * sizeof (unsigned)) {
 						unsigned r_offset = elfRead4(pReloc++);
 						unsigned info = elfRead4(pReloc++);
 						unsigned char relType = (unsigned char)info;
@@ -1212,7 +1212,7 @@ bool ElfBinaryFile::IsRelocationAt(ADDRESS uNative)
 					//int strSection = m_sh_link[symSection]; // Section index for the string section assoc with this
 					//const char *pStrSection = (const char *)m_pSections[strSection].uHostAddr;
 					//Elf32_Sym *symOrigin = (Elf32_Sym *)m_pSections[symSection].uHostAddr;
-					for (unsigned u = 0; u < size; u += 2 * sizeof(unsigned)) {
+					for (unsigned u = 0; u < size; u += 2 * sizeof (unsigned)) {
 						unsigned r_offset = elfRead4(pReloc++);
 						//unsigned info = elfRead4(pReloc);
 						pReloc++;

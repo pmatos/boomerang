@@ -4167,7 +4167,7 @@ public:
 Memo *Const::makeMemo(int mId)
 {
 	ConstMemo *m = new ConstMemo(mId);
-	memcpy(&m->u, &u, sizeof(u));
+	memcpy(&m->u, &u, sizeof u);
 	m->conscript = conscript;
 	return m;
 }
@@ -4175,7 +4175,7 @@ Memo *Const::makeMemo(int mId)
 void Const::readMemo(Memo *mm, bool dec)
 {
 	ConstMemo *m = dynamic_cast<ConstMemo *>(mm);
-	memcpy(&u, &m->u, sizeof(u));
+	memcpy(&u, &m->u, sizeof u);
 	conscript = m->conscript;
 }
 

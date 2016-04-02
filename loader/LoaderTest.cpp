@@ -560,7 +560,7 @@ void LoaderTest::testMicroDis1()
 	std::ostringstream ost;
 
 	int i;
-	unsigned int n = sizeof(pent_hello_text);
+	unsigned int n = sizeof pent_hello_text;
 	int totalSize = 0;
 	void *p = pent_hello_text;
 	i = 0;

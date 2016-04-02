@@ -109,11 +109,11 @@ bool IntelCoffFile::RealLoad(const char *sName)
 			return false;
 	}
 
-	struct struc_coff_sect *psh = (struct struc_coff_sect *)malloc(sizeof *psh * m_Header.coff_sections);
+	struct struc_coff_sect *psh = (struct struc_coff_sect *)malloc(m_Header.coff_sections * sizeof *psh);
 	if (!psh)
 		return false;
 
-	if (static_cast<signed long>(sizeof *psh * m_Header.coff_sections) != read(m_fd, psh, sizeof *psh * m_Header.coff_sections)) {
+	if (static_cast<signed long>(m_Header.coff_sections * sizeof *psh) != read(m_fd, psh, m_Header.coff_sections * sizeof *psh)) {
 		free(psh);
 		return false;
 	}
@@ -181,10 +181,10 @@ bool IntelCoffFile::RealLoad(const char *sName)
 	printf("Load symbol table\n");
 	if (static_cast<signed long>(m_Header.coff_symtab_ofs) != lseek(m_fd, m_Header.coff_symtab_ofs, SEEK_SET))
 		return false;
-	struct coff_symbol *pSymbols = (struct coff_symbol *)malloc(m_Header.coff_num_syment * sizeof (struct coff_symbol));
+	struct coff_symbol *pSymbols = (struct coff_symbol *)malloc(m_Header.coff_num_syment * sizeof *pSymbols);
 	if (!pSymbols)
 		return false;
-	if (static_cast<signed long>(m_Header.coff_num_syment * sizeof (struct coff_symbol)) != read(m_fd, pSymbols, m_Header.coff_num_syment * sizeof (struct coff_symbol)))
+	if (static_cast<signed long>(m_Header.coff_num_syment * sizeof *pSymbols) != read(m_fd, pSymbols, m_Header.coff_num_syment * sizeof *pSymbols))
 		return false;
 
 	// TODO: Groesse des Abschnittes vorher bestimmen
@@ -195,7 +195,7 @@ bool IntelCoffFile::RealLoad(const char *sName)
 	// Run the symbol table
 	ADDRESS fakeForImport = (ADDRESS)0xfffe0000;
 
-	printf("Size of one symbol: %u\n", sizeof pSymbols[0]);
+	printf("Size of one symbol: %u\n", sizeof *pSymbols);
 	for (unsigned int iSym = 0; iSym < m_Header.coff_num_syment; iSym += pSymbols[iSym].csym_numaux + 1) {
 		char tmp_name[9]; tmp_name[8] = 0;
 		char *name = tmp_name;
@@ -252,11 +252,11 @@ bool IntelCoffFile::RealLoad(const char *sName)
 		if (static_cast<signed long>(psh[iSection].sch_relptr) != lseek(m_fd, psh[iSection].sch_relptr, SEEK_SET))
 			return false;
 
-		struct struct_coff_rel *pRel = (struct struct_coff_rel *)malloc(sizeof (struct struct_coff_rel) * psh[iSection].sch_nreloc);
+		struct struct_coff_rel *pRel = (struct struct_coff_rel *)malloc(psh[iSection].sch_nreloc * sizeof *pRel);
 		if (!pRel)
 			return false;
 
-		if (static_cast<signed long>(sizeof (struct struct_coff_rel) * psh[iSection].sch_nreloc) != read(m_fd, pRel, sizeof (struct struct_coff_rel) * psh[iSection].sch_nreloc))
+		if (static_cast<signed long>(psh[iSection].sch_nreloc * sizeof *pRel) != read(m_fd, pRel, psh[iSection].sch_nreloc * sizeof *pRel))
 			return false;
 
 		for (int iReloc = 0; iReloc < psh[iSection].sch_nreloc; iReloc++) {

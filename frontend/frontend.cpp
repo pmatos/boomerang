@@ -276,7 +276,7 @@ void FrontEnd::decode(Prog *prog, bool decodeMain, const char *pname)
 		const char *name = pBF->SymbolByAddress(a);
 		if (name == NULL)
 			name = mainName[0];
-		for (size_t i = 0; i < sizeof(mainName) / sizeof(char *); i++) {
+		for (size_t i = 0; i < sizeof mainName / sizeof *mainName; i++) {
 			if (!strcmp(name, mainName[i])) {
 				Proc *proc = prog->findProc(a);
 				if (proc == NULL) {

@@ -636,7 +636,7 @@ int Boomerang::cmdLine()
 	char line[1024];
 	printf("boomerang: ");
 	fflush(stdout);
-	while (fgets(line, sizeof(line), stdin)) {
+	while (fgets(line, sizeof line, stdin)) {
 		char **argv;
 		int argc = splitLine(line, &argv);
 		if (parseCmd(argc, (const char **)argv) == 2)

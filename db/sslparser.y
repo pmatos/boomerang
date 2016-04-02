@@ -1260,7 +1260,7 @@ static Exp *srchOp = new Ternary(opOpTable,
 void init_sslparser()
 {
 #ifndef NO_GARBAGE_COLLECTOR
-	static Exp **gc_pointers = (Exp **)GC_MALLOC_UNCOLLECTABLE(2 * sizeof(Exp *));
+	static Exp **gc_pointers = (Exp **)GC_MALLOC_UNCOLLECTABLE(2 * sizeof *gc_pointers);
 	gc_pointers[0] = srchExpr;
 	gc_pointers[1] = srchOp;
 #endif

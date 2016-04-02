@@ -19,7 +19,7 @@
 
 
 #define sysTrapBase         0xA000
-#define numTrapStrings      (sizeof(trapNames) / sizeof(char*))
+#define numTrapStrings      (sizeof trapNames / sizeof *trapNames)
 
 //  "sysTrapMemInit",       // = sysTrapBase
 

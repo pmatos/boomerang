@@ -411,13 +411,13 @@ ADDRESS PalmBinaryFile::GetMainEntryPoint()
 	int delta = pSect->uHostAddr - pSect->uNativeAddr;
 
 	// First try the CW first jump pattern
-	SWord *res = findPattern(startCode, CWFirstJump, sizeof(CWFirstJump) / sizeof(SWord), 1);
+	SWord *res = findPattern(startCode, CWFirstJump, sizeof CWFirstJump / sizeof *CWFirstJump, 1);
 	if (res) {
 		// We have the code warrior first jump. Get the addil operand
 		int addilOp = (startCode[5] << 16) + startCode[6];
 		SWord *startupCode = (SWord *)((int)startCode + 10 + addilOp);
 		// Now check the next 60 SWords for the call to PilotMain
-		res = findPattern(startupCode, CWCallMain, sizeof(CWCallMain) / sizeof(SWord), 60);
+		res = findPattern(startupCode, CWCallMain, sizeof CWCallMain / sizeof *CWCallMain, 60);
 		if (res) {
 			// Get the addil operand
 			addilOp = (res[5] << 16) + res[6];
@@ -429,7 +429,7 @@ ADDRESS PalmBinaryFile::GetMainEntryPoint()
 		}
 	}
 	// Check for gcc call to main
-	res = findPattern(startCode, GccCallMain, sizeof(GccCallMain) / sizeof(SWord), 75);
+	res = findPattern(startCode, GccCallMain, sizeof GccCallMain / sizeof *GccCallMain, 75);
 	if (res) {
 		// Get the operand to the bsr
 		SWord bsrOp = res[7];

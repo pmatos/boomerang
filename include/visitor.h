@@ -275,7 +275,7 @@ public:
 // A simplifying expression modifier. It does a simplification on the parent after a child has been modified
 class SimpExpModifier : public ExpModifier {
 protected:
-	// These two provide 31 bits (or sizeof(int)-1) of information about whether the child is unchanged.
+	// These two provide 31 bits (or sizeof (int) - 1) of information about whether the child is unchanged.
 	// If the mask overflows, it goes to zero, and from then on the child is reported as always changing.
 	// (That's why it's an "unchanged" set of flags, instead of a "changed" set).
 	// This is used to avoid calling simplify in most cases where it is not necessary.

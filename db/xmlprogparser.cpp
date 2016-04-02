@@ -258,7 +258,7 @@ void XMLProgParser::parseFile(const char *filename)
 		int done;
 		int len;
 
-		len = fread(Buff, 1, sizeof(Buff), f);
+		len = fread(Buff, 1, sizeof Buff, f);
 		if (ferror(f)) {
 			fprintf(stderr, "Read error\n");
 			fclose(f);

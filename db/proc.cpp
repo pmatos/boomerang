@@ -2283,7 +2283,7 @@ void UserProc::trimParameters(int depth)
 	int totparams = nparams;
 	std::vector<Exp *> params;
 	bool referenced[64];
-	assert(totparams <= (int)(sizeof(referenced) / sizeof(bool)));
+	assert(totparams <= (int)(sizeof referenced / sizeof *referenced));
 	int i;
 	for (i = 0; i < nparams; i++) {
 		referenced[i] = false;
