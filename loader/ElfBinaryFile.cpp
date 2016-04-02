@@ -97,7 +97,7 @@ bool ElfBinaryFile::RealLoad(const char *sName)
 	if (m_fd == NULL) return 0;
 
 	// Determine file size
-	if (fseek(m_fd, 0, SEEK_END)) {
+	if (fseek(m_fd, 0, SEEK_END) != 0) {
 		fprintf(stderr, "Error seeking to end of binary file\n");
 		return false;
 	}

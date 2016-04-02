@@ -52,7 +52,7 @@ static const char *detect_libname(FILE *f)
 	} else if (TESTMAGIC2(buf, 0, 'M', 'Z')) {
 		/* DOS-based file */
 		int peoff = LMMH(buf[0x3c]);
-		if (peoff != 0 && fseek(f, peoff, SEEK_SET) != -1) {
+		if (peoff != 0 && fseek(f, peoff, SEEK_SET) == 0) {
 			fread(buf, 4, 1, f);
 			if (TESTMAGIC4(buf, 0, 'P', 'E', 0, 0)) {
 				/* Win32 Binary */
