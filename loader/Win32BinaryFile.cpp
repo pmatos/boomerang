@@ -396,7 +396,7 @@ bool Win32BinaryFile::RealLoad(const char *sName)
 
 	DWord peoffLE, peoff;
 	fseek(fp, 0x3c, SEEK_SET);
-	fread(&peoffLE, 4, 1, fp);  // Note: peoffLE will be in Little Endian
+	fread(&peoffLE, sizeof peoffLE, 1, fp);  // Note: peoffLE will be in Little Endian
 	peoff = LMMH(peoffLE);
 
 	PEHeader tmphdr;

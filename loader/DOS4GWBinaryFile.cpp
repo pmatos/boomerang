@@ -152,7 +152,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 
 	DWord lxoffLE, lxoff;
 	fseek(fp, 0x3c, SEEK_SET);
-	fread(&lxoffLE, 4, 1, fp);  // Note: peoffLE will be in Little Endian
+	fread(&lxoffLE, sizeof lxoffLE, 1, fp);  // Note: peoffLE will be in Little Endian
 	lxoff = LMMH(lxoffLE);
 
 	fseek(fp, lxoff, SEEK_SET);
@@ -226,7 +226,7 @@ bool DOS4GWBinaryFile::RealLoad(const char *sName)
 
 			fseek(fp, m_pLXHeader->datapagesoffset + (LMMH(m_pLXObjects[n].PageTblIdx) - 1) * LMMH(m_pLXHeader->pagesize), SEEK_SET);
 			char *p = base + LMMH(m_pLXObjects[n].RelocBaseAddr) - LMMH(m_pLXObjects[0].RelocBaseAddr);
-			fread(p, LMMH(m_pLXObjects[n].NumPageTblEntries), LMMH(m_pLXHeader->pagesize), fp);
+			fread(p, LMMH(m_pLXHeader->pagesize), LMMH(m_pLXObjects[n].NumPageTblEntries), fp);
 		}
 
 	// TODO: decode entry tables

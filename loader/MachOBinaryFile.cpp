@@ -129,21 +129,21 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 	for (unsigned i = 0; i < BMMH(header->ncmds); i++) {
 		struct load_command cmd;
 		long pos = ftell(fp);
-		fread(&cmd, 1, sizeof cmd, fp);
+		fread(&cmd, sizeof cmd, 1, fp);
 
 		fseek(fp, pos, SEEK_SET);
 		switch (BMMH(cmd.cmd)) {
 		case LC_SEGMENT:
 			{
 				struct segment_command seg;
-				fread(&seg, 1, sizeof seg, fp);
+				fread(&seg, sizeof seg, 1, fp);
 				segments.push_back(seg);
 #ifdef DEBUG_MACHO_LOADER
 				fprintf(stdout, "seg addr %x size %i fileoff %x filesize %i flags %x\n", BMMH(seg.vmaddr), BMMH(seg.vmsize), BMMH(seg.fileoff), BMMH(seg.filesize), BMMH(seg.flags));
 #endif
 				for (unsigned n = 0; n < BMMH(seg.nsects); n++) {
 					struct section sect;
-					fread(&sect, 1, sizeof sect, fp);
+					fread(&sect, sizeof sect, 1, fp);
 #ifdef DEBUG_MACHO_LOADER
 					fprintf(stdout, "    sectname %s segname %s addr %x size %i flags %x\n", sect.sectname, sect.segname, BMMH(sect.addr), BMMH(sect.size), BMMH(sect.flags));
 #endif
@@ -176,14 +176,14 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 		case LC_SYMTAB:
 			{
 				struct symtab_command syms;
-				fread(&syms, 1, sizeof syms, fp);
+				fread(&syms, sizeof syms, 1, fp);
 				fseek(fp, BMMH(syms.stroff), SEEK_SET);
 				strtbl = new char[BMMH(syms.strsize)];
-				fread(strtbl, 1, BMMH(syms.strsize), fp);
+				fread(strtbl, sizeof *strtbl, BMMH(syms.strsize), fp);
 				fseek(fp, BMMH(syms.symoff), SEEK_SET);
 				for (unsigned n = 0; n < BMMH(syms.nsyms); n++) {
 					struct nlist sym;
-					fread(&sym, 1, sizeof sym, fp);
+					fread(&sym, sizeof sym, 1, fp);
 					symbols.push_back(sym);
 #ifdef DEBUG_MACHO_LOADER
 					//fprintf(stdout, "got sym %s flags %x value %x\n", strtbl + BMMH(sym.n_un.n_strx), sym.n_type, BMMH(sym.n_value));
@@ -197,7 +197,7 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 		case LC_DYSYMTAB:
 			{
 				struct dysymtab_command syms;
-				fread(&syms, 1, sizeof syms, fp);
+				fread(&syms, sizeof syms, 1, fp);
 #ifdef DEBUG_MACHO_LOADER
 				fprintf(stdout, "dysymtab local %i %i defext %i %i undef %i %i\n",
 				        BMMH(syms.ilocalsym), BMMH(syms.nlocalsym),
@@ -216,7 +216,7 @@ bool MachOBinaryFile::RealLoad(const char *sName)
 #endif
 				indirectsymtbl = new unsigned[BMMH(syms.nindirectsyms)];
 				fseek(fp, BMMH(syms.indirectsymoff), SEEK_SET);
-				fread(indirectsymtbl, 1, BMMH(syms.nindirectsyms) * sizeof *indirectsymtbl, fp);
+				fread(indirectsymtbl, sizeof *indirectsymtbl, BMMH(syms.nindirectsyms), fp);
 #ifdef DEBUG_MACHO_LOADER
 				for (unsigned j = 0; j < BMMH(syms.nindirectsyms); j++) {
 					fprintf(stdout, "%i ", BMMH(indirectsymtbl[j]));

@@ -102,7 +102,7 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 			/* Read in seg:offset pairs and convert to Image ptrs */
 			for (int i = 0; i < m_cReloc; i++) {
 				Byte buf[4];
-				fread(buf, 1, 4, fp);
+				fread(buf, sizeof *buf, 4, fp);
 				m_pRelocTable[i] = LH(buf) + (((int)LH(buf + 2)) << 4);
 			}
 		}
@@ -134,9 +134,9 @@ bool ExeBinaryFile::RealLoad(const char *sName)
 
 	/* Allocate a block of memory for the image. */
 	m_cbImage = cb;
-	m_pImage  = new Byte[m_cbImage];
+	m_pImage  = new Byte[cb];
 
-	if (cb != (int)fread(m_pImage, 1, (size_t)cb, fp)) {
+	if (cb != (int)fread(m_pImage, sizeof *m_pImage, cb, fp)) {
 		fprintf(stderr, "Cannot read file %s\n", sName);
 		return false;
 	}
