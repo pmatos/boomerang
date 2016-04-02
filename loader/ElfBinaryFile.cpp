@@ -22,10 +22,6 @@
 
 #include "ElfBinaryFile.h"
 
-#include <sys/types.h>  // Next three for open()
-#include <sys/stat.h>
-#include <fcntl.h>
-
 #include <iostream>
 
 #include <cstring>

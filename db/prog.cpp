@@ -42,7 +42,7 @@
 #include "managed.h"
 #include "log.h"
 
-#include <sys/stat.h>
+#include <sys/stat.h>  // For mkdir
 #include <sys/types.h>
 
 #include <fstream>

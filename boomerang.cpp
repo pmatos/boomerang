@@ -37,6 +37,7 @@
 #include "gc.h"
 
 #include <sys/stat.h>       // For mkdir
+#include <sys/types.h>
 #include <unistd.h>         // For unlink
 
 #include <iostream>
