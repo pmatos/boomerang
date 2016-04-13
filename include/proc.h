@@ -710,13 +710,13 @@ public:
 	/*
 	 * Return a string for a new local suitable for e
 	 */
-	        char       *newLocalName(Exp *e);
+	        const char *newLocalName(Exp *e);
 
 	/**
 	 * Return the next available local variable; make it the given type. Note: was returning TypedExp*.
 	 * If nam is non null, use that name
 	 */
-	        Exp        *newLocal(Type *ty, Exp *e, char *nam = NULL);
+	        Exp        *newLocal(Type *ty, Exp *e, const char *nam = NULL);
 
 	/**
 	 * Add a new local supplying all needed information.

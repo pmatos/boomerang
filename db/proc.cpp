@@ -2776,7 +2776,7 @@ void UserProc::promoteSignature()
 	signature = signature->promote(this);
 }
 
-char *UserProc::newLocalName(Exp *e)
+const char *UserProc::newLocalName(Exp *e)
 {
 	std::ostringstream ost;
 	if (e->isSubscript() && ((RefExp *)e)->getSubExp1()->isRegOf()) {
@@ -2793,7 +2793,7 @@ char *UserProc::newLocalName(Exp *e)
 	return strdup(ost.str().c_str());
 }
 
-Exp *UserProc::newLocal(Type *ty, Exp *e, char *nam /* = NULL */)
+Exp *UserProc::newLocal(Type *ty, Exp *e, const char *nam /* = NULL */)
 {
 	std::string name;
 	if (nam == NULL)
