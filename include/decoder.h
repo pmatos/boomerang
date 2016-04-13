@@ -139,14 +139,14 @@ protected:
 	 * representing sub-parameters, return a fully substituted
 	 * Exp for the whole expression
 	 */
-	Exp *instantiateNamedParam(char *name, ...);
+	Exp *instantiateNamedParam(const char *name, ...);
 
 	/*
 	 * In the event that it's necessary to synthesize the call of a named parameter generated with
 	 * instantiateNamedParam(), this method will substitute the arguments that * follow into the expression.
 	 * Should only be used after e = instantiateNamedParam(name, ..);
 	 */
-	void substituteCallArgs(char *name, Exp *&exp, ...);
+	void substituteCallArgs(const char *name, Exp *&exp, ...);
 
 	/*
 	 * This used to be the UNCOND_JUMP macro; it's extended to handle jumps to other procedures

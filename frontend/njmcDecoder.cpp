@@ -98,7 +98,7 @@ std::list<Statement *> *NJMCDecoder::instantiate(ADDRESS pc, const char *name, .
  *                 ... - Exp* representing actual operands
  * RETURNS:        an instantiated list of Exps
  *============================================================================*/
-Exp *NJMCDecoder::instantiateNamedParam(char *name, ...)
+Exp *NJMCDecoder::instantiateNamedParam(const char *name, ...)
 {
 	if (RTLDict.ParamSet.find(name) == RTLDict.ParamSet.end()) {
 		std::cerr << "No entry for named parameter '" << name << "'\n";
@@ -138,7 +138,7 @@ Exp *NJMCDecoder::instantiateNamedParam(char *name, ...)
  *                 ... - Exp* representing actual operands
  * RETURNS:        an instantiated list of Exps
  *============================================================================*/
-void NJMCDecoder::substituteCallArgs(char *name, Exp *&exp, ...)
+void NJMCDecoder::substituteCallArgs(const char *name, Exp *&exp, ...)
 {
 	if (RTLDict.ParamSet.find(name) == RTLDict.ParamSet.end()) {
 		std::cerr << "No entry for named parameter '" << name << "'\n";
