@@ -266,9 +266,9 @@ int Boomerang::splitLine(char *line, char ***pargv)
 {
 	int argc = 0;
 	*pargv = new crazy_vc_bug[100];
-	const char *p = strtok(line, " \r\n");
+	char *p = strtok(line, " \r\n");
 	while (p) {
-		(*pargv)[argc++] = (char *)p;
+		(*pargv)[argc++] = p;
 		p = strtok(NULL, " \r\n");
 	}
 	return argc;
@@ -286,7 +286,7 @@ int Boomerang::splitLine(char *line, char ***pargv)
  * \retval 1 Faillure
  * \retval 2 The user exited with \a quit or \a exit
  */
-int Boomerang::parseCmd(int argc, const char **argv)
+int Boomerang::parseCmd(int argc, const char *argv[])
 {
 	static Prog *prog = NULL;
 	if (!strcmp(argv[0], "decode")) {
@@ -653,7 +653,7 @@ int Boomerang::cmdLine()
  *
  * \return Zero on success, nonzero on faillure.
  */
-int Boomerang::commandLine(int argc, const char **argv)
+int Boomerang::commandLine(int argc, const char *argv[])
 {
 	printf("%s\n", PACKAGE_STRING);
 	if (argc < 2) usage();

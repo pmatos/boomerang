@@ -105,7 +105,7 @@ private:
 	        void        help();
 	        void        helpcmd();
 	        int         splitLine(char *line, char ***pargv);
-	        int         parseCmd(int argc, const char **argv);
+	        int         parseCmd(int argc, const char *argv[]);
 	        int         cmdLine();
 
 
@@ -129,7 +129,7 @@ public:
 	        /// \return The HLLCode for the specified UserProc.
 	        HLLCode    *getHLLCode(UserProc *p = NULL);
 
-	        int         commandLine(int argc, const char **argv);
+	        int         commandLine(int argc, const char *argv[]);
 	        /// Set the path to the %Boomerang executable.
 	        void        setProgPath(const char *p) { progPath = p; }
 	        /// Get the path to the %Boomerang executable.
