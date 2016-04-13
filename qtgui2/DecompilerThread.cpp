@@ -128,6 +128,9 @@ void Decompiler::load()
 	case MACHINE_ST20:
 		emit machineType(QString("st20"));
 		break;
+	case MACHINE_MIPS:
+		emit machineType(QString("mips"));
+		break;
 	}
 
 	QStringList entrypointStrings;
