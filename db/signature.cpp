@@ -228,8 +228,8 @@ namespace CallingConvention {
 			virtual platform    getPlatform() { return PLAT_ST20; }
 			virtual callconv    getConvention() { return CONV_C; }
 		};
-	};
-};
+	}
+}
 
 CallingConvention::Win32Signature::Win32Signature(const char *nam) :
 	Signature(nam)
