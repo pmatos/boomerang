@@ -98,7 +98,7 @@ public:
 	virtual void        printx(int ind) = 0;
 
 	// Display as a dotty graph
-	        void        createDotFile(char *name);
+	        void        createDotFile(const char *name);
 	virtual void        appendDotFile(std::ofstream &os) = 0;
 
 	// Clone (make copy of self that can be deleted without affecting self)

@@ -1123,7 +1123,7 @@ void Exp::dump()
  * PARAMETERS:      Name of the file to create
  * RETURNS:         <nothing>
  *============================================================================*/
-void Exp::createDotFile(char *name)
+void Exp::createDotFile(const char *name)
 {
 	std::ofstream of;
 	of.open(name);
