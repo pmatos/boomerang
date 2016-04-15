@@ -142,30 +142,30 @@ L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return AnsiCPars
 ">="    { count(); return AnsiCParser::GE_OP; }
 "=="    { count(); return AnsiCParser::EQ_OP; }
 "!="    { count(); return AnsiCParser::NE_OP; }
-";"     { count(); return ';'; }
-"{"     { count(); return '{'; }
-"}"     { count(); return '}'; }
-","     { count(); return ','; }
-":"     { count(); return ':'; }
-"="     { count(); return '='; }
-"("     { count(); return '('; }
-")"     { count(); return ')'; }
-"["     { count(); return '['; }
-"]"     { count(); return ']'; }
-"."     { count(); return '.'; }
-"&"     { count(); return '&'; }
-"!"     { count(); return '!'; }
-"~"     { count(); return '~'; }
-"-"     { count(); return '-'; }
-"+"     { count(); return '+'; }
-"*"     { count(); return '*'; }
-"/"     { count(); return '/'; }
-"%"     { count(); return '%'; }
-"<"     { count(); return '<'; }
-">"     { count(); return '>'; }
-"^"     { count(); return '^'; }
-"|"     { count(); return '|'; }
-"?"     { count(); return '?'; }
+";"     |
+"{"     |
+"}"     |
+","     |
+":"     |
+"="     |
+"("     |
+")"     |
+"["     |
+"]"     |
+"."     |
+"&"     |
+"!"     |
+"~"     |
+"-"     |
+"+"     |
+"*"     |
+"/"     |
+"%"     |
+"<"     |
+">"     |
+"^"     |
+"|"     |
+"?"     { count(); return yytext[0]; }
 
 [ \t\v\n\f]     { count(); }
 .               { /* ignore bad characters */ }

@@ -102,30 +102,30 @@ L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return Transform
 ">="                    { count(); return TransformationParser::GE_OP; }
 "=="                    { count(); return TransformationParser::EQ_OP; }
 "!="                    { count(); return TransformationParser::NE_OP; }
-";"                     { count(); return ';'; }
-"{"                     { count(); return '{'; }
-"}"                     { count(); return '}'; }
-","                     { count(); return ','; }
-":"                     { count(); return ':'; }
-"="                     { count(); return '='; }
-"("                     { count(); return '('; }
-")"                     { count(); return ')'; }
-"["                     { count(); return '['; }
-"]"                     { count(); return ']'; }
-"."                     { count(); return '.'; }
-"&"                     { count(); return '&'; }
-"!"                     { count(); return '!'; }
-"~"                     { count(); return '~'; }
-"-"                     { count(); return '-'; }
-"+"                     { count(); return '+'; }
-"*"                     { count(); return '*'; }
-"/"                     { count(); return '/'; }
-"%"                     { count(); return '%'; }
-"<"                     { count(); return '<'; }
-">"                     { count(); return '>'; }
-"^"                     { count(); return '^'; }
-"|"                     { count(); return '|'; }
-"?"                     { count(); return '?'; }
+";"                     |
+"{"                     |
+"}"                     |
+","                     |
+":"                     |
+"="                     |
+"("                     |
+")"                     |
+"["                     |
+"]"                     |
+"."                     |
+"&"                     |
+"!"                     |
+"~"                     |
+"-"                     |
+"+"                     |
+"*"                     |
+"/"                     |
+"%"                     |
+"<"                     |
+">"                     |
+"^"                     |
+"|"                     |
+"?"                     { count(); return yytext[0]; }
 
 [ \t\v\n\f]             { count(); }
 .                       { /* ignore bad characters */ }
