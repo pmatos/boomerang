@@ -29,9 +29,9 @@ libtransform_la_SOURCES = \
 # 4.  To bootstrap, add the .h files to BUILT_SOURCES.
 #
 YACC = $(BISONPP)
-AM_YFLAGS = -v --debug
+AM_YFLAGS = -v
 LEX = $(FLEXPP)
-AM_LFLAGS =
+AM_LFLAGS = -v
 
 SUFFIXES = .cpp .h .y .l
 %.cpp %.h: %.y
