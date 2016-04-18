@@ -28,47 +28,6 @@ public:
 	}
 	virtual ~NullLogger() {};
 };
-/*==============================================================================
- * FUNCTION:        StatementTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<StatementTest>("Statements", &StatementTest::name, *this))
-
-void StatementTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(testLocationSet);
-	MYTEST(testWildLocationSet);
-	MYTEST(testEmpty);
-	MYTEST(testFlow);
-	MYTEST(testKill);
-	MYTEST(testUse);
-	MYTEST(testUseOverKill);
-	MYTEST(testUseOverBB);
-	MYTEST(testUseKill);
-	//MYTEST(testEndlessLoop);
-	//MYTEST(testRecursion);
-	//MYTEST(testExpand);
-	MYTEST(testClone);
-	MYTEST(testIsAssign);
-	MYTEST(testIsFlagAssgn);
-	MYTEST(testAddUsedLocsAssign);
-	MYTEST(testAddUsedLocsBranch);
-	MYTEST(testAddUsedLocsCase);
-	MYTEST(testAddUsedLocsCall);
-	MYTEST(testAddUsedLocsReturn);
-	MYTEST(testAddUsedLocsBool);
-	MYTEST(testSubscriptVars);
-	MYTEST(testBypass);
-	MYTEST(testStripSizes);
-	MYTEST(testFindConstants);
-}
-
-int StatementTest::countTestCases() const
-{
-	return 2;  // ? What's this for?
-}
 
 /*==============================================================================
  * FUNCTION:        StatementTest::setUp
@@ -84,17 +43,6 @@ void StatementTest::setUp()
 		logset = true;
 		Boomerang::get()->setLogger(new NullLogger());
 	}
-}
-
-/*==============================================================================
- * FUNCTION:        StatementTest::tearDown
- * OVERVIEW:        Delete expressions created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void StatementTest::tearDown()
-{
 }
 
 /*==============================================================================

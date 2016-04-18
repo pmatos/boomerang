@@ -20,52 +20,6 @@
 #include "BinaryFileStub.h"
 
 /*==============================================================================
- * FUNCTION:        FrontPentTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) \
-suite->addTest(new CppUnit::TestCaller<FrontPentTest> ("FrontPentTest", \
-	&FrontPentTest::name, *this))
-
-void FrontPentTest::registerTests(CppUnit::TestSuite *suite) {
-	MYTEST(test1);
-	MYTEST(test2);
-	MYTEST(test3);
-	MYTEST(testBranch);
-	MYTEST(testFindMain);
-}
-
-int FrontPentTest::countTestCases() const
-{
-	return 3;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        FrontPentTest::setUp
- * OVERVIEW:        Set up anything needed before all tests
- * NOTE:            Called before any tests
- * NOTE:            Also appears to be called before all tests!
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void FrontPentTest::setUp()
-{
-}
-
-/*==============================================================================
- * FUNCTION:        FrontPentTest::tearDown
- * OVERVIEW:        Delete objects created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void FrontPentTest::tearDown()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        FrontPentTest::test1
  * OVERVIEW:        Test decoding some pentium instructions
  *============================================================================*/

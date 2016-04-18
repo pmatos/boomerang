@@ -15,35 +15,6 @@
 #include <map>
 
 /*==============================================================================
- * FUNCTION:        ProcTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<ProcTest>("testProc", &ProcTest::name, *this))
-
-void ProcTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(testName);
-}
-
-int ProcTest::countTestCases() const
-{
-	return 2;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        ProcTest::setUp
- * OVERVIEW:        Set up some expressions for use with all the tests
- * NOTE:            Called before any tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void ProcTest::setUp()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        ProcTest::tearDown
  * OVERVIEW:        Delete expressions created in setUp
  * NOTE:            Called after all tests

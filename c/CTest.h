@@ -3,21 +3,15 @@
 
 #include "ansi-c-parser.h"
 
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/HelperMacros.h>
 
-class CTest : public CppUnit::TestCase {
+class CTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(CTest);
+	CPPUNIT_TEST(testSignature);
+	CPPUNIT_TEST_SUITE_END();
+
 public:
-	CTest(std::string name) : CppUnit::TestCase(name)
-	{}
-
-	virtual void registerTests(CppUnit::TestSuite *suite);
-
-	int countTestCases() const;
-
-	void setUp();
-	void tearDown();
+	CTest() { }
 
 	void testSignature();
 };

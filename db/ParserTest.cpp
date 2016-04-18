@@ -12,47 +12,6 @@
 #include <sstream>
 
 /*==============================================================================
- * FUNCTION:        ParserTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<ParserTest>("ParserTest", &ParserTest::name, *this))
-
-void ParserTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(testRead);
-	MYTEST(testExp);
-}
-
-int ParserTest::countTestCases() const
-{
-	return 2;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        ParserTest::setUp
- * OVERVIEW:        Set up some expressions for use with all the tests
- * NOTE:            Called before any tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void ParserTest::setUp()
-{
-}
-
-/*==============================================================================
- * FUNCTION:        ParserTest::tearDown
- * OVERVIEW:        Delete expressions created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void ParserTest::tearDown()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        ParserTest::testRead
  * OVERVIEW:        Test reading the SSL file
  *============================================================================*/

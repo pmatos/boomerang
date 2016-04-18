@@ -20,49 +20,6 @@ public:
 };
 
 /*==============================================================================
- * FUNCTION:        DfaTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<DfaTest>("DfaTest", &DfaTest::name, *this))
-
-void DfaTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(testMeetInt);
-	MYTEST(testMeetSize);
-	MYTEST(testMeetPointer);
-	MYTEST(testMeetUnion);
-}
-
-int DfaTest::countTestCases() const
-{
-	return 2;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        DfaTest::setUp
- * OVERVIEW:        Set up some expressions for use with all the tests
- * NOTE:            Called before any tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void DfaTest::setUp()
-{
-}
-
-/*==============================================================================
- * FUNCTION:        DfaTest::tearDown
- * OVERVIEW:        Delete expressions created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void DfaTest::tearDown()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        DfaTest::testMeetInt
  * OVERVIEW:        Test meeting IntegerTypes with various other types
  *============================================================================*/

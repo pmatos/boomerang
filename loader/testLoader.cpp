@@ -5,23 +5,15 @@
 
 #include "LoaderTest.h"
 
-#include <cppunit/TextTestResult.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/ui/text/TestRunner.h>
 
-#include <iostream>
+#include <cstdlib>
 
 int main(int argc, char *argv[])
 {
-	CppUnit::TestSuite suite;
+	CppUnit::TextUi::TestRunner runner;
 
-	LoaderTest lt("ExpTest");
+	runner.addTest(LoaderTest::suite());
 
-	lt.registerTests(&suite);
-
-	CppUnit::TextTestResult res;
-
-	suite.run(&res);
-	std::cout << res << std::endl;
-
-	return 0;
+	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -12,34 +12,20 @@
 #include "ParserTest.h"
 #include "TypeTest.h"
 
-#include <cppunit/TextTestResult.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/ui/text/TestRunner.h>
 
-#include <sstream>
-#include <iostream>
+#include <cstdlib>
 
 int main(int argc, char *argv[])
 {
-	CppUnit::TestSuite suite;
+	CppUnit::TextUi::TestRunner runner;
 
-	ExpTest expt("ExpTest");
-	ProgTest progt("ProgTest");
-	ProcTest proct("ProcTest");
-	RtlTest rtlt("RtlTest");
-	ParserTest parsert("ParserTest");
-	TypeTest typet("TypeTest");
+	runner.addTest(ExpTest::suite());
+	runner.addTest(ProgTest::suite());
+	runner.addTest(ProcTest::suite());
+	runner.addTest(RtlTest::suite());
+	runner.addTest(ParserTest::suite());
+	runner.addTest(TypeTest::suite());
 
-	expt.registerTests(&suite);
-	progt.registerTests(&suite);
-	proct.registerTests(&suite);
-	rtlt.registerTests(&suite);
-	parsert.registerTests(&suite);
-	typet.registerTests(&suite);
-
-	CppUnit::TextTestResult res;
-
-	suite.run(&res);
-	std::cout << res << std::endl;
-
-	return 0;
+	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

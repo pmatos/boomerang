@@ -12,65 +12,6 @@
 #include <sstream>      // Gcc >= 3.0 needed
 
 /*==============================================================================
- * FUNCTION:        ExpTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<ExpTest>("testExp", &ExpTest::name, *this))
-
-void ExpTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(testFixSuccessor);
-	MYTEST(test99);
-	MYTEST(testFlt);
-	MYTEST(testRegOf2);
-	MYTEST(testBinaries);
-	MYTEST(testUnaries);
-	MYTEST(testIsAfpTerm);
-	MYTEST(testCompare1);
-	MYTEST(testCompare2);
-	MYTEST(testCompare3);
-	MYTEST(testCompare4);
-	MYTEST(testCompare5);
-	MYTEST(testCompare6);
-	MYTEST(testSearchReplace1);
-	MYTEST(testSearchReplace2);
-	MYTEST(testSearchReplace3);
-	MYTEST(testSearchReplace4);
-	MYTEST(testSearch1);
-	MYTEST(testSearch2);
-	MYTEST(testSearch3);
-	MYTEST(testSearchAll);
-	MYTEST(testAccumulate);
-	MYTEST(testPartitionTerms);
-	MYTEST(testSimplifyArith);
-	MYTEST(testSimplifyUnary);
-	MYTEST(testSimplifyBinary);
-	MYTEST(testSimplifyAddr);
-	MYTEST(testSimpConstr);
-
-	MYTEST(testLess);
-	MYTEST(testMapOfExp);
-	MYTEST(testList);
-	MYTEST(testParen);
-	MYTEST(testFixSuccessor);
-	MYTEST(testKillFill);
-	MYTEST(testAssociativity);
-	MYTEST(testSubscriptVar);
-	MYTEST(testTypeOf);
-	MYTEST(testSetConscripts);
-	MYTEST(testAddUsedLocs);
-	MYTEST(testSubscriptVars);
-	MYTEST(testVisitors);
-}
-
-int ExpTest::countTestCases() const
-{
-	return 2;  // ? What's this for?
-}
-
-/*==============================================================================
  * FUNCTION:        ExpTest::setUp
  * OVERVIEW:        Set up some expressions for use with all the tests
  * NOTE:            Called before any tests

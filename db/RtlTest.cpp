@@ -22,50 +22,6 @@
 #define SWITCH_PENT         "test/pentium/switch_cc"
 
 /*==============================================================================
- * FUNCTION:        RtlTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) suite->addTest(new CppUnit::TestCaller<RtlTest>("RtlTest", &RtlTest::name, *this))
-
-void RtlTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(testAppend);
-	MYTEST(testClone);
-	MYTEST(testVisitor);
-	MYTEST(testIsCompare);
-	MYTEST(testSetConscripts);
-}
-
-int RtlTest::countTestCases() const
-{
-	return 2;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        RtlTest::setUp
- * OVERVIEW:        Set up some expressions for use with all the tests
- * NOTE:            Called before any tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void RtlTest::setUp()
-{
-}
-
-/*==============================================================================
- * FUNCTION:        RtlTest::tearDown
- * OVERVIEW:        Delete expressions created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void RtlTest::tearDown()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        RtlTest::testAppend
  * OVERVIEW:        Test appendExp and printing of RTLs
  *============================================================================*/

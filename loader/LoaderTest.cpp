@@ -32,56 +32,6 @@
 #include <string>
 
 /*==============================================================================
- * FUNCTION:        LoaderTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) \
-suite->addTest(new CppUnit::TestCaller<LoaderTest> ("LoaderTest", \
-    &LoaderTest::name, *this))
-
-void LoaderTest::registerTests(CppUnit::TestSuite *suite) {
-	MYTEST(testSparcLoad);
-	MYTEST(testPentiumLoad);
-	MYTEST(testHppaLoad);
-	MYTEST(testPalmLoad);
-	MYTEST(testWinLoad);
-
-	MYTEST(testMicroDis1);
-	MYTEST(testMicroDis2);
-
-	MYTEST(testElfHash);
-}
-
-int LoaderTest::countTestCases() const
-{
-	return 7;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        LoaderTest::setUp
- * OVERVIEW:        Set up anything needed before all tests
- * NOTE:            Called before any tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void LoaderTest::setUp()
-{
-}
-
-/*==============================================================================
- * FUNCTION:        LoaderTest::tearDown
- * OVERVIEW:        Delete objects created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void LoaderTest::tearDown()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        LoaderTest::testSparcLoad
  * OVERVIEW:        Test loading the sparc hello world program
  *============================================================================*/

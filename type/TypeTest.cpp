@@ -17,51 +17,6 @@
 #include <iostream>
 
 /*==============================================================================
- * FUNCTION:        TypeTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) \
-suite->addTest(new CppUnit::TestCaller<TypeTest> ("Type", \
-    &TypeTest::name, *this))
-
-void TypeTest::registerTests(CppUnit::TestSuite *suite)
-{
-	// Note: there is nothing left to test in Util (for now)
-	MYTEST(testTypeLong);
-	MYTEST(testNotEqual);
-	MYTEST(testCompound);
-	MYTEST(testDataInterval);
-	MYTEST(testDataIntervalOverlaps);
-}
-
-int TypeTest::countTestCases() const
-{
-	return 1;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        TypeTest::setUp
- * OVERVIEW:        Set up anything needed before all tests
- * NOTE:            Called before any tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void TypeTest::setUp()
-{}
-
-/*==============================================================================
- * FUNCTION:        TypeTest::tearDown
- * OVERVIEW:        Delete objects created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void TypeTest::tearDown()
-{}
-
-/*==============================================================================
  * FUNCTION:        TypeTest::testTypeLong
  * OVERVIEW:        Test type unsigned long
  *============================================================================*/

@@ -18,53 +18,6 @@
 #include "BinaryFileStub.h"
 
 /*==============================================================================
- * FUNCTION:        FrontSparcTest::registerTests
- * OVERVIEW:        Register the test functions in the given suite
- * PARAMETERS:      Pointer to the test suite
- * RETURNS:         <nothing>
- *============================================================================*/
-#define MYTEST(name) \
-suite->addTest(new CppUnit::TestCaller<FrontSparcTest> ("FrontSparcTest", \
-	&FrontSparcTest::name, *this))
-
-void FrontSparcTest::registerTests(CppUnit::TestSuite *suite)
-{
-	MYTEST(test1);
-	MYTEST(test2);
-	MYTEST(test3);
-	MYTEST(testBranch);
-	MYTEST(testDelaySlot);
-}
-
-int FrontSparcTest::countTestCases() const
-{
-	return 3;  // ? What's this for?
-}
-
-/*==============================================================================
- * FUNCTION:        FrontSparcTest::setUp
- * OVERVIEW:        Set up anything needed before all tests
- * NOTE:            Called before any tests
- * NOTE:            Also appears to be called before all tests!
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void FrontSparcTest::setUp()
-{
-}
-
-/*==============================================================================
- * FUNCTION:        FrontSparcTest::tearDown
- * OVERVIEW:        Delete objects created in setUp
- * NOTE:            Called after all tests
- * PARAMETERS:      <none>
- * RETURNS:         <nothing>
- *============================================================================*/
-void FrontSparcTest::tearDown()
-{
-}
-
-/*==============================================================================
  * FUNCTION:        FrontSparcTest::test1
  * OVERVIEW:        Test decoding some sparc instructions
  *============================================================================*/

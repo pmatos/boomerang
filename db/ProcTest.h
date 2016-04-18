@@ -7,22 +7,19 @@
 #include "proc.h"
 #include "prog.h"
 
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/HelperMacros.h>
 
-class ProcTest : public CppUnit::TestCase {
+class ProcTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(ProcTest);
+	CPPUNIT_TEST(testName);
+	CPPUNIT_TEST_SUITE_END();
+
 protected:
 	Proc *m_proc;
 
 public:
-	ProcTest(std::string name) : CppUnit::TestCase(name) { }
+	ProcTest() { }
 
-	virtual void registerTests(CppUnit::TestSuite *suite);
-
-	int countTestCases() const;
-
-	void setUp();
 	void tearDown();
 
 	void testName();

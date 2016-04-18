@@ -1,20 +1,59 @@
 #include "exp.h"
 
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/HelperMacros.h>
 
-class ExpTest : public CppUnit::TestCase {
+class ExpTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(ExpTest);
+	CPPUNIT_TEST(testFixSuccessor);
+	CPPUNIT_TEST(test99);
+	CPPUNIT_TEST(testFlt);
+	CPPUNIT_TEST(testRegOf2);
+	CPPUNIT_TEST(testBinaries);
+	CPPUNIT_TEST(testUnaries);
+	CPPUNIT_TEST(testIsAfpTerm);
+	CPPUNIT_TEST(testCompare1);
+	CPPUNIT_TEST(testCompare2);
+	CPPUNIT_TEST(testCompare3);
+	CPPUNIT_TEST(testCompare4);
+	CPPUNIT_TEST(testCompare5);
+	CPPUNIT_TEST(testCompare6);
+	CPPUNIT_TEST(testSearchReplace1);
+	CPPUNIT_TEST(testSearchReplace2);
+	CPPUNIT_TEST(testSearchReplace3);
+	CPPUNIT_TEST(testSearchReplace4);
+	CPPUNIT_TEST(testSearch1);
+	CPPUNIT_TEST(testSearch2);
+	CPPUNIT_TEST(testSearch3);
+	CPPUNIT_TEST(testSearchAll);
+	CPPUNIT_TEST(testAccumulate);
+	CPPUNIT_TEST(testPartitionTerms);
+	CPPUNIT_TEST(testSimplifyArith);
+	CPPUNIT_TEST(testSimplifyUnary);
+	CPPUNIT_TEST(testSimplifyBinary);
+	CPPUNIT_TEST(testSimplifyAddr);
+	CPPUNIT_TEST(testSimpConstr);
+
+	CPPUNIT_TEST(testLess);
+	CPPUNIT_TEST(testMapOfExp);
+	CPPUNIT_TEST(testList);
+	CPPUNIT_TEST(testParen);
+	CPPUNIT_TEST(testFixSuccessor);
+	CPPUNIT_TEST(testKillFill);
+	CPPUNIT_TEST(testAssociativity);
+	CPPUNIT_TEST(testSubscriptVar);
+	CPPUNIT_TEST(testTypeOf);
+	CPPUNIT_TEST(testSetConscripts);
+	CPPUNIT_TEST(testAddUsedLocs);
+	CPPUNIT_TEST(testSubscriptVars);
+	CPPUNIT_TEST(testVisitors);
+	CPPUNIT_TEST_SUITE_END();
+
 protected:
 	Const *m_99;
 	Location *m_rof2;
 
 public:
-	ExpTest(std::string name) : CppUnit::TestCase(name) { }
-
-	virtual void registerTests(CppUnit::TestSuite *suite);
-
-	int countTestCases() const;
+	ExpTest() { }
 
 	void setUp();
 	void tearDown();

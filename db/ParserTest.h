@@ -1,21 +1,15 @@
 #include "prog.h"
 
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
+#include <cppunit/extensions/HelperMacros.h>
 
-class ParserTest : public CppUnit::TestCase {
-protected:
+class ParserTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(ParserTest);
+	CPPUNIT_TEST(testRead);
+	CPPUNIT_TEST(testExp);
+	CPPUNIT_TEST_SUITE_END();
 
 public:
-	ParserTest(std::string name) : CppUnit::TestCase(name) { }
-
-	virtual void registerTests(CppUnit::TestSuite *suite);
-
-	int countTestCases() const;
-
-	void setUp();
-	void tearDown();
+	ParserTest() { }
 
 	void testRead();
 	void testExp();
