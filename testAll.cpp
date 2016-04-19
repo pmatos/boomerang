@@ -17,7 +17,6 @@
 #include "FrontPentTest.h"
 #include "CTest.h"
 #include "CfgTest.h"
-#include "UtilTest.h"
 
 #include "prog.h"
 
@@ -36,13 +35,11 @@ int main(int argc, char *argv[])
 	runner.addTest(ParserTest::suite());
 	runner.addTest(TypeTest::suite());
 	runner.addTest(FrontSparcTest::suite());
-	//runner.addTest(FrontendTest::suite());
 	runner.addTest(FrontPentTest::suite());
 	runner.addTest(CTest::suite());
 	runner.addTest(StatementTest::suite());
 	runner.addTest(CfgTest::suite());
 	runner.addTest(DfaTest::suite());
-	runner.addTest(UtilTest::suite());
 
 	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

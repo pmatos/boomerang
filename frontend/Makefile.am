@@ -66,18 +66,8 @@ libfrontmips_la_SOURCES = \
 
 
 check_LTLIBRARIES = \
-	libFrontendTest.la \
 	libFrontPentTest.la \
 	libFrontSparcTest.la
-
-libFrontendTest_la_SOURCES = \
-	FrontendTest.cpp \
-	FrontendTest.h
-libFrontendTest_la_LIBADD = \
-	$(CPPUNIT_LIBS)
-libFrontendTest_la_CPPFLAGS = \
-	$(AM_CPPFLAGS) \
-	$(CPPUNIT_CFLAGS)
 
 libFrontPentTest_la_SOURCES = \
 	FrontPentTest.cpp \

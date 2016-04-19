@@ -66,7 +66,6 @@ testAll_LDADD = \
 	$(top_builddir)/db/libStatementTest.la \
 	$(top_builddir)/db/libCfgTest.la \
 	$(top_builddir)/db/libDfaTest.la \
-	$(top_builddir)/util/libUtilTest.la \
 	$(top_builddir)/loader/libBinaryFileStub.la \
 	libboomerang.la \
 	$(CPPUNIT_LIBS)
