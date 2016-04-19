@@ -4,29 +4,34 @@
 
 class ExpTest : public CppUnit::TestFixture {
 	CPPUNIT_TEST_SUITE(ExpTest);
-	CPPUNIT_TEST(testFixSuccessor);
 	CPPUNIT_TEST(test99);
 	CPPUNIT_TEST(testFlt);
 	CPPUNIT_TEST(testRegOf2);
+
 	CPPUNIT_TEST(testBinaries);
 	CPPUNIT_TEST(testUnaries);
+
 	CPPUNIT_TEST(testIsAfpTerm);
+
 	CPPUNIT_TEST(testCompare1);
 	CPPUNIT_TEST(testCompare2);
 	CPPUNIT_TEST(testCompare3);
 	CPPUNIT_TEST(testCompare4);
 	CPPUNIT_TEST(testCompare5);
 	CPPUNIT_TEST(testCompare6);
+
 	CPPUNIT_TEST(testSearchReplace1);
 	CPPUNIT_TEST(testSearchReplace2);
 	CPPUNIT_TEST(testSearchReplace3);
 	CPPUNIT_TEST(testSearchReplace4);
+
 	CPPUNIT_TEST(testSearch1);
 	CPPUNIT_TEST(testSearch2);
 	CPPUNIT_TEST(testSearch3);
 	CPPUNIT_TEST(testSearchAll);
-	CPPUNIT_TEST(testAccumulate);
+
 	CPPUNIT_TEST(testPartitionTerms);
+	CPPUNIT_TEST(testAccumulate);
 	CPPUNIT_TEST(testSimplifyArith);
 	CPPUNIT_TEST(testSimplifyUnary);
 	CPPUNIT_TEST(testSimplifyBinary);
@@ -35,11 +40,13 @@ class ExpTest : public CppUnit::TestFixture {
 
 	CPPUNIT_TEST(testLess);
 	CPPUNIT_TEST(testMapOfExp);
+
 	CPPUNIT_TEST(testList);
 	CPPUNIT_TEST(testParen);
 	CPPUNIT_TEST(testFixSuccessor);
 	CPPUNIT_TEST(testKillFill);
 	CPPUNIT_TEST(testAssociativity);
+
 	CPPUNIT_TEST(testSubscriptVar);
 	CPPUNIT_TEST(testTypeOf);
 	CPPUNIT_TEST(testSetConscripts);
