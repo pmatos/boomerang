@@ -5,6 +5,11 @@
 class CfgTest : public CppUnit::TestFixture {
 	CPPUNIT_TEST_SUITE(CfgTest);
 	// Oops - they were all for dataflow. Need some real Cfg tests!
+	CPPUNIT_TEST(testDominators);
+	CPPUNIT_TEST(testSemiDominators);
+	//CPPUNIT_TEST(testPlacePhi);
+	//CPPUNIT_TEST(testPlacePhi2);
+	CPPUNIT_TEST(testRenameVars);
 	CPPUNIT_TEST_SUITE_END();
 
 protected:
