@@ -73,6 +73,7 @@ AC_C_BIGENDIAN
 #AC_CHECK_FUNCS(mkdir rmdir)
 
 AC_CONFIG_FILES([
+	Doxyfile
 	Makefile
 	c/Makefile
 	codegen/Makefile
