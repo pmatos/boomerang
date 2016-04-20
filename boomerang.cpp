@@ -258,7 +258,7 @@ typedef char *crazy_vc_bug;
  * use like: argc = splitLine(line, &argv);
  *
  * \param[in] line      the string to parse
- * \param[out] pargc    &argv
+ * \param[out] pargv    &argv
  *
  * \return The number of words found (argc).
  */
