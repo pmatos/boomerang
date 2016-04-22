@@ -1,31 +1,29 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition of the class ExeBinaryFile.
+ *
+ * This file contains the definition of the ExeBinaryFile class, and some
+ * other definitions specific to the exe version of the BinaryFile object.
+ *
+ * At present, there is no support for a symbol table.  Exe files do not use
+ * dynamic linking, but it is possible that some files may have debug symbols
+ * (in Microsoft Codeview or Borland formats), and these may be implemented in
+ * the future.  The debug info may even be exposed as another pseudo section.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: ExeBinaryFile.h
- * Desc: This file contains the definition of the class ExeBinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef EXEBINARYFILE_H
 #define EXEBINARYFILE_H
 
 #include "BinaryFile.h"
-
-/*
- * This file contains the definition of the ExeBinaryFile class, and some other
-    definitions specific to the exe version of the BinaryFile object/
-   At present, there is no support for a symbol table. Exe files do
-    not use dynamic linking, but it is possible that some files may
-    have debug symbols (in Microsoft Codeview or Borland formats),
-    and these may be implemented in the future. The debug info may
-    even be exposed as another pseudo section
- */
 
 /* PSP structure */
 typedef struct {

@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       CTest.cc
- * OVERVIEW:   Provides the implementation for the CTest class, which
- *              tests the c parser
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the CTest class, which tests the C
+ *        parser.
+ */
 
 #include "CTest.h"
 #include "sigenum.h"

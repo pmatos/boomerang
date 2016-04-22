@@ -1,20 +1,21 @@
-/*
+/**
+ * \file
+ * \brief Contains common code for all front ends.
+ *
+ * The majority of frontend logic remains in the source dependent files such
+ * as sparcfrontend.cpp.
+ *
+ * \authors
  * Copyright (C) 1999-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       frontend.cpp
- * OVERVIEW:   This file contains common code for all front ends. The majority
- *              of frontend logic remains in the source dependent files such as
- *              frontsparc.cpp
- *============================================================================*/
 
 #include "frontend.h"
 

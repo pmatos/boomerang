@@ -1,20 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Skeleton driver for a binary-file dumper program.
+ *
+ * This file is a generic skeleton for a binary-file dumper, it dumps all the
+ * information it finds about sections in the file, and it displays any code
+ * sections in raw hexadecimal notation.
+ *
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: bffDump_skel.cc
- * Desc: Skeleton driver for a binary-file dumper program.
- *
- * This file is a generic skeleton for a binary-file dumper,
- * it dumps all the information it finds about sections in the
- * file, and it displays any code sections in raw hexadecimal
- * notation.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #include "BinaryFile.h"

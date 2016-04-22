@@ -1,18 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Interface for the basic block class, which form nodes of the control
+ *        flow graph.
+ *
+ * \authors
  * Copyright (C) 1997-2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington and Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       basicblock.h
- * OVERVIEW:   Interface for the basic block class, which form nodes of the control flow graph
- *============================================================================*/
 
 #ifndef BASICBLOCK_H
 #define BASICBLOCK_H

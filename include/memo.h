@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Declaration of the memo class.
+ *
+ * \authors
  * Copyright (C) 2004, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*=============================================================================
- * FILE:        memo.h
- * OVERVIEW:    declaration of the memo class.
- *============================================================================*/
 
 #ifndef MEMO_H
 #define MEMO_H

@@ -1,19 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the classes that describe a low-level RTL
+ *        (register transfer list).
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       rtl.cc
- * OVERVIEW:   Implementation of the classes that describe a low level RTL (
- *             register transfer list)
- *============================================================================*/
 
 #include "types.h"
 #include "statement.h"

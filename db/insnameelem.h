@@ -1,17 +1,13 @@
-/*
+/**
+ * \file
+ * \brief Class declarations for class InsNameElem.
+ *
+ * \authors
  * Copyright (C) 2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/*
- * insnameelem.h
- *
- * header for insnameelem.cc
- * class declarations for class InsNameElem
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef INSNAMEELEM_H

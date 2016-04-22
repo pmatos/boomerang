@@ -1,20 +1,22 @@
-/*
+/**
+ * \file
+ * \brief Contains routines to manage the decoding of sparc instructions and
+ *        the instantiation to RTLs, removing sparc dependent features such as
+ *        delay slots in the process.
+ *
+ * These functions replace frontend.cpp for decoding sparc instructions.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       frontend/sparcfrontend.cpp
- * OVERVIEW:   This file contains routines to manage the decoding of sparc instructions and the instantiation to RTLs,
- *              removing sparc dependent features such as delay slots in the process. These functions replace
- *              frontend.cpp for decoding sparc instructions.
- *============================================================================*/
 
 /*==============================================================================
  * Dependencies.

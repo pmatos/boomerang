@@ -1,7 +1,7 @@
-/*==============================================================================
- * FILE:       testExp.cpp
- * OVERVIEW:   Command line test of the Exp class
- *============================================================================*/
+/**
+ * \file
+ * \brief Command line test of the Exp class.
+ */
 
 #include "ExpTest.h"
 

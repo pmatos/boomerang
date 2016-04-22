@@ -1,18 +1,18 @@
-/*
+/**
+ * \file
+ * \brief Interface for the program object.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*=============================================================================
- * FILE:        prog.h
- * OVERVIEW:    interface for the program object.
- *============================================================================*/
 
 #ifndef PROG_H
 #define PROG_H

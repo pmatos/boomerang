@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the class ElfBinaryFile.
+ *
+ * \authors
  * Copyright (C) 1997-2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*******************************************************************************
- * File: ElfBinaryFile.cc
- * Desc: This file contains the implementation of the class ElfBinaryFile.
- ******************************************************************************/
 
 /*==============================================================================
  * Dependencies.

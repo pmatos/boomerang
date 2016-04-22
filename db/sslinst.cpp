@@ -1,21 +1,23 @@
-/*
+/**
+ * \file
+ * \brief Defines the classes used to represent the semantic definitions of
+ *        instructions and given in a .ssl file.
+ *
+ * \authors
  * Copyright (C) 1997, Shane Sendall
+ * \authors
  * Copyright (C) 1998-1999, David Ung
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       sslinst.cc
- * OVERVIEW:   This file defines the classes used to represent the semantic
- *             definitions of instructions and given in a .ssl file.
- *============================================================================*/
 
 /*==============================================================================
  * Dependencies.

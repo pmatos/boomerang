@@ -1,18 +1,19 @@
+##
+# \file
+# \brief "Simplified header" file for commonly used library functions.
 #
+# From this file, the proc object can construct a map from function name to
+# compact parameter information.
+#
+# \authors
 # Copyright (C) 1999-2000, The University of Queensland
+# \authors
 # Copyright (C) 2000-2001, Sun Microsystems, Inc
 #
-# See the file "LICENSE.TERMS" for information on usage and
-# redistribution of this file, and for a DISCLAIMER OF ALL
-# WARRANTIES.
+# \copyright
+# See the file "LICENSE.TERMS" for information on usage and redistribution of
+# this file, and for a DISCLAIMER OF ALL WARRANTIES.
 #
-
-################################################################################
-# FILE:     common.hs
-# OVERVIEW: "Simplified header" file for commonly used library functions
-#   From this file, the proc object can construct a map from function name to
-#   compact parameter information.
-################################################################################
 
 # Format: <function name> <return type> <parameter type> ...
 # where the function mame is just the name in ascii. All types are one of these:

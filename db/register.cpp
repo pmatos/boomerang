@@ -1,19 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Register class descriptions.  Holds detailed information about a
+ *        single register.
+ *
+ * \authors
  * Copyright (C) 1999-2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * File: register.cc
- * Desc: Register class descriptions.  Holds detailed information about
- *       a single register.
- *============================================================================*/
 
 #include "register.h"
 #include "type.h"

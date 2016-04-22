@@ -1,22 +1,26 @@
-/*
+/**
+ * \file
+ * \brief Provides the definition for the various visitor and modifier
+ *        classes.
+ *
+ * These classes sometimes are associated with Statement and Exp classes, so
+ * they are here to avoid #include problems, to make exp.cpp and statement.cpp
+ * a little less huge.  The main advantage is that they are quick and easy to
+ * implement (once you get used to them), and it avoids having to declare
+ * methods in every Statement or Exp subclass.
+ *
+ * Top level classes:
+ * - ExpVisitor       (visit expressions)
+ * - StmtVisitor      (visit statements)
+ * - StmtExpVisitor   (visit expressions in statements)
+ * - ExpModifier      (modify expressions)
+ * - SimpExpModifier  (simplifying expression modifier)
+ * - StmtModifier     (modify expressions in statements; not abstract)
+ * - StmtPartModifier (as above with special case for whole of LHS)
+ *
+ * \authors
  * Copyright (C) 2004-2006, Mike Van Emmerik and Trent Waddington
  */
-/*==============================================================================
- * FILE:       visitor.h
- * OVERVIEW:   Provides the definition for the various visitor and modifier classes.
- *              These classes sometimes are associated with Statement and Exp classes, so they are here to avoid
- *              #include problems, to make exp.cpp and statement.cpp a little less huge.
- *              The main advantage is that they are quick and easy to implement (once you get used to them), and it
- *              avoids having to declare methods in every Statement or Exp subclass
- * TOP LEVEL
- * CLASSES:     ExpVisitor      (visit expressions)
- *              StmtVisitor     (visit statements)
- *              StmtExpVisitor  (visit expressions in statements)
- *              ExpModifier     (modify expressions)
- *              SimpExpModifier (simplifying expression modifier)
- *              StmtModifier    (modify expressions in statements; not abstract)
- *              StmtPartModifier (as above with special case for whole of LHS)
- *============================================================================*/
 
 #ifndef VISITOR_H
 #define VISITOR_H

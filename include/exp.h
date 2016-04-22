@@ -1,23 +1,22 @@
-/*
+/**
+ * \file
+ * \brief Provides the definition for the Exp class and its subclasses.
+ *
+ *     Main class hierarchy:    Exp (abstract)
+ *                        _____/ | \
+ *                       /       |  \
+ *                    Unary    Const Terminal
+ *       TypedExp____/  |   \         \
+ *        FlagDef___/ Binary Location  TypeVal
+ *         RefExp__/    |
+ *                   Ternary
+ *
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington and Mike Van Emmerik
  */
-/*==============================================================================
- * FILE:       exp.h
- * OVERVIEW:   Provides the definition for the Exp class and its subclasses.
- *============================================================================*/
 
 #ifndef EXP_H
 #define EXP_H
-
-/* Main class hierarchy:    Exp (abstract)
-                      _____/ | \
-                     /       |  \
-                  Unary    Const Terminal
-     TypedExp____/  |   \         \
-      FlagDef___/ Binary Location  TypeVal
-       RefExp__/    |
-                 Ternary
-*/
 
 #include "operator.h"   // Declares the OPER enum
 #include "types.h"      // For ADDRESS, etc

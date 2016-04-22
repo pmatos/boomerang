@@ -1,13 +1,13 @@
-/* * Copyright (C) 2000-2001, The University of Queensland
+/**
+ * \file
+ * \brief Contains the definition of the class HpSomBinaryFile.
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
+ * \authors
+ * Copyright (C) 2000-2001, The University of Queensland
  *
- */
-
-/* File: HpSomBinaryFile.h
- * Desc: This file contains the definition of the class HpSomBinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef HPSOMBINARYFILE_H

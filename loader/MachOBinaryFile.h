@@ -1,15 +1,21 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition of the class MachOBinaryFile.
+ *
+ * This file contains the definition of the MachOBinaryFile class, and some
+ * other definitions specific to the Mac OS-X version of the BinaryFile
+ * object.
+ *
+ * This is my bare bones implementation of a Mac OS-X binary loader.
+ *
+ * \authors
  * Copyright (C) 2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: MachOBinaryFile.h
- * Desc: This file contains the definition of the class MachOBinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef MACHOBINARYFILE_H
@@ -19,13 +25,6 @@
 
 #include <string>
 #include <vector>
-
-/*
- * This file contains the definition of the MachOBinaryFile class, and some
- * other definitions specific to the Mac OS-X version of the BinaryFile object
- */
-/* This is my bare bones implementation of a Mac OS-X binary loader.
- */
 
 #ifndef _MACH_MACHINE_H_                // On OS X, this is already defined
 typedef unsigned long cpu_type_t;       // I guessed

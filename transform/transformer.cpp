@@ -1,10 +1,10 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the Transformer and related classes.
+ *
+ * \authors
  * Copyright (C) 2004, Mike Van Emmerik and Trent Waddington
  */
-/*==============================================================================
- * FILE:        transformer.cpp
- * OVERVIEW:    Implementation of the Transformer and related classes.
- *============================================================================*/
 
 #include "types.h"
 #include "statement.h"

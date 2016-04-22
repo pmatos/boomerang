@@ -1,17 +1,16 @@
-/*
+/**
+ * \file
+ * \brief An element of an instruction name - contains definition of class
+ *        InsNameElem.
+ *
+ * \authors
  * Copyright (C) 2001, The University of Queensland
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/*
- * insnameelem.cc
- *
- * an element of an instruction name - contains definition of class InsNameElem
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #include "types.h"

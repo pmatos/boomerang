@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Element comparison functions for expressions and statements.
+ *
+ * \authors
  * Copyright (C) 2003, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       exphelp.h
- * OVERVIEW:   Element comparison functions for expressions and statements
- *============================================================================*/
 
 #ifndef EXPHELP_H
 #define EXPHELP_H

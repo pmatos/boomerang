@@ -1,7 +1,7 @@
-/*==============================================================================
- * FILE:       testStmt.cpp
- * OVERVIEW:   Command line test of the Statement class
- *============================================================================*/
+/**
+ * \file
+ * \brief Command line test of the Statement class.
+ */
 
 #include "StatementTest.h"
 

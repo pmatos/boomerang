@@ -1,10 +1,10 @@
-/*
+/**
+ * \file
+ * \brief Command line processing for the Boomerang decompiler
+ *
+ * \authors
  * Copyright (C) 2002-2006, Mike Van Emmerik and Trent Waddington
  */
-/*==============================================================================
- * FILE:       boomerang.cpp
- * OVERVIEW:   Command line processing for the Boomerang decompiler
- *============================================================================*/
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"

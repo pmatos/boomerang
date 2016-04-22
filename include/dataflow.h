@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Interface for SSA-based data flow analysis.
+ *
+ * \authors
  * Copyright (C) 2005-2006, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       dataflow.h
- * OVERVIEW:   Interface for SSA based data flow analysis
- *============================================================================*/
 
 #ifndef DATAFLOW_H
 #define DATAFLOW_H

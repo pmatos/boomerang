@@ -1,11 +1,12 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the XMLProgParser and related classes.
+ *
+ * \authors
  * Copyright (C) 2004, Trent Waddington
+ * \authors
  * Copyright (C) 2016, Kyle Guinn
  */
-/*==============================================================================
- * FILE:       xmlprogparser.cpp
- * OVERVIEW:   Implementation of the XMLProgParser and related classes.
- *============================================================================*/
 
 #include "type.h"
 #include "cluster.h"

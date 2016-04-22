@@ -1,10 +1,10 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the GenericExpTransformer and related classes.
+ *
+ * \authors
  * Copyright (C) 2004, Mike Van Emmerik and Trent Waddington
  */
-/*==============================================================================
- * FILE:       generic.cpp
- * OVERVIEW:   Implementation of the GenericExpTransformer and related classes.
- *============================================================================*/
 
 #include "types.h"
 #include "statement.h"

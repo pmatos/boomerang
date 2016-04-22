@@ -1,29 +1,26 @@
-/*
+/**
+ * \file
+ * \brief The Statement and related classes (was dataflow.h)
+ *
+ *     Class hierarchy:     Statement@            (@ = abstract)
+ *                        __/   |   \________________________
+ *                       /      |            \               \
+ *           GotoStatement  TypingStatement@  ReturnStatement JunctionStatement
+ *     BranchStatement_/     /          \
+ *     CaseStatement__/  Assignment@   ImpRefStatement
+ *     CallStatement_/  /   /    \ \________
+ *           PhiAssign_/ Assign  BoolAssign \_ImplicitAssign
+ *
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       statement.h
- * OVERVIEW:   The Statement and related classes (was dataflow.h)
- *============================================================================*/
 
 #ifndef STATEMENT_H
 #define STATEMENT_H
-
-/* Class hierarchy:   Statement@            (@ = abstract)
-                    __/   |   \________________________
-                   /      |            \               \
-       GotoStatement  TypingStatement@  ReturnStatement JunctionStatement
- BranchStatement_/     /          \
- CaseStatement__/  Assignment@   ImpRefStatement
- CallStatement_/  /   /    \ \________
-       PhiAssign_/ Assign  BoolAssign \_ImplicitAssign
-*/
 
 //#include "exp.h"  // No! This is (almost) the bottom of the #include hierarchy
 #include "memo.h"

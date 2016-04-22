@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       ProcTest.h
- * OVERVIEW:   Provides the interface for the ProcTest class, which
- *              tests the Proc class
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the interface for the ProcTest class, which tests the Proc
+ *        class.
+ */
 
 #include "proc.h"
 #include "prog.h"

@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       DfaTest.cc
- * OVERVIEW:   Provides the implementation for the DfaTest class, which
- *              tests the data flow based type analysis code
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the DfaTest class, which tests the
+ *        data flow based type analysis code.
+ */
 
 #include "DfaTest.h"
 #include "log.h"

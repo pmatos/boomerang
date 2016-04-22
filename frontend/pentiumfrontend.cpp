@@ -1,18 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Contains routines to manage the decoding of pentium instructions and
+ *        the instantiation to RTLs.
+ *
+ * These functions replace frontend.cpp for decoding pentium instructions.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       frontend/pentiumfrontend.cpp
- * OVERVIEW:   This file contains routines to manage the decoding of pentium instructions and the instantiation to RTLs.
- *             These functions replace frontend.cpp for decoding pentium instructions.
- *============================================================================*/
 
 #include "types.h"
 #include "BinaryFile.h"

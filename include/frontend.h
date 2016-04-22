@@ -1,21 +1,22 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition for the FrontEnd class
+ *
+ * The FrontEnd class implements the source independent parts of the front
+ * end:  Decoding machine instructions into a control flow graph populated
+ * with low- and high-level RTLs.
+ *
+ * \authors
  * Copyright (C) 1998-2005, The University of Queensland
+ * \authors
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:        frontend.h
- * OVERVIEW:    This file contains the definition for the FrontEnd class, which implements the source indendent parts of
- *              the front end: decoding machine instructions into a control flow graph populated with low and high level
- *              RTLs.
- *============================================================================*/
 
 #ifndef FRONTEND_H
 #define FRONTEND_H

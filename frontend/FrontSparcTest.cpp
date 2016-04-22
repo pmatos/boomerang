@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       FrontSparcTest.cc
- * OVERVIEW:   Provides the implementation for the FrontSparcTest class, which
- *              tests the sparc front end
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the FrontSparcTest class, which
+ *        tests the sparc front end.
+ */
 
 #define HELLO_SPARC     "test/sparc/hello"
 #define BRANCH_SPARC    "test/sparc/branch"

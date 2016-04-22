@@ -1,18 +1,16 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the class HpSomBinaryFile, for
+ *        decoding PA/RISC SOM executable files.  Derived from class
+ *        BinaryFile.
+ *
+ * \authors
  * Copyright (C) 2000-2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:        HpSomBinaryFile.cc
- * OVERVIEW:    This file contains the implementation of the class
- *              HpSomBinaryFile, for decoding PA/RISC SOM executable files.
- *              Derived from class BinaryFile
- *============================================================================*/
 
 #include "HpSomBinaryFile.h"
 

@@ -1,7 +1,8 @@
-/*==============================================================================
- * FILE:       TypeTest.cc
- * OVERVIEW:   Provides the implementation for the TypeTest class, which tests the Type class and some utility functions
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the TypeTest class, which tests the
+ *        Type class and some utility functions.
+ */
 
 #define HELLO_WINDOWS       "test/windows/hello.exe"
 

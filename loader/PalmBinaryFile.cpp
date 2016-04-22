@@ -1,15 +1,15 @@
-/*
+/**
+ * \file
+ * \brief Loads a Palm Pilot .prc file.  Derived from class BinaryFile.
+ *
+ * \authors
  * Copyright (C) 2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: PalmBinaryFile.cc
- * Desc: This class loads a Palm Pilot .prc file. Derived from class BinaryFile
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #include "PalmBinaryFile.h"

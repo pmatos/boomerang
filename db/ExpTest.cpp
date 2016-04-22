@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       ExpTest.cc
- * OVERVIEW:   Provides the implementation for the ExpTest class, which
- *              tests the Exp and derived classes
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the ExpTest class, which tests the
+ *        Exp and derived classes.
+ */
 
 #include "ExpTest.h"
 #include "statement.h"

@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Definition of objects related to type constraints.
+ *
+ * \authors
  * Copyright (C) 2003, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       constraint.h
- * OVERVIEW:   Definition of objects related to type constraints
- *============================================================================*/
 
 #include "statement.h"
 #include "exp.h"

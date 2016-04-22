@@ -1,18 +1,17 @@
-/*
+/**
+ * \file
+ * \brief Interface for the boomerang singleton object.
+ *
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
-/** \file boomerang.h
- * Interface for the boomerang singleton object.
- */
-
-/** \mainpage Introduction
- *
+/**
+ * \mainpage Introduction
  * \section Introduction
  *
  * Welcome to the Doxygen generated documentation for the
@@ -22,7 +21,6 @@
  *
  * More information on the %Boomerang decompiler can be found at
  * http://boomerang.sourceforge.net.
- *
  */
 
 

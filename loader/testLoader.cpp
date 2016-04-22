@@ -1,7 +1,7 @@
-/*==============================================================================
- * FILE:       testLoader.cc
- * OVERVIEW:   Command line test of the BinaryFile and related classes.
- *============================================================================*/
+/**
+ * \file
+ * \brief Command line test of the BinaryFile and related classes.
+ */
 
 #include "LoaderTest.h"
 

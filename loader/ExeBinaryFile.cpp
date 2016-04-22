@@ -1,20 +1,17 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the class ExeBinaryFile.
+ *
+ * This file implements the class ExeBinaryFile, derived from class
+ * BinaryFile.  See ExeBinaryFile.h and BinaryFile.h for details.
+ *
+ * \authors
  * Copyright (C) 1997,2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/* File: ExeBinaryFile.cc
- * Desc: This file contains the implementation of the class ExeBinaryFile.
- */
-
-/* EXE binary file format.
- * This file implements the class ExeBinaryFile, derived from class BinaryFile.
- * See ExeBinaryFile.h and BinaryFile.h for details
-*/
 
 #include "ExeBinaryFile.h"
 

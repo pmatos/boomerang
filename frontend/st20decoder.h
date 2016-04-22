@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief The definition of the instruction decoder for ST20.
+ *
+ * \authors
  * Copyright (C) 2005, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       st20decoder.h
- * OVERVIEW:   The definition of the instruction decoder for ST20.
- *============================================================================*/
 
 #ifndef ST20DECODER
 #define ST20DECODER

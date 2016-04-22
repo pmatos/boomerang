@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the classes that describe a procedure signature.
+ *
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       signature.cpp
- * OVERVIEW:   Implementation of the classes that describe a procedure signature
- *============================================================================*/
 
 #include "type.h"
 #include "signature.h"

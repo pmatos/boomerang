@@ -1,14 +1,13 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition of the class PalmBinaryFile.
+ *
+ * \authors
  * Copyright (C) 2000-2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: PalmBinaryFile.h
- * Desc: This file contains the definition of the class PalmBinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef PALMBINARYFILE_H

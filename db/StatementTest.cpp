@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       StatementTest.cc
- * OVERVIEW:   Provides the implementation for the StatementTest class, which
- *              tests the dataflow subsystems
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the StatementTest class, which tests
+ *        the dataflow subsystems.
+ */
 
 #define HELLO_PENTIUM      "test/pentium/hello"
 #define GLOBAL1_PENTIUM    "test/pentium/global1"

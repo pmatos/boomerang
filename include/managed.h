@@ -1,23 +1,24 @@
-/*
+/**
+ * \file
+ * \brief Definition of "managed" classes such as StatementSet, which feature
+ *        makeUnion, etc.
+ *
+ * Classes:
+ * - StatementSet
+ * - AssignSet
+ * - StatementList
+ * - StatementVec
+ * - LocationSet
+ * - //LocationList
+ * - ConnectionGraph
+ *
+ * \authors
  * Copyright (C) 2003, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*===============================================================================================
- * FILE:       managed.h
- * OVERVIEW:   Definition of "managed" classes such as StatementSet, which feature makeUnion etc
- * CLASSES:     StatementSet
- *              AssignSet
- *              StatementList
- *              StatementVec
- *              LocationSet
- *              //LocationList
- *              ConnectionGraph
- *==============================================================================================*/
 
 #ifndef MANAGED_H
 #define MANAGED_H

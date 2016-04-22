@@ -1,20 +1,21 @@
-/*
+/**
+ * \file
+ * \brief Defines a parser class that reads an SSL specification and returns
+ *        the list of SSL instruction and table definitions.
+ *
+ * \authors
  * Copyright (C) 1997, Shane Sendall
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 1998, David Ung
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       sslparser.y
- * OVERVIEW:   Defines a parser class that reads an SSL specification and
- *             returns the list of SSL instruction and table definitions.
- *============================================================================*/
 
 %name SSLParser
 

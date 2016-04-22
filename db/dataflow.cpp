@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the DataFlow class.
+ *
+ * \authors
  * Copyright (C) 2005, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       dataflow.cpp
- * OVERVIEW:   Implementation of the DataFlow class
- *============================================================================*/
 
 #include "dataflow.h"
 #include "cfg.h"

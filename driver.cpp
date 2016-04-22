@@ -1,18 +1,21 @@
-/*
+/**
+ * \file
+ * \brief Important initialisation that has to happen at the start of main().
+ *
+ * Also contains main(), so it can be the only file different between
+ * boomerang and bigtest.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002-2006, Mike Van Emmerik and Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*======================================================================================================
- * FILE:        driver.cpp
- * OVERVIEW:    Important initialisation that has to happen at the start of main()
- *              Also contains main(), so it can be the only file different between boomerang and bigtest
- *======================================================================================================*/
 
 #include "boomerang.h"
 

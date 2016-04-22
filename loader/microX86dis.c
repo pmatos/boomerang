@@ -1,7 +1,12 @@
-/* Tiny X86 disassembler, capable only of finding the number of bytes of a given instruction
- * In other words, a surface engine
- * Assumes a seg32 segment; ignores the address size override
- * Note that the function could return Not Handled (NH, 0x40)
+/**
+ * \file
+ *
+ * Tiny X86 disassembler, capable only of finding the number of bytes of a
+ * given instruction.  In other words, a surface engine.
+ *
+ * Assumes a seg32 segment; ignores the address size override.
+ *
+ * Note that the function could return Not Handled (NH, 0x40).
  */
 
 #define MODRM  0x10

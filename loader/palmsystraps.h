@@ -1,18 +1,18 @@
-/*
+/**
+ * \file
+ * \brief Enumerated types for system trap names.
+ *
+ * Based on code from the Metrowerks Compiler, PalmOS 2.0 support.
+ *
+ * \authors
  * Copyright (C) 2000, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2000, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       palmsystraps.h
- * OVERVIEW:   Enumerated types for system trap names
- *             Based on code from the Metrowerks Compiler, PalmOS 2.0 support
- *============================================================================*/
 
 #ifndef SYSTRAPS_H
 #define SYSTRAPS_H

@@ -1,10 +1,10 @@
-/*
+/**
+ * \file
+ * \brief Provides the definition for the signature classes.
+ *
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  */
-/*==============================================================================
- * FILE:       signature.h
- * OVERVIEW:   Provides the definition for the signature classes.
- *============================================================================*/
 
 #ifndef SIGNATURE_H
 #define SIGNATURE_H

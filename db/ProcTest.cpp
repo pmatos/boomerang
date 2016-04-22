@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       ProcTest.cc
- * OVERVIEW:   Provides the implementation for the ProcTest class, which
- *              tests the Proc class
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the ProcTest class, which tests the
+ *        Proc class.
+ */
 
 #define HELLO_PENTIUM       "test/pentium/hello"
 

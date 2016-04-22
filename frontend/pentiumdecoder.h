@@ -1,17 +1,16 @@
-/*
+/**
+ * \file
+ * \brief The implementation of the instruction decoder for Pentium.
+ *
+ * \authors
  * Copyright (C) 1996-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       pentdecoder.h
- * OVERVIEW:   The implementation of the instruction decoder for Pentium.
- *============================================================================*/
 
 #ifndef PENTDECODER
 #define PENTDECODER

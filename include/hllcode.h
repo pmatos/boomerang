@@ -1,21 +1,20 @@
-/*
+/**
+ * \file
+ * \brief Interface for a high-level language code base class.
+ *
+ * This class provides methods which are generic of procedural languages like
+ * C, Pascal, Fortran, etc.  Included in the base class are the follow and
+ * goto sets which are used during code generation.  Concrete implementations
+ * of this class provide specific language bindings for a single procedure in
+ * the program.
+ *
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       hllcode.h
- * OVERVIEW:   Interface for a high level language code base class.
- *             This class is provides methods which are generic of procedural
- *             languages like C, Pascal, Fortran, etc.  Included in the base class
- *             is the follow and goto sets which are used during code generation.
- *             Concrete implementations of this class provide specific language
- *             bindings for a single procedure in the program.
- *============================================================================*/
 
 #ifndef HLLCODE_H
 #define HLLCODE_H

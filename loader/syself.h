@@ -1,17 +1,15 @@
-/*
+/**
+ * \file
+ * \brief Contains the various system includes and the like needed to load elf
+ *        binary files.
+ *
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * File:       syself.h
- * OVERVIEW:   This file contains the various system includes and the like
- *             needed to load elf binary files.
- *============================================================================*/
 
 #ifndef SYSELF_H
 #define SYSELF_H

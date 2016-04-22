@@ -1,7 +1,7 @@
-/*==============================================================================
- * FILE:       testAll.cc
- * OVERVIEW:   Command line test of all of Boomerang
- *============================================================================*/
+/**
+ * \file
+ * \brief Command line test of all of Boomerang.
+ */
 
 #include "exp.h"
 

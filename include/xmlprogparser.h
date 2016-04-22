@@ -1,17 +1,16 @@
-/*
+/**
+ * \file
+ * \brief Parses persisted XML output and creates a new prog.
+ *
+ * \authors
  * Copyright (C) 2004, Trent Waddington
+ * \authors
  * Copyright (C) 2016, Kyle Guinn
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*=============================================================================
- * FILE:        XMLProgParser.h
- * OVERVIEW:    parses persisted XML output and creates a new prog.
- *============================================================================*/
 
 #ifndef XMLPROGPARSER_H
 #define XMLPROGPARSER_H

@@ -1,19 +1,21 @@
-/*
+/**
+ * \file
+ * \brief Interface for the procedure classes
+ *
+ * The procedure classes are used to store information about variables in the
+ * procedure such as parameters and locals.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington and Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       proc.h
- * OVERVIEW:   Interface for the procedure classes, which are used to store information about variables in the
- *              procedure such as parameters and locals.
- *============================================================================*/
 
 #ifndef PROC_H
 #define PROC_H

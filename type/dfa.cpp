@@ -1,16 +1,15 @@
-/*
+/**
+ * \file
+ * \brief Implementation of class Type functions related to solving type
+ *        analysis in an iterative, data-flow-based manner.
+ *
+ * \authors
  * Copyright (C) 2004-2006, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       dfa.cpp
- * OVERVIEW:   Implementation of class Type functions related to solving type analysis in an iterative, data-flow-based
- *              manner
- *============================================================================*/
 
 #include "type.h"
 #include "boomerang.h"

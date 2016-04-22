@@ -1,17 +1,15 @@
-/*
+/**
+ * \file
+ * \brief Provides the definition of class Table and children used by the SSL
+ *        parser.
+ *
+ * \authors
  * Copyright (C) 2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       table.h
- * OVERVIEW:   Provides the definition of class Table and children used by
- *             the SSL parser
- *============================================================================*/
 
 #ifndef TABLE_H
 #define TABLE_H

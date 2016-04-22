@@ -1,16 +1,15 @@
-/*
+/**
+ * \file
+ * \brief Implementation of "managed" classes such as StatementSet, which
+ *        feature makeUnion, etc.
+ *
+ * \authors
  * Copyright (C) 2003, Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       managed.cpp
- * OVERVIEW:   Implementation of "managed" classes such as StatementSet, which feature makeUnion etc
- *============================================================================*/
 
 #include "types.h"
 #include "managed.h"

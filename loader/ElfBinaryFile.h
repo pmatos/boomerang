@@ -1,14 +1,13 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition of the class ElfBinaryFile.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: ElfBinaryFile.h
- * Desc: This file contains the definition of the class ElfBinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef ELFBINARYFILE_H

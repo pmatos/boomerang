@@ -1,29 +1,25 @@
-/*
- * Copyright (C) 2006, Trent Waddington
+/**
+ * \file
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-
-/*
- * This file contains a truely diabolical hack to make Qt4 threads work
- * nicely with the Boehm garbage collector.  It works by exporting a
- * pthread_create symbol that Qt4 links to.  If the start routine is not
- * GC_start_routine, it calls the garbage collector to create the thread,
- * otherwise it dynamically loads libpthread and calls the real
- * pthread_create.
+ * This file contains a truely diabolical hack to make Qt4 threads work nicely
+ * with the Boehm garbage collector.  It works by exporting a pthread_create
+ * symbol that Qt4 links to.  If the start routine is not GC_start_routine, it
+ * calls the garbage collector to create the thread, otherwise it dynamically
+ * loads libpthread and calls the real pthread_create.
  *
  * This prevents us from having to rebuild Qt4 with
  *
- * #define GC_THREADS
- * #include <gc/gc.h>
+ *     #define GC_THREADS
+ *     #include <gc/gc.h>
  *
  * in qthread_unix.cpp, which would be the sane way to fix this problem.
  *
- *  - trentw
+ * \authors
+ * Copyright (C) 2006, Trent Waddington
+ *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #include <dlfcn.h>

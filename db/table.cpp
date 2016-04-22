@@ -1,18 +1,17 @@
-/*
+/**
+ * \file
+ * \brief Provides the implementation of classes Table, OpTable, and
+ *        ExprTable.
+ *
+ * \authors
  * Copyright (C) 2001, The University of Queensland
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       table.cc
- * OVERVIEW:   Provides the implementation of classes Table, OpTable, and
- *             ExprTable
- *============================================================================*/
 
 #include "types.h"
 #include "table.h"

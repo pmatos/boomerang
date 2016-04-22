@@ -1,7 +1,8 @@
-/*==============================================================================
- * FILE:       transformation.y
- * OVERVIEW:   Parser for transformation language.
- *============================================================================*/
+/**
+ * \file
+ * \brief Parser for transformation language.
+ */
+
 %name TransformationParser
 
 %header{

@@ -1,21 +1,20 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the class DOS4GWBinaryFile.
+ *
+ * This file implements the class DOS4GWBinaryFile, derived from class
+ * BinaryFile.  See DOS4GWBinaryFile.h and BinaryFile.h for details.
+ *
+ * \authors
  * Copyright (C) 2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: DOS4GWBinaryFile.cc
- * Desc: This file contains the implementation of the class DOS4GWBinaryFile.
- */
-
-/* DOS4GW binary file format.
- * This file implements the class DOS4GWBinaryFile, derived from class
- * BinaryFile. See DOS4GWBinaryFile.h and BinaryFile.h for details.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifdef HAVE_CONFIG_H

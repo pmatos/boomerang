@@ -1,10 +1,10 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the Exp and related classes.
+ *
+ * \authors
  * Copyright (C) 2002-2006 Mike Van Emmerik and Trent Waddington
  */
-/*==============================================================================
- * FILE:       exp.cpp
- * OVERVIEW:   Implementation of the Exp and related classes.
- *============================================================================*/
 
 #include "types.h"
 #include "statement.h"

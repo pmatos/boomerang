@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       ProgTest.cc
- * OVERVIEW:   Provides the implementation for the ProgTest class, which
- *              tests the Exp and derived classes
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the ProgTest class, which tests the
+ *        Exp and derived classes.
+ */
 
 #define HELLO_PENTIUM       "test/pentium/hello"
 

@@ -1,7 +1,8 @@
-/*==============================================================================
- * FILE:       transformation.l
- * OVERVIEW:   Scanner for transformation language.
- *============================================================================*/
+/**
+ * \file
+ * \brief Scanner for transformation language.
+ */
+
 %name TransformationScanner
 
 %header{

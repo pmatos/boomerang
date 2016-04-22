@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       FrontPentTest.cc
- * OVERVIEW:   Provides the implementation for the FrontPentTest class, which
- *              tests the sparc front end
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the FrontPentTest class, which tests
+ *        the pentium front end.
+ */
 
 #define HELLO_PENT      "test/pentium/hello"
 #define BRANCH_PENT     "test/pentium/branch"

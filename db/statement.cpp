@@ -1,17 +1,15 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the Statement and related classes.  (Was
+ *        dataflow.cpp a long time ago)
+ *
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington and Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       statement.cpp
- * OVERVIEW:   Implementation of the Statement and related classes.
- *             (Was dataflow.cpp a long time ago)
- *============================================================================*/
 
 /*==============================================================================
  * Dependencies.

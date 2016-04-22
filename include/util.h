@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       util.h
- * OVERVIEW:   Provides the definition for the miscellaneous bits and pieces
- *               implemented in the util.so library
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the definition for the miscellaneous bits and pieces
+ *        implemented in the util.so library.
+ */
 
 #ifndef UTIL_H
 #define UTIL_H

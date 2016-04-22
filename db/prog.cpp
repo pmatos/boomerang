@@ -1,19 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the program class.  Holds information of interest
+ *        to the whole program.
+ *
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002-2003, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:        prog.cpp
- * OVERVIEW:    Implementation of the program class. Holds information of
- *              interest to the whole program.
- *============================================================================*/
 
 /*==============================================================================
  * Dependencies.

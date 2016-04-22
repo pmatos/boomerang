@@ -1,18 +1,10 @@
-/****************************************************************
-*
-* FILENAME
-*
-*   \file mipsfrontend.h
-*
-* PURPOSE
-*
-*   Skeleton for MIPS disassembly.
-*
-* AUTHOR
-*
-*   \author Markus Gothe, nietzsche@lysator.liu.se
-*
-*****************************************************************/
+/**
+ * \file
+ * \brief Skeleton for MIPS disassembly.
+ *
+ * \authors
+ * Markus Gothe <nietzsche@lysator.liu.se>
+ */
 
 #ifndef MIPSDECODER
 #define MIPSDECODER

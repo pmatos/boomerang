@@ -1,7 +1,7 @@
-/*==============================================================================
- * FILE:       testRtl.cpp
- * OVERVIEW:   Command line test of the Rtl class
- *============================================================================*/
+/**
+ * \file
+ * \brief Command line test of the Rtl class.
+ */
 
 #include "RtlTest.h"
 

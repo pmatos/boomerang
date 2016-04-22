@@ -1,20 +1,20 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the class BinaryFile.
+ *
+ * This file implements the abstract BinaryFile class.  All classes derived
+ * from this class must implement the Load() function.
+ *
+ * \authors
  * Copyright (C) 1997-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: BinaryFile.cpp
- * Desc: This file contains the implementation of the class BinaryFile
- *
- * This file implements the abstract BinaryFile class.
- * All classes derived from this class must implement the Load()
- *function.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 /*==============================================================================

@@ -1,17 +1,17 @@
-/*
+/**
+ * \file
+ * \brief Concrete backend class for the "C" high level language.
+ *
+ * This class provides methods which are specific for the C language binding.
+ * I guess this will be the most popular output language unless we do C++.
+ *
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       chllcode.cpp
- * OVERVIEW:   Concrete backend class for the "C" high level language
- *             This class is provides methods which are specific for the C language binding.
- *             I guess this will be the most popular output language unless we do C++.
- *============================================================================*/
 
 #include "cfg.h"
 #include "statement.h"

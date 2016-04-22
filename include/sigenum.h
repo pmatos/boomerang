@@ -1,4 +1,8 @@
-// Needed by both signature.h and frontend.h
+/**
+ * \file
+ * \brief Needed by both signature.h and frontend.h
+ */
+
 #ifndef SIGENUM
 #define SIGENUM
 

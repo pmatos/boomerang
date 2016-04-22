@@ -1,10 +1,11 @@
-/* File: BinaryFileFactory.cpp
- * Desc: This file contains the implementation of the factory function
- * BinaryFile::getInstanceFor(), and also BinaryFile::Load()
+/**
+ * \file
+ * \brief Contains the implementation of the factory function
+ *        BinaryFile::getInstanceFor(), and also BinaryFile::Load().
  *
  * This function determines the type of a binary and loads the appropriate
  * loader class dynamically.
-*/
+ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"

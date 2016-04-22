@@ -1,6 +1,11 @@
-// To use, remove the binary, then "make checkstrings"
-// Could say "all is well" when not, if some operators are deleted and the
-// same number added
+/**
+ * \file
+ *
+ * To use, remove the binary, then `make checkstrings`.
+ *
+ * Could say "all is well" when not, if some operators are deleted and the
+ * same number added.
+ */
 
 #include "operstrings.h"
 #include "operator.h"

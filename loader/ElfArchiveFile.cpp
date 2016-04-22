@@ -1,14 +1,13 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the ElfArchiveFile class.
+ *
+ * \authors
  * Copyright (C) 1998, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: ElfArchiveFile.cc
- * Desc: This file contains the implementation of the ElfArchiveFile class
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #include "global.h"

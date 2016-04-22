@@ -1,18 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Definition of the Type class:  Low-level type information.
+ *
+ * Note that we may have a completely different system for recording
+ * high-level types.
+ *
+ * \authors
  * Copyright (C) 2000-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington and Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       type.h
- * OVERVIEW:   Definition of the Type class: low level type information
- *             Note that we may have a compeltely different system for
- *              recording high level types
- *============================================================================*/
 
 #ifndef TYPE_H
 #define TYPE_H

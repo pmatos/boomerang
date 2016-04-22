@@ -1,7 +1,7 @@
-/*==============================================================================
- * FILE:       testDbase.cc
- * OVERVIEW:   Command line test of the Exp and related classes.
- *============================================================================*/
+/**
+ * \file
+ * \brief Command line test of the Exp and related classes.
+ */
 
 #include "exp.h"
 

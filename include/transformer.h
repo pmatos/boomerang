@@ -1,10 +1,10 @@
-/*
+/**
+ * \file
+ * \brief Provides the definition for the transformer and related classes.
+ *
+ * \authors
  * Copyright (C) 2004, Trent Waddington
  */
-/*==============================================================================
- * FILE:       transformer.h
- * OVERVIEW:   Provides the definition for the tranformer and related classes.
- *============================================================================*/
 
 #ifndef TRANSFORMER_H
 #define TRANSFORMER_H

@@ -1,15 +1,24 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition of the class DOS4GWBinaryFile.
+ *
+ * This file contains the definition of the DOS4GWBinaryFile class, and some
+ * other definitions specific to the exe version of the BinaryFile object.
+ *
+ * At present, this loader supports the OS2 file format (also known as the
+ * Linear eXecutable format) as much as I've found necessary to inspect old
+ * DOS4GW apps.  This loader could also be used for decompiling Win9x VxD
+ * files or, of course, OS2 binaries, but you're probably better off making a
+ * specific loader for each of these.
+ *
+ * \authors
  * Copyright (C) 2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: DOS4GWBinaryFile.h
- * Desc: This file contains the definition of the class DOS4GWBinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef DOS4GWBINARYFILE_H
@@ -20,17 +29,6 @@
 #include <string>
 
 #define PACKED __attribute__((packed))
-
-/*
- * This file contains the definition of the DOS4GWBinaryFile class, and some
- * other definitions specific to the exe version of the BinaryFile object
- */
-/* At present, this loader supports the OS2 file format (also known as
- * the Linear eXecutable format) as much as I've found necessary to
- * inspect old DOS4GW apps.  This loader could also be used for decompiling
- * Win9x VxD files or, of course, OS2 binaries, but you're probably better off
- * making a specific loader for each of these.
- */
 
 /* exe file header, just the signature really */
 typedef struct {

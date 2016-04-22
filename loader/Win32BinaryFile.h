@@ -1,15 +1,23 @@
-/*
+/**
+ * \file
+ * \brief Contains the definition of the class Win32BinaryFile.
+ *
+ * This file contains the definition of the Win32BinaryFile class, and some
+ * other definitions specific to the exe version of the BinaryFile object.
+ *
+ * At present, there is no support for a symbol table.  Win32 files do not use
+ * dynamic linking, but it is possible that some files may have debug symbols
+ * (in Microsoft Codeview or Borland formats), and these may be implemented in
+ * the future.  The debug info may even be exposed as another pseudo section.
+ *
+ * \authors
  * Copyright (C) 2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: Win32BinaryFile.h
- * Desc: This file contains the definition of the class Win32BinaryFile.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifndef WIN32BINARYFILE_H
@@ -20,17 +28,6 @@
 #include <string>
 
 #define PACKED __attribute__((packed))
-
-/*
- * This file contains the definition of the Win32BinaryFile class, and some
- * other definitions specific to the exe version of the BinaryFile object
- */
-/* At present, there is no support for a symbol table. Win32 files do
-    not use dynamic linking, but it is possible that some files may
-    have debug symbols (in Microsoft Codeview or Borland formats),
-    and these may be implemented in the future. The debug info may
-    even be exposed as another pseudo section
- */
 
 /* exe file header, just the signature really */
 typedef struct {

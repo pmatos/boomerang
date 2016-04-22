@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       RtlTest.cc
- * OVERVIEW:   Provides the implementation for the RtlTest class, which
- *              tests the RTL and derived classes
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the RtlTest class, which tests the
+ *        RTL and derived classes.
+ */
 
 #include "RtlTest.h"
 #include "statement.h"

@@ -1,22 +1,21 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the Proc hierachy (Proc, UserProc, LibProc).
+ *
+ * All aspects of a procedure, apart from the actual code in the Cfg, are
+ * stored here
+ *
+ * \authors
  * Copyright (C) 1997-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002-2006, Trent Waddington and Mike Van Emmerik
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       proc.cc
- * OVERVIEW:   Implementation of the Proc hierachy (Proc, UserProc, LibProc).
- *             All aspects of a procedure, apart from the actual code in the
- *             Cfg, are stored here
- *
- * Copyright (C) 1997-2001, The University of Queensland, BT group
- * Copyright (C) 2000-2001, Sun Microsystems, Inc
- *============================================================================*/
 
 /*==============================================================================
  * Dependencies.

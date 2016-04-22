@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       LoaderTest.cc
- * OVERVIEW:   Provides the implementation for the LoaderTest class, which
- *              tests the BinaryFile and derived classes
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the LoaderTest class, which tests
+ *        the BinaryFile and derived classes.
+ */
 
 #define TESTDIR         "../test/"
 

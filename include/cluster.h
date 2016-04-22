@@ -1,19 +1,18 @@
-/*
+/**
+ * \file
+ * \brief Definition of the classes that describe a Cluster.
+ *
+ * A cluster is a grouping of functions irrespective of relationship.  For
+ * example, the Object Oriented Programming concept of a Class is a Cluster.
+ * Clusters can contain other Clusters to form a tree.
+ *
+ * \authors
  * Copyright (C) 2004, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       cluster.h
- * OVERVIEW:   Definition of the classes that describe a Cluster, a grouping
- *         of functions irrespective of relationship.  For example, the
- *         Object Oriented Programming concept of a Class is a Cluster.
- *         Clusters can contain other Clusters to form a tree.
- *============================================================================*/
 
 #ifndef CLUSTER_H
 #define CLUSTER_H

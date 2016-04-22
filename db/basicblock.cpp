@@ -1,18 +1,18 @@
-/*
+/**
+ * \file
+ * \brief Implementation of the BasicBlock class.
+ *
+ * \authors
  * Copyright (C) 1997-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2000-2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:     basicblock.cc
- * OVERVIEW: Implementation of the BasicBlock class.
- *============================================================================*/
 
 /*==============================================================================
  * Dependencies.

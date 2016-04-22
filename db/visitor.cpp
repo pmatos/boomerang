@@ -1,10 +1,11 @@
-/*
+/**
+ * \file
+ * \brief Provides the implementation for the various visitor and modifier
+ *        classes.
+ *
+ * \authors
  * Copyright (C) 2004-2006, Mike Van Emmerik and Trent Waddington
  */
-/*==============================================================================
- * FILE:       visitor.cpp
- * OVERVIEW:   Provides the implementation for the various visitor and modifier classes.
- *============================================================================*/
 
 #include "visitor.h"
 #include "exp.h"

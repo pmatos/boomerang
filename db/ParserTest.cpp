@@ -1,8 +1,8 @@
-/*==============================================================================
- * FILE:       ParserTest.cc
- * OVERVIEW:   Provides the implementation for the ParserTest class, which
- *              tests the sslparser.y etc
- *============================================================================*/
+/**
+ * \file
+ * \brief Provides the implementation for the ParserTest class, which tests
+ *        the sslparser.y etc.
+ */
 
 #define SPARC_SSL       "frontend/machine/sparc/sparc.ssl"
 

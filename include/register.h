@@ -1,16 +1,14 @@
-/*
+/**
+ * \file
+ * \brief Header information for the Register class.
+ *
+ * \authors
  * Copyright (C) 2000-2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:        register.h
- * OVERVIEW:    Header information for the Register class.
- *============================================================================*/
 
 #ifndef REG_H
 #define REG_H

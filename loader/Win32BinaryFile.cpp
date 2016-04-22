@@ -1,21 +1,20 @@
-/*
+/**
+ * \file
+ * \brief Contains the implementation of the class Win32BinaryFile.
+ *
+ * This file implements the class Win32BinaryFile, derived from class
+ * BinaryFile.  See Win32BinaryFile.h and BinaryFile.h for details.
+ *
+ * \authors
  * Copyright (C) 2000, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
- */
-
-/* File: Win32BinaryFile.cc
- * Desc: This file contains the implementation of the class Win32BinaryFile.
- */
-
-/* Win32 binary file format.
- * This file implements the class Win32BinaryFile, derived from class
- * BinaryFile. See Win32BinaryFile.h and BinaryFile.h for details.
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
 #ifdef HAVE_CONFIG_H

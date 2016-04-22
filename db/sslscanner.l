@@ -1,19 +1,19 @@
-/*
+/**
+ * \file
+ * \brief Defines a scanner to parse the tokens of a Semantic Specification
+ *        Language specification.
+ *
+ * \authors
  * Copyright (C) 1997, Shane Sendall
+ * \authors
  * Copyright (C) 1998-2001, The University of Queensland
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:          sslscanner.l
- * OVERVIEW:      Defines a scanner to parse the tokens of a Semantic
- *                Specification Language specification.
- *============================================================================*/
 
 %name SSLScanner
 

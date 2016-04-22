@@ -1,6 +1,8 @@
-/*
- * types.h: some often used basic type definitions
+/**
+ * \file
+ * \brief Some often-used basic type definitions.
  */
+
 #ifndef TYPES_H
 #define TYPES_H
 

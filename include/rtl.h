@@ -1,24 +1,24 @@
-/*
+/**
+ * \file
+ * \brief Definition of the classes that describe an RTL, a low-level register
+ *        transfer list.
+ *
+ * Higher-level RTLs (instance of class HLJump, HLCall, etc.) represent
+ * information about a control transfer instruction (CTI) in the source
+ * program.  Analysis code adds information to existing higher-level RTLs and
+ * sometimes creates new higher-level RTLs (e.g. for switch statements).
+ *
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
+ * \authors
  * Copyright (C) 2001, The University of Queensland
+ * \authors
  * Copyright (C) 2002, Trent Waddington
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
-
-/*==============================================================================
- * FILE:       rtl.h
- * OVERVIEW:   Definition of the classes that describe an RTL, a low-level
- *             register transfer list. Higher-level RTLs (instance
- *             of class HLJump, HLCall, etc.) represent information about
- *             a control transfer instruction (CTI) in the source program.
- *             analysis code adds information to existing higher-level
- *             RTLs and sometimes creates new higher-level RTLs (e.g., for
- *             switch statements).
- *============================================================================*/
 
 #ifndef RTL_H
 #define RTL_H
