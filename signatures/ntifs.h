@@ -1,99 +1,83 @@
-
 void
-KeInitializeEvent (
+KeInitializeEvent(
 	PRKEVENT Event,
 	EVENT_TYPE Type,
-	BOOLEAN State
-	);
+	BOOLEAN State);
 
 
 void
-KeClearEvent (
-	PRKEVENT Event
-	);
+KeClearEvent(
+	PRKEVENT Event);
 
 
 
 LONG
-KePulseEvent (
+KePulseEvent(
 	PRKEVENT Event,
 	KPRIORITY Increment,
-	BOOLEAN Wait
-	);
+	BOOLEAN Wait);
 
 
 
 LONG
-KeReadStateEvent (
-	PRKEVENT Event
-	);
+KeReadStateEvent(
+	PRKEVENT Event);
 
 
 LONG
-KeResetEvent (
-	PRKEVENT Event
-	);
+KeResetEvent(
+	PRKEVENT Event);
 
 
 LONG
-KeSetEvent (
+KeSetEvent(
 	PRKEVENT Event,
 	KPRIORITY Increment,
-	BOOLEAN Wait
-	);
+	BOOLEAN Wait);
 
 
 void
-KeInitializeMutant (
+KeInitializeMutant(
 	PRKMUTANT Mutant,
-	BOOLEAN InitialOwner
-	);
+	BOOLEAN InitialOwner);
 
 LONG
-KeReadStateMutant (
-	PRKMUTANT Mutant
-	);
+KeReadStateMutant(
+	PRKMUTANT Mutant);
 
 
 LONG
-KeReleaseMutant (
+KeReleaseMutant(
 	PRKMUTANT Mutant,
 	KPRIORITY Increment,
 	BOOLEAN Abandoned,
-	BOOLEAN Wait
-	);
+	BOOLEAN Wait);
 
 void
 IoRegisterFileSystem(
-	PDEVICE_OBJECT DeviceObject
-	);
+	PDEVICE_OBJECT DeviceObject);
 
 NTSTATUS
 IoRegisterFsRegistrationChange(
 	PDRIVER_OBJECT DriverObject,
-	PDRIVER_FS_NOTIFICATION DriverNotificationRoutine
-	);
+	PDRIVER_FS_NOTIFICATION DriverNotificationRoutine);
 
 
 void
-SeCaptureSubjectContext (
-	PSECURITY_SUBJECT_CONTEXT SubjectContext
-	);
+SeCaptureSubjectContext(
+	PSECURITY_SUBJECT_CONTEXT SubjectContext);
 
 void
 SeLockSubjectContext(
-	PSECURITY_SUBJECT_CONTEXT SubjectContext
-	);
+	PSECURITY_SUBJECT_CONTEXT SubjectContext);
 
 void
 SeUnlockSubjectContext(
-	PSECURITY_SUBJECT_CONTEXT SubjectContext
-	);
+	PSECURITY_SUBJECT_CONTEXT SubjectContext);
 
 void
-SeReleaseSubjectContext (
-	PSECURITY_SUBJECT_CONTEXT SubjectContext
-	);
+SeReleaseSubjectContext(
+	PSECURITY_SUBJECT_CONTEXT SubjectContext);
 
 NTSTATUS
 SeCaptureAuditPolicy(
@@ -103,31 +87,28 @@ SeCaptureAuditPolicy(
 	ULONG CaptureBufferLength,
 	POOL_TYPE PoolType,
 	BOOLEAN ForceCapture,
-	PTOKEN_AUDIT_POLICY *CapturedPolicy
-	);
+	PTOKEN_AUDIT_POLICY *CapturedPolicy);
 
 void
-SeReleaseAuditPolicy (
+SeReleaseAuditPolicy(
 	PTOKEN_AUDIT_POLICY CapturedPolicy,
 	KPROCESSOR_MODE RequestorMode,
-	BOOLEAN ForceCapture
-	);
+	BOOLEAN ForceCapture);
 
 
 NTSTATUS
-SeAssignSecurity (
+SeAssignSecurity(
 	PSECURITY_DESCRIPTOR ParentDescriptor,
 	PSECURITY_DESCRIPTOR ExplicitDescriptor,
 	PSECURITY_DESCRIPTOR *NewDescriptor,
 	BOOLEAN IsDirectoryObject,
 	PSECURITY_SUBJECT_CONTEXT SubjectContext,
 	PGENERIC_MAPPING GenericMapping,
-	POOL_TYPE PoolType
-	);
+	POOL_TYPE PoolType);
 
 NTSTATUS
-SeAssignSecurityEx (
-	PSECURITY_DESCRIPTOR ParentDescriptor, 
+SeAssignSecurityEx(
+	PSECURITY_DESCRIPTOR ParentDescriptor,
 	PSECURITY_DESCRIPTOR ExplicitDescriptor,
 	PSECURITY_DESCRIPTOR *NewDescriptor,
 	GUID *ObjectType,
@@ -135,16 +116,14 @@ SeAssignSecurityEx (
 	ULONG AutoInheritFlags,
 	PSECURITY_SUBJECT_CONTEXT SubjectContext,
 	PGENERIC_MAPPING GenericMapping,
-	POOL_TYPE PoolType
-	);
+	POOL_TYPE PoolType);
 
 NTSTATUS
-SeDeassignSecurity (
-	PSECURITY_DESCRIPTOR *SecurityDescriptor
-	);
+SeDeassignSecurity(
+	PSECURITY_DESCRIPTOR *SecurityDescriptor);
 
 BOOLEAN
-SeAccessCheck (
+SeAccessCheck(
 	PSECURITY_DESCRIPTOR SecurityDescriptor,
 	PSECURITY_SUBJECT_CONTEXT SubjectSecurityContext,
 	BOOLEAN SubjectContextLocked,
@@ -154,30 +133,25 @@ SeAccessCheck (
 	PGENERIC_MAPPING GenericMapping,
 	KPROCESSOR_MODE AccessMode,
 	PACCESS_MASK GrantedAccess,
-	PNTSTATUS AccessStatus
-	);
+	PNTSTATUS AccessStatus);
 
 BOOLEAN
-RtlValidSid (
-	PSID Sid
-	);
+RtlValidSid(
+	PSID Sid);
 
 BOOLEAN
-RtlEqualSid (
+RtlEqualSid(
 	PSID Sid1,
-	PSID Sid2
-	);
+	PSID Sid2);
 
 BOOLEAN
-RtlEqualPrefixSid (
+RtlEqualPrefixSid(
 	PSID Sid1,
-	PSID Sid2
-	);
+	PSID Sid2);
 
 PVOID
 RtlFreeSid(
-	PSID Sid
-	);
+	PSID Sid);
 
 NTSTATUS
 RtlAllocateAndInitializeSid(
@@ -191,98 +165,83 @@ RtlAllocateAndInitializeSid(
 	ULONG SubAuthority5,
 	ULONG SubAuthority6,
 	ULONG SubAuthority7,
-	PSID *Sid
-	);
+	PSID *Sid);
 
 NTSTATUS
-RtlInitializeSid (
+RtlInitializeSid(
 	PSID Sid,
 	PSID_IDENTIFIER_AUTHORITY IdentifierAuthority,
-	UCHAR SubAuthorityCount
-	);
+	UCHAR SubAuthorityCount);
 
 PSID_IDENTIFIER_AUTHORITY
-RtlIdentifierAuthoritySid (
-	PSID Sid
-	);
+RtlIdentifierAuthoritySid(
+	PSID Sid);
 
 ULONG
-RtlLengthRequiredSid (
-	ULONG SubAuthorityCount
-	);
+RtlLengthRequiredSid(
+	ULONG SubAuthorityCount);
 
 PULONG
-RtlSubAuthoritySid (
+RtlSubAuthoritySid(
 	PSID Sid,
-	ULONG SubAuthority
-	);
+	ULONG SubAuthority);
 
 PUCHAR
-RtlSubAuthorityCountSid (
-	PSID Sid
-	);
+RtlSubAuthorityCountSid(
+	PSID Sid);
 
 ULONG
-RtlLengthSid (
-	PSID Sid
-	);
+RtlLengthSid(
+	PSID Sid);
 
 NTSTATUS
-RtlCopySid (
+RtlCopySid(
 	ULONG DestinationSidLength,
 	PSID DestinationSid,
-	PSID SourceSid
-	);
+	PSID SourceSid);
 
 
 void
-RtlCopyLuid (
+RtlCopyLuid(
 	PLUID DestinationLuid,
-	PLUID SourceLuid
-	);
+	PLUID SourceLuid);
 
 
 void
 RtlMapGenericMask(
 	PACCESS_MASK AccessMask,
-	PGENERIC_MAPPING GenericMapping
-	);
-									   
-NTSTATUS
-RtlCreateAcl (									
-	PACL Acl,									
-	ULONG AclLength,							
-	ULONG AclRevision							
-	);											
+	PGENERIC_MAPPING GenericMapping);
 
 NTSTATUS
-RtlGetAce (
+RtlCreateAcl(
+	PACL Acl,
+	ULONG AclLength,
+	ULONG AclRevision);
+
+NTSTATUS
+RtlGetAce(
 	PACL Acl,
 	ULONG AceIndex,
-	PVOID *Ace
-	);
+	PVOID *Ace);
 
 NTSTATUS
-RtlAddAccessAllowedAce (
+RtlAddAccessAllowedAce(
 	PACL Acl,
 	ULONG AceRevision,
 	ACCESS_MASK AccessMask,
-	PSID Sid
-	);
+	PSID Sid);
 
 NTSTATUS
 PoQueueShutdownWorkItem(
-	PWORK_QUEUE_ITEM WorkItem
-	);
+	PWORK_QUEUE_ITEM WorkItem);
 
 NTSTATUS
-ZwCreateEvent (
+ZwCreateEvent(
 	PHANDLE EventHandle,
 	ACCESS_MASK DesiredAccess,
 	POBJECT_ATTRIBUTES ObjectAttributes,
 	EVENT_TYPE EventType,
-	BOOLEAN InitialState
-	);
+	BOOLEAN InitialState);
 
 
 NTSTATUS
@@ -297,14 +256,12 @@ ZwCreateFile(
 	ULONG CreateDisposition,
 	ULONG CreateOptions,
 	PVOID EaBuffer,
-	ULONG EaLength
-	);
+	ULONG EaLength);
 
 
 NTSTATUS
 ZwDeleteFile(
-	POBJECT_ATTRIBUTES ObjectAttributes
-	);
+	POBJECT_ATTRIBUTES ObjectAttributes);
 
 
 NTSTATUS
@@ -318,8 +275,7 @@ ZwDeviceIoControlFile(
 	PVOID InputBuffer,
 	ULONG InputBufferLength,
 	PVOID OutputBuffer,
-	ULONG OutputBufferLength
-	);
+	ULONG OutputBufferLength);
 
 
 NTSTATUS
@@ -329,8 +285,7 @@ ZwOpenFile(
 	POBJECT_ATTRIBUTES ObjectAttributes,
 	PIO_STATUS_BLOCK IoStatusBlock,
 	ULONG ShareAccess,
-	ULONG OpenOptions
-	);
+	ULONG OpenOptions);
 
 
 NTSTATUS
@@ -345,8 +300,7 @@ ZwQueryDirectoryFile(
 	FILE_INFORMATION_CLASS FileInformationClass,
 	BOOLEAN ReturnSingleEntry,
 	PUNICODE_STRING FileName,
-	BOOLEAN RestartScan
-	);
+	BOOLEAN RestartScan);
 
 
 NTSTATUS
@@ -355,8 +309,7 @@ ZwQueryInformationFile(
 	PIO_STATUS_BLOCK IoStatusBlock,
 	PVOID FileInformation,
 	ULONG Length,
-	FILE_INFORMATION_CLASS FileInformationClass
-	);
+	FILE_INFORMATION_CLASS FileInformationClass);
 
 
 NTSTATUS
@@ -365,8 +318,7 @@ ZwSetInformationFile(
 	PIO_STATUS_BLOCK IoStatusBlock,
 	PVOID FileInformation,
 	ULONG Length,
-	FILE_INFORMATION_CLASS FileInformationClass
-	);
+	FILE_INFORMATION_CLASS FileInformationClass);
 
 
 NTSTATUS
@@ -375,8 +327,7 @@ ZwQueryVolumeInformationFile(
 	PIO_STATUS_BLOCK IoStatusBlock,
 	PVOID FsInformation,
 	ULONG Length,
-	FS_INFORMATION_CLASS FsInformationClass
-	);
+	FS_INFORMATION_CLASS FsInformationClass);
 
 
 NTSTATUS
@@ -385,8 +336,7 @@ ZwSetVolumeInformationFile(
 	PIO_STATUS_BLOCK IoStatusBlock,
 	PVOID FsInformation,
 	ULONG Length,
-	FS_INFORMATION_CLASS FsInformationClass
-	);
+	FS_INFORMATION_CLASS FsInformationClass);
 
 
 NTSTATUS
@@ -399,8 +349,7 @@ ZwReadFile(
 	PVOID Buffer,
 	ULONG Length,
 	PLARGE_INTEGER ByteOffset,
-	PULONG Key
-	);
+	PULONG Key);
 
 
 NTSTATUS
@@ -413,8 +362,7 @@ ZwWriteFile(
 	PVOID Buffer,
 	ULONG Length,
 	PLARGE_INTEGER ByteOffset,
-	PULONG Key
-	);
+	PULONG Key);
 
 
 NTSTATUS
@@ -428,13 +376,11 @@ ZwFsControlFile(
 	PVOID InputBuffer,
 	ULONG InputBufferLength,
 	PVOID OutputBuffer,
-	ULONG OutputBufferLength
-	);
+	ULONG OutputBufferLength);
 
 NTSTATUS
 ZwClose(
-	HANDLE Handle
-	);
+	HANDLE Handle);
 
 
 NTSTATUS
@@ -445,46 +391,40 @@ ZwDuplicateObject(
 	PHANDLE TargetHandle,
 	ACCESS_MASK DesiredAccess,
 	ULONG HandleAttributes,
-	ULONG Options
-	);
+	ULONG Options);
 
 
 NTSTATUS
 ZwCreateDirectoryObject(
 	PHANDLE DirectoryHandle,
 	ACCESS_MASK DesiredAccess,
-	POBJECT_ATTRIBUTES ObjectAttributes
-	);
+	POBJECT_ATTRIBUTES ObjectAttributes);
 
 
 NTSTATUS
 ZwOpenDirectoryObject(
 	PHANDLE DirectoryHandle,
 	ACCESS_MASK DesiredAccess,
-	POBJECT_ATTRIBUTES ObjectAttributes
-	);
+	POBJECT_ATTRIBUTES ObjectAttributes);
 
 
 NTSTATUS
 ZwOpenSymbolicLinkObject(
 	PHANDLE LinkHandle,
 	ACCESS_MASK DesiredAccess,
-	POBJECT_ATTRIBUTES ObjectAttributes
-	);
+	POBJECT_ATTRIBUTES ObjectAttributes);
 
 
 NTSTATUS
 ZwQuerySymbolicLinkObject(
 	HANDLE LinkHandle,
 	PUNICODE_STRING LinkTarget,
-	PULONG ReturnedLength
-	);
+	PULONG ReturnedLength);
 
 
 NTSTATUS
 ZwMakeTemporaryObject(
-	HANDLE Handle
-	);
+	HANDLE Handle);
 
 
 NTSTATUS
@@ -495,29 +435,25 @@ ZwCreateKey(
 	ULONG TitleIndex,
 	PUNICODE_STRING Class,
 	ULONG CreateOptions,
-	PULONG Disposition
-	);
+	PULONG Disposition);
 
 
 NTSTATUS
 ZwOpenKey(
 	PHANDLE KeyHandle,
 	ACCESS_MASK DesiredAccess,
-	POBJECT_ATTRIBUTES ObjectAttributes
-	);
+	POBJECT_ATTRIBUTES ObjectAttributes);
 
 
 NTSTATUS
 ZwDeleteKey(
-	HANDLE KeyHandle
-	);
+	HANDLE KeyHandle);
 
 
 NTSTATUS
 ZwDeleteValueKey(
 	HANDLE KeyHandle,
-	PUNICODE_STRING ValueName
-	);
+	PUNICODE_STRING ValueName);
 
 
 NTSTATUS
@@ -527,8 +463,7 @@ ZwEnumerateKey(
 	KEY_INFORMATION_CLASS KeyInformationClass,
 	PVOID KeyInformation,
 	ULONG Length,
-	PULONG ResultLength
-	);
+	PULONG ResultLength);
 
 
 NTSTATUS
@@ -538,14 +473,12 @@ ZwEnumerateValueKey(
 	KEY_VALUE_INFORMATION_CLASS KeyValueInformationClass,
 	PVOID KeyValueInformation,
 	ULONG Length,
-	PULONG ResultLength
-	);
+	PULONG ResultLength);
 
 
 NTSTATUS
 ZwFlushKey(
-	HANDLE KeyHandle
-	);
+	HANDLE KeyHandle);
 
 
 NTSTATUS
@@ -554,8 +487,7 @@ ZwQueryKey(
 	KEY_INFORMATION_CLASS KeyInformationClass,
 	PVOID KeyInformation,
 	ULONG Length,
-	PULONG ResultLength
-	);
+	PULONG ResultLength);
 
 
 NTSTATUS
@@ -565,8 +497,7 @@ ZwQueryValueKey(
 	KEY_VALUE_INFORMATION_CLASS KeyValueInformationClass,
 	PVOID KeyValueInformation,
 	ULONG Length,
-	PULONG ResultLength
-	);
+	PULONG ResultLength);
 
 
 NTSTATUS
@@ -576,16 +507,14 @@ ZwSetValueKey(
 	ULONG TitleIndex,
 	ULONG Type,
 	PVOID Data,
-	ULONG DataSize
-	);
+	ULONG DataSize);
 
 
 NTSTATUS
 ZwOpenSection(
 	PHANDLE SectionHandle,
 	ACCESS_MASK DesiredAccess,
-	POBJECT_ATTRIBUTES ObjectAttributes
-	);
+	POBJECT_ATTRIBUTES ObjectAttributes);
 
 
 NTSTATUS
@@ -599,15 +528,13 @@ ZwMapViewOfSection(
 	PSIZE_T ViewSize,
 	SECTION_INHERIT InheritDisposition,
 	ULONG AllocationType,
-	ULONG Protect
-	);
+	ULONG Protect);
 
 
 NTSTATUS
 ZwUnmapViewOfSection(
 	HANDLE ProcessHandle,
-	PVOID BaseAddress
-	);
+	PVOID BaseAddress);
 
 
 NTSTATUS
@@ -615,20 +542,18 @@ ZwSetInformationThread(
 	HANDLE ThreadHandle,
 	THREADINFOCLASS ThreadInformationClass,
 	PVOID ThreadInformation,
-	ULONG ThreadInformationLength
-	);
+	ULONG ThreadInformationLength);
 
 
 NTSTATUS
-ZwCreateSection (
+ZwCreateSection(
 	PHANDLE SectionHandle,
 	ACCESS_MASK DesiredAccess,
 	POBJECT_ATTRIBUTES ObjectAttributes,
 	PLARGE_INTEGER MaximumSize,
 	ULONG SectionPageProtection,
 	ULONG AllocationAttributes,
-	HANDLE FileHandle
-	);
+	HANDLE FileHandle);
 
 
 NTSTATUS
@@ -638,8 +563,7 @@ ZwAllocateVirtualMemory(
 	ULONG ZeroBits,
 	PSIZE_T RegionSize,
 	ULONG AllocationType,
-	ULONG Protect
-	);
+	ULONG Protect);
 
 
 NTSTATUS
@@ -647,23 +571,20 @@ ZwFreeVirtualMemory(
 	HANDLE ProcessHandle,
 	PVOID *BaseAddress,
 	PSIZE_T RegionSize,
-	ULONG FreeType
-	);
+	ULONG FreeType);
 
 
 NTSTATUS
 ZwWaitForSingleObject(
 	HANDLE Handle,
 	BOOLEAN Alertable,
-	PLARGE_INTEGER TimeOPTIONAL
-	);
+	PLARGE_INTEGER TimeOPTIONAL);
 
 
 NTSTATUS
-ZwSetEvent (
+ZwSetEvent(
 	HANDLE Handle,
-	PLONG PreviousState
-	);
+	PLONG PreviousState);
 
 
 NTSTATUS
@@ -671,8 +592,7 @@ ZwFlushVirtualMemory(
 	HANDLE ProcessHandle,
 	PVOID *BaseAddress,
 	PSIZE_T RegionSize,
-	PIO_STATUS_BLOCK IoStatus
-	);
+	PIO_STATUS_BLOCK IoStatus);
 
 
 NTSTATUS
@@ -680,8 +600,7 @@ ZwOpenProcessTokenEx(
 	HANDLE ProcessHandle,
 	ACCESS_MASK DesiredAccess,
 	ULONG HandleAttributes,
-	PHANDLE TokenHandle
-	);
+	PHANDLE TokenHandle);
 
 
 NTSTATUS
@@ -690,35 +609,31 @@ ZwOpenThreadTokenEx(
 	ACCESS_MASK DesiredAccess,
 	BOOLEAN OpenAsSelf,
 	ULONG HandleAttributes,
-	PHANDLE TokenHandle
-	);
+	PHANDLE TokenHandle);
 
 
 NTSTATUS
-ZwSetInformationToken (
+ZwSetInformationToken(
 	HANDLE TokenHandle,
 	TOKEN_INFORMATION_CLASS TokenInformationClass,
 	PVOID TokenInformation,
-	ULONG TokenInformationLength
-	);
+	ULONG TokenInformationLength);
 
 
 NTSTATUS
-ZwQueryInformationToken (
+ZwQueryInformationToken(
 	HANDLE TokenHandle,
 	TOKEN_INFORMATION_CLASS TokenInformationClass,
 	PVOID TokenInformation,
 	ULONG TokenInformationLength,
-	PULONG ReturnLength
-	);
+	PULONG ReturnLength);
 
 
 NTSTATUS
 ZwSetSecurityObject(
 	HANDLE Handle,
 	SECURITY_INFORMATION SecurityInformation,
-	PSECURITY_DESCRIPTOR SecurityDescriptor
-	);
+	PSECURITY_DESCRIPTOR SecurityDescriptor);
 
 
 NTSTATUS
@@ -727,20 +642,17 @@ ZwQuerySecurityObject(
 	SECURITY_INFORMATION SecurityInformation,
 	PSECURITY_DESCRIPTOR SecurityDescriptor,
 	ULONG Length,
-	PULONG LengthNeeded
-	);
+	PULONG LengthNeeded);
 
 
 NTSTATUS
 ZwLoadDriver(
-	PUNICODE_STRING DriverServiceName
-	);
+	PUNICODE_STRING DriverServiceName);
 
 
 NTSTATUS
 ZwUnloadDriver(
-	PUNICODE_STRING DriverServiceName
-	);
+	PUNICODE_STRING DriverServiceName);
 
 
 NTSTATUS
@@ -754,8 +666,7 @@ ZwLockFile(
 	PLARGE_INTEGER Length,
 	ULONG Key,
 	BOOLEAN FailImmediately,
-	BOOLEAN ExclusiveLock
-	);
+	BOOLEAN ExclusiveLock);
 
 
 NTSTATUS
@@ -764,8 +675,7 @@ ZwUnlockFile(
 	PIO_STATUS_BLOCK IoStatusBlock,
 	PLARGE_INTEGER ByteOffset,
 	PLARGE_INTEGER Length,
-	ULONG Key
-	);
+	ULONG Key);
 
 
 NTSTATUS
@@ -778,8 +688,7 @@ ZwQueryQuotaInformationFile(
 	PVOID SidList,
 	ULONG SidListLength,
 	PSID StartSid,
-	BOOLEAN RestartScan
-	);
+	BOOLEAN RestartScan);
 
 
 NTSTATUS
@@ -787,8 +696,7 @@ ZwSetQuotaInformationFile(
 	HANDLE FileHandle,
 	PIO_STATUS_BLOCK IoStatusBlock,
 	PVOID Buffer,
-	ULONG Length
-	);
+	ULONG Length);
 
 
 NTSTATUS
@@ -800,8 +708,7 @@ ZwConnectPort(
 	PREMOTE_PORT_VIEW ServerView,
 	PULONG MaxMessageLength,
 	PVOID ConnectionInformation,
-	PULONG ConnectionInformationLength
-	);
+	PULONG ConnectionInformationLength);
 
 
 NTSTATUS
@@ -814,144 +721,115 @@ ZwSecureConnectPort(
 	PREMOTE_PORT_VIEW ServerView,
 	PULONG MaxMessageLength,
 	PVOID ConnectionInformation,
-	PULONG ConnectionInformationLength
-	);
+	PULONG ConnectionInformationLength);
 
 
 NTSTATUS
 ZwRequestWaitReplyPort(
 	HANDLE PortHandle,
 	PPORT_MESSAGE RequestMessage,
-	PPORT_MESSAGE ReplyMessage
-	);
-
-
-
-
-
-
+	PPORT_MESSAGE ReplyMessage);
 
 
 void
-KeInitializeSemaphore (
+KeInitializeSemaphore(
 	PRKSEMAPHORE Semaphore,
 	LONG Count,
-	LONG Limit
-	);
+	LONG Limit);
 
 LONG
-KeReadStateSemaphore (
-	PRKSEMAPHORE Semaphore
-	);
+KeReadStateSemaphore(
+	PRKSEMAPHORE Semaphore);
 
 LONG
-KeReleaseSemaphore (
+KeReleaseSemaphore(
 	PRKSEMAPHORE Semaphore,
 	KPRIORITY Increment,
 	LONG Adjustment,
-	BOOLEAN Wait
-	);
+	BOOLEAN Wait);
 
 void
-KeAttachProcess (
-	PRKPROCESS Process
-	);
+KeAttachProcess(
+	PRKPROCESS Process);
 
 void
-KeDetachProcess (
-	void
-	);
+KeDetachProcess(void);
 
 void
-KeStackAttachProcess (
+KeStackAttachProcess(
 	PRKPROCESS PROCESS,
-	PRKAPC_STATE ApcState
-	);
+	PRKAPC_STATE ApcState);
 
 
 void
-KeUnstackDetachProcess (
-	PRKAPC_STATE ApcState
-	);
+KeUnstackDetachProcess(
+	PRKAPC_STATE ApcState);
 
-NTSTATUS											
-KeDelayExecutionThread (							
-	KPROCESSOR_MODE WaitMode,					 
-	BOOLEAN Alertable,							 
-	PLARGE_INTEGER Interval						 
-	);												
-													
+NTSTATUS
+KeDelayExecutionThread(
+	KPROCESSOR_MODE WaitMode,
+	BOOLEAN Alertable,
+	PLARGE_INTEGER Interval);
 
-KPRIORITY											
-KeQueryPriorityThread (								
-	PKTHREAD Thread								 
-	);												
-													
-ULONG												
-KeQueryRuntimeThread (								
-	PKTHREAD Thread,							 
-	PULONG UserTime								
-	);												
-													
-LONG												
-KeSetBasePriorityThread (							
-	PKTHREAD Thread,							 
-	LONG Increment								 
-	);												
-													
-UCHAR
-KeSetIdealProcessorThread (
+
+KPRIORITY
+KeQueryPriorityThread(
+	PKTHREAD Thread);
+
+ULONG
+KeQueryRuntimeThread(
 	PKTHREAD Thread,
-	UCHAR Processor
-	);
+	PULONG UserTime);
+
+LONG
+KeSetBasePriorityThread(
+	PKTHREAD Thread,
+	LONG Increment);
+
+UCHAR
+KeSetIdealProcessorThread(
+	PKTHREAD Thread,
+	UCHAR Processor);
 
 NTSTATUS
 IofCallDriver(
 	PDEVICE_OBJECT DeviceObject,
-	PIRP Irp
-	);
+	PIRP Irp);
 
 LONG_PTR
 ObfReferenceObject(
-	PVOID Object
-	);
+	PVOID Object);
 
 NTSTATUS
 ObReferenceObjectByPointer(
 	PVOID Object,
 	ACCESS_MASK DesiredAccess,
 	POBJECT_TYPE ObjectType,
-	KPROCESSOR_MODE AccessMode
-	);
+	KPROCESSOR_MODE AccessMode);
 
 LONG_PTR
 ObfDereferenceObject(
-	PVOID Object
-	);
+	PVOID Object);
 
 NTSTATUS
 ObQueryNameString(
 	PVOID Object,
 	POBJECT_NAME_INFORMATION ObjectNameInfo,
 	ULONG Length,
-	PULONG ReturnLength
-	);
+	PULONG ReturnLength);
 
 NTSTATUS
 ObGetObjectSecurity(
 	PVOID Object,
 	PSECURITY_DESCRIPTOR *SecurityDescriptor,
-	PBOOLEAN MemoryAllocated
-	);
+	PBOOLEAN MemoryAllocated);
 
 void
 ObReleaseObjectSecurity(
 	PSECURITY_DESCRIPTOR SecurityDescriptor,
-	BOOLEAN MemoryAllocated
-	);
+	BOOLEAN MemoryAllocated);
 
-NTSTATUS														
-ObQueryObjectAuditingByHandle(									
-	HANDLE Handle,											 
-	PBOOLEAN GenerateOnClose								
-	);	 
+NTSTATUS
+ObQueryObjectAuditingByHandle(
+	HANDLE Handle,
+	PBOOLEAN GenerateOnClose);
