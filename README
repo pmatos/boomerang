@@ -1,6 +1,4 @@
-
-
-For build instructions please see 
+For build instructions please see
 
 	http://boomerang.sourceforge.net/making.html
 
@@ -13,4 +11,3 @@ Note that on a debian system you can usually get away with:
   make
 
 Thanks.
-

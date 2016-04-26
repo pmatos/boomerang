@@ -63,9 +63,9 @@ $TESTONE sparc   andn           1 "$BOOMSW"
 $TESTONE pentium callchain      1 "$BOOMSW"
 $TESTONE sparc   callchain      1 "$BOOMSW"
 $TESTONE pentium short1         1 "$BOOMSW"
-$TESTONE sparc short1           1 "$BOOMSW"
+$TESTONE sparc   short1         1 "$BOOMSW"
 $TESTONE pentium short2         1 "$BOOMSW"
-$TESTONE sparc short2           1 "$BOOMSW"
+$TESTONE sparc   short2         1 "$BOOMSW"
 $TESTONE pentium sumarray-O4    1 "$BOOMSW"
 
 
@@ -121,7 +121,7 @@ echo
 echo === Known failures ===
 $TESTONE pentium stattest       1 "$BOOMSW"     # TA does not handle structs properly yet
 $TESTONE sparc   stattest       1 "$BOOMSW"     # ditto
-$TESTONE sparc  elfhashtest     1 "$BOOMSW"     # Not sure why fails
+$TESTONE sparc   elfhashtest    1 "$BOOMSW"     # Not sure why fails
 # Specials for Mike
 $TESTONE sparc   fibo4          3 "$BOOMSW" < test/source/fibo-O4.in3   # Some problem with bypassing m[...]
 $TESTONE sparc   recursion      2 "$BOOMSW" 2   # Not sure why fails
