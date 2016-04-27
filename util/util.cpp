@@ -123,10 +123,9 @@ std::string searchAndReplace(const std::string &in, const std::string &match,
  */
 void upperStr(const char *s, char *d)
 {
-	size_t len = strlen(s);
-	for (size_t i = 0; i < len; ++i)
-		d[i] = toupper(s[i]);
-	d[len] = '\0';
+	while (*s)
+		*d++ = toupper(*s++);
+	*d = '\0';
 }
 
 int lockFileRead(const char *fname)
