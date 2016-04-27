@@ -28,13 +28,12 @@
 #include <cstdio>
 #include <cstring>
 
-/*==============================================================================
- * FUNCTION:      string::operator+(string, int)
- * OVERVIEW:      Append an int to a string
- * PARAMETERS:    s: the string to append to
- *                i: the integer whose ascii representation is to be appended
- * RETURNS:       A copy of the modified string
- *============================================================================*/
+/**
+ * \brief           Append an int to a string.
+ * \param[in] s     The string to append to.
+ * \param[in] i     The integer whose ascii representation is to be appended.
+ * \returns         A copy of the modified string.
+ */
 std::string operator+(const std::string &s, int i)
 {
 	static char buf[50];
@@ -44,13 +43,12 @@ std::string operator+(const std::string &s, int i)
 	return ret.append(buf);
 }
 
-/*==============================================================================
- * FUNCTION:      initCapital
- * OVERVIEW:      Return a string the same as the input string, but with the
- *                  first character capitalised
- * PARAMETERS:    s: the string to capitalise
- * RETURNS:       A copy of the modified string
- *============================================================================*/
+/**
+ * \brief           Return a string the same as the input string, but with the
+ *                  first character capitalised.
+ * \param[in] s     The string to capitalise.
+ * \returns         A copy of the modified string.
+ */
 std::string initCapital(const std::string &s)
 {
 	std::string res(s);
@@ -58,14 +56,13 @@ std::string initCapital(const std::string &s)
 	return res;
 }
 
-/*==============================================================================
- * FUNCTION:      hasExt
- * OVERVIEW:      Returns true if the given file name has the given extension
- *                and false otherwise.
- * PARAMETERS:    s: string representing a file name (e.g. string("foo.c"))
- *                e: the extension (e.g. ".o")
- * RETURNS:       Boolean indicating whether the file name has the extension.
- *============================================================================*/
+/**
+ * \brief           Check if a file name has the given extension.
+ * \param[in] s     String representing a file name (e.g. string("foo.c")).
+ * \param[in] ext   The extension (e.g. ".o").
+ * \retval true     The file name has the extension.
+ * \retval false    Otherwise.
+ */
 bool hasExt(const std::string &s, const char *ext)
 {
 	std::string tailStr = std::string(".") + std::string(ext);
@@ -79,14 +76,13 @@ bool hasExt(const std::string &s, const char *ext)
 	}
 }
 
-/*==============================================================================
- * FUNCTION:      changeExt
- * OVERVIEW:      Change the extension of the given file name
- * PARAMETERS:    s: string representing the file name to be modified
- *                  (e.g. string("foo.c"))
- *                e: the new extension (e.g. ".o")
- * RETURNS:       The converted string (e.g. "foo.o")
- *============================================================================*/
+/**
+ * \brief           Change the extension of the given file name.
+ * \param[in] s     String representing the file name to be modified (e.g.
+ *                  string("foo.c")).
+ * \param[in] ext   The new extension (e.g. ".o").
+ * \returns         The converted string (e.g. "foo.o").
+ */
 std::string changeExt(const std::string &s, const char *ext)
 {
 	size_t i = s.rfind(".");
@@ -97,15 +93,14 @@ std::string changeExt(const std::string &s, const char *ext)
 	}
 }
 
-/*==============================================================================
- * FUNCTION:      searchAndReplace
- * OVERVIEW:      returns a copy of a string will all occurances of match
- *                replaced with rep. (simple version of s/match/rep/g)
- * PARAMETERS:    in: the source string
- *                match: the search string
- *                rep: the string to replace match with.
- * RETURNS:       The updated string.
- *============================================================================*/
+/**
+ * \brief           Returns a copy of a string with all occurences of match
+ *                  replaced with rep.  (Simple version of s/match/rep/g)
+ * \param[in] in    The source string.
+ * \param[in] match The search string.
+ * \param[in] rep   The string to replace match with.
+ * \returns         The updated string.
+ */
 std::string searchAndReplace(const std::string &in, const std::string &match,
                              const std::string &rep)
 {
@@ -121,13 +116,11 @@ std::string searchAndReplace(const std::string &in, const std::string &match,
 	return result;
 }
 
-/*==============================================================================
- * FUNCTION:      upperStr
- * OVERVIEW:      Uppercase a C string
- * PARAMETERS:    s: the string (char*) to start with
- *                d: the string (char*) to write to (can be the same string)
- * RETURNS:       Nothing; the string is modified as a side effect
- *============================================================================*/
+/**
+ * \brief           Uppercase a C string.
+ * \param[in] s     The string to start with.
+ * \param[out] d    The string to write to (can be the same string).
+ */
 void upperStr(const char *s, char *d)
 {
 	size_t len = strlen(s);
@@ -182,8 +175,10 @@ void escapeXMLChars(std::string &s)
 	}
 }
 
-// Turn things like newline, return, tab into \n, \r, \t etc
-// Note: assumes a C or C++ back end...
+/**
+ * \brief           Turn things like newline, return, tab into \\n, \\r, \\t etc.
+ * \note            Assumes a C or C++ back end...
+ */
 char *escapeStr(const char *str)
 {
 	std::ostringstream out;
