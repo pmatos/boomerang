@@ -150,13 +150,15 @@ void FrontEnd::readLibraryCatalog(const char *sPath)
 
 	while (!inf.eof()) {
 		std::string sFile;
-		inf >> sFile;
+		std::getline(inf, sFile);
 		size_t j = sFile.find('#');
-		if (j != (size_t)-1)
-			sFile = sFile.substr(0, j);
-		if (sFile.size() > 0 && sFile[sFile.size() - 1] == '\n')
-			sFile = sFile.substr(0, sFile.size() - 1);
-		if (sFile == "") continue;
+		if (j != std::string::npos)
+			sFile.erase(j);
+		j = sFile.find_last_not_of(" \t\n\v\f\r");
+		if (j != std::string::npos)
+			sFile.erase(j + 1);
+		else
+			continue;
 		std::string sPath = Boomerang::get()->getProgPath() + "signatures/" + sFile;
 		callconv cc = CONV_C;  // Most APIs are C calling convention
 		if (sFile == "windows.h") cc = CONV_PASCAL;    // One exception
