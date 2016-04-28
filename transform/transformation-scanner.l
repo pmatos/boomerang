@@ -128,7 +128,7 @@ L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return Transform
 "|"                     |
 "?"                     { count(); return yytext[0]; }
 
-[ \t\v\n\f]             { count(); }
+[ \t\v\n\f]+            { count(); }
 .                       { /* ignore bad characters */ }
 
 %%
