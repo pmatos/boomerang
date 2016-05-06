@@ -22,8 +22,7 @@
 		std::istream &in; \
 		int column; \
 	private: \
-		void count(); \
-		void comment();
+		void count();
 
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace
 %define CONSTRUCTOR_INIT : theLine(1), traceLines(trace), in(ins), column(0)
@@ -49,9 +48,15 @@ E                       [Ee][+-]?{D}+
 FS                      (f|F|l|L)
 IS                      (u|U|l|L)*
 
+%x COMMENT
+
 %%
 
-"/*"                    { comment(); }
+"/*"                    { BEGIN(COMMENT); }
+<COMMENT>"*/"           { BEGIN(INITIAL); }
+<COMMENT>[^*\n]+        ;
+<COMMENT>"*"            ;
+<COMMENT>\n             ;
 
 "sizeof"                { count(); return TransformationParser::SIZEOF; }
 "where"                 { count(); return TransformationParser::WHERE; }
@@ -132,23 +137,6 @@ L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return Transform
 .                       { /* ignore bad characters */ }
 
 %%
-
-void TransformationScanner::comment()
-{
-	char c, c1;
-
-loop:
-	while ((c = input()) != '*' && c != 0)
-		/*putchar(c)*/;
-
-	if ((c1 = input()) != '/' && c != 0) {
-		/*unput(c1);*/
-		goto loop;
-	}
-
-	if (c != 0)
-		/*putchar(c1)*/;
-}
 
 void TransformationScanner::count()
 {

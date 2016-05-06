@@ -23,8 +23,6 @@
 		int column; \
 	private: \
 		void count(); \
-		void comment(); \
-		void commentEOL(); \
 		int check_type();
 
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace
@@ -50,6 +48,8 @@ E           [Ee][+-]?{D}+
 FS          (f|F|l|L)
 IS          (u|U|l|L)*
 
+%x COMMENT
+
 %%
 
 ^#include       { count(); return AnsiCParser::PREINCLUDE; }
@@ -59,8 +59,12 @@ IS          (u|U|l|L)*
 ^#endif         { count(); return AnsiCParser::PREENDIF; }
 ^#line          { count(); return AnsiCParser::PRELINE; }
 
-"/*"            { comment(); }
-"//"            { commentEOL(); }
+"//".*                  ;
+"/*"                    { BEGIN(COMMENT); }
+<COMMENT>"*/"           { BEGIN(INITIAL); }
+<COMMENT>[^*\n]+        ;
+<COMMENT>"*"            ;
+<COMMENT>\n             ;
 
 "auto"          { count(); return AnsiCParser::AUTO; }
 "break"         { count(); return AnsiCParser::BREAK; }
@@ -172,30 +176,6 @@ L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return AnsiCPars
 .               { /* ignore bad characters */ }
 
 %%
-
-void AnsiCScanner::comment()
-{
-	char c, c1;
-
-loop:
-	while ((c = input()) != '*' && c != 0)
-		/*putchar(c)*/;
-
-	if ((c1 = input()) != '/' && c != 0) {
-		/*unput(c1);*/
-		goto loop;
-	}
-
-	if (c != 0)
-		/*putchar(c1)*/;
-}
-
-void AnsiCScanner::commentEOL()
-{
-	char c;
-	while ((c = input()) != '\n')
-		;
-}
 
 void AnsiCScanner::count()
 {
