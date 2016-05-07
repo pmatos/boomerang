@@ -7,7 +7,7 @@
 
 %header{
 	#include "transformation-parser.h"
-	#define MAX_LINE 1024      // the longest line
+	#include <string>
 %}
 
 %{
@@ -19,7 +19,7 @@
 %define MEMBERS \
 	public: \
 		int theLine;        /* the current line number */ \
-		char lineBuf[MAX_LINE]; /* the current line */ \
+		std::string lineBuf; /* the current line */ \
 		bool traceLines;    /* echo each line as it is scanned */ \
 		std::istream &in; \
 		int column; \
@@ -28,7 +28,6 @@
 
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace
 %define CONSTRUCTOR_INIT : theLine(1), traceLines(trace), in(ins), column(0)
-%define CONSTRUCTOR_CODE { *lineBuf = 0; }
 
 %define INPUT_CODE \
 	if (in.eof()) { \
@@ -142,21 +141,17 @@ L?\"(\\.|[^\\"])*\"     { yylval.str = strdup(yytext); return TransformationPars
 
 void TransformationScanner::count()
 {
-	int i;
-
-	for (i = 0; yytext[i] != '\0'; i++)
-		if (yytext[i] == '\n')
+	for (size_t i = 0; yytext[i]; ++i) {
+		if (yytext[i] == '\n') {
+			lineBuf.clear();
+			theLine++;
 			column = 0;
-		else if (yytext[i] == '\t')
-			column += 8 - (column % 8);
-		else
-			column++;
-
-	strcat(lineBuf, yytext);
-	if (strchr(lineBuf, '\n')) {
-		char buf[MAX_LINE];
-		strcpy(buf, lineBuf);
-		strcpy(lineBuf, strchr(buf, '\n') + 1);
-		theLine++;
+		} else {
+			lineBuf.push_back(yytext[i]);
+			if (yytext[i] == '\t')
+				column += 8 - (column % 8);
+			else
+				column++;
+		}
 	}
 }

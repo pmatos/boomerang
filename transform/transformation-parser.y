@@ -141,7 +141,7 @@ int TransformationParser::yylex()
 void TransformationParser::yyerror(const char *s)
 {
 	fflush(stdout);
-	printf("\n%s", theScanner->lineBuf);
+	printf("\n%s", theScanner->lineBuf.c_str());
 	printf("\n%*s\n%*s on line %i\n", theScanner->column, "^", theScanner->column, s, theScanner->theLine);
 }
 
