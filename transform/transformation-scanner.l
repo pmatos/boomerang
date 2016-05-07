@@ -12,6 +12,8 @@
 
 %{
 	#include <string.h>
+	#define YY_USER_ACTION \
+		count();
 %}
 
 %define MEMBERS \
@@ -58,56 +60,56 @@ IS                      (u|U|l|L)*
 <COMMENT>"*"            ;
 <COMMENT>\n             ;
 
-"sizeof"                { count(); return TransformationParser::SIZEOF; }
-"where"                 { count(); return TransformationParser::WHERE; }
-"becomes"               { count(); return TransformationParser::BECOMES; }
-"kind("                 { count(); return TransformationParser::KIND; }
-"type("                 { count(); return TransformationParser::TYPE; }
-"pointer("              { count(); return TransformationParser::POINTER; }
-"compound"              { count(); return TransformationParser::COMPOUND; }
-"array"                 { count(); return TransformationParser::ARRAY; }
-"r["                    { count(); return TransformationParser::REGOF; }
-"m["                    { count(); return TransformationParser::MEMOF; }
-"a["                    { count(); return TransformationParser::ADDROF; }
-"true"                  { count(); return TransformationParser::BOOL_TRUE; }
-"false"                 { count(); return TransformationParser::BOOL_FALSE; }
-{L}({L}|{D})*\(         { count(); yytext[--yyleng] = '\0'; yylval.str = strdup(yytext); return TransformationParser::FUNC; }
+"sizeof"                { return TransformationParser::SIZEOF; }
+"where"                 { return TransformationParser::WHERE; }
+"becomes"               { return TransformationParser::BECOMES; }
+"kind("                 { return TransformationParser::KIND; }
+"type("                 { return TransformationParser::TYPE; }
+"pointer("              { return TransformationParser::POINTER; }
+"compound"              { return TransformationParser::COMPOUND; }
+"array"                 { return TransformationParser::ARRAY; }
+"r["                    { return TransformationParser::REGOF; }
+"m["                    { return TransformationParser::MEMOF; }
+"a["                    { return TransformationParser::ADDROF; }
+"true"                  { return TransformationParser::BOOL_TRUE; }
+"false"                 { return TransformationParser::BOOL_FALSE; }
+{L}({L}|{D})*\(         { yytext[--yyleng] = '\0'; yylval.str = strdup(yytext); return TransformationParser::FUNC; }
 
-{L}({L}|{D})*           { count(); yylval.str = strdup(yytext); return TransformationParser::IDENTIFIER; }
+{L}({L}|{D})*           { yylval.str = strdup(yytext); return TransformationParser::IDENTIFIER; }
 
-0[xX]{H}+{IS}?          { count(); sscanf(yytext, "0x%x", &yylval.ival); return TransformationParser::CONSTANT; }
-0{D}+{IS}?              { count(); return TransformationParser::CONSTANT; }
-{D}+{IS}?               { count(); sscanf(yytext, "%d", &yylval.ival); return TransformationParser::CONSTANT; }
-L?'(\\.|[^\\'])+'       { count(); return TransformationParser::CONSTANT; }
+0[xX]{H}+{IS}?          { sscanf(yytext, "0x%x", &yylval.ival); return TransformationParser::CONSTANT; }
+0{D}+{IS}?              { return TransformationParser::CONSTANT; }
+{D}+{IS}?               { sscanf(yytext, "%d", &yylval.ival); return TransformationParser::CONSTANT; }
+L?'(\\.|[^\\'])+'       { return TransformationParser::CONSTANT; }
 
 {D}+{E}{FS}?            |
 {D}*"."{D}+({E})?{FS}?  |
-{D}+"."{D}*({E})?{FS}?  { count(); return TransformationParser::CONSTANT; }
+{D}+"."{D}*({E})?{FS}?  { return TransformationParser::CONSTANT; }
 
-L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return TransformationParser::STRING_LITERAL; }
+L?\"(\\.|[^\\"])*\"     { yylval.str = strdup(yytext); return TransformationParser::STRING_LITERAL; }
 
-"..."                   { count(); return TransformationParser::ELLIPSIS; }
-">>="                   { count(); return TransformationParser::RIGHT_ASSIGN; }
-"<<="                   { count(); return TransformationParser::LEFT_ASSIGN; }
-"+="                    { count(); return TransformationParser::ADD_ASSIGN; }
-"-="                    { count(); return TransformationParser::SUB_ASSIGN; }
-"*="                    { count(); return TransformationParser::MUL_ASSIGN; }
-"/="                    { count(); return TransformationParser::DIV_ASSIGN; }
-"%="                    { count(); return TransformationParser::MOD_ASSIGN; }
-"&="                    { count(); return TransformationParser::AND_ASSIGN; }
-"^="                    { count(); return TransformationParser::XOR_ASSIGN; }
-"|="                    { count(); return TransformationParser::OR_ASSIGN; }
-">>"                    { count(); return TransformationParser::RIGHT_OP; }
-"<<"                    { count(); return TransformationParser::LEFT_OP; }
-"++"                    { count(); return TransformationParser::INC_OP; }
-"--"                    { count(); return TransformationParser::DEC_OP; }
-"->"                    { count(); return TransformationParser::PTR_OP; }
-"&&"                    { count(); return TransformationParser::AND_OP; }
-"||"                    { count(); return TransformationParser::OR_OP; }
-"<="                    { count(); return TransformationParser::LE_OP; }
-">="                    { count(); return TransformationParser::GE_OP; }
-"=="                    { count(); return TransformationParser::EQ_OP; }
-"!="                    { count(); return TransformationParser::NE_OP; }
+"..."                   { return TransformationParser::ELLIPSIS; }
+">>="                   { return TransformationParser::RIGHT_ASSIGN; }
+"<<="                   { return TransformationParser::LEFT_ASSIGN; }
+"+="                    { return TransformationParser::ADD_ASSIGN; }
+"-="                    { return TransformationParser::SUB_ASSIGN; }
+"*="                    { return TransformationParser::MUL_ASSIGN; }
+"/="                    { return TransformationParser::DIV_ASSIGN; }
+"%="                    { return TransformationParser::MOD_ASSIGN; }
+"&="                    { return TransformationParser::AND_ASSIGN; }
+"^="                    { return TransformationParser::XOR_ASSIGN; }
+"|="                    { return TransformationParser::OR_ASSIGN; }
+">>"                    { return TransformationParser::RIGHT_OP; }
+"<<"                    { return TransformationParser::LEFT_OP; }
+"++"                    { return TransformationParser::INC_OP; }
+"--"                    { return TransformationParser::DEC_OP; }
+"->"                    { return TransformationParser::PTR_OP; }
+"&&"                    { return TransformationParser::AND_OP; }
+"||"                    { return TransformationParser::OR_OP; }
+"<="                    { return TransformationParser::LE_OP; }
+">="                    { return TransformationParser::GE_OP; }
+"=="                    { return TransformationParser::EQ_OP; }
+"!="                    { return TransformationParser::NE_OP; }
 ";"                     |
 "{"                     |
 "}"                     |
@@ -131,10 +133,10 @@ L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return Transform
 ">"                     |
 "^"                     |
 "|"                     |
-"?"                     { count(); return yytext[0]; }
+"?"                     { return yytext[0]; }
 
-[ \t\v\n\f]+            { count(); }
-.                       { /* ignore bad characters */ }
+[ \t\v\n\f]+            ;
+.                       ; /* ignore bad characters */
 
 %%
 

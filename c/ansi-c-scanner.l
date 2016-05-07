@@ -12,6 +12,8 @@
 
 %{
 	#include <string.h>
+	#define YY_USER_ACTION \
+		count();
 %}
 
 %define MEMBERS \
@@ -40,24 +42,24 @@
 
 %define LEX_PARAM YY_AnsiCParser_STYPE &yylval
 
-D           [0-9]
+D                       [0-9]
 /* Allow ? and @ in identifiers, so we can use mangled names */
-L           [a-zA-Z_?@]
-H           [a-fA-F0-9]
-E           [Ee][+-]?{D}+
-FS          (f|F|l|L)
-IS          (u|U|l|L)*
+L                       [a-zA-Z_?@]
+H                       [a-fA-F0-9]
+E                       [Ee][+-]?{D}+
+FS                      (f|F|l|L)
+IS                      (u|U|l|L)*
 
 %x COMMENT
 
 %%
 
-^#include       { count(); return AnsiCParser::PREINCLUDE; }
-^#define        { count(); return AnsiCParser::PREDEFINE; }
-^#if            { count(); return AnsiCParser::PREIF; }
-^#ifdef         { count(); return AnsiCParser::PREIFDEF; }
-^#endif         { count(); return AnsiCParser::PREENDIF; }
-^#line          { count(); return AnsiCParser::PRELINE; }
+^#include               { return AnsiCParser::PREINCLUDE; }
+^#define                { return AnsiCParser::PREDEFINE; }
+^#if                    { return AnsiCParser::PREIF; }
+^#ifdef                 { return AnsiCParser::PREIFDEF; }
+^#endif                 { return AnsiCParser::PREENDIF; }
+^#line                  { return AnsiCParser::PRELINE; }
 
 "//".*                  ;
 "/*"                    { BEGIN(COMMENT); }
@@ -66,114 +68,114 @@ IS          (u|U|l|L)*
 <COMMENT>"*"            ;
 <COMMENT>\n             ;
 
-"auto"          { count(); return AnsiCParser::AUTO; }
-"break"         { count(); return AnsiCParser::BREAK; }
-"case"          { count(); return AnsiCParser::CASE; }
-"char"          { count(); return AnsiCParser::CHAR; }
-"const"         { count(); return AnsiCParser::CONST; }
-"continue"      { count(); return AnsiCParser::CONTINUE; }
-"default"       { count(); return AnsiCParser::DEFAULT; }
-"do"            { count(); return AnsiCParser::DO; }
-"double"        { count(); return AnsiCParser::DOUBLE; }
-"else"          { count(); return AnsiCParser::ELSE; }
-"enum"          { count(); return AnsiCParser::ENUM; }
-"extern"        { count(); return AnsiCParser::EXTERN; }
-"float"         { count(); return AnsiCParser::FLOAT; }
-"for"           { count(); return AnsiCParser::FOR; }
-"goto"          { count(); return AnsiCParser::GOTO; }
-"if"            { count(); return AnsiCParser::IF; }
-"int"           { count(); return AnsiCParser::INT; }
-"long"          { count(); return AnsiCParser::LONG; }
-"register"      { count(); return AnsiCParser::REGISTER; }
-"return"        { count(); return AnsiCParser::RETURN; }
-"short"         { count(); return AnsiCParser::SHORT; }
-"signed"        { count(); return AnsiCParser::SIGNED; }
-"sizeof"        { count(); return AnsiCParser::SIZEOF; }
-"__nodecode"    { count(); return AnsiCParser::NODECODE; }
-"__incomplete"  { count(); return AnsiCParser::INCOMPLETE; }
-"__cdecl"       { count(); return AnsiCParser::CDECL; }
-"__pascal"      { count(); return AnsiCParser::PASCAL; }
-"__stdcall"     { count(); return AnsiCParser::PASCAL; }
-"__custom"      { count(); return AnsiCParser::CUSTOM; }
-"__thiscall"    { count(); return AnsiCParser::THISCALL; }
-"PREFER"        { count(); return AnsiCParser::PREFER; }
-"__withstack("  { count(); return AnsiCParser::WITHSTACK; }
-"__symref"      { count(); return AnsiCParser::SYMBOLREF; }
-"static"        { count(); return AnsiCParser::STATIC; }
-"struct"        { count(); return AnsiCParser::STRUCT; }
-"switch"        { count(); return AnsiCParser::SWITCH; }
-"typedef"       { count(); return AnsiCParser::TYPEDEF; }
-"union"         { count(); return AnsiCParser::UNION; }
-"unsigned"      { count(); return AnsiCParser::UNSIGNED; }
-"void"          { count(); return AnsiCParser::VOID; }
-"volatile"      { count(); return AnsiCParser::VOLATILE; }
-"while"         { count(); return AnsiCParser::WHILE; }
-"r["            { count(); return AnsiCParser::REGOF; }
-"m["            { count(); return AnsiCParser::MEMOF; }
-"@max("         { count(); return AnsiCParser::MAXBOUND; }
+"auto"                  { return AnsiCParser::AUTO; }
+"break"                 { return AnsiCParser::BREAK; }
+"case"                  { return AnsiCParser::CASE; }
+"char"                  { return AnsiCParser::CHAR; }
+"const"                 { return AnsiCParser::CONST; }
+"continue"              { return AnsiCParser::CONTINUE; }
+"default"               { return AnsiCParser::DEFAULT; }
+"do"                    { return AnsiCParser::DO; }
+"double"                { return AnsiCParser::DOUBLE; }
+"else"                  { return AnsiCParser::ELSE; }
+"enum"                  { return AnsiCParser::ENUM; }
+"extern"                { return AnsiCParser::EXTERN; }
+"float"                 { return AnsiCParser::FLOAT; }
+"for"                   { return AnsiCParser::FOR; }
+"goto"                  { return AnsiCParser::GOTO; }
+"if"                    { return AnsiCParser::IF; }
+"int"                   { return AnsiCParser::INT; }
+"long"                  { return AnsiCParser::LONG; }
+"register"              { return AnsiCParser::REGISTER; }
+"return"                { return AnsiCParser::RETURN; }
+"short"                 { return AnsiCParser::SHORT; }
+"signed"                { return AnsiCParser::SIGNED; }
+"sizeof"                { return AnsiCParser::SIZEOF; }
+"__nodecode"            { return AnsiCParser::NODECODE; }
+"__incomplete"          { return AnsiCParser::INCOMPLETE; }
+"__cdecl"               { return AnsiCParser::CDECL; }
+"__pascal"              { return AnsiCParser::PASCAL; }
+"__stdcall"             { return AnsiCParser::PASCAL; }
+"__custom"              { return AnsiCParser::CUSTOM; }
+"__thiscall"            { return AnsiCParser::THISCALL; }
+"PREFER"                { return AnsiCParser::PREFER; }
+"__withstack("          { return AnsiCParser::WITHSTACK; }
+"__symref"              { return AnsiCParser::SYMBOLREF; }
+"static"                { return AnsiCParser::STATIC; }
+"struct"                { return AnsiCParser::STRUCT; }
+"switch"                { return AnsiCParser::SWITCH; }
+"typedef"               { return AnsiCParser::TYPEDEF; }
+"union"                 { return AnsiCParser::UNION; }
+"unsigned"              { return AnsiCParser::UNSIGNED; }
+"void"                  { return AnsiCParser::VOID; }
+"volatile"              { return AnsiCParser::VOLATILE; }
+"while"                 { return AnsiCParser::WHILE; }
+"r["                    { return AnsiCParser::REGOF; }
+"m["                    { return AnsiCParser::MEMOF; }
+"@max("                 { return AnsiCParser::MAXBOUND; }
 
-{L}({L}|{D})*           { count(); yylval.str = strdup(yytext); return check_type(); }
+{L}({L}|{D})*           { yylval.str = strdup(yytext); return check_type(); }
 
-0[xX]{H}+{IS}?          { count(); sscanf(yytext, "0x%x", &yylval.ival); return AnsiCParser::CONSTANT; }
-0{D}+{IS}?              { count(); return AnsiCParser::CONSTANT; }
-{D}+{IS}?               { count(); sscanf(yytext, "%d", &yylval.ival); return AnsiCParser::CONSTANT; }
-L?'(\\.|[^\\'])+'       { count(); return AnsiCParser::CONSTANT; }
+0[xX]{H}+{IS}?          { sscanf(yytext, "0x%x", &yylval.ival); return AnsiCParser::CONSTANT; }
+0{D}+{IS}?              { return AnsiCParser::CONSTANT; }
+{D}+{IS}?               { sscanf(yytext, "%d", &yylval.ival); return AnsiCParser::CONSTANT; }
+L?'(\\.|[^\\'])+'       { return AnsiCParser::CONSTANT; }
 
 {D}+{E}{FS}?            |
 {D}*"."{D}+({E})?{FS}?  |
-{D}+"."{D}*({E})?{FS}?  { count(); return AnsiCParser::CONSTANT; }
+{D}+"."{D}*({E})?{FS}?  { return AnsiCParser::CONSTANT; }
 
-L?\"(\\.|[^\\"])*\"     { count(); yylval.str = strdup(yytext); return AnsiCParser::STRING_LITERAL; }
+L?\"(\\.|[^\\"])*\"     { yylval.str = strdup(yytext); return AnsiCParser::STRING_LITERAL; }
 
-"..."   { count(); return AnsiCParser::ELLIPSIS; }
-">>="   { count(); return AnsiCParser::RIGHT_ASSIGN; }
-"<<="   { count(); return AnsiCParser::LEFT_ASSIGN; }
-"+="    { count(); return AnsiCParser::ADD_ASSIGN; }
-"-="    { count(); return AnsiCParser::SUB_ASSIGN; }
-"*="    { count(); return AnsiCParser::MUL_ASSIGN; }
-"/="    { count(); return AnsiCParser::DIV_ASSIGN; }
-"%="    { count(); return AnsiCParser::MOD_ASSIGN; }
-"&="    { count(); return AnsiCParser::AND_ASSIGN; }
-"^="    { count(); return AnsiCParser::XOR_ASSIGN; }
-"|="    { count(); return AnsiCParser::OR_ASSIGN; }
-">>"    { count(); return AnsiCParser::RIGHT_OP; }
-"<<"    { count(); return AnsiCParser::LEFT_OP; }
-"++"    { count(); return AnsiCParser::INC_OP; }
-"--"    { count(); return AnsiCParser::DEC_OP; }
-"->"    { count(); return AnsiCParser::PTR_OP; }
-"&&"    { count(); return AnsiCParser::AND_OP; }
-"||"    { count(); return AnsiCParser::OR_OP; }
-"<="    { count(); return AnsiCParser::LE_OP; }
-">="    { count(); return AnsiCParser::GE_OP; }
-"=="    { count(); return AnsiCParser::EQ_OP; }
-"!="    { count(); return AnsiCParser::NE_OP; }
-";"     |
-"{"     |
-"}"     |
-","     |
-":"     |
-"="     |
-"("     |
-")"     |
-"["     |
-"]"     |
-"."     |
-"&"     |
-"!"     |
-"~"     |
-"-"     |
-"+"     |
-"*"     |
-"/"     |
-"%"     |
-"<"     |
-">"     |
-"^"     |
-"|"     |
-"?"     { count(); return yytext[0]; }
+"..."                   { return AnsiCParser::ELLIPSIS; }
+">>="                   { return AnsiCParser::RIGHT_ASSIGN; }
+"<<="                   { return AnsiCParser::LEFT_ASSIGN; }
+"+="                    { return AnsiCParser::ADD_ASSIGN; }
+"-="                    { return AnsiCParser::SUB_ASSIGN; }
+"*="                    { return AnsiCParser::MUL_ASSIGN; }
+"/="                    { return AnsiCParser::DIV_ASSIGN; }
+"%="                    { return AnsiCParser::MOD_ASSIGN; }
+"&="                    { return AnsiCParser::AND_ASSIGN; }
+"^="                    { return AnsiCParser::XOR_ASSIGN; }
+"|="                    { return AnsiCParser::OR_ASSIGN; }
+">>"                    { return AnsiCParser::RIGHT_OP; }
+"<<"                    { return AnsiCParser::LEFT_OP; }
+"++"                    { return AnsiCParser::INC_OP; }
+"--"                    { return AnsiCParser::DEC_OP; }
+"->"                    { return AnsiCParser::PTR_OP; }
+"&&"                    { return AnsiCParser::AND_OP; }
+"||"                    { return AnsiCParser::OR_OP; }
+"<="                    { return AnsiCParser::LE_OP; }
+">="                    { return AnsiCParser::GE_OP; }
+"=="                    { return AnsiCParser::EQ_OP; }
+"!="                    { return AnsiCParser::NE_OP; }
+";"                     |
+"{"                     |
+"}"                     |
+","                     |
+":"                     |
+"="                     |
+"("                     |
+")"                     |
+"["                     |
+"]"                     |
+"."                     |
+"&"                     |
+"!"                     |
+"~"                     |
+"-"                     |
+"+"                     |
+"*"                     |
+"/"                     |
+"%"                     |
+"<"                     |
+">"                     |
+"^"                     |
+"|"                     |
+"?"                     { return yytext[0]; }
 
-[ \t\v\n\f]+    { count(); }
-.               { /* ignore bad characters */ }
+[ \t\v\n\f]+            ;
+.                       ; /* ignore bad characters */
 
 %%
 
