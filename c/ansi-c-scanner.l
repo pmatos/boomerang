@@ -115,9 +115,9 @@ IS                      (u|U|l|L)*
 
 {L}({L}|{D})*           { yylval.str = strdup(yytext); return check_type(); }
 
-0[xX]{H}+{IS}?          { sscanf(yytext, "0x%x", &yylval.ival); return AnsiCParser::CONSTANT; }
-0{D}+{IS}?              { return AnsiCParser::CONSTANT; }
-{D}+{IS}?               { sscanf(yytext, "%d", &yylval.ival); return AnsiCParser::CONSTANT; }
+0[xX]{H}+{IS}?          |
+0{D}+{IS}?              |
+{D}+{IS}?               { yylval.ival = strtol(yytext, NULL, 0); return AnsiCParser::CONSTANT; }
 L?'(\\.|[^\\'])+'       { return AnsiCParser::CONSTANT; }
 
 {D}+{E}{FS}?            |

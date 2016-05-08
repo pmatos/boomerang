@@ -76,9 +76,9 @@ IS                      (u|U|l|L)*
 
 {L}({L}|{D})*           { yylval.str = strdup(yytext); return TransformationParser::IDENTIFIER; }
 
-0[xX]{H}+{IS}?          { sscanf(yytext, "0x%x", &yylval.ival); return TransformationParser::CONSTANT; }
-0{D}+{IS}?              { return TransformationParser::CONSTANT; }
-{D}+{IS}?               { sscanf(yytext, "%d", &yylval.ival); return TransformationParser::CONSTANT; }
+0[xX]{H}+{IS}?          |
+0{D}+{IS}?              |
+{D}+{IS}?               { yylval.ival = strtol(yytext, NULL, 0); return TransformationParser::CONSTANT; }
 L?'(\\.|[^\\'])+'       { return TransformationParser::CONSTANT; }
 
 {D}+{E}{FS}?            |
