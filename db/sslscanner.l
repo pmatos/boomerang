@@ -26,25 +26,17 @@
 #include <cstring>
 %}
 
+%define IOSTREAM
+
 %define MEMBERS \
 	public: \
 		int theLine;            /* the current line number */ \
 		char lineBuf[MAX_LINE]; /* the current line */ \
 		bool traceLines;        /* echo each lines as it is scanned */ \
-		std::istream &in;
 
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace
-%define CONSTRUCTOR_INIT : theLine(1), traceLines(trace), in(ins)
-%define CONSTRUCTOR_CODE
-
-%define INPUT_CODE \
-	if (in.eof()) { \
-		result = 0; \
-	} else { \
-		in.read(buffer, max_size); \
-		result = in.gcount(); \
-	} \
-	return result;
+%define CONSTRUCTOR_INIT : theLine(1), traceLines(trace)
+%define CONSTRUCTOR_CODE yyin = &ins;
 
 %define LEX_PARAM YY_SSLParser_STYPE &yylval
 

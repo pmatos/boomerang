@@ -16,28 +16,21 @@
 		count();
 %}
 
+%define IOSTREAM
+
 %define MEMBERS \
 	public: \
 		int theLine;        /* the current line number */ \
 		std::string lineBuf; /* the current line */ \
 		bool traceLines;    /* echo each lines as it is scanned */ \
-		std::istream &in; \
 		int column; \
 	private: \
 		void count(); \
 		int check_type();
 
 %define CONSTRUCTOR_PARAM std::istream &ins, bool trace
-%define CONSTRUCTOR_INIT : theLine(1), traceLines(trace), in(ins), column(0)
-
-%define INPUT_CODE \
-	if (in.eof()) { \
-		result = 0; \
-	} else { \
-		in.read(buffer, max_size); \
-		result = in.gcount(); \
-	} \
-	return result;
+%define CONSTRUCTOR_INIT : theLine(1), traceLines(trace), column(0)
+%define CONSTRUCTOR_CODE yyin = &ins;
 
 %define LEX_PARAM YY_AnsiCParser_STYPE &yylval
 
