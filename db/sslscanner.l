@@ -48,7 +48,7 @@
 "float"      { return SSLParser::TOK_FLOAT; }
 "OPERAND"    { return SSLParser::OPERAND; }
 "ENDIANNESS" |
-"endianness" { yylval.str = strdup(yytext); return SSLParser::ENDIANNESS; }
+"endianness" { return SSLParser::ENDIANNESS; }
 "BIG"        |
 "big"        { yylval.str = strdup(yytext); return SSLParser::BIG; }
 "LITTLE"     |
@@ -116,7 +116,7 @@
 "=>"    { return SSLParser::THEN; }
 "->"    { return SSLParser::INDEX; }
 ":="    { return SSLParser::EQUATE; }
-"::="   { yylval.str = strdup(yytext); return SSLParser::ASSIGN; }
+"::="   { return SSLParser::ASSIGN; }
 ".."    { return SSLParser::TO; }
 ":"     { return SSLParser::COLON; }
 "!"     { return SSLParser::S_E; }
