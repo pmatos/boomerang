@@ -50,9 +50,9 @@
 "ENDIANNESS" |
 "endianness" { return SSLParser::ENDIANNESS; }
 "BIG"        |
-"big"        { yylval.str = strdup(yytext); return SSLParser::BIG; }
+"big"        { return SSLParser::BIG; }
 "LITTLE"     |
-"little"     { yylval.str = strdup(yytext); return SSLParser::LITTLE; }
+"little"     { return SSLParser::LITTLE; }
 "COVERS"     { return SSLParser::COVERS; }
 "SHARES"     { return SSLParser::SHARES; }
 "FAST"       { return SSLParser::FAST; }

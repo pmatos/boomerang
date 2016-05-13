@@ -45,6 +45,7 @@
 	std::deque<std::string>  *namelist;
 	std::list<Exp *>         *explist;
 	RTL            *rtlist;
+	bool            endianness;
 }
 
 %{
@@ -137,7 +138,7 @@
 %token <str> REG_ID REG_NUM COND_TNAME DECOR
 %token <str> FARITH_OP FPUSH FPOP
 %token <str> TEMP SHARES CONV_FUNC TRUNC_FUNC TRANSCEND FABS_FUNC
-%token <str> BIG LITTLE
+%token       BIG LITTLE
 %token <str> NAME_CALL NAME_LOOKUP
 
 %token       ENDIANNESS COVERS INDEX
@@ -178,7 +179,7 @@
 %type <exprlist> exprstr_expr exprstr_array
 %type <explist> list_actualparameter
 %type <rtlist> rt_list
-%type <str> esize
+%type <endianness> esize
 
 %%
 
@@ -900,12 +901,12 @@ cast
 	;
 
 endianness
-	: ENDIANNESS esize { Dict.bigEndian = (strcmp($2, "BIG") == 0); }
+	: ENDIANNESS esize { Dict.bigEndian = $2; }
 	;
 
 esize
-	: BIG    { $$ = $1; }
-	| LITTLE { $$ = $1; }
+	: BIG    { $$ = true; }
+	| LITTLE { $$ = false; }
 	;
 
 assigntype
