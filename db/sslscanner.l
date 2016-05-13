@@ -23,6 +23,7 @@
 %}
 
 %{
+#include <cstdlib>
 #include <cstring>
 %}
 
@@ -151,7 +152,7 @@
 "tmp"[a-zA-Z0-9_]* { yylval.str = strdup(yytext); return SSLParser::TEMP; }
 
 "r["        { return SSLParser::REG_IDX; }
-"r"[0-9]*   { yylval.str = strdup(yytext); return SSLParser::REG_NUM; }
+"r"[0-9]*   { yylval.num = strtol(&yytext[1], NULL, 10); return SSLParser::REG_NUM; }
 "m["        { return SSLParser::MEM_IDX; }
 "_"         { return yytext[0]; }
 
@@ -169,8 +170,8 @@ _?[A-Za-z][A-Za-z0-9_]*    { yylval.str = strdup(yytext); return SSLParser::NAME
 "$"         { return yytext[0]; }
 
 -?[0-9]+"."[0-9]+ { yylval.dbl = atof(yytext); return SSLParser::FLOATNUM; }
--?[0-9]+          { yylval.num = strtol(yytext, 0, 10); return SSLParser::NUM; }
-0x[A-F0-9]+       { yylval.num = strtol(yytext, 0, 16); return SSLParser::NUM; }
+-?[0-9]+          { yylval.num = strtol(yytext, NULL, 10); return SSLParser::NUM; }
+0x[A-F0-9]+       { yylval.num = strtol(yytext, NULL, 16); return SSLParser::NUM; }
 
 -?"2**"[0-9]+ { // a power of two
 	int sign = (yytext[0] == '-' ? -1 : 1);
@@ -178,8 +179,8 @@ _?[A-Za-z][A-Za-z0-9_]*    { yylval.str = strdup(yytext); return SSLParser::NAME
 
 	// David - changed to << for more efficient and
 	// not depend on the <cmath> anymore.
-	//yylval.num = (int)pow(2, strtol(start, 0, 10)) * sign;
-	yylval.num = 1 << (strtol(start, 0, 10) * sign);
+	//yylval.num = (int)pow(2, strtol(start, NULL, 10)) * sign;
+	yylval.num = 1 << (strtol(start, NULL, 10) * sign);
 	return SSLParser::NUM;
 }
 

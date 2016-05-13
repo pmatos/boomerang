@@ -135,7 +135,7 @@
 
 %token <str> COND_OP BIT_OP ARITH_OP LOG_OP
 %token <str> NAME ASSIGNTYPE
-%token <str> REG_ID REG_NUM COND_TNAME DECOR
+%token <str> REG_ID COND_TNAME DECOR
 %token <str> FARITH_OP FPUSH FPOP
 %token <str> TEMP SHARES CONV_FUNC TRUNC_FUNC TRANSCEND FABS_FUNC
 %token       BIG LITTLE
@@ -147,7 +147,7 @@
 %token       MEM_IDX TOK_INTEGER TOK_FLOAT FAST OPERAND
 %token       FETCHEXEC CAST_OP FLAGMACRO SUCCESSOR
 
-%token <num> NUM
+%token <num> NUM REG_NUM
 %token <dbl> FLOATNUM       // I'd prefer type double here!
 
 %token
@@ -861,13 +861,7 @@ location
 	  }
 
 	| REG_IDX exp ']' { $$ = Location::regOf($2); }
-
-	| REG_NUM {
-		int regNum;
-		sscanf($1, "r%d", &regNum);
-		$$ = Location::regOf(regNum);
-	  }
-
+	| REG_NUM         { $$ = Location::regOf($1); }
 	| MEM_IDX exp ']' { $$ = Location::memOf($2); }
 
 	| NAME {
