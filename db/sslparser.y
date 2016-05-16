@@ -1153,7 +1153,7 @@ OPER SSLParser::strToOper(const char *s)
 		return opEquals;
 	case '!':
 		// !
-		return opSgnEx;
+		return opSignExt;
 	case '~':
 		// ~=, ~
 		if (s[1] == '=') return opNotEqual;

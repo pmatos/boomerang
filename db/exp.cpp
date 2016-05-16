@@ -920,10 +920,6 @@ void Unary::print(std::ostream &os, bool html)
 		return;
 
 	//  Misc    //
-	case opSgnEx:  // Different because the operator appears last
-		p1->printr(os, html);
-		os << "! ";
-		return;
 	case opTemp:
 		if (p1->getOper() == opWildStrConst) {
 			os << "t[";
