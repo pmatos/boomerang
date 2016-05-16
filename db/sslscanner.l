@@ -119,7 +119,6 @@
 ":="    { return SSLParser::EQUATE; }
 "::="   { return SSLParser::ASSIGN; }
 ".."    { return SSLParser::TO; }
-":"     { return SSLParser::COLON; }
 "!"     { return SSLParser::S_E; }
 "@"     { return SSLParser::AT; }
 
@@ -163,7 +162,7 @@ _?[A-Za-z][A-Za-z0-9_]*    { yylval.str = strdup(yytext); return SSLParser::NAME
 "."[A-Za-z][A-Za-z.0-9]*   |
 "^"\"[A-Za-z][A-Za-z]*\"   { yylval.str = strdup(yytext); return SSLParser::DECOR; }
 
-[?,{}()'"]  |
+[?:,{}()'"] |
 "]"         |
 "["         |
 ";"         |

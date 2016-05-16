@@ -143,7 +143,7 @@
 
 %token       ENDIANNESS COVERS INDEX
 %token       SHARES NOT LNOT FNEG THEN LOOKUP_RDC BOGUS
-%token       ASSIGN TO COLON S_E AT ADDR REG_IDX EQUATE
+%token       ASSIGN TO S_E AT ADDR REG_IDX EQUATE
 %token       MEM_IDX TOK_INTEGER TOK_FLOAT FAST OPERAND
 %token       FETCHEXEC CAST_OP FLAGMACRO SUCCESSOR
 
@@ -703,11 +703,11 @@ assign_rt
 	;
 
 exp_term
-	: NUM                           { $$ = new Const($1); }
-	| FLOATNUM                      { $$ = new Const($1); }
-	| '(' exp ')'                   { $$ = $2; }
-	| location                      { $$ = $1; }
-	| '[' exp '?' exp COLON exp ']' { $$ = new Ternary(opTern, $2, $4, $6); }
+	: NUM                         { $$ = new Const($1); }
+	| FLOATNUM                    { $$ = new Const($1); }
+	| '(' exp ')'                 { $$ = $2; }
+	| location                    { $$ = $1; }
+	| '[' exp '?' exp ':' exp ']' { $$ = new Ternary(opTern, $2, $4, $6); }
 
 	/* Address-of, for LEA type instructions */
 	| ADDR exp ')' { $$ = new Unary(opAddrOf, $2); }
@@ -881,7 +881,7 @@ location
 		$$ = s;
 	  }
 
-	| exp AT '[' exp COLON exp ']' { $$ = new Ternary(opAt, $1, $4, $6); }
+	| exp AT '[' exp ':' exp ']' { $$ = new Ternary(opAt, $1, $4, $6); }
 
 	|TEMP { $$ = Location::tempOf(new Const($1)); }
 
