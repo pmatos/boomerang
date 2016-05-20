@@ -34,8 +34,9 @@ TABLE_TYPE Table::getType() const
 	return type;
 }
 
-OpTable::OpTable(std::deque<std::string> &ops) :
-	Table(ops, OPTABLE)
+OpTable::OpTable(std::deque<OPER> &ops) :
+	Table(OPTABLE),
+	operators(ops)
 {
 }
 

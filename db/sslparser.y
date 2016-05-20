@@ -43,6 +43,7 @@
 	InsNameElem    *insel;
 	std::list<std::string>   *parmlist;
 	std::list<std::string>   *strlist;
+	std::deque<OPER>         *oplist;
 	std::deque<Exp *>        *exprlist;
 	std::deque<std::string>  *namelist;
 	std::list<Exp *>         *explist;
@@ -135,7 +136,7 @@
  * Declaration of token types, associativity and precedence
  *============================================================================*/
 
-%token <str> LOG_OP COND_OP BIT_OP ARITH_OP FARITH_OP
+%token <op>  LOG_OP COND_OP BIT_OP ARITH_OP FARITH_OP
 %token <op>  FPUSH FPOP NOT LNOT FNEG S_E
 %token <op>  ADDR CONV_FUNC TRUNC_FUNC FABS_FUNC TRANSCEND
 %token <str> NAME ASSIGNTYPE
@@ -169,7 +170,8 @@
 %nonassoc AT
 
 %type <exp> exp location exp_term
-%type <str> bin_oper param
+%type <op> bin_oper
+%type <str> param
 %type <regtransfer> rt assign_rt
 %type <typ> assigntype
 %type <num> cast
@@ -177,8 +179,9 @@
 %type <insel> name_contract instr_name instr_elem
 %type <strlist> reg_table
 %type <parmlist> list_parameter func_parameter
-%type <namelist> str_term str_expr str_array name_expand opstr_expr opstr_array
+%type <namelist> str_term str_expr str_array name_expand
 %type <explist> flag_list
+%type <oplist> opstr_expr opstr_array
 %type <exprlist> exprstr_expr exprstr_array
 %type <explist> list_actualparameter
 %type <rtlist> rt_list
@@ -397,9 +400,9 @@ constants
 	| NAME EQUATE NUM ARITH_OP NUM {
 		if (ConstTable.find($1) != ConstTable.end())
 			yyerror("Constant declared twice");
-		else if ($4 == std::string("-"))
+		else if ($4 == opMinus)
 			ConstTable[std::string($1)] = $3 - $5;
-		else if ($4 == std::string("+"))
+		else if ($4 == opPlus)
 			ConstTable[std::string($1)] = $3 + $5;
 		else
 			yyerror("Constant expression must be NUM + NUM or NUM - NUM");
@@ -504,8 +507,8 @@ opstr_expr
 	;
 
 opstr_array
-	: opstr_array ',' '"' bin_oper '"'          { $$ = $1; $$->push_back($4); }
-	| '"' bin_oper '"' { $$ = new std::deque<std::string>; $$->push_back($2); }
+	: opstr_array ',' '"' bin_oper '"'   { $$ = $1; $$->push_back($4); }
+	| '"' bin_oper '"' { $$ = new std::deque<OPER>; $$->push_back($2); }
 	;
 
 /* Example: COND1_C := { "~%ZF", "%ZF", "~(%ZF | (%NF ^ %OF))", ... }; */
@@ -800,11 +803,11 @@ exp
 	| LNOT exp { $$ = new Unary($1, $2); }
 	| FNEG exp { $$ = new Unary($1, $2); }
 
-	| exp FARITH_OP exp { $$ = new Binary(strToOper($2), $1, $3); }
-	| exp ARITH_OP  exp { $$ = new Binary(strToOper($2), $1, $3); }
-	| exp BIT_OP    exp { $$ = new Binary(strToOper($2), $1, $3); }
-	| exp COND_OP   exp { $$ = new Binary(strToOper($2), $1, $3); }
-	| exp LOG_OP    exp { $$ = new Binary(strToOper($2), $1, $3); }
+	| exp FARITH_OP exp { $$ = new Binary($2, $1, $3); }
+	| exp ARITH_OP  exp { $$ = new Binary($2, $1, $3); }
+	| exp BIT_OP    exp { $$ = new Binary($2, $1, $3); }
+	| exp COND_OP   exp { $$ = new Binary($2, $1, $3); }
+	| exp LOG_OP    exp { $$ = new Binary($2, $1, $3); }
 
 	/* See comment above re "%prec LOOKUP_RDC"
 	 * Example: OP1[IDX] where OP1 := {  "&",  "|", "^", ... }; */
@@ -819,7 +822,7 @@ exp
 		} else if (TableDict[$2]->getType() != OPTABLE) {
 			o << "Table " << $2 << " is not an operator table but appears to be used as one";
 			yyerror(o.str().c_str());
-		} else if ((int)TableDict[$2]->records.size() < indexrefmap[$3]->ntokens()) {
+		} else if ((int)((OpTable *)TableDict[$2])->operators.size() < indexrefmap[$3]->ntokens()) {
 			o << "Table " << $2 << " is too small to use with " << $3 << " as an index";
 			yyerror(o.str().c_str());
 		}
@@ -1310,9 +1313,8 @@ void SSLParser::expandTables(InsNameElem *iname, std::list<std::string> *params,
 				Exp *e2 = b->getSubExp2();  // This should be an opList too
 				assert(b->getOper() == opList);
 				e2 = ((Binary *)e2)->getSubExp1();
-				const char *ops = ((OpTable *)(TableDict[tbl]))->records[indexrefmap[idx]->getvalue()].c_str();
-				Exp *repl = new Binary(strToOper(ops), e1->clone(),
-				e2->clone());  // FIXME!
+				OPER ops = ((OpTable *)(TableDict[tbl]))->operators[indexrefmap[idx]->getvalue()];
+				Exp *repl = new Binary(ops, e1->clone(), e2->clone());  // FIXME!
 				s->searchAndReplace(res, repl);
 			}
 		}

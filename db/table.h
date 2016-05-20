@@ -14,6 +14,8 @@
 #ifndef TABLE_H
 #define TABLE_H
 
+#include "operator.h"
+
 #include <string>
 #include <deque>
 
@@ -37,7 +39,8 @@ private:
 
 class OpTable : public Table {
 public:
-	OpTable(std::deque<std::string> &ops);
+	OpTable(std::deque<OPER> &ops);
+	std::deque<OPER> operators;
 };
 
 class Exp;
