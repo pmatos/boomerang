@@ -31,6 +31,7 @@
 
 %union {
 	Exp            *exp;
+	OPER            op;
 	const char     *str;
 	int             num;
 	double          dbl;
@@ -133,17 +134,18 @@
  * Declaration of token types, associativity and precedence
  *============================================================================*/
 
-%token <str> COND_OP BIT_OP ARITH_OP LOG_OP
+%token <str> LOG_OP COND_OP BIT_OP ARITH_OP FARITH_OP
+%token <op>  FPUSH FPOP NOT LNOT FNEG S_E
+%token <op>  ADDR CONV_FUNC TRUNC_FUNC FABS_FUNC TRANSCEND
 %token <str> NAME ASSIGNTYPE
 %token <str> REG_ID COND_TNAME DECOR
-%token <str> FARITH_OP FPUSH FPOP
-%token <str> TEMP SHARES CONV_FUNC TRUNC_FUNC TRANSCEND FABS_FUNC
-%token       BIG LITTLE
+%token <str> TEMP SHARES
 %token <str> NAME_CALL NAME_LOOKUP
 
-%token       ENDIANNESS COVERS INDEX
-%token       SHARES NOT LNOT FNEG THEN LOOKUP_RDC BOGUS
-%token       ASSIGN TO S_E AT ADDR REG_IDX EQUATE
+%token       ENDIANNESS BIG LITTLE
+%token       COVERS INDEX
+%token       SHARES THEN LOOKUP_RDC BOGUS
+%token       ASSIGN TO AT REG_IDX EQUATE
 %token       MEM_IDX TOK_INTEGER TOK_FLOAT FAST OPERAND
 %token       FETCHEXEC CAST_OP FLAGMACRO SUCCESSOR
 
@@ -695,8 +697,8 @@ assign_rt
 	  }
 
 	/* FPUSH and FPOP are special "transfers" with just a Terminal */
-	| FPUSH { $$ = new Assign(new Terminal(opNil), new Terminal(opFpush)); }
-	| FPOP  { $$ = new Assign(new Terminal(opNil), new Terminal(opFpop)); }
+	| FPUSH { $$ = new Assign(new Terminal(opNil), new Terminal($1)); }
+	| FPOP  { $$ = new Assign(new Terminal(opNil), new Terminal($1)); }
 
 	/* Just a RHS? Is this used? Note: flag calls are handled at the rt: level */
 	| assigntype exp { $$ = new Assign($1, NULL, $2); }
@@ -710,23 +712,23 @@ exp_term
 	| '[' exp '?' exp ':' exp ']' { $$ = new Ternary(opTern, $2, $4, $6); }
 
 	/* Address-of, for LEA type instructions */
-	| ADDR exp ')' { $$ = new Unary(opAddrOf, $2); }
+	| ADDR exp ')' { $$ = new Unary($1, $2); }
 
 	/* Conversion functions, e.g. fsize(32, 80, modrm). Args are FROMsize, TOsize, EXPression */
-	| CONV_FUNC NUM ',' NUM ',' exp ')' { $$ = new Ternary(strToOper($1), new Const($2), new Const($4), $6); }
+	| CONV_FUNC NUM ',' NUM ',' exp ')' { $$ = new Ternary($1, new Const($2), new Const($4), $6); }
 
 	/* Truncation function: ftrunc(3.01) == 3.00 */
-	| TRUNC_FUNC exp ')' { $$ = new Unary(opFtrunc, $2); }
+	| TRUNC_FUNC exp ')' { $$ = new Unary($1, $2); }
 
 	/* fabs function: fabs(-3.01) == 3.01 */
-	| FABS_FUNC exp ')' { $$ = new Unary(opFabs, $2); }
+	| FABS_FUNC exp ')' { $$ = new Unary($1, $2); }
 
 	/* FPUSH and FPOP */
-	| FPUSH { $$ = new Terminal(opFpush); }
-	| FPOP  { $$ = new Terminal(opFpop); }
+	| FPUSH { $$ = new Terminal($1); }
+	| FPOP  { $$ = new Terminal($1); }
 
 	/* Transcendental functions */
-	| TRANSCEND exp ')' { $$ = new Unary(strToOper($1), $2); }
+	| TRANSCEND exp ')' { $$ = new Unary($1, $2); }
 
 	/* Example: *Use* of COND[idx] */
 	| NAME_LOOKUP NAME ']' {
@@ -780,7 +782,7 @@ exp_term
 	;
 
 exp
-	: exp S_E { $$ = new Unary(opSignExt, $1); }
+	: exp S_E { $$ = new Unary($2, $1); }
 
 	/* "%prec CAST_OP" just says that this operator has the precedence of the dummy terminal CAST_OP
 	 * It's a "precedence modifier" (see "Context-Dependent Precedence" in the Bison documantation) */
@@ -793,9 +795,9 @@ exp
 			$$ = new Binary(opSize, new Const($2), $1);
 	  }
 
-	| NOT  exp { $$ = new Unary(opNot, $2); }
-	| LNOT exp { $$ = new Unary(opLNot, $2); }
-	| FNEG exp { $$ = new Unary(opFNeg, $2); }
+	| NOT  exp { $$ = new Unary($1, $2); }
+	| LNOT exp { $$ = new Unary($1, $2); }
+	| FNEG exp { $$ = new Unary($1, $2); }
 
 	| exp FARITH_OP exp { $$ = new Binary(strToOper($2), $1, $3); }
 	| exp ARITH_OP  exp { $$ = new Binary(strToOper($2), $1, $3); }

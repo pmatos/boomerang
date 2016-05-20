@@ -111,41 +111,41 @@
 "-fq"   |
 "pow"   { yylval.str = strdup(yytext); return SSLParser::FARITH_OP; }
 
-"~"     { return SSLParser::NOT; }
-"L~"    { return SSLParser::LNOT; }
-"~f"    { return SSLParser::FNEG; }
+"~"     { yylval.op = opNot;  return SSLParser::NOT; }
+"L~"    { yylval.op = opLNot; return SSLParser::LNOT; }
+"~f"    { yylval.op = opFNeg; return SSLParser::FNEG; }
 "=>"    { return SSLParser::THEN; }
 "->"    { return SSLParser::INDEX; }
 ":="    { return SSLParser::EQUATE; }
 "::="   { return SSLParser::ASSIGN; }
 ".."    { return SSLParser::TO; }
-"!"     { return SSLParser::S_E; }
+"!"     { yylval.op = opSignExt; return SSLParser::S_E; }
 "@"     { return SSLParser::AT; }
 
-"addr("          { return SSLParser::ADDR; }
-"fsize("         |
-"itof("          |
-"ftoi("          |
-"fround("        |
-"truncu("        |
-"truncs("        |
-"zfill("         |
-"sgnex("         { yytext[--yyleng] = '\0'; yylval.str = strdup(yytext); return SSLParser::CONV_FUNC; }
-"ftrunc("        { yytext[--yyleng] = '\0'; yylval.str = strdup(yytext); return SSLParser::TRUNC_FUNC; }
-"fabs("          { yytext[--yyleng] = '\0'; yylval.str = strdup(yytext); return SSLParser::FABS_FUNC; }
+"addr("          { yylval.op = opAddrOf;  return SSLParser::ADDR; }
+"fsize("         { yylval.op = opFsize;   return SSLParser::CONV_FUNC; }
+"itof("          { yylval.op = opItof;    return SSLParser::CONV_FUNC; }
+"ftoi("          { yylval.op = opFtoi;    return SSLParser::CONV_FUNC; }
+"fround("        { yylval.op = opFround;  return SSLParser::CONV_FUNC; }
+"truncu("        { yylval.op = opTruncu;  return SSLParser::CONV_FUNC; }
+"truncs("        { yylval.op = opTruncs;  return SSLParser::CONV_FUNC; }
+"zfill("         { yylval.op = opZfill;   return SSLParser::CONV_FUNC; }
+"sgnex("         { yylval.op = opSgnEx;   return SSLParser::CONV_FUNC; }
+"ftrunc("        { yylval.op = opFtrunc;  return SSLParser::TRUNC_FUNC; }
+"fabs("          { yylval.op = opFabs;    return SSLParser::FABS_FUNC; }
 "defineflags("   |
 "undefineflags(" { return SSLParser::FLAGMACRO; }
-"FPOP"           { return SSLParser::FPOP; }
-"FPUSH"          { return SSLParser::FPUSH; }
-"sin("           |
-"cos("           |
-"tan("           |
-"arctan("        |
-"log2("          |
-"loge("          |
-"log10("         |
-"execute("       |
-"sqrt("          { yytext[--yyleng] = '\0'; yylval.str = strdup(yytext); return SSLParser::TRANSCEND; }
+"FPOP"           { yylval.op = opFpop;    return SSLParser::FPOP; }
+"FPUSH"          { yylval.op = opFpush;   return SSLParser::FPUSH; }
+"sin("           { yylval.op = opSin;     return SSLParser::TRANSCEND; }
+"cos("           { yylval.op = opCos;     return SSLParser::TRANSCEND; }
+"tan("           { yylval.op = opTan;     return SSLParser::TRANSCEND; }
+"arctan("        { yylval.op = opArcTan;  return SSLParser::TRANSCEND; }
+"log2("          { yylval.op = opLog2;    return SSLParser::TRANSCEND; }
+"loge("          { yylval.op = opLoge;    return SSLParser::TRANSCEND; }
+"log10("         { yylval.op = opLog10;   return SSLParser::TRANSCEND; }
+"execute("       { yylval.op = opExecute; return SSLParser::TRANSCEND; }
+"sqrt("          { yylval.op = opSqrt;    return SSLParser::TRANSCEND; }
 "succ("          { return SSLParser::SUCCESSOR; }
 
 "tmp"[a-zA-Z0-9_]* { yylval.str = strdup(yytext); return SSLParser::TEMP; }
