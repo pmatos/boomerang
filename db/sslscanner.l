@@ -96,19 +96,19 @@
 "-"     { yylval.op = opMinus;     return SSLParser::ARITH_OP; }
 
 "*f"    { yylval.op = opFMult;     return SSLParser::FARITH_OP; }
-"*fd"   { yylval.op = opFMult;     return SSLParser::FARITH_OP; }
-"*fq"   { yylval.op = opFMult;     return SSLParser::FARITH_OP; }
+"*fd"   { yylval.op = opFMultd;    return SSLParser::FARITH_OP; }
+"*fq"   { yylval.op = opFMultq;    return SSLParser::FARITH_OP; }
 "*fsd"  { yylval.op = opFMultsd;   return SSLParser::FARITH_OP; }
 "*fdq"  { yylval.op = opFMultdq;   return SSLParser::FARITH_OP; }
 "/f"    { yylval.op = opFDiv;      return SSLParser::FARITH_OP; }
-"/fd"   { yylval.op = opFDiv;      return SSLParser::FARITH_OP; }
-"/fq"   { yylval.op = opFDiv;      return SSLParser::FARITH_OP; }
+"/fd"   { yylval.op = opFDivd;     return SSLParser::FARITH_OP; }
+"/fq"   { yylval.op = opFDivq;     return SSLParser::FARITH_OP; }
 "+f"    { yylval.op = opFPlus;     return SSLParser::FARITH_OP; }
-"+fd"   { yylval.op = opFPlus;     return SSLParser::FARITH_OP; }
-"+fq"   { yylval.op = opFPlus;     return SSLParser::FARITH_OP; }
+"+fd"   { yylval.op = opFPlusd;    return SSLParser::FARITH_OP; }
+"+fq"   { yylval.op = opFPlusq;    return SSLParser::FARITH_OP; }
 "-f"    { yylval.op = opFMinus;    return SSLParser::FARITH_OP; }
-"-fd"   { yylval.op = opFMinus;    return SSLParser::FARITH_OP; }
-"-fq"   { yylval.op = opFMinus;    return SSLParser::FARITH_OP; }
+"-fd"   { yylval.op = opFMinusd;   return SSLParser::FARITH_OP; }
+"-fq"   { yylval.op = opFMinusq;   return SSLParser::FARITH_OP; }
 "pow"   { yylval.op = opPow;       return SSLParser::FARITH_OP; }
 
 "~"     { yylval.op = opNot;  return SSLParser::NOT; }
