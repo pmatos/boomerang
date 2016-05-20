@@ -139,7 +139,7 @@
 %token <op>  ADDR CONV_FUNC TRUNC_FUNC FABS_FUNC TRANSCEND
 %token <str> NAME ASSIGNTYPE
 %token <str> REG_ID COND_TNAME DECOR
-%token <str> TEMP SHARES
+%token <str> TEMP
 %token <str> NAME_CALL NAME_LOOKUP
 
 %token       ENDIANNESS BIG LITTLE
@@ -885,7 +885,7 @@ location
 
 	| exp AT '[' exp ':' exp ']' { $$ = new Ternary(opAt, $1, $4, $6); }
 
-	|TEMP { $$ = Location::tempOf(new Const($1)); }
+	| TEMP { $$ = Location::tempOf(new Const($1)); }
 
 	/* This indicates a post-instruction marker (var tick) */
 	| location '\'' { $$ = new Unary(opPostVar, $1); }
