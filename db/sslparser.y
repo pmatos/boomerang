@@ -21,6 +21,7 @@
 
 %header{
 	#include "types.h"
+	#include "operator.h"
 	#include "rtl.h"
 	#include "table.h"
 	#include "insnameelem.h"

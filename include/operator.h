@@ -4,6 +4,9 @@
  *        what the top level operator is.
  */
 
+#ifndef OPERATOR_H
+#define OPERATOR_H
+
 // The OPER (and integer representation) of expressions (they can be a fair
 // bit different from operators)
 enum OPER {
@@ -204,3 +207,5 @@ enum OPER {
 	// ALWAYS LAST!
 	opNumOf                 // Special index: MUST BE LAST!
 };
+
+#endif
