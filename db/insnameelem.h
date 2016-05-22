@@ -4,6 +4,8 @@
  *
  * \authors
  * Copyright (C) 2001, The University of Queensland
+ * \authors
+ * Copyright (C) 2016, Kyle Guinn
  *
  * \copyright
  * See the file "LICENSE.TERMS" for information on usage and redistribution of
@@ -13,13 +15,12 @@
 #ifndef INSNAMEELEM_H
 #define INSNAMEELEM_H
 
-#include "table.h"
-
 #include <string>
 #include <map>
 
-class InsNameElem {
+class Table;
 
+class InsNameElem {
 public:
 	InsNameElem(const char *name);
 	virtual ~InsNameElem(void);
@@ -41,17 +42,14 @@ protected:
 };
 
 class InsOptionElem : public InsNameElem {
-
 public:
 	InsOptionElem(const char *name);
 	virtual int ntokens(void);
 	virtual std::string getinstruction(void);
 	virtual std::string getinspattern(void);
-
 };
 
 class InsListElem : public InsNameElem {
-
 public:
 	InsListElem(const char *name, Table *t, const char *idx);
 	virtual int ntokens(void);

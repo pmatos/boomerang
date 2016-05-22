@@ -7,20 +7,22 @@
  * Copyright (C) 2001, The University of Queensland
  * \authors
  * Copyright (C) 2002, Trent Waddington
+ * \authors
+ * Copyright (C) 2016, Kyle Guinn
  *
  * \copyright
  * See the file "LICENSE.TERMS" for information on usage and redistribution of
  * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
-#include "types.h"
+#include "table.h"
 #include "insnameelem.h"
 
-InsNameElem::InsNameElem(const char *name)
+InsNameElem::InsNameElem(const char *name) :
+	nextelem(NULL),
+	elemname(name),
+	value(0)
 {
-	elemname = name;
-	value = 0;
-	nextelem = NULL;
 }
 
 InsNameElem::~InsNameElem(void)
@@ -35,12 +37,16 @@ int InsNameElem::ntokens(void)
 
 std::string InsNameElem::getinstruction(void)
 {
-	return (nextelem != NULL) ? (elemname + nextelem->getinstruction()) : elemname;
+	return (nextelem != NULL)
+	       ? (elemname + nextelem->getinstruction())
+	       : elemname;
 }
 
 std::string InsNameElem::getinspattern(void)
 {
-	return (nextelem != NULL) ? (elemname + nextelem->getinspattern()) : elemname;
+	return (nextelem != NULL)
+	       ? (elemname + nextelem->getinspattern())
+	       : elemname;
 }
 
 void InsNameElem::getrefmap(std::map<std::string, InsNameElem *> &m)
@@ -48,12 +54,14 @@ void InsNameElem::getrefmap(std::map<std::string, InsNameElem *> &m)
 	if (nextelem != NULL)
 		nextelem->getrefmap(m);
 	else
-		m.erase(m.begin(), m.end());
+		m.clear();
 }
 
 int InsNameElem::ninstructions(void)
 {
-	return (nextelem != NULL) ? (nextelem->ninstructions() * ntokens()) : ntokens();
+	return (nextelem != NULL)
+	       ? (nextelem->ninstructions() * ntokens())
+	       : ntokens();
 }
 
 void InsNameElem::append(InsNameElem *next)
@@ -86,7 +94,8 @@ int InsNameElem::getvalue(void)
 	return value;
 }
 
-InsOptionElem::InsOptionElem(const char *name) : InsNameElem(name)
+InsOptionElem::InsOptionElem(const char *name) :
+	InsNameElem(name)
 {
 }
 
@@ -114,10 +123,11 @@ std::string InsOptionElem::getinspattern(void)
 	       : ('\'' + elemname + '\'');
 }
 
-InsListElem::InsListElem(const char *name, Table *t, const char *idx) : InsNameElem(name)
+InsListElem::InsListElem(const char *name, Table *t, const char *idx) :
+	InsNameElem(name),
+	indexname(idx),
+	thetable(t)
 {
-	indexname = idx;
-	thetable = t;
 }
 
 int InsListElem::ntokens(void)
@@ -144,7 +154,7 @@ void InsListElem::getrefmap(std::map<std::string, InsNameElem *> &m)
 	if (nextelem != NULL)
 		nextelem->getrefmap(m);
 	else
-		m.erase(m.begin(), m.end());
+		m.clear();
 	m[indexname] = this;
 	// of course, we're assuming that we've already checked (try in the parser)
 	// that indexname hasn't been used more than once on this line ..
