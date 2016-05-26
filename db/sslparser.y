@@ -247,7 +247,6 @@ operand
 	 * PARAM_LAMBDA
 	 * Example: indexA  rs1, rs2 *i32* r[rs1] + r[rs2] */
 	| param list_parameter func_parameter assigntype exp {
-		std::map<std::string, InsNameElem *> m;
 		ParamEntry &param = Dict.DetParamMap[$1];
 		Statement *asgn = new Assign($4, new Terminal(opNil), $5);
 		// Note: The below 2 copy lists of strings (to be deleted below!)
