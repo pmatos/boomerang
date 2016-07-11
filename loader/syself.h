@@ -1,34 +1,29 @@
-/*
+/**
+ * \file
+ * \brief Contains the various system includes and the like needed to load elf
+ *        binary files.
+ *
+ * \authors
  * Copyright (C) 2001, Sun Microsystems, Inc
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
-/*==============================================================================
- * File:       syself.h
- * OVERVIEW:   This file contains the various system includes and the like
- *             needed to load elf binary files.
- *============================================================================*/
+#ifndef SYSELF_H
+#define SYSELF_H
 
-/*
- * $Revision$
- * 11 May 01 - Nathan: Initial version
- */
-
-#ifndef __SYSELF_H_
-#define __SYSELF_H_
-
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 // ELF Support
 #ifdef HAVE_ELF_H
 #include <elf.h>
 #endif
 #ifdef HAVE_LIBELF_LIBELF_H
-#include <libelf/libelf.h> 
+#include <libelf/libelf.h>
 #endif
 #ifdef HAVE_LIBELF_H
 #include <libelf.h>
@@ -76,4 +71,4 @@ typedef Elf32_Half Elf32_Versym;
 #define AT_SUN_RGID   2003
 #endif
 
-#endif /* !__SYSELF_H_ */
+#endif

@@ -12,11 +12,6 @@
 # OVERVIEW:   A pattern specification for logues on the SPARC architecture.
 #==============================================================================
 
-# 07 Jan 00 - Mike: Added pattern for sethi/or/save and sethi/or/add
-# 31 May 00 - Mike: Added pattern for the call/add caller prologue
-# 25 Aug 00 - Mike: Pattern ret_imm_val can have the struct return form now
-# 16 Mar 01 - Nathan: decode_sethi -> sethi to match a change in sparc-core.spec
-
 NAMES
 
     SP = 14

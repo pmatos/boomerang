@@ -1,20 +1,19 @@
-
 #ifndef RTLEDITOR_H
 #define RTLEDITOR_H
+
+#include "types.h"
 
 #include <QtCore/QString>
 #include <QtGui/QTextEdit>
 
-#include "types.h"
 #include <vector>
 #include <map>
 #include <set>
 
 class Decompiler;
 
-class RTLEditor : public QTextEdit
-{
-    Q_OBJECT
+class RTLEditor : public QTextEdit {
+	Q_OBJECT
 
 public:
 	RTLEditor(Decompiler *decompiler, const QString &name);
@@ -27,9 +26,8 @@ protected:
 	virtual void mousePressEvent(QMouseEvent *event);
 
 private:
-    Decompiler *decompiler;
+	Decompiler *decompiler;
 	QString name;
 };
 
 #endif
-

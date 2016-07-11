@@ -1,8 +1,3 @@
-/*
- * 28 Aug 00 - Mike: Changed second test from "if (args)" to "if (argc > 1")
- *        since if args is calculated incorrectly, it was still printing "Pass"
- */
-
 #include <stdio.h>
 
 void func1() {}

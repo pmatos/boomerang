@@ -1,28 +1,28 @@
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
-
 #include "cfg.h"
 
-class CfgTest : public CppUnit::TestCase {
-  protected:
-	Cfg*  m_prog;
+#include <cppunit/extensions/HelperMacros.h>
 
-  public:
-	CfgTest(std::string name) : CppUnit::TestCase (name)
-	{}
+class CfgTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(CfgTest);
+	// Oops - they were all for dataflow. Need some real Cfg tests!
+	CPPUNIT_TEST(testDominators);
+	CPPUNIT_TEST(testSemiDominators);
+	//CPPUNIT_TEST(testPlacePhi);
+	//CPPUNIT_TEST(testPlacePhi2);
+	CPPUNIT_TEST(testRenameVars);
+	CPPUNIT_TEST_SUITE_END();
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+protected:
+	Cfg *m_prog;
 
-	int countTestCases () const;
+public:
+	CfgTest() { }
 
-	void setUp ();
-	void tearDown ();
+	void setUp();
 
-	void testDominators ();
-	void testSemiDominators ();
-	void testPlacePhi ();
+	void testDominators();
+	void testSemiDominators();
+	void testPlacePhi();
 	void testPlacePhi2();
 	void testRenameVars();
 };
-

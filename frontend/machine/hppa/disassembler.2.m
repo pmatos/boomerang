@@ -4,17 +4,6 @@
  *
  (C) 2000-2001 The University of Queensland, BT group
  *============================================================================*/
-/*
- * $Revision$
- *
- * Simon Long 2000.11.30
- * 03 May 01 - Mike: Added constructor names (use -c); don't truncate opcode
- *              names to 3 chars
- * 08 May 01 - Mike: Many mods to work with Cristina's disassembler model
- * 09 May 01 - Mike: %ld -> %d (prevents pages of warnings) with gcc 2.95
- * 18 Jun 01 - Mike: Added floating point instructions
- */
-
 
 /*
   void NJMCDecoder :: Cmplt_1(ADDRESS hostpc1)

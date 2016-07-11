@@ -1,15 +1,15 @@
 typedef unsigned int size_t;
 void *malloc(size_t size);
-void free(void* ptr);
+void free(void *ptr);
 void *calloc(size_t number, size_t size);
 void *realloc(void *ptr, size_t size);
 void *reallocf(void *ptr, size_t size);
 
 void exit(int code);
 
-typedef int main(int argc, char* argv[], char* envp[]);
+typedef int main(int argc, char *argv[], char *envp[]);
 
-int stat(const char* filename, struct stat* st);
+int stat(const char *filename, struct stat *st);
 
 void abort(void);
 

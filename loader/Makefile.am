@@ -1,137 +1,88 @@
-######################################################
-# File: Makefile
-#
-# Desc: Makefile for the Loader library files.
-#   This loader is lightly adapted from the loader in UQBT
-#   Purpose is to load the input binary file into memory, with calls to iterate through sections,
-#	find entry points, symbols, etc.
-#   The main library is BinaryFile, which calls eactly one of ElfBinaryFile etc as needed.
-#
-######################################################
+AM_CPPFLAGS = -I$(top_srcdir)/include
 
-####################
-# Compiler settings
-#
 
-FPIC = -fPIC
+noinst_LTLIBRARIES = \
+	libmicroX86dis.la \
+	libBinaryFile.la
 
-####################################
-# Detection of OS specific settings
-#
+libmicroX86dis_la_SOURCES = microX86dis.c
 
-# LDL is -ldl if needed (Windows does not)
-#  is .exe for Windows
-# DLLEXT is .dll for Windows and .so otherwise 
-if HOST_IS_WINDOWS
- LDL=
- DLLEXT=.dll
- WININCLUDE=-Iwin32make/include
- # RUNPATH is not needed on Windows 
- RUNPATH=
- COPYDLL=$(top_srcdir)/libBinaryFile$(DLLEXT)
-else # Non-Windows
- LDL=-ldl
- DLLEXT=.so
- WININCLUDE=
-if HOST_IS_GNU_LD
-  RUNPATH=-Wl,-rpath -Wl,"lib"
-else
-if HOST_IS_OSX
-   RUNPATH=
-else		# Assume Solaris
-   RUNPATH=-R"lib"
-endif
-endif
- COPYDLL=
-endif
+libBinaryFile_la_SOURCES = BinaryFile.cpp SymTab.cpp
 
-if HOST_IS_OSX
-if HOST_IS_OSX_10_2
-  SHARED=-dynamiclib		# Note: doesn't seem to work at present; fiddle manually
-else
-  SHARED=-dynamic -dylib
-endif
- #-flat_namespace
- DLLEXT=.dylib
- RUNPATH=
-else # Non-OS X
- SHARED=-shared
-endif
 
-######################
-# Rules for compiling
-#
+pkglib_LTLIBRARIES = \
+	libBinaryFileFactory.la \
+	DOS4GWBinaryFile.la \
+	ElfBinaryFile.la \
+	ExeBinaryFile.la \
+	HpSomBinaryFile.la \
+	IntelCoffFile.la \
+	MachOBinaryFile.la \
+	PalmBinaryFile.la \
+	Win32BinaryFile.la
 
-LOADERS = \
-	ElfBinaryFile.cpp \
-	Win32BinaryFile.cpp \
-	ExeBinaryFile.cpp \
-	HpSomBinaryFile.cpp \
-	PalmBinaryFile \
-	DOS4GWBinaryFile.cpp \
-	IntelCoffFile.cpp \
-	$(NULL)
+libBinaryFileFactory_la_SOURCES = BinaryFileFactory.cpp
+libBinaryFileFactory_la_LIBADD = libBinaryFile.la -ldl
+libBinaryFileFactory_la_LDFLAGS = -no-undefined -avoid-version
 
-pkglib_LTLIBRARIES = 
+DOS4GWBinaryFile_la_SOURCES = DOS4GWBinaryFile.cpp
+ElfBinaryFile_la_SOURCES    = ElfBinaryFile.cpp
+ExeBinaryFile_la_SOURCES    = ExeBinaryFile.cpp
+HpSomBinaryFile_la_SOURCES  = HpSomBinaryFile.cpp
+IntelCoffFile_la_SOURCES    = IntelCoffFile.cpp
+MachOBinaryFile_la_SOURCES  = MachOBinaryFile.cpp
+PalmBinaryFile_la_SOURCES   = PalmBinaryFile.cpp
+Win32BinaryFile_la_SOURCES  = Win32BinaryFile.cpp
 
-if HOST_IS_CYGWIN
- # Until we can resolve the issue of compiling loader/MachOBinaryFile.cpp, don't attempt to make it so at least
- # the Cygwin hosted Boomerang can compile and use non-MachO loaders
- LOADERS+=MachOBinaryFile.cpp
-endif
-#LOADERDLLS=$(patsubst %,$(top_srcdir)/lib/lib%$(DLLEXT),$(LOADERS))
-#BASEDLL=$(top_srcdir)/lib/libBinaryFile$(DLLEXT)
-#ALLDLLS=$(LOADERDLLS) $(BASEDLL)
-ALLLIBS=$(patsubst %,-l%,$(LOADERS)) -lBinaryFile
-ALLOBJS = $(patsubst %, %.o, $(LOADERS))
-ALLOBJS += BinaryFile.o SymTab.o
+DOS4GWBinaryFile_la_LIBADD = libBinaryFile.la libmicroX86dis.la
+ElfBinaryFile_la_LIBADD    = libBinaryFile.la
+ExeBinaryFile_la_LIBADD    = libBinaryFile.la
+HpSomBinaryFile_la_LIBADD  = libBinaryFile.la
+IntelCoffFile_la_LIBADD    = libBinaryFile.la
+MachOBinaryFile_la_LIBADD  = libBinaryFile.la
+PalmBinaryFile_la_LIBADD   = libBinaryFile.la
+Win32BinaryFile_la_LIBADD  = libBinaryFile.la libmicroX86dis.la
 
-all:    $(ALLDLLS) $(COPYDLL) BinaryFileFactory.o BinaryFileStub.o
+DOS4GWBinaryFile_la_LDFLAGS = -no-undefined -avoid-version -module -shared
+ElfBinaryFile_la_LDFLAGS    = -no-undefined -avoid-version -module -shared
+ExeBinaryFile_la_LDFLAGS    = -no-undefined -avoid-version -module -shared
+HpSomBinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
+IntelCoffFile_la_LDFLAGS    = -no-undefined -avoid-version -module -shared
+MachOBinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
+PalmBinaryFile_la_LDFLAGS   = -no-undefined -avoid-version -module -shared
+Win32BinaryFile_la_LDFLAGS  = -no-undefined -avoid-version -module -shared
 
-microX86dis.o: microX86dis.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $(FPIC) $<
-BinaryFileFactory.o:
-BinaryFileStub.o:
 
-# Extra object files, etc
-# These are target specific variables.
-$(top_srcdir)/lib/libWin32BinaryFile$(DLLEXT): EXTRAS = microX86dis.o
-$(top_srcdir)/lib/libWin32BinaryFile$(DLLEXT): microX86dis.o
-$(top_srcdir)/lib/libDOS4GWBinaryFile$(DLLEXT): EXTRAS = microX86dis.o
-$(top_srcdir)/lib/libDOS4GWBinaryFile$(DLLEXT): microX86dis.o
+bin_PROGRAMS = \
+	bffDump
 
-$(top_srcdir)/libBinaryFile$(DLLEXT): $(top_srcdir)/lib/libBinaryFile$(DLLEXT)
-	cp $< $@
+bffDump_SOURCES = bffDump.cpp
+bffDump_LDADD = libBinaryFileFactory.la
 
-BinaryFile.o:		CCEXTRAS = -DBUILDING_LIBBINARYFILE
-MachOBinaryFile.o:	CCEXTRAS = -I.
 
-$(BASEDLL) : BinaryFile.o SymTab.o
-	$(CXX) $(CXXFLAGS) -o $@ $(SHARED) BinaryFile.o SymTab.o $(OUTIMPLIB) $(LDFLAGS)
+check_LTLIBRARIES = \
+	libLoaderTest.la \
+	libBinaryFileStub.la
 
-# This pattern generates all the main dependencies
-$(LOADERDLLS): $(top_srcdir)/lib/lib%$(DLLEXT) : %.o $(BASEDLL)
-	$(CXX) $(CXXFLAGS) -o $@ $(SHARED) $< SymTab.o $(EXTRAS) -lBinaryFile $(RUNPATH) -L$(top_srcdir)/lib $(LDFLAGS)
+libLoaderTest_la_SOURCES = \
+	LoaderTest.cpp \
+	LoaderTest.h
 
-# Compile all objects with -fPIC
-$(ALLOBJS): %.o : %.cpp
-	$(CXX) $(CXXFLAGS) -c $(FPIC) $(CCEXTRAS) -I$(top_srcdir)/include -o $@ $<
+libBinaryFileStub_la_SOURCES = \
+	BinaryFileStub.cpp
 
-###############
-# Unit testing
-#
 
-testLoader: testLoader.o LoaderTest.o microX86dis.o BinaryFileFactory.o SymTab.o
-	$(CXX) $(CXXFLAGS) -o $@ $^  -lcppunit $(ALLLIBS) $(RUNPATH) $(LDL) -L$(top_srcdir)/lib $(LDFLAGS)
+TESTS = $(check_PROGRAMS)
+check_PROGRAMS = \
+	testLoader
 
-testLoader.o: testLoader.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ -I$(top_srcdir)/include $<
-
-LoaderTest.o: LoaderTest.cpp LoaderTest.h $(top_srcdir)/include/BinaryFile.h SymTab.o
-	$(CXX) $(CXXFLAGS) -c -o $@ -I$(top_srcdir)/include $<
-
-# Because of the relative paths, testLoader will only work from the parent
-# directory...
-test: all testLoader
-	cd $(top_srcdir) && loader/testLoader
-
+testLoader_SOURCES = \
+	testLoader.cpp
+testLoader_LDADD = \
+	libLoaderTest.la \
+	libBinaryFileFactory.la \
+	libmicroX86dis.la \
+	$(CPPUNIT_LIBS)
+testLoader_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CPPUNIT_CFLAGS)

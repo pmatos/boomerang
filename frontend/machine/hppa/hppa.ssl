@@ -14,37 +14,6 @@
 # (C) 2001 The University of Queensland, BT group
 ################################################################################
 
-# $Revision$
-
-#    Apr 01 - Simon: Created
-# 01 May 01 - Mike: Worked around a problem with BORR_VAL; ARITH_CB needed {};
-#               added dummy SUBFLAGS; added integer registers
-# 08 May 01 - Mike: "CC0" -> "" for now (fixes OR instruction); various changes
-#               mainly to arguments to get hello world working
-# 09 May 01 - Cristina: added some branching instrs to SSL spec
-# 13 May 01 - Mike: Added another temp hack for ADD.l
-# 28 Jun 01 - Mike: Mods for V1.1 opcodes
-# 17 Jul 01 - Simon: Updated arith instructions
-# 25 Jul 01 - Mike: Rounded out loads and stores, including floats; FP regs;
-#               started floating point operations
-# 25 Jul 01 - Simon: Added some shift, extract, and deposit
-# 26 Jul 01 - Mike: Inserted assignments to r[tmpNul] where needed
-# 26 Jul 01 - Simon: Added EXTRU
-# 27 Jul 01 - Simon: More extract and deposit, %cr registers, shladds
-# 27 Jul 01 - Mike: Added XMPYU
-# 27 Jul 01 - Mike: Added quad registers and FLOAT keyword
-# 29 Jul 01 - Simon: Minor fixes to extract instructions
-# 06 Aug 01 - Mike: Added semantics for the add part of ADD[I]B; added %sar
-#              and semantics for ZVDEP; MTCTL (really MTSAR)
-# 07 Aug 01 - Mike: Oops, had semantics for ZDEP and ZVDEP backwards
-# 07 Aug 01 - Simon: Changed iloads and istores to take more parameters, so
-#               that the addressing mode details are explicit in the SSL now
-# 10 Aug 01 - Simon: Fixed %sar -> -1 to -> 267. Added rest of *DEP*
-#               instructions. Added c_bit lambdas.
-# 14 Aug 01 - Simon: Fix DEP series for case with (len-1) > %sar
-# 21 Aug 01 - Mike: Some conditional assignments for float sizes
-# 28 Aug 01 - Mike: FCNVFF needed parentheses to get precedence right in guard
-
 INTEGER
   [ %r0,  %r1,  %r2,  %r3,  %r4,  %r5,  %r6,  %r7,
     %r8,  %r9,  %r10, %r11, %r12, %r13, %r14, %r15,

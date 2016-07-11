@@ -1,27 +1,22 @@
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
-
 #include "rtl.h"
 
-class RtlTest : public CppUnit::TestCase {
-  protected:
+#include <cppunit/extensions/HelperMacros.h>
 
-  public:
-	RtlTest(std::string name) : CppUnit::TestCase (name)
-	{}
+class RtlTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(RtlTest);
+	CPPUNIT_TEST(testAppend);
+	CPPUNIT_TEST(testClone);
+	CPPUNIT_TEST(testVisitor);
+	CPPUNIT_TEST(testIsCompare);
+	CPPUNIT_TEST(testSetConscripts);
+	CPPUNIT_TEST_SUITE_END();
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+public:
+	RtlTest() { }
 
-	int countTestCases () const;
-
-	void setUp ();
-	void tearDown ();
-
-	void testAppend ();
-	void testClone ();
+	void testAppend();
+	void testClone();
 	void testVisitor();
 	void testIsCompare();
 	void testSetConscripts();
 };
-

@@ -1,6 +1,10 @@
-// Needed by both signature.h and frontend.h
-#ifndef __SIGENUM__
-#define __SIGENUM__
+/**
+ * \file
+ * \brief Needed by both signature.h and frontend.h
+ */
+
+#ifndef SIGENUM
+#define SIGENUM
 
 enum platform {
 	PLAT_PENTIUM,
@@ -14,10 +18,10 @@ enum platform {
 };
 
 enum callconv {
-	CONV_C,			// Standard C, no callee pop
-	CONV_PASCAL,	// callee pop
-	CONV_THISCALL,	// MSVC "thiscall": one parameter in register ecx
+	CONV_C,         // Standard C, no callee pop
+	CONV_PASCAL,    // callee pop
+	CONV_THISCALL,  // MSVC "thiscall": one parameter in register ecx
 	CONV_NONE
 };
 
-#endif	// __SIGENUM__
+#endif

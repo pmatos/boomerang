@@ -11,11 +11,6 @@
 # OVERVIEW:   A pattern specification for logues on the MC68000 architecture.
 #==============================================================================
 
-# $Revision$
-# 09 Feb 2000 - Mike: Started
-# 16 Feb 2000 - Mike: Renamed CALLEE_PROLOGUE link to std_link (was causing
-#                     toolkit to get confused)
-
 NAMES
 
     SP = 7              # Note: these are A register numbers, not SSL nums!

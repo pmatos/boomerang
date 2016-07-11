@@ -1,34 +1,19 @@
-/*==============================================================================
- * FILE:	   testStmt.cpp
- * OVERVIEW:   Command line test of the Statement class
- *============================================================================*/
-/*
- * $Revision$
- * 15 Jul 02 - Mike: Created from testDbase
- * 29 Jul 03 - Mike: Created from testAll
-*/
-
-
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
+/**
+ * \file
+ * \brief Command line test of the Statement class.
+ */
 
 #include "StatementTest.h"
 
-#include <sstream>
-#include <iostream>
+#include <cppunit/ui/text/TestRunner.h>
 
-int main(int argc, char** argv)
+#include <cstdlib>
+
+int main(int argc, char *argv[])
 {
-	CppUnit::TestSuite suite;
+	CppUnit::TextUi::TestRunner runner;
 
-	StatementTest  expt("StatementTest");
+	runner.addTest(StatementTest::suite());
 
-	expt.registerTests(&suite);
-
-	CppUnit::TextTestResult res;
-
-	suite.run( &res );
-	std::cout << res << std::endl;
-
-	return 0;
+	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

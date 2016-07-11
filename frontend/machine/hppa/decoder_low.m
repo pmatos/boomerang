@@ -13,25 +13,6 @@
  *              HP Pa/risc architecture (basically PA/RISC version 1.1)
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * 30 Nov 00 - Simon: Created
- * 22 Mar 01 - Simon: fixed low_sign_ext problem with ADDI
- * 04 May 01 - Mike: c_cc -> c_c for consistency; fixed a problem with c_null
- *              that seems to be a result of the merge
- * 04 May 01 - Mike: Generate RTLs now instead of strings
- * 19 Jul 01 - Simon: Updated integer/float loads/stores and LDO
- * 23 Jul 01 - Mike: Added "not_used" to quelch annoying warnings
- * 25 Jul 01 - Simon: Added shift, extract, deposit
- * 07 Aug 01 - Simon: Changed iloads and istores to take more parameters, so
- *              that the addressing mode details are explicit in the SSL now
- * 10 Aug 01 - Simon: Moved decoder_low.m:c_bit() to decoder.m:dis_c_bit()
- * 13 Aug 01 - Mike: Provide address with "Undecoded instruction" message
- * 22 Aug 01 - Mike: Fixed a warning with "notused(nulli)"
- */
-
-
 #include "global.h"
 #include "decoder.h"
 #include "hppa-names.h"

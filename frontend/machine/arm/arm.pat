@@ -14,9 +14,6 @@
 #             include support for the THUMB architecture. It also assumes
 #             the prologues and epilogues emitted by gcc.
 #============================================================================*/
-# 08 Aug 01 - Brian: Created file.
-# 20 Aug 01 - Cristina: fixed prologues that return "num_saved_regs" by 
-#             adding a new keyword to PAL to count the number of such registers.
 
 NAMES
 

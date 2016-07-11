@@ -1,15 +1,10 @@
-/*
- * Copyright (C) 2004, Trent Waddington
- */
-/*==============================================================================
- * FILE:       removedoubleindirection.h
- * OVERVIEW:   Provides the definition for the remove double indirection exp 
-               tranformer.
- *============================================================================*/
-/*
- * $Revision$
+/**
+ * \file
+ * \brief Provides the definition for the remove double indirection exp
+ *        tranformer.
  *
- * 17 Apr 04 - Trent: Created
+ * \authors
+ * Copyright (C) 2004, Trent Waddington
  */
 
 #ifndef REMOVE_DOUBLE_INDIRECTION_H
@@ -18,9 +13,8 @@
 class RDIExpTransformer : public ExpTransformer
 {
 public:
-    RDIExpTransformer() { }
-    virtual Exp *applyTo(Exp *e, bool &bMod);
+	RDIExpTransformer() {}
+	virtual Exp *applyTo(Exp *e, bool &bMod);
 };
 
 #endif
-
