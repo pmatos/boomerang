@@ -38,7 +38,6 @@ AC_PATH_PROGS([HEAPPATH],
 	[$HOME/install $PATH $HOME/install/mltk])
 HEAP=\"@SMLload=$HEAPPATH\"
 AC_SUBST([HEAP])
->>>>>>> d06bc5d877fa948ec2fc2ed36d4949e45fb58b3c
 
 AC_PATH_PROG([UNGENERATE],[ungenerate],,
 	[$PATH:$HOME/install:$HOME/bin:/home/02/binary/u0.luna.tools/NJ/base])
