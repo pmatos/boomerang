@@ -10,14 +10,6 @@
 # File: sparcdis.spec
 # Desc: toolkit details for a Sparc disassembler
 
-# Created by Cristina - 96 
-# 5 Mar 96 - Norman
-#	added patterns
-# 3 Mar 99 - Doug
-#   changed 'fetch' and 'address' specifications so that they conform to the
-#   ones hard-coded into the SML version of the toolkit (which currently doesn't
-#   actually use this part of a SLED spec) 
-
 patterns 
   load_greg is loadg | LDD 
   load_freg is LDF | LDDF

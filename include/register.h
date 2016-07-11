@@ -1,25 +1,17 @@
-/*
+/**
+ * \file
+ * \brief Header information for the Register class.
+ *
+ * \authors
  * Copyright (C) 2000-2001, The University of Queensland
  *
- * See the file "LICENSE.TERMS" for information on usage and
- * redistribution of this file, and for a DISCLAIMER OF ALL
- * WARRANTIES.
- *
+ * \copyright
+ * See the file "LICENSE.TERMS" for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
  */
 
-/*==============================================================================
- * FILE:		register.h
- * OVERVIEW:	Header information for the Register class.
- *============================================================================*/
-
-/* 
- * $Revision$
- *
- * 28 Apr 02 - Mike: Mods for boomerang
- */
-
-#ifndef __REG_H__
-#define __REG_H__
+#ifndef REG_H
+#define REG_H
 
 class Type;
 
@@ -34,51 +26,51 @@ class Type;
  *============================================================================*/
 
 class Register {
- public:
-  
-  Register();		// needed for use in stl classes.
-  Register(const Register&);
-  Register operator=(const Register& r2);
-  bool operator==(const Register& r2) const;
-  bool operator<(const Register& r2) const;
+public:
 
-  // access and set functins
-  void s_name(const char *);
-  void s_size(int s) {size = s;}
-  void s_float(bool f) {flt = f;}
-  void s_address(void *p) {address = p;}
+	Register();  // needed for use in stl classes.
+	Register(const Register &);
+	Register operator=(const Register &r2);
+	bool operator==(const Register &r2) const;
+	bool operator<(const Register &r2) const;
 
-/* These are only used in the interpreter */
-  char *g_name() const;
-  void *g_address() const {return address;}
+	// access and set functins
+	void s_name(const char *);
+	void s_size(int s) { size = s; }
+	void s_float(bool f) { flt = f; }
+	void s_address(void *p) { address = p; }
 
-  int g_size() const {return size;}
-  Type* g_type() const;
+	/* These are only used in the interpreter */
+	char *g_name() const;
+	void *g_address() const { return address; }
 
-  /* Set the mapped index. For COVERS registers, this is the lower register
-   * of the set that this register covers. For example, if the current register
-   * is f28to31, i would be the index for register f28
-   * For SHARES registers, this is the "parent" register, e.g. if the current
-   * register is %al, the parent is %ax (note: not %eax)
-   */
-  void s_mappedIndex(int i) {mappedIndex = i;}
-  /* Set the mapped offset. This is the bit number where this register starts,
-	 e.g. for register %ah, this is 8. For COVERS regisers, this is 0 */
-  void s_mappedOffset(int i) {mappedOffset = i;}
-  /* Get the mapped index (see above) */
-  int g_mappedIndex() const {return mappedIndex;}
-  /* Get the mapped offset (see above) */
-  int g_mappedOffset() const {return mappedOffset;}
-  /* Get a bool which is true if this is a floating point register */
-  bool isFloat() const {return flt;}
+	int g_size() const { return size; }
+	Type *g_type() const;
 
- private:
-  char *name;
-  short size;
-  void *address;
-  int mappedIndex;
-  int mappedOffset;
-  bool flt;				// True if this is a floating point register
+	/* Set the mapped index. For COVERS registers, this is the lower register
+	 * of the set that this register covers. For example, if the current register
+	 * is f28to31, i would be the index for register f28
+	 * For SHARES registers, this is the "parent" register, e.g. if the current
+	 * register is %al, the parent is %ax (note: not %eax)
+	 */
+	void s_mappedIndex(int i) { mappedIndex = i; }
+	/* Set the mapped offset. This is the bit number where this register starts,
+	   e.g. for register %ah, this is 8. For COVERS regisers, this is 0 */
+	void s_mappedOffset(int i) { mappedOffset = i; }
+	/* Get the mapped index (see above) */
+	int g_mappedIndex() const { return mappedIndex; }
+	/* Get the mapped offset (see above) */
+	int g_mappedOffset() const { return mappedOffset; }
+	/* Get a bool which is true if this is a floating point register */
+	bool isFloat() const { return flt; }
+
+private:
+	char *name;
+	short size;
+	void *address;
+	int mappedIndex;
+	int mappedOffset;
+	bool flt;  // True if this is a floating point register
 };
 
 #endif

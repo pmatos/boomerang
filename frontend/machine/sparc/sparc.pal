@@ -11,14 +11,6 @@
 # OVERVIEW:   A PAL specification for the SPARC architecture.
 #=====================================================================
 
-# 07/01/00 - Mike: Added the _large patterns to various sections, so they
-#                  get parameters, have %afp substitution, etc
-# 14 Apr 00 - Mike: Return locations for INTEGER and FLOAT have .size now
-# 30 Apr 00 - Mike: Added "none" to PARAMETERS section
-# 19 Oct 01 - Mike: Commented out INTEGER.16 and INTEGER.8; must have entries
-#                  here *only* if different register numbers are involved
-
-
 FRAME ABSTRACTION
     INIT = %sp
 

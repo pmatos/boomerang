@@ -16,24 +16,9 @@
  * OVERVIEW:   This file contains the high level decoding functionality, for example matching logues, calls, branches,
  *				etc. Ordinary instructions are processed in decoder_low.m
  *============================================================================*/ 
-/*
- * $Revision$	// 1.33.2.2
- *
- * 26 Apr 02 - Mike: Changes for boomerang
- * 18 Nov 02 - Mike: Mods for MOV.Ed.Iv^od etc. Also suppressed warning re name
- * 09 Dec 02 - Mike: Changed DIS_REG32 to use dis_Reg again, because in the
- *				SSL file we have reg32 instead of r[reg32] (compat with SPARC)
- * 07 May 03 - Mike: Fixed several arithmetic and logical "iodb" instructions
- *				that had 8 bit instead of 32 bit modrm sizes
- * 24 Oct 03 - Mike: Fixed DIS_IDXP1: did not have +32 in macro
- * 02 Sep 05 - Mike: POP.Evod/w take Eaddr now, not Mem
-*/
 
 #include <assert.h>
 #include <cstring>
-#if defined(_MSC_VER) && _MSC_VER <= 1100
-#include "signature.h"
-#endif
 
 #include "rtl.h"
 #include "decoder.h"

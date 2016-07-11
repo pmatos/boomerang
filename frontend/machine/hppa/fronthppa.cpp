@@ -15,20 +15,6 @@
  *             replace Frontend.cc for decoding hppa instructions.
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * 14 May 01 - Mike: Created from frontsparc.cc
- * 17 May 01 - Mike: Modified SCD logic to take account of register interference
- * 24 Jul 01 - Mike: Added helperFunc a la Sparc
- * 24 Jul 01 - Mike: Millicode return value register is %r29
- * 25 Jul 01 - Mike: helperFunc copes with no symbols
- * 27 Jul 01 - Mike: Added $$dyncall helper func
- * 31 Jul 01 - Brian: New class HRTL replaces RTlist. Renamed LRTL to HRTLList.
- * 07 Aug 01 - Mike: Implement DU (Dynamic, not anulled) instruction type
- * 20 Aug 01 - Mike: Handle SU as call/return (if applicable)
- */
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/

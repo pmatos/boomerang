@@ -5,10 +5,6 @@
 # See the file "LICENSE.TERMS" for information on usage and
 # redistribution of this file, and for a DISCLAIMER OF ALL
 # WARRANTIES.
-#
-
-# May 2000: Created: Cristina and Mike
-
 
 ENDIANNESS BIG;
 

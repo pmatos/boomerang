@@ -1,24 +1,17 @@
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
 #include "util.h"
 #include "type.h"
 
 #include "ansi-c-parser.h"
 
-class CTest : public CppUnit::TestCase {
+#include <cppunit/extensions/HelperMacros.h>
 
-  public:
-    CTest(std::string name) : CppUnit::TestCase (name)
-    {}
+class CTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(CTest);
+	CPPUNIT_TEST(testSignature);
+	CPPUNIT_TEST_SUITE_END();
 
-    virtual void registerTests(CppUnit::TestSuite* suite);
+public:
+	CTest() { }
 
-    int countTestCases () const;
-
-    void setUp ();
-    void tearDown ();
-
-    void testSignature();
+	void testSignature();
 };
-

@@ -1,19 +1,7 @@
-/*==============================================================================
- * FILE:	   testDbase.cc
- * OVERVIEW:   Command line test of the Exp and related classes.
- *============================================================================*/
-/*
- * $Revision$
- *	  Apr 02 - Mike: Created
- * 03 Apr 02 - Mike: Modified to use CppUnit 1.6.2.
- * 18 Apr 02 - Mike: Test prog as well
- * 13 May 02 - Mike: Added RtlTest and ParserTest
- * 04 Jul 02 - Mike: Move UtilTest here as TypeTest
-*/
-
-
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
+/**
+ * \file
+ * \brief Command line test of the Exp and related classes.
+ */
 
 #include "exp.h"
 
@@ -24,31 +12,20 @@
 #include "ParserTest.h"
 #include "TypeTest.h"
 
-#include <sstream>
-#include <iostream>
+#include <cppunit/ui/text/TestRunner.h>
 
-int main(int argc, char** argv)
+#include <cstdlib>
+
+int main(int argc, char *argv[])
 {
-	CppUnit::TestSuite suite;
+	CppUnit::TextUi::TestRunner runner;
 
-	ExpTest	 expt("ExpTest");
-	ProgTest progt("ProgTest");
-	ProcTest proct("ProcTest");
-	RtlTest rtlt("RtlTest");
-	ParserTest parsert("ParserTest");
-	TypeTest typet("TypeTest");
+	runner.addTest(ExpTest::suite());
+	runner.addTest(ProgTest::suite());
+	runner.addTest(ProcTest::suite());
+	runner.addTest(RtlTest::suite());
+	runner.addTest(ParserTest::suite());
+	runner.addTest(TypeTest::suite());
 
-	expt.registerTests(&suite);
-	progt.registerTests(&suite);
-	proct.registerTests(&suite);
-	rtlt.registerTests(&suite);
-	parsert.registerTests(&suite);
-	typet.registerTests(&suite);
-
-	CppUnit::TextTestResult res;
-
-	suite.run( &res );
-	std::cout << res << std::endl;
-
-	return 0;
+	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -1,41 +1,54 @@
-/*==============================================================================
- * FILE:	   StatementTest.h
- * OVERVIEW:   Provides the interface for the StatementTest class, which
- *				tests the dataflow subsystems
- *============================================================================*/
-/*
- * $Revision$
- *
- * 14 Jan 03 - Trent: Created
+/**
+ * \file
+ * \brief Provides the interface for the StatementTest class, which tests the
+ *        dataflow subsystems.
  */
-
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
 
 #include "proc.h"
 #include "prog.h"
 
-class StatementTest : public CppUnit::TestCase {
-  protected:
+#include <cppunit/extensions/HelperMacros.h>
 
-  public:
-	StatementTest(std::string name) : CppUnit::TestCase (name)
-	{}
+class StatementTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(StatementTest);
+	CPPUNIT_TEST(testLocationSet);
+	CPPUNIT_TEST(testWildLocationSet);
+	CPPUNIT_TEST(testEmpty);
+	CPPUNIT_TEST(testFlow);
+	CPPUNIT_TEST(testKill);
+	CPPUNIT_TEST(testUse);
+	CPPUNIT_TEST(testUseOverKill);
+	CPPUNIT_TEST(testUseOverBB);
+	CPPUNIT_TEST(testUseKill);
+	//CPPUNIT_TEST(testEndlessLoop);
+	//CPPUNIT_TEST(testRecursion);
+	//CPPUNIT_TEST(testExpand);
+	CPPUNIT_TEST(testClone);
+	CPPUNIT_TEST(testIsAssign);
+	CPPUNIT_TEST(testIsFlagAssgn);
+	CPPUNIT_TEST(testAddUsedLocsAssign);
+	CPPUNIT_TEST(testAddUsedLocsBranch);
+	CPPUNIT_TEST(testAddUsedLocsCase);
+	CPPUNIT_TEST(testAddUsedLocsCall);
+	CPPUNIT_TEST(testAddUsedLocsReturn);
+	CPPUNIT_TEST(testAddUsedLocsBool);
+	CPPUNIT_TEST(testSubscriptVars);
+	CPPUNIT_TEST(testBypass);
+	CPPUNIT_TEST(testStripSizes);
+	CPPUNIT_TEST(testFindConstants);
+	CPPUNIT_TEST_SUITE_END();
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+public:
+	StatementTest() { }
 
-	int countTestCases () const;
+	void setUp();
 
-	void setUp ();
-	void tearDown ();
-
-	void testEmpty ();
-	void testFlow ();
-	void testKill ();
-	void testUse ();
-	void testUseOverKill ();
-	void testUseOverBB ();
+	void testEmpty();
+	void testFlow();
+	void testKill();
+	void testUse();
+	void testUseOverKill();
+	void testUseOverBB();
 	void testUseKill();
 	void testEndlessLoop();
 	void testLocationSet();
@@ -56,4 +69,3 @@ class StatementTest : public CppUnit::TestCase {
 	void testStripSizes();
 	void testFindConstants();
 };
-

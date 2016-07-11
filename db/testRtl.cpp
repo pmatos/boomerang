@@ -1,34 +1,19 @@
-/*==============================================================================
- * FILE:	   testRtl.cpp
- * OVERVIEW:   Command line test of the Rtl class
- *============================================================================*/
-/*
- * $Revision$
- * 15 Jul 02 - Mike: Created from testDbase
- * 29 Jul 03 - Mike: Created from testAll
-*/
-
-
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
+/**
+ * \file
+ * \brief Command line test of the Rtl class.
+ */
 
 #include "RtlTest.h"
 
-#include <sstream>
-#include <iostream>
+#include <cppunit/ui/text/TestRunner.h>
 
-int main(int argc, char** argv)
+#include <cstdlib>
+
+int main(int argc, char *argv[])
 {
-	CppUnit::TestSuite suite;
+	CppUnit::TextUi::TestRunner runner;
 
-	RtlTest	 expt("RtlTest");
+	runner.addTest(RtlTest::suite());
 
-	expt.registerTests(&suite);
-
-	CppUnit::TextTestResult res;
-
-	suite.run( &res );
-	std::cout << res << std::endl;
-
-	return 0;
+	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

@@ -15,15 +15,6 @@
  *             replace Frontend.cc for decoding mc68k instructions.
  *============================================================================*/
 
-/*
- * $Revision$
- * 14 Feb 00 - Mike: converted from front386.cc
- * 23 Feb 00 - Mike: added logic for isReturnAfterCall
- * 09 Nov 00 - Cristina: Added support to generate rtl code to a file
- * 31 Mar 01 - Mike: getFixedDest() returns NO_ADDRESS for non fixed addresses
- * 31 Jul 01 - Brian: New class HRTL replaces RTlist. Renamed LRTL to HRTLList.
-*/
-
 #include "global.h"
 #include "frontend.h"
 #include "decoder.h"        // prototype for decodeInstruction()

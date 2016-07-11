@@ -15,16 +15,6 @@
 # SPARC RTL
 # --------------------------------------------------------------------------
  
-# $Revision$
-# Jun-Dec 97 - Shane: Created
-# 30 Apr 01 - Nathan: Minor clean-up to trap instructions, changed logicals to 
-#                   use 0- rather than !
-# 21 Jun 01 - Nathan: Fixed precedence problem in LDD & STD
-# 26 Nov 02 - Mike: Added RETURN (V9) instruction
-# 04 Dec 02 - Mike: r[rs1] -> rs1 (so we can make r[0] -> 0)
-# 09 Dec 02 - Mike: Use succ(rd) and succ(rs1) for LDD and STD
-# 23 Nov 04 - Mike: Use ~(regimm) for ANDN, ORN, XORN etc
-
 NWINDOWS    := 8;            # Number of windows (register windows)-
                              # implementation dependent
 MAX_BYTE    := 2**8  - 1;    # a byte of all 1's

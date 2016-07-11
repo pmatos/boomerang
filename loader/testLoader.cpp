@@ -1,33 +1,19 @@
-/*==============================================================================
- * FILE:       testLoader.cc
- * OVERVIEW:   Command line test of the BinaryFile and related classes.
- *============================================================================*/
-/*
- * $Revision$
- *    Apr 02 - Mike: Created
- * 03 Apr 02 - Mike: Modified to use CppUnit 1.6.2.
+/**
+ * \file
+ * \brief Command line test of the BinaryFile and related classes.
  */
 
-
-#include "cppunit/TextTestResult.h"
-#include "cppunit/TestSuite.h"
-
-#include <iostream>
 #include "LoaderTest.h"
 
-int main(int argc, char** argv)
+#include <cppunit/ui/text/TestRunner.h>
+
+#include <cstdlib>
+
+int main(int argc, char *argv[])
 {
-    CppUnit::TestSuite suite;
+	CppUnit::TextUi::TestRunner runner;
 
-    LoaderTest lt("ExpTest");
+	runner.addTest(LoaderTest::suite());
 
-    lt.registerTests(&suite);
-
-    CppUnit::TextTestResult res;
-
-    suite.run( &res );
-    std::cout << res << std::endl;
-
-    return 0;
+	return runner.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }
-

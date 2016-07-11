@@ -13,30 +13,6 @@
  *             NJMCDecoder class.
  *============================================================================*/
 
-/* $Revision$
- *    Apr 01 - Simon: Created
- * 04 May 01 - Mike: Create RTLs not strings; moved addressing mode functions
- *                      here (from decoder_low.m)
- * 08 May 01 - Mike: New addressing modes for dis_addr handles "modify"
- * 09 May 01 - Mike: Match several logues; add idReg where needed; fixed ma
- *              addressing mode
- * 11 May 01 - Mike: Match branches as high level jumps
- * 13 May 01 - Mike: Fixed problems with B.l.n
- * 14 May 01 - Mike: Added some early code for cmpib_all
- * 17 May 01 - Mike: Added gcc frameless logues; handle non anulled CMPIB
- * 27 Jun 01 - Mike: B.l -> BL (1.1 opcode) etc; addressing modes too
- * 19 Jul 01 - Simon: Updated dis_addr(). Added dis_x_addr_shift().
- * 19 Jul 01 - Simon: Also got cmpibf working with various conditions.
- * 23 Jul 01 - Simon: Added cmpb_all and addr_ldisp_17_old
- * 01 Aug 01 - Mike: BL with no target register treated as branch, not call
- * 06 Aug 01 - Mike: Added ADD[I]B; removed getBump()
- * 07 Aug 01 - Mike: Added bare_ret, bare_ret_anulled patterns; some patterns
- *              are type DU now; fixed SCDAN cases
- * 07 Aug 01 - Simon: dis_addr() gone completely - [addr] => [xd,s,b]
- * 10 Aug 01 - Simon: added dis_c_bit(); added BB/BVB High Level Branches
- * 20 Aug 01 - Mike: Check for param_reloc1 pattern
- */
-
 #include "global.h"
 #include "proc.h"
 #include "prog.h"

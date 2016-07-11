@@ -1,4 +1,3 @@
-
 typedef unsigned int size_t;
 
 int printf(char *fmt, ...);
@@ -52,4 +51,3 @@ int remove(const char *pathname);
 // on windows
 
 int _write(int fd, char buf[], int size);
-

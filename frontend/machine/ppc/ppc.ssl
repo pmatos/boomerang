@@ -6,11 +6,6 @@
 # WARRANTIES.
 #
 
-# File: ppc.ssl
-# Desc: This file contains a semantic description of the PPC processor.
-
-# 26/Sep/05 - Mike: Added STWX/STHX/STBX, EXTSB/EXTSBq
-
 # --------------------------------------------------------------------------
 # PPC RTL
 # --------------------------------------------------------------------------

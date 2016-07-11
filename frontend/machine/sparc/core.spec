@@ -11,17 +11,6 @@
 # FILE:     sparc-core.spec
 # OVERVIEW: This is the New Jersey Machine Code Toolkit core specification file
 #           for the Sparc V8 processor
-#
-# $Revision$
-#
-# 3 Mar 98 - Cristina
-#	changed branch^a constructor to return the 'a' value as well.
-# 24 Jan 00 - Mike
-#   changes to ensure that double and quad registers get the correct names
-# 11 Feb 01 - Nathan: Fixed operand names for FTOd and FTOq
-# 11 Feb 01 - Nathan: Renamed decode_sethi to sethi, and sethi to encode_sethi
-# 22 Nov 02 - Mike: pbranch (V9 branches with prediction); RETT -> RETURN
-
 
 fields of instruction (32) 
 inst 0:31 op 30:31 disp30 0:29 rd 25:29 op2 22:24 imm22 0:21 a 29:29 cond 25:28

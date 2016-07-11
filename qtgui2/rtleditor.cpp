@@ -1,11 +1,10 @@
-
-#include <QtGui>
-
 #include "rtleditor.h"
 #include "DecompilerThread.h"
 
-RTLEditor::RTLEditor(Decompiler *decompiler, const QString &name) : 
-    decompiler(decompiler),
+#include <QtGui>
+
+RTLEditor::RTLEditor(Decompiler *decompiler, const QString &name) :
+	decompiler(decompiler),
 	name(name)
 {
 	updateContents();
@@ -33,7 +32,7 @@ void RTLEditor::mouseMoveEvent(QMouseEvent *event)
 
 void RTLEditor::mousePressEvent(QMouseEvent *event)
 {
-    // allow clicking on subscripts
+	// allow clicking on subscripts
 	QString name = anchorAt(event->pos());
 	if (!name.isEmpty()) {
 		scrollToAnchor(name.mid(1));
@@ -41,4 +40,3 @@ void RTLEditor::mousePressEvent(QMouseEvent *event)
 	}
 	QTextEdit::mousePressEvent(event);
 }
-

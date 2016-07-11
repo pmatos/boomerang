@@ -1,7 +1,4 @@
 /* Switch jump table recognition test */
-/* 29 Aug 00 - Mike: Changed from using scanf (doesn't work with pent->sparc
- *              as yet) to just using argc
- */
 #include <stdio.h>
 
 int main(int argc)

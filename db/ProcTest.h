@@ -1,37 +1,26 @@
-/*==============================================================================
- * FILE:	   ProcTest.h
- * OVERVIEW:   Provides the interface for the ProcTest class, which
- *				tests the Proc class
- *============================================================================*/
-/*
- * $Revision$
- *
- * 23 Apr 02 - Mike: Created
+/**
+ * \file
+ * \brief Provides the interface for the ProcTest class, which tests the Proc
+ *        class.
  */
-
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
 
 #include "proc.h"
 #include "prog.h"
 
-class ProcTest : public CppUnit::TestCase {
-  protected:
-	Proc*  m_proc;
-	
+#include <cppunit/extensions/HelperMacros.h>
 
-  public:
-	ProcTest(std::string name) : CppUnit::TestCase (name)
-	{}
+class ProcTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(ProcTest);
+	CPPUNIT_TEST(testName);
+	CPPUNIT_TEST_SUITE_END();
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
+protected:
+	Proc *m_proc;
 
-	int countTestCases () const;
+public:
+	ProcTest() { }
 
-	void setUp ();
-	void tearDown ();
+	void tearDown();
 
-	void testName ();
+	void testName();
 };
-

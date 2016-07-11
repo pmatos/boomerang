@@ -1,12 +1,10 @@
-/*
- *$Revision$	// 1.6.6.1
- */
 #include "log.h"
-#include <sstream>
 #include "statement.h"
 #include "rtl.h"
 #include "exp.h"
 #include "managed.h"
+
+#include <sstream>
 
 Log &Log::operator<<(Statement *s)
 {
@@ -80,7 +78,8 @@ Log &Log::operator<<(int i)
 	return *this;
 }
 
-Log &Log::operator<<(char c) {
+Log &Log::operator<<(char c)
+{
 	std::ostringstream st;
 	st << c;
 	*this << st.str().c_str();
@@ -103,7 +102,7 @@ Log &Log::operator<<(ADDRESS a)
 	return *this;
 }
 
-#if 0		// Mac OS/X and 64 bit machines possibly need this, but better to just cast the size_t to unsigned
+#if 0  // Mac OS/X and 64 bit machines possibly need this, but better to just cast the size_t to unsigned
 Log &Log::operator<<(size_t s)
 {
 	std::ostringstream st;
@@ -113,10 +112,12 @@ Log &Log::operator<<(size_t s)
 }
 #endif
 
-void Log::tail() {
+void Log::tail()
+{
 }
 
-void FileLogger::tail() {
+void FileLogger::tail()
+{
 	out.seekp(-200, std::ios::end);
 	std::cerr << out;
 }

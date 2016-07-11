@@ -17,19 +17,6 @@
  * (C) 2000 The University of Queensland, BT Group & Sun Microsystems, Inc.
  *============================================================================*/
 
-/* $Revision$
- * $Id$
- * Created by Mike 15 Feb 2000
- * 21 Feb 2000 - Mike: support for -(an) and (an)+ (bump and bumpr)
- * 21 Mar 2000 - Mike: pPcDisp generates expressions with idCodeAddr
- * 24 Mar 2000 - Mike: Converted sizes to bits; initialise size of SemStr
- *  1 Aug 00 - Cristina: upgraded to support mltk version Apr 5 14:56:28
- *              EDT 2000.  [numBytes] renamed to nextPC as semantics of
- *              [numBytes] has changed.  Assignment of (nextPC - hostPC). 
- * 31 Jul 01 - Brian: New class HRTL replaces RTlist. Added new derived class
- *               RTL for low-level HRTLs.
- */
-
 #include "global.h"
 #include "decoder.h"
 #include "prog.h"
@@ -507,28 +494,6 @@ DecodeResult& NJMCDecoder::decodeInstruction (ADDRESS pc, int delta,
  * These are machine specific functions used to decode instruction
  * operands into SemStrs.
  *============================================================================*/
-
-/*
- * Modified from the original: 
- *  m68k_ea.m
- *  written by Owen Braun
- *  ocbraun@princeton.edu
- *  created 4/7/96 11:27 pm
- * 
- * 4 Feb 2000 - Cristina, removed ObjFile reference for integration w/UQBT 
- * 7,9 Feb 2000 - Cristina, changed display format of addressing modes to
- *      comply with the Motorola assembly format.
- * 8 Feb 2000 - Note that the ML version of the toolkit generates
- *      repeated label names for procedures that have more than one
- *      matching statement.  Mike's program formats replaces repeated
- *      names by unique names.
- * 9 Feb 00 - Cristina.  Note that I have *not* tested the indexed 
- *		addressing modes as the mc68328 does not support *any* of
- *		such addressing modes.  The mc68000 does however. 
- * 20 Feb 00 - Cristina: fixed branches
- * 21 Feb 00 - Mike: Removed redundant delta from BTA()
- */
-
 
 // Branch target
 SemStr* NJMCDecoder::BTA(ADDRESS d, DecodeResult& result, ADDRESS pc)

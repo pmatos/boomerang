@@ -12,31 +12,6 @@
  * OVERVIEW: Matcher file for a stand alone disassembler tool
  *============================================================================*/
 
-/*
- * $Revision$
- *
- * Simon Long 2000.11.30
- * 03 May 01 - Mike: Added constructor names (use -c); don't truncate opcode
- *              names to 3 chars
- * 08 May 01 - Mike: Many mods to work with Cristina's disassembler model
- * 09 May 01 - Mike: %ld -> %d (prevents pages of warnings) with gcc 2.95
- * 18 Jun 01 - Mike: Added floating point instructions
- * 28 Jun 01 - Mike: Major rewrite of integer loads and stores for 1.1 syntax
- * 20 Jul 01 - Mike: Some necessary changes due to Simon's revisions in .spec
- * 23 Jul 01 - Simon: Continued the changes due to revisions in .spec; use
- *              macros to simplify code; separate building of the opcode name
- *              (including completers) using apre and astr char ptrs
- * 24 Jul 01 - Simon: bug fixes (e.g. LDO, etc)
- * 27 Jul 01 - Mike: Display floating registers greater than 32 as frXXR
- * 06 Aug 01 - Mike: Added add[i]b_all; fixed MTCTL (no ct_06 field now)
- * 07 Aug 01 - Mike: Reinstated dis_c_addr for c_s_addr_m[ab] (fixes "STB,ma")
- * 07 Aug 01 - Simon: dis_addr() gone completely - [addr] => [xd,s,b]
- * 20 Aug 01 - Mike: Fixed the CONS() for floating point loads and stores
- * 20 Aug 01 - Simon: Fixed floating point load/store with ,ma or ,mb
- */
-
-
-
 #include "global.h"
 #include "decoder.h"
 #include "BinaryFile.h"

@@ -13,27 +13,12 @@
  *			   SparcDecoder class.
  *============================================================================*/
 
-/* $Revision$	// 1.20.2.2
- *
- * 26 Apr 02 - Mike: Mods for boomerang
- * 19 May 02 - Mike: Added many (int) casts: variables from toolkit are unsgnd
- * 21 May 02 - Mike: SAVE and RESTORE have full semantics now
- * 30 Oct 02 - Mike: dis_Eaddr mode indirectA had extra memof
- * 22 Nov 02 - Mike: Support 32 bit V9 branches
- * 04 Dec 02 - Mike: r[0] -> 0 automatically (rhs only)
- * 30 May 02 - Mike: Also fixed r[0] -> 0 for store instructions
- * 03 Nov 04 - Mike: DIS_FDS was returning numbers for the double precision registers
-*/
-
 /*==============================================================================
  * Dependencies.
  *============================================================================*/
 
 #include <assert.h>
 #include <cstring>
-#if defined(_MSC_VER) && _MSC_VER <= 1100
-#include "signature.h"
-#endif
 
 #include "decoder.h"
 #include "exp.h"

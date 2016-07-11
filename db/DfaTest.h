@@ -1,26 +1,20 @@
-#include <cppunit/TestCaller.h>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestSuite.h>
-
 #include "type.h"
 
-class DfaTest : public CppUnit::TestCase {
-  protected:
+#include <cppunit/extensions/HelperMacros.h>
 
-  public:
-	DfaTest(std::string name) : CppUnit::TestCase (name)
-	{}
+class DfaTest : public CppUnit::TestFixture {
+	CPPUNIT_TEST_SUITE(DfaTest);
+	CPPUNIT_TEST(testMeetInt);
+	CPPUNIT_TEST(testMeetSize);
+	CPPUNIT_TEST(testMeetPointer);
+	CPPUNIT_TEST(testMeetUnion);
+	CPPUNIT_TEST_SUITE_END();
 
-	virtual void registerTests(CppUnit::TestSuite* suite);
-
-	int countTestCases () const;
-
-	void setUp ();
-	void tearDown ();
+public:
+	DfaTest() { }
 
 	void testMeetInt();
 	void testMeetSize();
 	void testMeetPointer();
 	void testMeetUnion();
 };
-
